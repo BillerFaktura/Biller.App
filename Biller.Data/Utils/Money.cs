@@ -59,6 +59,15 @@ namespace Biller.Data.Utils
             return cur;
         }
 
+        public double GetRoundedValue()
+        {
+            var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+            nfi.NumberGroupSeparator = ".";
+            nfi.NumberDecimalSeparator = ",";
+            nfi.NumberDecimalDigits = 2;
+            return Double.Parse(Amount.ToString("n", nfi), nfi);
+        }
+
         public override string ToString()
         {
             var nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();

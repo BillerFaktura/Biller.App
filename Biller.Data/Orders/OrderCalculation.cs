@@ -93,14 +93,16 @@ namespace Biller.Data.Orders
             }
 
             OrderSummary.Amount = ArticleSummary.Amount;
+            NetOrderSummary.Amount = NetArticleSummary.Amount;
             
             // Discount
             if (_parentOrder.OrderRebate.Amount > 0)
             {
                 var temp = OrderSummary.Amount;
                 OrderSummary.Amount = OrderSummary.Amount * (1 - _parentOrder.OrderRebate.Amount);
+                NetOrderSummary.Amount = NetOrderSummary.Amount * (1 - _parentOrder.OrderRebate.Amount);
                 OrderRebate = new EMoney(temp - OrderSummary.Amount);
-                foreach (var item in TaxValues)
+                foreach (var item in TaxValues)               
                     item.Value = item.Value * (1 - _parentOrder.OrderRebate.Amount);
             }
             else
@@ -173,6 +175,9 @@ namespace Biller.Data.Orders
             RaiseUpdateManually("TaxValues");
             RaiseUpdateManually("OrderRebate");
             RaiseUpdateManually("CashBack");
+            RaiseUpdateManually("NetArticleSummary");
+            RaiseUpdateManually("NetOrderSummary");
+            RaiseUpdateManually("OrderSummary");
         }
 
         /// <summary>
