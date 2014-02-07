@@ -1,0 +1,37 @@
+﻿<Fluent:RibbonTabItem x:Class="Biller.UI.CustomerView.Contextual.ContextualTabItem"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                      xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+                      mc:Ignorable="d" 
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      Group="{Binding ContextualTabGroup}"
+                      Header="{Binding Customer.DisplayName, FallbackValue='Neuer Kunde'}">
+    <Fluent:RibbonTabItem.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\..\Localization\CustomerView\de.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Fluent:RibbonTabItem.Resources>
+    <Fluent:RibbonGroupBox Header="">
+        <Fluent:Button Name="buttonQuickSave" Header="{StaticResource save}" Icon="Images\save.png" LargeIcon="Images\save.png" Click="buttonQuickSave_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource save}" HelpLabelVisibility="Collapsed" Width="450"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonSaveAndExit" Header="{StaticResource saveandexit}" Icon="Images\saveback.png" LargeIcon="Images\saveback.png" Click="buttonSaveAndExit_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource saveandexit}" HelpLabelVisibility="Collapsed" Width="450"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox>
+        <Fluent:Button Name="buttonAbort" Header="{StaticResource abort}" Icon="Images\cancel.png" LargeIcon="Images\cancel.png" Click="buttonAbort_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource abort}" Width="450" HelpLabelVisibility="Collapsed"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+</Fluent:RibbonTabItem>

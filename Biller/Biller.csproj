@@ -1,0 +1,505 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6C93775C-0207-4C88-8497-E8982E72132E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Biller</RootNamespace>
+    <AssemblyName>Biller</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>veröffentlichen\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Biller.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>6300B3622E66450452256B21A3A4FA8DE65EA6BF</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Biller_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fluent">
+      <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\Assemblies\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\Fluent\NET 4.5\Release\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Data\Factories\Buttons\InvoiceButton.xaml.cs">
+      <DependentUpon>InvoiceButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Factories\InvoiceFactory.cs" />
+    <Compile Include="Data\Samples\SampleInvoice.cs" />
+    <Compile Include="Data\Settings\VariousData.cs" />
+    <Compile Include="TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ArticleView\ArticleRibbonTabItem.xaml.cs">
+      <DependentUpon>ArticleRibbonTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ArticleView\ArticleTabViewModel.cs" />
+    <Compile Include="UI\ArticleView\ArticleTabContent.xaml.cs">
+      <DependentUpon>ArticleTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ArticleView\Contextual\Controls\ArticleEditControl.xaml.cs">
+      <DependentUpon>ArticleEditControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ArticleView\Contextual\ArticleEditTabContent.xaml.cs">
+      <DependentUpon>ArticleEditTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ArticleView\Contextual\ArticleEditTabItem.xaml.cs">
+      <DependentUpon>ArticleEditTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ArticleView\Contextual\ArticleEditViewModel.cs" />
+    <Compile Include="UI\ArticleView\Contextual\Controls\ArticleEditControlTabItem.xaml.cs">
+      <DependentUpon>ArticleEditControlTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerView\Contextual\CustomerContextualViewModel.cs" />
+    <Compile Include="UI\CustomerView\Contextual\ContextualTabContent.xaml.cs">
+      <DependentUpon>ContextualTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerView\Contextual\ContextualTabItem.xaml.cs">
+      <DependentUpon>ContextualTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerView\Contextual\EditView\EditViewContent.xaml.cs">
+      <DependentUpon>EditViewContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerView\Contextual\EditView\EditViewTabItem.xaml.cs">
+      <DependentUpon>EditViewTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerView\CustomerTabContent.xaml.cs">
+      <DependentUpon>CustomerTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerView\CustomerTabTabItem.xaml.cs">
+      <DependentUpon>CustomerTabTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerView\CustomerTabViewModel.cs" />
+    <Compile Include="UI\Interface\IArticleEditContentItem.cs" />
+    <Compile Include="UI\Interface\IRibbonTabItem.cs" />
+    <Compile Include="UI\Interface\ITabContentViewModel.cs" />
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Articles\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Articles\EditTab.xaml.cs">
+      <DependentUpon>EditTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Others\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Others\EditTab.xaml.cs">
+      <DependentUpon>EditTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Receipent\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Receipent\EditTab.xaml.cs">
+      <DependentUpon>EditTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Settings\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\Settings\EditTab.xaml.cs">
+      <DependentUpon>EditTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\OrderEditTabHolder.xaml.cs">
+      <DependentUpon>OrderEditTabHolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\OrderFolder.xaml.cs">
+      <DependentUpon>OrderFolder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\OrderEditRibbonTabItem.xaml.cs">
+      <DependentUpon>OrderEditRibbonTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\OrderEditTabContent.xaml.cs">
+      <DependentUpon>OrderEditTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\OrderEditViewModel.cs" />
+    <Compile Include="UI\OrderView\OrderTabContent.xaml.cs">
+      <DependentUpon>OrderTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\PaymentSettings\PaymentTabContent.xaml.cs">
+      <DependentUpon>PaymentTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\PaymentSettings\PaymentTabItem.xaml.cs">
+      <DependentUpon>PaymentTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\ShipmentSettings\ShipmentTabContent.xaml.cs">
+      <DependentUpon>ShipmentTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\ShipmentSettings\ShipmentTabItem.xaml.cs">
+      <DependentUpon>ShipmentTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\TaxClassSettings\TaxClassTabContent.xaml.cs">
+      <DependentUpon>TaxClassTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\TaxClassSettings\TaxClassTabItem.xaml.cs">
+      <DependentUpon>TaxClassTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\UnitSettings\UnitTabContent.xaml.cs">
+      <DependentUpon>UnitTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsList\UnitSettings\UnitTabItem.xaml.cs">
+      <DependentUpon>UnitTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsTabContent.xaml.cs">
+      <DependentUpon>SettingsTabContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsTabRibbonTabItem.xaml.cs">
+      <DependentUpon>SettingsTabRibbonTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SettingsView\SettingsTabViewModel.cs" />
+    <Compile Include="UI\TreeView\TreeViewItemHelper.cs" />
+    <Compile Include="UI\ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="UI\OrderView\OrderRibbonTabItem.xaml.cs">
+      <DependentUpon>OrderRibbonTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\OrderTabViewModel.cs" />
+    <Compile Include="UI\Ribbon\RibbonFactory.cs" />
+    <Page Include="Data\Factories\Buttons\InvoiceButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ArticleView\ArticleRibbonTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ArticleView\ArticleTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ArticleView\Contextual\Controls\ArticleEditControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ArticleView\Contextual\ArticleEditTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ArticleView\Contextual\ArticleEditTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ArticleView\Contextual\Controls\ArticleEditControlTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CustomerView\Contextual\ContextualTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CustomerView\Contextual\ContextualTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CustomerView\Contextual\EditView\EditViewContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CustomerView\Contextual\EditView\EditViewTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CustomerView\CustomerTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\CustomerView\CustomerTabTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Localization\ArticleView\de.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Localization\CustomerView\de.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Localization\OrderView\de.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Localization\SettingsView\de.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Articles\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Articles\EditTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Others\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Others\EditTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Receipent\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Receipent\EditTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Settings\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\Settings\EditTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\OrderEditTabHolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\OrderFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\OrderEditRibbonTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\OrderEditTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\OrderRibbonTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\OrderTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\PaymentSettings\PaymentTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\PaymentSettings\PaymentTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\ShipmentSettings\ShipmentTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\ShipmentSettings\ShipmentTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\TaxClassSettings\TaxClassTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\TaxClassSettings\TaxClassTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\UnitSettings\UnitTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsList\UnitSettings\UnitTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsTabContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\SettingsView\SettingsTabRibbonTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Biller.Controls\Biller.Controls.csproj">
+      <Project>{7f38e058-9c78-418f-8acf-1cdd3a196edd}</Project>
+      <Name>Biller.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Biller.Data\Biller.Data.csproj">
+      <Project>{1a5b3d3a-01a8-4946-8f7b-1de9093b3022}</Project>
+      <Name>Biller.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

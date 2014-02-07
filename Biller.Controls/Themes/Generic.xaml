@@ -1,0 +1,208 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Biller.Controls">
+    <Style TargetType="{x:Type local:Office2013Button}" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="MinHeight" Value="23" />
+        <Setter Property="MinWidth" Value="75" />
+        <Setter Property="Height" Value="75" />
+        <Setter Property="Width" Value="92" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Office2013Button}">
+                    <Border x:Name="Border" BorderThickness="1" Margin="0" Background="{TemplateBinding Background}" BorderBrush="LightGray">
+                        <StackPanel Margin="2" x:Name="stackPanel" MaxWidth="{Binding ElementName=Border, Path=ActualWidth}">
+                            <Image HorizontalAlignment="Center" Height="48" Width="48" VerticalAlignment="Center" Source="{TemplateBinding Image}" Margin="9,2,9,0" SnapsToDevicePixels="True" />
+                            <ContentPresenter HorizontalAlignment="Center" Height="48" Width="48" VerticalAlignment="Center" Content="{TemplateBinding Vector}" Margin="9,-46,9,0" SnapsToDevicePixels="True" />
+                            <TextBlock VerticalAlignment="Bottom" Text="{TemplateBinding Content}" Margin="9,2,9,0" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsKeyboardFocused" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="DarkGray" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="DarkGray" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="false">
+                            <Setter TargetName="Border" Property="BorderBrush" Value="LightGray" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="DarkGray" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <!--<Setter TargetName="Border" Property="Background" Value="{StaticResource DisabledBackgroundBrush}" />
+                            <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}" />-->
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:WatermarkTextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:WatermarkTextBox}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="enterGotFocus" >
+                            <DoubleAnimation Duration="0:0:0.2" To=".33"
+			  	Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                        </Storyboard>
+                        <Storyboard x:Key="exitGotFocus" >
+                            <DoubleAnimation Duration="0:0:0.4"
+			  	Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                        </Storyboard>
+
+                        <Storyboard x:Key="enterHasText" >
+                            <DoubleAnimation Duration="0:0:0.2" From=".33" To="0"
+			  	Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                        </Storyboard>
+                        <Storyboard x:Key="exitHasText" >
+                            <DoubleAnimation Duration="0:0:0.4"
+			  	Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Message"/>
+                        </Storyboard>
+
+                    </ControlTemplate.Resources>
+                    <Border Name="Bd" Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                            BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                            BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                            Padding="{Binding Path=Padding, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
+                        <Grid>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3"/>
+                            <TextBlock Text="{TemplateBinding TextBoxInfo}" x:Name="Message"
+								Foreground="Black" IsHitTestVisible="False"
+								FontStyle="Italic" Opacity="0.67" HorizontalAlignment="Left" VerticalAlignment="Center"
+								Margin="6,0,0,0"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="HasText" Value="False"/>
+                                <Condition Property="IsFocused" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource enterGotFocus}"/>
+                            </MultiTrigger.EnterActions>
+                            <MultiTrigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource exitGotFocus}"/>
+                            </MultiTrigger.ExitActions>
+                        </MultiTrigger>
+
+                        <Trigger Property="HasText" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource enterHasText}"/>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource exitHasText}"/>
+                            </Trigger.ExitActions>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled"
+								 Value="false">
+                            <Setter TargetName="Bd"
+									Property="Background"
+									Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            <Setter Property="Foreground"
+									Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+
+                        <!-- Width -->
+                        <Trigger Property="Width" Value="Auto">
+                            <Setter Property="MinWidth" Value="100"/>
+                        </Trigger>
+
+                        <!-- Height -->
+                        <Trigger Property="Height" Value="Auto">
+                            <Setter Property="MinHeight" Value="20"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type local:AnimatedScrollViewer}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:AnimatedScrollViewer}">
+                    <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Rectangle 
+								Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" 
+								x:Name="Corner" 
+								Grid.Column="1" 
+								Grid.Row="1"/>
+                        <ScrollContentPresenter 
+								Margin="{TemplateBinding Padding}" 
+								x:Name="PART_ScrollContentPresenter" 
+								Grid.Column="0" 
+								Grid.Row="0" 
+								Content="{TemplateBinding Content}" 
+								ContentTemplate="{TemplateBinding ContentTemplate}" 
+								CanContentScroll="{TemplateBinding CanContentScroll}" 
+								CanHorizontallyScroll="False" 
+								CanVerticallyScroll="False"/>
+                        <ScrollBar 
+								Cursor="Arrow" 
+								x:Name="PART_VerticalScrollBar" 
+								Visibility="Collapsed" 
+								Grid.Column="1" 
+								Grid.Row="0" 
+								ViewportSize="{TemplateBinding ViewportHeight}" 
+								Maximum="{TemplateBinding ScrollableHeight}" 
+								Minimum="0" 
+								Value="{Binding Path=VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+								AutomationProperties.AutomationId="VerticalScrollBar"/>
+                        <ScrollBar 
+								Cursor="Arrow" 
+								x:Name="PART_AniVerticalScrollBar" 
+								Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" 
+								Grid.Column="1" 
+								Grid.Row="0" 
+								ViewportSize="{TemplateBinding ViewportHeight}" 
+								Maximum="{TemplateBinding ScrollableHeight}" 
+								Minimum="0"							
+								Value="0"
+								AutomationProperties.AutomationId="VerticalScrollBar"/>
+                        <ScrollBar 
+								Cursor="Arrow" 
+								x:Name="PART_HorizontalScrollBar" 
+								Visibility="Collapsed" 
+								Grid.Column="0" 
+								Grid.Row="1" 
+								Orientation="Horizontal" 
+								ViewportSize="{TemplateBinding ViewportWidth}" 
+								Maximum="{TemplateBinding ScrollableWidth}" 
+								Minimum="0" 
+								Value="{Binding Path=HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" 
+								AutomationProperties.AutomationId="HorizontalScrollBar"/>
+                        <ScrollBar 
+								Cursor="Arrow" 
+								x:Name="PART_AniHorizontalScrollBar" 
+								Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" 
+								Orientation="Horizontal" 
+								ViewportSize="{TemplateBinding ViewportWidth}" 
+								Maximum="{TemplateBinding ScrollableWidth}" 
+								Minimum="0"
+								Value="0"
+								AutomationProperties.AutomationId="HorizontalScrollBar" Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

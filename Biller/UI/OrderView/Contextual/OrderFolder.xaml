@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Biller.UI.OrderView.Contextual.Controls.OrderFolder"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:convert="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <convert:ValueConverterGroup x:Key="EmptyListVisibilityConverter">
+                <convert:EmptyListConverter/>
+                <convert:InverseBooleanConverter/>
+                <BooleanToVisibilityConverter/>
+            </convert:ValueConverterGroup>
+            <convert:ValueConverterGroup x:Key="EmptyListInverseVisibilityConverter">
+                <convert:EmptyListConverter/>
+                <BooleanToVisibilityConverter/>
+            </convert:ValueConverterGroup>
+            <Style x:Key="HeaderStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="Margin" Value="12"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+            <Style x:Key="ContentStyle" TargetType="{x:Type TextBlock}">
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="Margin" Value="12,0,12,12"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+            </Style>
+            <DataTemplate x:Key="GalleryItem">
+                <StackPanel Width="176" Height="252" Name="itemtemplate">
+                    <Grid Width="156" Height="202" Background="White" VerticalAlignment="Top" Margin="0,12,0,0">
+                        <Border BorderBrush="#FFC6C6C6" BorderThickness="1">
+                            <StackPanel>
+                                <Rectangle Margin="3,12,3,3" Fill="#FFC6C6C6" Height="4" HorizontalAlignment="Left" Width="40" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+
+                                <Rectangle Margin="3,12,3,3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+
+                                <Rectangle Margin="3,12,3,3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                                <Rectangle Margin="3" Fill="#FFC6C6C6" Height="4" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Margin="10,5,10,0">
+                        <TextBlock Text="{Binding DocumentType}" Foreground="#FF404040"/>
+                        <TextBlock Text="{Binding DocumentID}" Foreground="#FF404040" Margin="4,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                <DataTemplate.Triggers>
+                    <Trigger SourceName="itemtemplate" Property="IsMouseOver" Value="True">
+                        <Setter TargetName="itemtemplate" Property="Background" Value="#FFC3D6F1"/>
+                    </Trigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock Style="{StaticResource HeaderStyle}" Text="Auftragsmappe"/>
+        <TextBlock Style="{StaticResource ContentStyle}" Text="Die Organisation von mehreren logisch zusammenhängenden findet in sogenannten Auftragsmappen statt. So können Sie ganz einfach eine Rechnung zu einem Lieferschein erstellen oder eine Gutschrift ausstellen."/>
+        <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich folgende gespeicherten Aufträge:" Visibility="{Binding LinkedOrders, Converter={StaticResource EmptyListVisibilityConverter}}"/>
+        <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich momentan keine gespeicherten Aufträge." Visibility="{Binding LinkedOrders, Converter={StaticResource EmptyListInverseVisibilityConverter}}"/>
+        <ItemsControl ItemsSource="{Binding LinkedOrders}" ItemTemplate="{StaticResource GalleryItem}" Margin="24,0,24,12" Visibility="{Binding LinkedOrders, Converter={StaticResource EmptyListVisibilityConverter}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

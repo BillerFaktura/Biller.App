@@ -1,0 +1,49 @@
+﻿<Fluent:RibbonTabItem x:Class="Biller.UI.ArticleView.Contextual.ArticleEditTabItem"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+                      xmlns:converter="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+                      mc:Ignorable="d"
+                      d:DesignHeight="300" d:DesignWidth="300"
+                      Header="{Binding Article.ArticleDescription, FallbackValue='Neuer Artikel'}"
+                      Group="{Binding ContextualTabGroup}">
+    <Fluent:RibbonTabItem.Resources>
+        <ResourceDictionary>
+            <converter:ValueConverterGroup x:Key="booleanVisibilityConverter">
+                <converter:InverseBooleanConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\..\Localization\ArticleView\de.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Fluent:RibbonTabItem.Resources>
+    <Fluent:RibbonGroupBox Visibility="{Binding EditMode, Converter={StaticResource booleanVisibilityConverter}}">
+        <Fluent:Button Name="buttonCreateFromTemplate" Header="{StaticResource articlefromtemplate}" Icon="Images\artikelvorlage.png" LargeIcon="Images\artikelvorlage.png" Click="buttonCreateFromTemplate_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource articlefromtemplate}" Width="450" HelpLabelVisibility="Collapsed" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox>
+        <Fluent:Button Name="buttonArticleQuickSave" Header="{StaticResource save}" Icon="Images\save.png" LargeIcon="Images\save.png" Click="buttonArticleQuickSave_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource save}" HelpLabelVisibility="Collapsed" Width="450"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonArticleSaveAndExit" Header="{StaticResource saveandexit}" Icon="Images\saveback.png" LargeIcon="Images\saveback.png" Click="buttonArticleSaveAndExit_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource saveandexit}" HelpLabelVisibility="Collapsed" Width="450"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox>
+        <Fluent:Button Name="buttonCloseArticle" Header="{StaticResource abort}" Icon="Images\cancel.png" LargeIcon="Images\cancel.png" Click="buttonCloseArticle_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource abort}" Width="450" HelpLabelVisibility="Collapsed"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+</Fluent:RibbonTabItem>

@@ -1,0 +1,26 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="articleunits">Verkaufseinheiten</sys:String>
+    <sys:String x:Key="articleunitsdescription">Verwalten Sie Ihre gängigen Verkaufseinheiten.</sys:String>
+    <sys:String x:Key="editarticleunit">Verkaufseinheit bearbeiten</sys:String>
+    <sys:String x:Key="name">Name</sys:String>
+    <sys:String x:Key="shortname">Abkürzung</sys:String>
+    <sys:String x:Key="decimaldigits">Nachkommastellen</sys:String>
+    <sys:String x:Key="thousandseperator">Tausendertrennzeichen</sys:String>
+    <sys:String x:Key="decimalseperator">Kommazeichen</sys:String>
+    <sys:String x:Key="resetfields">Felder zurücksetzen</sys:String>
+    <sys:String x:Key="savechanges">Änderungen speichern</sys:String>
+    <sys:String x:Key="paymentmethodes">Zahlungsmöglichkeiten</sys:String>
+    <sys:String x:Key="paymentmethode">Zahlungsmöglichkeit</sys:String>
+    <sys:String x:Key="paymentmethodesdescription">Verwalten Sie die angebotenen Bezahlmöglichkeiten.</sys:String>
+    <sys:String x:Key="discount">Skonto</sys:String>
+    <sys:String x:Key="text">Text</sys:String>
+    <sys:String x:Key="editpaymentmethode">Zahlungsmöglichkeit bearbeiten</sys:String>
+    <sys:String x:Key="taxrate">Steuersatz</sys:String>
+    <sys:String x:Key="taxclasses">Steuerklassen</sys:String>
+    <sys:String x:Key="taxclassesdescription">Mehrwertsteuer / Umsatzsteuerbefreiung</sys:String>
+    <sys:String x:Key="edittaxclass">Steuerklasse bearbeiten</sys:String>
+    
+</ResourceDictionary>

@@ -1,0 +1,25 @@
+﻿<TabItem x:Class="Biller.UI.ArticleView.Contextual.Controls.ArticleEditControlTabItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:local="clr-namespace:Biller.UI.ArticleView.Contextual.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300" Style="{DynamicResource InnerBackstageTabCotrolItem}">
+    <TabItem.Header>
+        <Grid MaxWidth="240">
+            <StackPanel Width="48" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <Image Width="48" Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            </StackPanel>
+            <Grid Margin="68,0,0,0">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,5" ClipToBounds="False">
+                    <TextBlock Text="{Binding TabItemName}" />
+                    <TextBlock Text="{Binding TabItemDescription}" Foreground="DimGray" TextWrapping="Wrap" />
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </TabItem.Header>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" >
+        <local:ArticleEditControl/>
+    </ScrollViewer>
+</TabItem>

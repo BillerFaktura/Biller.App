@@ -1,0 +1,67 @@
+﻿<Fluent:RibbonTabItem x:Class="Biller.UI.ArticleView.ArticleRibbonTabItem"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+                      xmlns:converters="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+                      Header="{DynamicResource articles}">
+    <Fluent:RibbonTabItem.Resources>
+        <ResourceDictionary>
+            <converters:NullToBooleanConverter x:Key="objecttobooleanconverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Localization/ArticleView/de.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Fluent:RibbonTabItem.Resources>
+    <Fluent:RibbonGroupBox Header="">
+        <Fluent:Button Name="buttonNewArticle" Header="{StaticResource createarticle}" Icon="Images\artikeladd.png" LargeIcon="Images\artikeladd.png" Click="buttonNewArticle_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource createarticle}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource createarticletooltip}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonEditArticle" Header="{StaticResource editarticle}" Icon="Images\artikeledit.png" LargeIcon="Images\artikeledit.png" IsEnabled="{Binding SelectedArticle, Converter={StaticResource objecttobooleanconverter}, FallbackValue=False}" Click="buttonEditArticle_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource editarticle}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource editarticletooltip}" DisableReason="{StaticResource editarticletooltipdisable}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <!--<Fluent:RibbonGroupBox>
+        <Fluent:Button Name="buttonArtikelloeschen" Header="{DynamicResource deletearticle}" Icon="Images\artikelremove.png" LargeIcon="Images\artikeldelete.png" IsEnabled="False">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{DynamicResource deletearticle}" HelpLabelVisibility="Collapsed" Width="450" Image="Images\artikeldelete.png" Text="{DynamicResource deletearticletooltip}" DisableReason="{DynamicResource deletearticletooltipdisable}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>-->
+    <Fluent:RibbonGroupBox Header="">
+        <Fluent:Button Name="buttonNewCategory" Header="{StaticResource createcategory}" Icon="Images\catladd.png" LargeIcon="Images\catladd.png">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource createcategory}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource createcategorytooltip}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonEditCategory" Header="{StaticResource editcategory}" Icon="Images\catledit.png" LargeIcon="Images\catledit.png">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource editcategory}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource editcategorytooltip}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="{StaticResource export}">
+        <Fluent:Button Name="buttonPDFArticlelist" Header="{StaticResource pdfArticlelist}" Icon="Images\pdf.png" LargeIcon="Images\pdf.png">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource pdfArticlelist}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource pdfArticlelisttooltip}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonPrintArticlelist" Header="{StaticResource printArticlelist}" Icon="Images\print.png" LargeIcon="Images\print.png">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource printArticlelist}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource printArticlelisttooltip}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="">
+        <Fluent:Button Name="buttonArticleStats" Header="{StaticResource statsArticle}" Icon="Images/chart.png" LargeIcon="Images/chart.png">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource statsArticletooltipHeader}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource statsArticletooltip}" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+</Fluent:RibbonTabItem>

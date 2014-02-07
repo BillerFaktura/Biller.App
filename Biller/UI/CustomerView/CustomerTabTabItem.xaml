@@ -1,0 +1,50 @@
+﻿<Fluent:RibbonTabItem x:Class="Biller.UI.CustomerView.CustomerTabTabItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Header="{DynamicResource customers}">
+    <Fluent:RibbonTabItem.Resources>
+        <ResourceDictionary Source="../Localization/CustomerView/de.xaml" />
+    </Fluent:RibbonTabItem.Resources>
+    <Fluent:RibbonGroupBox>
+        <Fluent:Button Name="buttonNewCustomer" Header="{StaticResource createnewcustomer}" Icon="Images\kundehinzufuegen.png" LargeIcon="Images\kundehinzufuegen.png" Click="buttonNewCustomer_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource createnewcustomer}" HelpLabelVisibility="Collapsed" Width="450"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonnEditCustomer" Header="{StaticResource editcustomer}" Icon="Images\kundeedit.png" LargeIcon="Images\kundeedit.png" IsEnabled="False" Click="buttonnEditCustomer_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource editcustomer}" HelpLabelVisibility="Collapsed" Width="450" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox>
+        <Fluent:Button Name="buttonDeleteCustomer" Header="{StaticResource deletecustomer}" Icon="Images\kundeloeschen.png" LargeIcon="Images\kundeloeschen.png" IsEnabled="False">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource deletecustomer}" HelpLabelVisibility="Collapsed" Width="450" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="{StaticResource customerlist}">
+        <Fluent:Button Name="buttonExportListAsPDF" Header="{StaticResource saveaspdf}" Icon="Images\pdf.png" LargeIcon="Images\pdf.png">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource saveaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste als PDF speichern." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonPrintList" Header="{StaticResource print}" Icon="Images\print.png" LargeIcon="Images\print.png">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource print}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste drucken." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="">
+        <Fluent:Button Name="buttonCustomerStatistics" Header="{StaticResource customerstatistics}" Icon="Images/chart.png" LargeIcon="Images/chart.png" >
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource customerstatistics}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie Kundenstatistiken visualisieren und als PDF speichern" DisableReason="Diese Funktion ist noch nicht verfügbar."/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+</Fluent:RibbonTabItem>

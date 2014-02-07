@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="customers">Kunden</sys:String>
+    <sys:String x:Key="customerno">Kundennummer</sys:String>
+    <sys:String x:Key="customerid">Kundennummer</sys:String>
+    <sys:String x:Key="customername">Name</sys:String>
+    <sys:String x:Key="address">Anschrift</sys:String>
+
+    <sys:String x:Key="createnewcustomer">Neuen Kunden anlegen</sys:String>
+    <sys:String x:Key="editcustomer">Kunde bearbeiten</sys:String>
+    <sys:String x:Key="deletecustomer">Kunde löschen</sys:String>
+    <sys:String x:Key="customerlist">Kundenliste</sys:String>
+    <sys:String x:Key="saveaspdf">Als PDF speichern</sys:String>
+    <sys:String x:Key="print">Drucken</sys:String>
+    <sys:String x:Key="customerstatistics">Kundenstatistiken</sys:String>
+
+    <sys:String x:Key="save">Speichern</sys:String>
+    <sys:String x:Key="saveandexit">Speichern und Schließen</sys:String>
+    <sys:String x:Key="abort">Abbrechen</sys:String>
+
+    <sys:String x:Key="editcustomerdata">Kundendaten bearbeiten</sys:String>
+    <sys:String x:Key="identification">Identifikation</sys:String>
+    <sys:String x:Key="invoiceaddress">Rechnungsanschrift</sys:String>
+    <sys:String x:Key="otheraddresses">Weitere Adressen</sys:String>
+    <sys:String x:Key="contact">Kontakt</sys:String>
+    <sys:String x:Key="preferences">Voreinstellungen</sys:String>
+    <sys:String x:Key="privateperson">Privatperson</sys:String>
+    <sys:String x:Key="company">Firma</sys:String>
+    <sys:String x:Key="companyname">Firmenname</sys:String>
+
+    <sys:String x:Key="salutation">Anrede</sys:String>
+    <sys:String x:Key="title">Titel</sys:String>
+    <sys:String x:Key="forname">Vorname</sys:String>
+    <sys:String x:Key="surname">Nachname</sys:String>
+    <sys:String x:Key="addition">Adresszusatz</sys:String>
+    <sys:String x:Key="street">Straße</sys:String>
+    <sys:String x:Key="housenumber">Hausnummer</sys:String>
+    <sys:String x:Key="zip">Postleitzahl</sys:String>
+    <sys:String x:Key="city">Stadt</sys:String>
+    <sys:String x:Key="country">Land</sys:String>
+
+    <sys:String x:Key="telephone">Telefon</sys:String>
+    <sys:String x:Key="fax">Fax</sys:String>
+    <sys:String x:Key="cellphone">Mobile</sys:String>
+    <sys:String x:Key="mail">E-Mail</sys:String>
+    <sys:String x:Key="facebook">Facebook</sys:String>
+    <sys:String x:Key="twitter">Twitter</sys:String>
+
+    <sys:String x:Key="pricegroup">Preisgruppe</sys:String>
+    <sys:String x:Key="pricegroup1">Preisgruppe 1</sys:String>
+    <sys:String x:Key="pricegroup2">Preisgruppe 2</sys:String>
+    <sys:String x:Key="pricegroup3">Preisgruppe 3</sys:String>
+    <sys:String x:Key="paymentmethode">Zahlungsmethode</sys:String>
+
+    <sys:String x:Key="description">Bezeichnung</sys:String>
+    <sys:String x:Key="addaddress">Adresse hinzufügen</sys:String>
+    <sys:String x:Key="noadditionaladdresses">Keine Extraadressen</sys:String>
+</ResourceDictionary>

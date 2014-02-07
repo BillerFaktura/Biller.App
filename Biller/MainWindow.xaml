@@ -1,0 +1,30 @@
+﻿<Fluent:MetroWindow x:Class="Biller.MainWindow"
+                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+                     Title="Biller" Height="600" Width="1100" FontFamily="Open Sans" FontSize="12" WindowState="Maximized" Loaded="RibbonWindow_Loaded"
+                     RibbonThemeColor="#FF5195B7"
+                     Style="{DynamicResource MetroWindowStyle}">
+    <Fluent:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Fluent;Component/Themes/Metro/White.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Fluent:MetroWindow.Resources>
+    <DockPanel>
+        <Fluent:Ribbon AutomaticStateManagement="True"
+                       x:Name="ribbon"
+                       DockPanel.Dock="Top"
+                       Margin="1,0">
+            <Fluent:Ribbon.Menu>
+                <Fluent:Backstage Background="#FF5195B7"
+                                  Header="Menü" Name="ribbonBackstage">
+                    <Fluent:BackstageTabControl>
+                    </Fluent:BackstageTabControl>
+                </Fluent:Backstage>
+            </Fluent:Ribbon.Menu>
+        </Fluent:Ribbon>
+        <ContentPresenter Content="{Binding SelectedContent}"/>
+    </DockPanel>
+</Fluent:MetroWindow>

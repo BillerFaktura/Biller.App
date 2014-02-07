@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A5B3D3A-01A8-4946-8F7B-1DE9093B3022}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Biller.Data</RootNamespace>
+    <AssemblyName>Biller.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper">
+      <HintPath>..\packages\CsvHelper.2.3.0\lib\net40-client\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Fluent">
+      <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Articles\Article.cs" />
+    <Compile Include="Articles\OrderedArticle.cs" />
+    <Compile Include="Articles\OrderedArticleSorter.cs" />
+    <Compile Include="Articles\PreviewArticle.cs" />
+    <Compile Include="Converters\EmptyListConverter.cs" />
+    <Compile Include="Converters\EmptyStringConverter.cs" />
+    <Compile Include="Converters\InverseBooleanConverter.cs" />
+    <Compile Include="Converters\NullToBooleanConverter.cs" />
+    <Compile Include="Converters\PercentageConverter.cs" />
+    <Compile Include="Converters\ValueConverterGroup.cs" />
+    <Compile Include="Database\XDatabase.cs" />
+    <Compile Include="Document\Document.cs" />
+    <Compile Include="Document\PreviewDocument.cs" />
+    <Compile Include="FlowDoc\Attached.cs" />
+    <Compile Include="FlowDoc\BindableRun.cs" />
+    <Compile Include="FlowDoc\BlockTemplateContent.cs" />
+    <Compile Include="FlowDoc\Fragment.cs" />
+    <Compile Include="FlowDoc\Helpers.cs" />
+    <Compile Include="FlowDoc\ItemsContent.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="Import\csv.cs" />
+    <Compile Include="Interfaces\DocumentFactory.cs" />
+    <Compile Include="Interfaces\IDatabase.cs" />
+    <Compile Include="Interfaces\IXMLStorageable.cs" />
+    <Compile Include="Interfaces\PreviewDocumentParser.cs" />
+    <Compile Include="Models\CompanyInformation.cs" />
+    <Compile Include="Models\MoneyDescriptionModel.cs" />
+    <Compile Include="Models\PriceModel.cs" />
+    <Compile Include="Models\TaxClassMoneyModel.cs" />
+    <Compile Include="Orders\DocumentParsers\InvoiceParser.cs" />
+    <Compile Include="Orders\Invoice.cs" />
+    <Compile Include="Performance\Stopwatch.cs" />
+    <Compile Include="Samples\Customer.cs" />
+    <Compile Include="Samples\Units.cs" />
+    <Compile Include="Settings\CompanySettings.cs" />
+    <Compile Include="Utils\Address.cs" />
+    <Compile Include="Utils\Contact.cs" />
+    <Compile Include="Customers\Customer.cs" />
+    <Compile Include="Customers\PreviewCustomer.cs" />
+    <Compile Include="Orders\Order.cs" />
+    <Compile Include="Orders\OrderCalculation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\EAddress.cs" />
+    <Compile Include="Utils\EMoney.cs" />
+    <Compile Include="Utils\MathematicalOperation.cs" />
+    <Compile Include="Utils\Money.cs" />
+    <Compile Include="Utils\PaymentMethode.cs" />
+    <Compile Include="Utils\Percentage.cs" />
+    <Compile Include="Utils\Shipment.cs" />
+    <Compile Include="Utils\XML.cs" />
+    <Content Include="Utils\PropertyChangedHelper.txt" />
+    <Compile Include="Utils\PropertyChangedHelper.cs" />
+    <Compile Include="Utils\TaxClass.cs" />
+    <Compile Include="Utils\Unit.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="FlowDoc\READ.ME" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

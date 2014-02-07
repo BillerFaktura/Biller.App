@@ -1,0 +1,199 @@
+﻿<UserControl x:Class="Biller.UI.OrderView.Contextual.EditTabs.Receipent.Content"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
+             xmlns:converter="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600" Margin="12">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="LocalizationStrings" Source="../../../../Localization/OrderView/de.xaml" />
+                <ResourceDictionary x:Name="LocalizationStrings2" Source="../../../../Localization/CustomerView/de.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" x:Key="HeaderStyle">
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="SubHeaderStyle">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="0,5"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="ContentStyle">
+                <Setter Property="FontSize" Value="13"/>
+            </Style>
+            <Style TargetType="Rectangle" x:Key="DashRectangle">
+                <Setter Property="Width" Value="7"/>
+                <Setter Property="Height" Value="7"/>
+                <Setter Property="Fill" Value="DarkGray"/>
+                <Setter Property="StrokeThickness" Value="0"/>
+                <Setter Property="Margin" Value="0,0,7,0"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <converter:EmptyStringConverter x:Key="EmptyStringConverter"/>
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converter:ValueConverterGroup x:Key="EmptyStringVisibility">
+                <converter:EmptyStringConverter/>
+                <converter:InverseBooleanConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
+            <converter:ValueConverterGroup x:Key="NullVisibility">
+                <converter:NullToBooleanConverter/>
+                <converter:InverseBooleanConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
+            <converter:ValueConverterGroup x:Key="NullInvertVisibility">
+                <converter:NullToBooleanConverter/>
+                <converter:InverseBooleanConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
+            <converter:ValueConverterGroup x:Key="EmptyStringInvertVisibility">
+                <converter:EmptyStringConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
+            <converter:ValueConverterGroup x:Key="EmptyListVisibility">
+                <converter:EmptyListConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
+            <converter:ValueConverterGroup x:Key="InvertAndVisibilitate">
+                <converter:InverseBooleanConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
+            <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid Name="GridSpan1"/>
+            <Grid Name="GridSpan2" Grid.ColumnSpan="2"/>
+            <Grid Name="GridSpan3" Grid.ColumnSpan="3"/>
+            <Grid Name="GridSpan4" Grid.ColumnSpan="4"/>
+            <Grid Name="GridSpan5" Grid.ColumnSpan="5"/>
+            <Grid Name="GridSpan6" Grid.ColumnSpan="6"/>
+            <Grid Name="GridSpan7" Grid.ColumnSpan="7"/>
+            <Grid Name="GridSpan8" Grid.ColumnSpan="8"/>
+            <Grid Name="GridSpan9" Grid.ColumnSpan="9"/>
+            <Grid Name="GridSpan10" Grid.ColumnSpan="10"/>
+
+            <Grid Name="GridSpan1Margin" Margin="0,0,1,0"/>
+            <Grid Name="GridSpan2Margin" Grid.ColumnSpan="2" Margin="0,0,1,0"/>
+            <Grid Name="GridSpan3Margin" Grid.ColumnSpan="3" Margin="0,0,1,0"/>
+            <Grid Name="GridSpan4Margin" Grid.ColumnSpan="4" Margin="0,0,1,0"/>
+            <Grid Name="GridSpan5Margin" Grid.ColumnSpan="5" Margin="0,0,1,0"/>
+            <Grid Name="GridSpan6Margin" Grid.ColumnSpan="6" Margin="0,0,1,0"/>
+            <Grid Name="GridSpan7Margin" Grid.ColumnSpan="7" Margin="0,0,1,0"/>
+        </Grid>
+
+        <TextBlock Style="{StaticResource HeaderStyle}" Text="{StaticResource InvoiceAddress}"/>
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Viewbox Height="64">
+                    <Canvas xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Name="appbar_people" Width="64" Height="64" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                        <Path Height="64" Width="52.09" Stretch="Fill" Fill="#FF000000" Data="F1 M 38,17.4167C 33.6278,17.4167 30.0833,20.9611 30.0833,25.3333C 30.0833,29.7056 33.6278,33.25 38,33.25C 42.3723,33.25 45.9167,29.7056 45.9167,25.3333C 45.9167,20.9611 42.3722,17.4167 38,17.4167 Z M 30.0833,44.3333L 29.4774,58.036C 32.2927,59.4011 35.4528,60.1667 38.7917,60.1667C 41.5308,60.1667 44.1496,59.6515 46.5564,58.7126L 45.9167,44.3333C 46.9722,44.8611 49.0834,49.0833 49.0834,49.0833C 49.0834,49.0833 50.1389,50.6667 50.6667,57L 55.4166,55.4167L 53.8333,47.5C 53.8333,47.5 50.6667,36.4167 44.3332,36.4168L 31.6666,36.4168C 25.3333,36.4167 22.1667,47.5 22.1667,47.5L 20.5833,55.4166L 25.3333,56.9999C 25.8611,50.6666 26.9167,49.0832 26.9167,49.0832C 26.9167,49.0832 29.0278,44.8611 30.0833,44.3333 Z " Canvas.Left="5.955"/>
+                    </Canvas>
+                </Viewbox>
+            </Grid>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="{StaticResource NoCustomerSelected}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ContentStyle}" Visibility="{Binding Document.Customer.CustomerID, Converter={StaticResource EmptyStringInvertVisibility}}"/>
+                <TextBlock Text="{StaticResource ChoosenCustomer}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ContentStyle}" Visibility="{Binding Document.Customer.CustomerID, Converter={StaticResource EmptyStringVisibility}}">
+                    <LineBreak/>
+                    <Run Text="{Binding Document.Customer.MainAddress.OneLineString, Mode=OneWay}"/>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <controls:Office2013Button Height="92" Width="100" Margin="2" Content="{StaticResource CustomerDatabaseButton}" Click="Office2013Button_Click">
+                    <controls:Office2013Button.Vector>
+                        <Viewbox Width="40">
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                <Path Width="69.6698" Height="76" Canvas.Left="3.116" Stretch="Fill" Fill="#FF000000" Data="F1 M 38,19C 47.619,19 55.4167,21.1266 55.4167,23.75C 55.4167,24.9666 53.7397,26.0763 50.9819,26.9167C 47.7927,27.8884 43.1582,28.5 38,28.5C 32.8418,28.5 28.2073,27.8884 25.0181,26.9167C 22.2603,26.0763 20.5833,24.9666 20.5833,23.75C 20.5833,21.1266 28.381,19 38,19 Z M 55.4167,52.25C 55.4167,54.8734 47.6189,57 38,57C 28.381,57 20.5833,54.8734 20.5833,52.25L 20.5833,45.9167C 20.5833,48.54 28.381,50.6667 38,50.6667C 47.6189,50.6667 55.4167,48.54 55.4166,45.9167L 55.4167,52.25 Z M 55.4167,42.75C 55.4167,45.3734 47.619,47.5 38,47.5C 28.381,47.5 20.5833,45.3734 20.5833,42.75L 20.5833,36.4167C 20.5833,39.04 28.381,41.1667 38,41.1667C 47.619,41.1667 55.4167,39.04 55.4166,36.4167L 55.4167,42.75 Z M 55.4167,33.25C 55.4167,35.8733 47.619,38 38,38C 28.3811,38 20.5833,35.8733 20.5833,33.25L 20.5833,26.9167C 20.5833,29.54 28.381,31.6667 38,31.6667C 47.619,31.6667 55.4167,29.54 55.4167,26.9167L 55.4167,33.25 Z "/>
+                            </Canvas>
+                        </Viewbox>
+                    </controls:Office2013Button.Vector>
+                </controls:Office2013Button>
+            </Grid>
+            <StackPanel Grid.Column="1">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{StaticResource CustomerDatabaseInfo}" TextWrapping="Wrap" Style="{StaticResource ContentStyle}" MaxWidth="{Binding ElementName=GridSpan8, Path=ActualWidth}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,15,0,0">
+                    <controls:WatermarkTextBox Watermark="{StaticResource CustomerFastPickInfo}" Width="{Binding ElementName=GridSpan6, Path=ActualWidth}" Margin="0,1,1,1" TextChanged="WatermarkTextBox_TextChanged" KeyUp="WatermarkTextBox_KeyUp"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Margin="0,5,0,0" >
+                    <TextBlock Text="{StaticResource CustomerNotExisting}" TextWrapping="Wrap" Style="{StaticResource ContentStyle}" Visibility="{Binding PreviewCustomer.MainAddress.OneLineString, Converter={StaticResource NullVisibility}}"/>
+                    <TextBlock Text="{Binding PreviewCustomer.MainAddress.OneLineString}" TextWrapping="Wrap" Style="{StaticResource ContentStyle}" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <TextBlock Style="{StaticResource HeaderStyle}" Text="{StaticResource DeliveryAddress}" Margin="0,50,0,0"/>
+        <Grid Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Viewbox Height="64">
+                    <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76.0106,0L 76.0106,76.0106L 0,76.0106L 0,0">
+                        <Path Width="76" Height="76" Stretch="Fill" Fill="#FF000000" Data="F1 M 24.0033,56.0078L 24.0033,38.0053L 21.753,39.7556L 18.5026,34.8799L 38.0053,20.2528L 46.0064,26.2536L 46.0064,21.7531L 50.007,21.0029L 50.007,29.0041L 57.508,34.8799L 54.2576,39.7556L 52.0072,38.0053L 52.0072,56.0078L 24.0033,56.0078 Z M 37.9679,32.6047C 35.4822,32.6047 33.4672,34.9555 33.4672,37.8554C 33.4672,40.7553 35.4822,43.1062 37.9679,43.1062C 40.4535,43.1062 42.4685,40.7553 42.4685,37.8554C 42.4685,34.9555 40.4535,32.6047 37.9679,32.6047 Z M 29.004,53.0075L 47.0065,53.0075C 47.0065,53.0075 46.7065,46.4066 45.5063,44.6064C 44.4406,43.0078 42.806,42.8061 42.2059,42.8061C 41.6058,42.8061 39.5055,44.9064 38.0053,44.9064C 36.5051,44.9064 34.1798,42.8061 33.5797,42.8061C 32.9796,42.8061 29.004,42.5061 29.004,53.0075 Z " Canvas.Top="0.061"/>
+                    </Canvas>
+                </Viewbox>
+            </Grid>
+            <StackPanel Grid.Column="1">
+                <CheckBox Content="{StaticResource DeliveryLikeInvoiceAddress}" FontSize="13" IsChecked="True" Margin="0,0,0,5" Name="CBoxDeliveryAddress"/>
+                <StackPanel Grid.Column="1" Visibility="{Binding ElementName=CBoxDeliveryAddress, Path=IsChecked, Converter={StaticResource InvertAndVisibilitate}}">
+                    <ComboBox ItemsSource="{Binding Document.Customer.ExtraAddresses}" DisplayMemberPath="AddressDescription" SelectedItem="{Binding Document.DeliveryAddress}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <RadioButton Content="{StaticResource privateperson}" GroupName="IsCompany" IsChecked="{Binding Document.Customer.IsCompany, Converter={StaticResource InverseBooleanConverter}, Mode=OneWay}"/>
+                        <RadioButton Content="{StaticResource company}" Margin="15,0,0,0" GroupName="IsCompany" IsChecked="{Binding Document.Customer.IsCompany, Mode=OneWay}"/>
+                    </StackPanel>
+                    <controls:WatermarkTextBox Watermark="{StaticResource companyname}" Text="{Binding Document.DeliveryAddress.CompanyName}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1,5,1,1" />
+                    <!-- Visibility="{Binding ElementName=CBoxDeliveryAddress, Path=IsChecked, Converter={StaticResource BooleanToVisibilityConverter}}" -->
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <controls:WatermarkTextBox Watermark="{StaticResource salutation}" Text="{Binding Document.DeliveryAddress.Salutation}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left" Name="focusableTextbox"/>
+                        <controls:WatermarkTextBox Watermark="{StaticResource title}" Text="{Binding Document.DeliveryAddress.Title}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <controls:WatermarkTextBox Watermark="{StaticResource forname}" Text="{Binding Document.DeliveryAddress.Forname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                        <controls:WatermarkTextBox Watermark="{StaticResource surname}" Text="{Binding Document.DeliveryAddress.Surname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <controls:WatermarkTextBox Watermark="{StaticResource addition}" Text="{Binding Document.DeliveryAddress.Addition}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1,5,1,1" />
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <controls:WatermarkTextBox Watermark="{StaticResource street}" Text="{Binding Document.DeliveryAddress.Street}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                        <controls:WatermarkTextBox Watermark="{StaticResource housenumber}" Text="{Binding Document.DeliveryAddress.HouseNumber}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                        <controls:WatermarkTextBox Watermark="{StaticResource zip}" Text="{Binding Document.DeliveryAddress.Zip}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                        <controls:WatermarkTextBox Watermark="{StaticResource city}" Text="{Binding Document.DeliveryAddress.City}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                    </StackPanel>
+                    <controls:WatermarkTextBox Watermark="{StaticResource country}" Text="{Binding Document.DeliveryAddress.Country}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1,5,1,1"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</UserControl>
