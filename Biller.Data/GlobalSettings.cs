@@ -13,5 +13,7 @@ namespace Biller.Data
         public static bool UseGermanSupplementaryTaxRegulation { get; set; }
 
         public static string LocalizedOnSupplementaryWork { get; set; }
+
+        public static Utils.TaxClass ShipmentTaxClass { get; set; }
     }
 }

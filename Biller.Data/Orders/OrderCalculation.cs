@@ -22,8 +22,11 @@ namespace Biller.Data.Orders
         public OrderCalculation(Order parentOrder)
         {
             _parentOrder = parentOrder;
-            ArticleSummary = new EMoney(0, true, Currency.EUR);
+            ArticleSummary = new EMoney(0, true);
             NetArticleSummary = new EMoney(0, false);
+            OrderSummary = new EMoney(0, true);
+            NetOrderSummary = new EMoney(0, false);
+            OrderRebate = new EMoney(0, true);
             TaxValues = new ObservableCollection<Models.TaxClassMoneyModel>();
             parentOrder.OrderedArticles.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(OnOrderedArticleCollectionChanged);
             parentOrder.OrderRebate.PropertyChanged += article_PropertyChanged;
@@ -42,7 +45,7 @@ namespace Biller.Data.Orders
             if (e.PropertyName == "OrderShipment")
             {
                 _parentOrder.OrderShipment.PropertyChanged += article_PropertyChanged;
-                //CalculateValues();
+                CalculateValues();
             }
         }
 
@@ -81,13 +84,22 @@ namespace Biller.Data.Orders
                     TaxValues.Add(new Models.TaxClassMoneyModel() { Value = new Money(article.ExactVAT), TaxClass = article.TaxClass });
                 }
             }
+
+            //NetArticleSummary
+            NetArticleSummary.Amount = ArticleSummary.Amount;
+            foreach (var item in TaxValues)
+            {
+                NetArticleSummary.Amount -= item.Value.Amount;
+            }
+
+            OrderSummary.Amount = ArticleSummary.Amount;
             
             // Discount
             if (_parentOrder.OrderRebate.Amount > 0)
             {
-                var temp = ArticleSummary.Amount;
-                ArticleSummary.Amount = ArticleSummary.Amount * (1 - _parentOrder.OrderRebate.Amount);
-                OrderRebate = new EMoney(temp - ArticleSummary.Amount);
+                var temp = OrderSummary.Amount;
+                OrderSummary.Amount = OrderSummary.Amount * (1 - _parentOrder.OrderRebate.Amount);
+                OrderRebate = new EMoney(temp - OrderSummary.Amount);
                 foreach (var item in TaxValues)
                     item.Value = item.Value * (1 - _parentOrder.OrderRebate.Amount);
             }
@@ -102,7 +114,9 @@ namespace Biller.Data.Orders
                 // Just for Germany
                 // We need to split the taxes with the ratio it is before
                 // Austrian: Shipping has reduced taxes
-                ArticleSummary.Amount += _parentOrder.OrderShipment.DefaultPrice.Amount;
+                // CH: 
+                OrderSummary.Amount += _parentOrder.OrderShipment.DefaultPrice.Amount;
+                NetOrderSummary.Amount = NetArticleSummary.Amount;
 
                 if (GlobalSettings.UseGermanSupplementaryTaxRegulation)
                 {
@@ -110,22 +124,37 @@ namespace Biller.Data.Orders
                     foreach (var item in TaxValues)
                         wholetax += item.Value.Amount;
 
-                    foreach (var item in TaxValues)
+                    List<Models.TaxClassMoneyModel> temporaryTaxes = new List<Models.TaxClassMoneyModel>();
+                    foreach (var taxitem in TaxValues)
                     {
-                        var ratio = 1 / (wholetax / item.Value.Amount);
+                        var ratio = 1 / (wholetax / taxitem.Value.Amount);
                         var shipment = new OrderedArticle(new Article());
-                        shipment.TaxClass = item.TaxClass; ;
+                        shipment.TaxClass = taxitem.TaxClass; ;
                         shipment.OrderedAmount = 1;
                         shipment.OrderPrice.Price1 = _parentOrder.OrderShipment.DefaultPrice;
                         if (GlobalSettings.TaxSupplementaryWorkSeperate)
                         {
-                            TaxValues.Add(new Models.TaxClassMoneyModel() { Value = new Money(ratio * shipment.ExactVAT), TaxClass = item.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
+                            temporaryTaxes.Add(new Models.TaxClassMoneyModel() { Value = new Money(ratio * shipment.ExactVAT), TaxClass = taxitem.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
                         }
                         else
                         {
-                            item.Value += (ratio * shipment.ExactVAT);
+                            taxitem.Value += (ratio * shipment.ExactVAT);
                         }
                     }
+                    foreach (Models.TaxClassMoneyModel temporaryTax in temporaryTaxes)
+                    {
+                        TaxValues.Add(temporaryTax);
+                        NetOrderSummary.Amount -= temporaryTax.Value.Amount;
+                    }
+                }
+                else
+                {
+                    var shipment = new OrderedArticle(new Article());
+                    shipment.TaxClass = GlobalSettings.ShipmentTaxClass;
+                    shipment.OrderedAmount = 1;
+                    shipment.OrderPrice.Price1 = _parentOrder.OrderShipment.DefaultPrice;
+                    TaxValues.Add(new Models.TaxClassMoneyModel() { Value = new Money(shipment.ExactVAT), TaxClass = shipment.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
+                    NetOrderSummary.Amount -= shipment.ExactVAT;
                 }
             }
 
@@ -139,12 +168,7 @@ namespace Biller.Data.Orders
                 CashBack = new EMoney(0);
             }
 
-            //NetArticleSummary
-            NetArticleSummary = ArticleSummary;
-            foreach (var item in TaxValues)
-            {
-                NetArticleSummary.Amount -= item.Value.Amount;
-            }
+            
             RaiseUpdateManually("ArticleSummary");
             RaiseUpdateManually("TaxValues");
             RaiseUpdateManually("OrderRebate");
@@ -157,6 +181,10 @@ namespace Biller.Data.Orders
         public EMoney ArticleSummary { get { return GetValue(() => ArticleSummary); } set { SetValue(value); } }
 
         public EMoney NetArticleSummary { get { return GetValue(() => NetArticleSummary); } set { SetValue(value); } }
+
+        public EMoney OrderSummary { get { return GetValue(() => OrderSummary); } set { SetValue(value); } }
+
+        public EMoney NetOrderSummary { get { return GetValue(() => NetOrderSummary); } set { SetValue(value); } }
 
         /// <summary>
         /// Skonto

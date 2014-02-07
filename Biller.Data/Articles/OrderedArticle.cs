@@ -10,7 +10,6 @@ namespace Biller.Data.Articles
 {
     /// <summary>
     /// OrderedArticle inherits from <see cref="Article"/> and is used for articles inside the <see cref="Order"/> object.
-    /// TODO: Calculate rebate
     /// </summary>
     public class OrderedArticle : Article
     {
