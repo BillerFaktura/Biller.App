@@ -123,7 +123,7 @@ namespace Biller.Data.Utils
         {
             get
             {
-                var names = (((Salutation + " " + Title + " ").Trim() + " " + (Forname + " ").Trim()).Trim() + " " + Surname).Trim();
+                var names = (((Salutation + " " + Title + " ").Trim() + " " + Forname).Trim() + " " + Surname).Trim();
                 if (!String.IsNullOrEmpty(names))
                     names += ", ";
                 
@@ -147,6 +147,48 @@ namespace Biller.Data.Utils
 
                 if (output.EndsWith(", "))
                     output=output.Remove(output.LastIndexOf(", "));
+                return output;
+            }
+        }
+
+        public List<string> AddressStrings
+        {
+            get
+            {
+                var output = new List<string>();
+                if (!String.IsNullOrEmpty(CompanyName))
+                {
+                    output.Add(CompanyName);
+
+                    var names = (((Salutation + " " + Title).Trim() + " " + Forname).Trim() + " " + Surname).Trim();
+                    if (!String.IsNullOrEmpty(names))
+                        output.Add(names);
+                }
+                else
+                {
+                    if (!String.IsNullOrEmpty(Salutation))
+                        output.Add(Salutation);
+
+                    var names = ((Title + " " + Forname.Trim()).Trim() + " " + Surname).Trim();
+                    if (!String.IsNullOrEmpty(names))
+                        output.Add(names);
+                }
+
+
+                if (!String.IsNullOrEmpty(Addition))
+                    output.Add(Addition);
+
+                var street = (Street + " " + HouseNumber).Trim();
+                if (!String.IsNullOrEmpty(street))
+                    output.Add(street);
+
+                var city = (Zip + " " + City).Trim();
+                if (!String.IsNullOrEmpty(city))
+                    output.Add(city);
+
+                if (!String.IsNullOrEmpty(Country))
+                    output.Add(Country);
+
                 return output;
             }
         }

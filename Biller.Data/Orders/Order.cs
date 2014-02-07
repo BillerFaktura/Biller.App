@@ -85,6 +85,12 @@ namespace Biller.Data.Orders
             set { SetValue(value); }
         }
 
+        public virtual DateTime DateOfDelivery
+        {
+            get { return GetValue(() => DateOfDelivery); }
+            set { SetValue(value); }
+        }
+
         public override abstract string DocumentType { get; }
 
         public override abstract System.Xml.Linq.XElement GetXElement();

@@ -49,6 +49,7 @@ namespace Biller.Data.Orders
                 throw new Exception("Can not parse " + source.Name + " inside the " + DocumentType + "-class");
             DocumentID = source.Element("ID").Value;
             Date = DateTime.Parse(source.Element("Date").Value);
+            DateOfDelivery = DateTime.Parse(source.Element("DateOfDelivery").Value);
             OrderOpeningText = source.Element("OrderOpeningText").Value;
             OrderClosingText = source.Element("OrderClosingText").Value;
             
@@ -58,7 +59,7 @@ namespace Biller.Data.Orders
         {
             var element = new XElement(XElementName);
             element.Add(new XElement("ID", DocumentID), new XElement("CustomerID", Customer.CustomerID),
-                new XElement("Date", Date),
+                new XElement("Date", Date), new XElement("DateOfDelivery", DateOfDelivery),
                 new XElement("OrderOpeningText", OrderOpeningText), new XElement("OrderClosingText", OrderClosingText),
                 new XElement("OrderedArticles",
                     from articles in this.OrderedArticles
