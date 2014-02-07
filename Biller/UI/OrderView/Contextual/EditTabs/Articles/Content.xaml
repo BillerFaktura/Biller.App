@@ -73,6 +73,7 @@
                     AncestorType={x:Type ListViewItem}},
                     Converter={StaticResource BooleanToVisibilityConverter}, 
                     ConverterParameter=True}" />
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
             </Style>
             <converter:PercentageConverter x:Key="percentageConverter"/>
         </ResourceDictionary>
@@ -200,12 +201,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel>
+                <TextBlock Text="{Binding Document.OrderCalculation.NetArticleSummary}" Style="{StaticResource ContentStyle}"/>
                 <TextBlock Text="{Binding Document.OrderCalculation.ArticleSummary}" Style="{StaticResource ContentStyle}"/>
+                <TextBlock Text="{Binding Document.OrderCalculation.NetOrderSummary}" Style="{StaticResource ContentStyle}"/>
+                <TextBlock Text="{Binding Document.OrderCalculation.OrderSummary}" Style="{StaticResource ContentStyle}"/>
                 <ItemsControl ItemsSource="{Binding Document.OrderCalculation.TaxValues}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding TaxClass.Name}" />
+                                <TextBlock Text=" "/>
+                                <TextBlock Text="{Binding TaxClassAddition}" />
                                 <TextBlock Text=" "/>
                                 <TextBlock Text="{Binding Value}" />
                             </StackPanel>

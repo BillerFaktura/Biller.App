@@ -155,7 +155,7 @@
             <StackPanel Grid.Column="1">
                 <ComboBox ItemsSource="{Binding ParentViewModel.ParentViewModel.SettingsTabViewModel.PaymentMethodes}" SelectedItem="{Binding Document.PaymentMethode}" Width="{Binding ElementName=GridSpan4, Path=ActualWidth}" HorizontalAlignment="Left" DisplayMemberPath="Name" Margin="0"/>
                 <TextBlock Text="Skonto" Style="{StaticResource ContentStyle}"/>
-                <TextBlock Text="{Binding Document.OrderCalculation.OrderRebate.CashBack}"/>
+                <TextBlock Text="{Binding Document.OrderCalculation.CashBack.AmountString}"/>
             </StackPanel>
         </Grid>
 

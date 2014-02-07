@@ -89,6 +89,13 @@
     <Reference Include="Microsoft.WindowsAPICodePack">
       <HintPath>..\Assemblies\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-WPF, Version=1.32.3885.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\MigraDoc\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-WPF">
+      <HintPath>..\Assemblies\MigraDoc\MigraDoc.Rendering-WPF.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -177,6 +184,12 @@
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\OrderView\Contextual\EditTabs\Others\EditTab.xaml.cs">
+      <DependentUpon>EditTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\PrintPreview\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\OrderView\Contextual\EditTabs\PrintPreview\EditTab.xaml.cs">
       <DependentUpon>EditTab.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\OrderView\Contextual\EditTabs\Receipent\Content.xaml.cs">
@@ -342,6 +355,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\OrderView\Contextual\EditTabs\Others\EditTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\PrintPreview\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\OrderView\Contextual\EditTabs\PrintPreview\EditTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

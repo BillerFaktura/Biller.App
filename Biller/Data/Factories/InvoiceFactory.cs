@@ -25,6 +25,7 @@ namespace Biller.Data.Factories
             list.Add(new UI.OrderView.Contextual.EditTabs.Receipent.EditTab());
             list.Add(new UI.OrderView.Contextual.EditTabs.Articles.EditTab());
             list.Add(new UI.OrderView.Contextual.EditTabs.Others.EditTab());
+            list.Add(new UI.OrderView.Contextual.EditTabs.PrintPreview.EditTab());
             return list;
         }
 

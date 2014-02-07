@@ -182,3 +182,6 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+Assemblies/MigraDoc/MigraDoc.RtfRendering-WPF.xml
+Assemblies/MigraDoc/PdfSharp-WPF.xml
+Assemblies/MigraDoc/PdfSharp.Charting-WPF.xml

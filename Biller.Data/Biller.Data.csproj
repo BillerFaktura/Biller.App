@@ -37,6 +37,12 @@
     <Reference Include="Fluent">
       <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
     </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-WPF">
+      <HintPath>..\Assemblies\MigraDoc\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-WPF">
+      <HintPath>..\Assemblies\MigraDoc\MigraDoc.Rendering-WPF.dll</HintPath>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -68,12 +74,6 @@
     <Compile Include="Database\XDatabase.cs" />
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\PreviewDocument.cs" />
-    <Compile Include="FlowDoc\Attached.cs" />
-    <Compile Include="FlowDoc\BindableRun.cs" />
-    <Compile Include="FlowDoc\BlockTemplateContent.cs" />
-    <Compile Include="FlowDoc\Fragment.cs" />
-    <Compile Include="FlowDoc\Helpers.cs" />
-    <Compile Include="FlowDoc\ItemsContent.cs" />
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="Import\csv.cs" />
     <Compile Include="Interfaces\DocumentFactory.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="Models\TaxClassMoneyModel.cs" />
     <Compile Include="Orders\DocumentParsers\InvoiceParser.cs" />
     <Compile Include="Orders\Invoice.cs" />
+    <Compile Include="PDF\OrderPdfExport.cs" />
     <Compile Include="Performance\Stopwatch.cs" />
     <Compile Include="Samples\Customer.cs" />
     <Compile Include="Samples\Units.cs" />
@@ -112,7 +113,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="FlowDoc\READ.ME" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
