@@ -40,7 +40,7 @@ namespace Biller.Data.Orders
             if (e.PropertyName == "PaymentMethode")
             {
                 _parentOrder.PaymentMethode.PropertyChanged += article_PropertyChanged;
-                //CalculateValues();
+                CalculateValues();
             }
             if (e.PropertyName == "OrderShipment")
             {
@@ -75,9 +75,9 @@ namespace Biller.Data.Orders
                 ArticleSummary.Amount += article.RoundedGrossOrderValue.Amount;
 
                 // taxclass listing
-                if (TaxValues.Any(x => x.TaxClass == article.TaxClass))
+                if (TaxValues.Any(x => x.TaxClass.Name == article.TaxClass.Name))
                 {
-                    TaxValues.Single(x => x.TaxClass == article.TaxClass).Value += article.ExactVAT;
+                    TaxValues.Single(x => x.TaxClass.Name == article.TaxClass.Name).Value += article.ExactVAT;
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace Biller.Data.Orders
             {
                 // Just for Germany
                 // We need to split the taxes with the ratio it is before
-                // Austrian: Shipping has reduced taxes
+                // Austria: Shipping has reduced taxes
                 // CH: 
                 OrderSummary.Amount += _parentOrder.OrderShipment.DefaultPrice.Amount;
                 NetOrderSummary.Amount = NetArticleSummary.Amount;
