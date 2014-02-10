@@ -46,6 +46,10 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp-WPF, Version=1.32.2608.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Assemblies\MigraDoc\PdfSharp-WPF.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

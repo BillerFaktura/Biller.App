@@ -73,7 +73,6 @@
                     AncestorType={x:Type ListViewItem}},
                     Converter={StaticResource BooleanToVisibilityConverter}, 
                     ConverterParameter=True}" />
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
             </Style>
             <converter:PercentageConverter x:Key="percentageConverter"/>
         </ResourceDictionary>

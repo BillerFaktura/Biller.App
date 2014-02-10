@@ -174,9 +174,9 @@
             </Grid>
             <StackPanel Grid.Column="1">
                 <TextBlock Style="{StaticResource SubHeaderStyle}" Text="Eröffnungstext"/>
-                <TextBox AcceptsReturn="True" AcceptsTab="True" Height="96" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding OrderOpeningText}" Margin="1"/>
+                <TextBox AcceptsReturn="True" AcceptsTab="True" Height="96" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding Document.OrderOpeningText}" Margin="1"/>
                 <TextBlock Style="{StaticResource SubHeaderStyle}" Text="Abschlusstext" Margin="0,15,0,5"/>
-                <TextBox AcceptsReturn="True" AcceptsTab="True" Height="96" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding OrderClosingText}" Margin="1"/>
+                <TextBox AcceptsReturn="True" AcceptsTab="True" Height="96" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Text="{Binding Document.OrderClosingText}" Margin="1"/>
             </StackPanel>
         </Grid>
     </StackPanel>

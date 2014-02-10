@@ -24,12 +24,24 @@ namespace Biller.UI.OrderView.Contextual.EditTabs.PrintPreview
         public Content()
         {
             InitializeComponent();
+            
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //if (IsLoaded)
+                //await Task.Run(() => UpdatePreview());
+        }
+
+        private void UpdatePreview()
         {
             var viewmodel = (DataContext as OrderEditViewModel);
             preview.Ddl = DdlWriter.WriteToString(new Data.PDF.OrderPdfExport().CreateDocument(viewmodel.Document as Data.Orders.Order));
+        }
+
+        private void UserControl_GotFocus(object sender, RoutedEventArgs e)
+        {
+            UpdatePreview();
         }
     }
 }

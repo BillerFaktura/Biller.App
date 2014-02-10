@@ -7,6 +7,7 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.Rendering;
+using System.Diagnostics;
 
 namespace Biller.Data.PDF
 {
@@ -40,7 +41,7 @@ namespace Biller.Data.PDF
 
             DefineStyles();
 
-            CreatePage();
+            CreatePage(order);
 
             FillContent(order);
 
@@ -57,7 +58,7 @@ namespace Biller.Data.PDF
             // Because all styles are derived from Normal, the next line changes the 
             // font of the whole document. Or, more exactly, it changes the font of
             // all styles and paragraphs that do not redefine the font.
-            style.Font.Name = "Verdana";
+            style.Font.Name = "Arial";
 
             style = this.document.Styles[StyleNames.Header];
             style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);
@@ -67,8 +68,8 @@ namespace Biller.Data.PDF
 
             // Create a new style called Table based on style Normal
             style = this.document.Styles.AddStyle("Table", "Normal");
-            style.Font.Name = "Verdana";
-            style.Font.Name = "Times New Roman";
+            style.Font.Name = "Arial";
+            style.Font.Name = "Arial";
             style.Font.Size = 9;
 
             // Create a new style called Reference based on style Normal
@@ -81,7 +82,7 @@ namespace Biller.Data.PDF
         /// <summary>
         /// Creates the static parts of the invoice.
         /// </summary>
-        void CreatePage()
+        void CreatePage(Orders.Order order)
         {
             // Each MigraDoc document needs at least one section.
             Section section = this.document.AddSection();
@@ -98,7 +99,7 @@ namespace Biller.Data.PDF
 
             // Create footer
             Paragraph paragraph = section.Footers.Primary.AddParagraph();
-            paragraph.AddText("PowerBooks Inc · Sample Street 42 · 56789 Cologne · Germany");
+            paragraph.AddText("Absender");
             paragraph.Format.Font.Size = 9;
             paragraph.Format.Alignment = ParagraphAlignment.Center;
 
@@ -112,7 +113,7 @@ namespace Biller.Data.PDF
             this.addressFrame.RelativeVertical = RelativeVertical.Page;
 
             // Put sender in address frame
-            paragraph = this.addressFrame.AddParagraph("MyCryptoMiner - Magdeburg");
+            paragraph = this.addressFrame.AddParagraph("Absender");
             paragraph.Format.Font.Name = "Arial";
             paragraph.Format.Font.Size = 7;
             paragraph.Format.SpaceAfter = 3;
@@ -121,10 +122,7 @@ namespace Biller.Data.PDF
             paragraph = section.AddParagraph();
             paragraph.Format.SpaceBefore = "8cm";
             paragraph.Style = "Reference";
-            paragraph.AddFormattedText("Rechnung", TextFormat.Bold);
-            paragraph.AddTab();
-            paragraph.AddText("Magdeburg, ");
-            paragraph.AddDateField("dd.MM.yyyy");
+            paragraph.AddFormattedText(order.LocalizedDocumentType + " Nr. " + order.DocumentID, TextFormat.Bold);
 
             // Create the item table
             this.table = section.AddTable();
@@ -140,54 +138,40 @@ namespace Biller.Data.PDF
             column.Format.Alignment = ParagraphAlignment.Center;
 
             column = this.table.AddColumn("2.5cm");
-            column.Format.Alignment = ParagraphAlignment.Right;
+            column.Format.Alignment = ParagraphAlignment.Center;
 
             column = this.table.AddColumn("3cm");
-            column.Format.Alignment = ParagraphAlignment.Right;
+            column.Format.Alignment = ParagraphAlignment.Center;
 
-            column = this.table.AddColumn("3.5cm");
-            column.Format.Alignment = ParagraphAlignment.Right;
+            column = this.table.AddColumn("7cm");
+            column.Format.Alignment = ParagraphAlignment.Center;
 
             column = this.table.AddColumn("2cm");
             column.Format.Alignment = ParagraphAlignment.Center;
 
-            column = this.table.AddColumn("4cm");
+            column = this.table.AddColumn("2cm");
             column.Format.Alignment = ParagraphAlignment.Right;
 
             // Create the header of the table
             Row row = table.AddRow();
             row.HeadingFormat = true;
             row.Format.Alignment = ParagraphAlignment.Center;
-            row.Format.Font.Bold = true;
-            row.Shading.Color = TableBlue;
-            row.Cells[0].AddParagraph("Item");
+            row.Cells[0].AddParagraph("Pos");
             row.Cells[0].Format.Font.Bold = false;
-            row.Cells[0].Format.Alignment = ParagraphAlignment.Left;
-            row.Cells[0].VerticalAlignment = VerticalAlignment.Bottom;
-            row.Cells[0].MergeDown = 1;
-            row.Cells[1].AddParagraph("Title");
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Left;
-            row.Cells[1].MergeRight = 3;
-            row.Cells[5].AddParagraph("Extended Price");
-            row.Cells[5].Format.Alignment = ParagraphAlignment.Left;
-            row.Cells[5].VerticalAlignment = VerticalAlignment.Bottom;
-            row.Cells[5].MergeDown = 1;
-
-            row = table.AddRow();
-            row.HeadingFormat = true;
-            row.Format.Alignment = ParagraphAlignment.Center;
-            row.Format.Font.Bold = true;
-            row.Shading.Color = TableBlue;
-            row.Cells[1].AddParagraph("Quantity");
-            row.Cells[1].Format.Alignment = ParagraphAlignment.Left;
-            row.Cells[2].AddParagraph("Unit Price");
-            row.Cells[2].Format.Alignment = ParagraphAlignment.Left;
-            row.Cells[3].AddParagraph("Discount (%)");
-            row.Cells[3].Format.Alignment = ParagraphAlignment.Left;
-            row.Cells[4].AddParagraph("Taxable");
-            row.Cells[4].Format.Alignment = ParagraphAlignment.Left;
-
-            this.table.SetEdge(0, 0, 6, 2, Edge.Box, BorderStyle.Single, 0.75, Color.Empty);
+            row.Cells[0].Format.Alignment = ParagraphAlignment.Center;
+            row.Cells[1].AddParagraph("Menge");
+            row.Cells[1].Format.Alignment = ParagraphAlignment.Center;
+            row.Cells[2].AddParagraph("Art.-Nr.");
+            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+            row.Cells[3].AddParagraph("Text");
+            row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
+            row.Cells[4].AddParagraph("Ust.");
+            row.Cells[4].Format.Alignment = ParagraphAlignment.Center;
+            row.Cells[5].AddParagraph("Gesamtpreis");
+            row.Cells[5].Format.Alignment = ParagraphAlignment.Right;
+            row.Format.SpaceBefore = "0,1cm";
+            row.Format.SpaceAfter = "0,25cm";
+            //this.table.SetEdge(0, 0, 6, 1, Edge.Box, BorderStyle.Single, 0.75, Color.Empty);
         }
 
         /// <summary>
@@ -195,8 +179,6 @@ namespace Biller.Data.PDF
         /// </summary>
         void FillContent(Orders.Order order)
         {
-            // Fill address in address text frame
-            
             Paragraph paragraph = this.addressFrame.AddParagraph();
             foreach (var line in order.Customer.MainAddress.AddressStrings)
             {
@@ -208,53 +190,117 @@ namespace Biller.Data.PDF
             {
                 // Each item fills two rows
                 Row row1 = this.table.AddRow();
-                Row row2 = this.table.AddRow();
-                row1.TopPadding = 1.5;
-                row1.Cells[0].Shading.Color = TableGray;
-                row1.Cells[0].VerticalAlignment = VerticalAlignment.Center;
-                row1.Cells[0].MergeDown = 1;
-                row1.Cells[1].Format.Alignment = ParagraphAlignment.Left;
-                row1.Cells[1].MergeRight = 3;
-                row1.Cells[5].Shading.Color = TableGray;
-                row1.Cells[5].MergeDown = 1;
 
-                row1.Cells[0].AddParagraph(article.ArticleID);
-                paragraph = row1.Cells[1].AddParagraph();
+                row1.Cells[0].AddParagraph(article.OrderPosition.ToString());
+                row1.Cells[1].AddParagraph(article.OrderedAmountString);
+                row1.Cells[2].AddParagraph(article.ArticleID);
+                paragraph = row1.Cells[3].AddParagraph();
                 paragraph.AddFormattedText(article.ArticleDescription, TextFormat.Bold);
-                row2.Cells[1].AddParagraph(article.OrderedAmountString);
-                row2.Cells[2].AddParagraph(article.OrderPrice.Price1.AmountString);
-                row2.Cells[3].AddParagraph(new Utils.Percentage() { Amount = article.OrderRebate }.PercentageString);
-                row2.Cells[4].AddParagraph(new Utils.Percentage() { Amount = article.TaxClass.TaxRate }.PercentageString);
-                row2.Cells[5].AddParagraph(article.RoundedGrossOrderValue.AmountString);
-
-                this.table.SetEdge(0, this.table.Rows.Count - 2, 6, 2, Edge.Box, BorderStyle.Single, 0.75);
+                paragraph.AddLineBreak();
+                paragraph.AddText(article.ArticleText);
+                row1.Cells[4].AddParagraph(new Utils.Percentage() { Amount = article.TaxClass.TaxRate }.PercentageString);
+                row1.Cells[5].AddParagraph(article.RoundedGrossOrderValue.AmountString);
+                row1.Format.SpaceBefore = "0,1cm";
+                row1.Format.SpaceAfter = "0,4cm";
+                //this.table.SetEdge(0, this.table.Rows.Count - 2, 6, 2, Edge.Box, BorderStyle.Single, 0.75);
             }
 
-            // Add an invisible row as a space line to the table
-            Row row = this.table.AddRow();
-            row.Borders.Visible = false;
+            Border BlackBorder = new Border();
+            BlackBorder.Visible = true;
+            BlackBorder.Color = Colors.Black;
+            BlackBorder.Width = 0.75;
+
+            Border BlackThickBorder = new Border();
+            BlackThickBorder.Visible = true;
+            BlackThickBorder.Color = Colors.Black;
+            BlackThickBorder.Width = 1.5;
+
+            Border NoBorder = new Border();
+            NoBorder.Visible = false;
 
             // Add the total price row
-            row = this.table.AddRow();
-            row.Cells[0].Borders.Visible = false;
-            row.Cells[0].AddParagraph("Total Price");
+            Row row = this.table.AddRow();
+            row.Cells[0].AddParagraph("Zwischensumme Netto");
             row.Cells[0].Format.Font.Bold = true;
             row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
             row.Cells[0].MergeRight = 4;
-            row.Cells[5].AddParagraph(order.OrderCalculation.ArticleSummary.AmountString);
+            row.Cells[5].AddParagraph(order.OrderCalculation.NetArticleSummary.AmountString);
+            row.Format.SpaceBefore = "0,1cm";
+            row.Cells[0].Borders.Bottom = NoBorder.Clone();
+            row.Cells[5].Borders.Bottom = NoBorder.Clone();
+            row.Cells[0].Borders.Top = NoBorder.Clone();
+            row.Cells[5].Borders.Top = NoBorder.Clone();
+
+            if (order.OrderCalculation.OrderRebate.Amount > 0)
+            {
+                row = this.table.AddRow();
+                row.Cells[0].AddParagraph("Abzgl. " + order.OrderRebate.PercentageString + " Gesamtrabatt" );
+                row.Cells[0].Format.Font.Bold = true;
+                row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
+                row.Cells[0].MergeRight = 4;
+                row.Cells[5].AddParagraph(order.OrderCalculation.NetOrderRebate.AmountString);
+                row.Format.SpaceBefore = "0,1cm";
+                row.Cells[0].Borders.Bottom = NoBorder.Clone();
+                row.Cells[5].Borders.Bottom = NoBorder.Clone();
+                row.Cells[0].Borders.Top = NoBorder.Clone();
+                row.Cells[5].Borders.Top = NoBorder.Clone();
+            }
+
+            if (!String.IsNullOrEmpty(order.OrderShipment.Name))
+            {
+                row = this.table.AddRow();
+                row.Cells[0].AddParagraph("Zzgl. " + order.OrderShipment.Name);
+                row.Cells[0].Format.Font.Bold = true;
+                row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
+                row.Cells[0].MergeRight = 4;
+                row.Cells[5].AddParagraph(order.OrderCalculation.NetShipment.AmountString);
+                row.Format.SpaceBefore = "0,1cm";
+                row.Cells[0].Borders.Bottom = BlackBorder.Clone();
+                row.Cells[5].Borders.Bottom = BlackBorder.Clone();
+                row.Cells[0].Borders.Top = NoBorder.Clone();
+                row.Cells[5].Borders.Top = NoBorder.Clone();
+            }
+
+            if (order.OrderCalculation.OrderRebate.Amount > 0 || !String.IsNullOrEmpty(order.OrderShipment.Name))
+            {
+                row = this.table.AddRow();
+                row.Cells[0].AddParagraph("Zwischensumme Netto");
+                row.Cells[0].Format.Font.Bold = true;
+                row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
+                row.Cells[0].MergeRight = 4;
+                row.Cells[5].AddParagraph(order.OrderCalculation.NetOrderSummary.AmountString);
+                row.Format.SpaceBefore = "0,1cm";
+                row.Cells[0].Borders.Bottom = NoBorder.Clone();
+                row.Cells[5].Borders.Bottom = NoBorder.Clone();
+                row.Cells[0].Borders.Top = BlackBorder.Clone();
+                row.Cells[5].Borders.Top = BlackBorder.Clone();
+            }
 
             // Add the VAT row
             foreach (var tax in order.OrderCalculation.TaxValues)
             {
                 row = this.table.AddRow();
-                row.Cells[0].Borders.Visible = false;
-                row.Cells[0].AddParagraph("Including " + tax.TaxClass.ToString() + " "+ tax.TaxClassAddition);
+                row.Cells[0].AddParagraph("Zzgl. " + tax.TaxClass.Name + " "+ tax.TaxClassAddition);
                 row.Cells[0].Format.Font.Bold = true;
                 row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
                 row.Cells[0].MergeRight = 4;
                 row.Cells[5].AddParagraph(tax.Value.AmountString);
+                row.Cells[0].Borders.Bottom = NoBorder.Clone();
+                row.Cells[5].Borders.Bottom = NoBorder.Clone();
+                row.Cells[0].Borders.Top = NoBorder.Clone();
+                row.Cells[5].Borders.Top = NoBorder.Clone();
             }
-            
+
+            row = this.table.AddRow();
+            row.Cells[0].Borders.Bottom = BlackThickBorder.Clone();
+            row.Cells[0].AddParagraph("Gesamtbetrag");
+            row.Cells[0].Format.Font.Bold = true;
+            row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
+            row.Cells[0].MergeRight = 4;
+            row.Cells[5].AddParagraph(order.OrderCalculation.OrderSummary.AmountString);
+            row.Cells[5].Borders.Bottom = BlackThickBorder.Clone();
+            row.Format.SpaceBefore = "0,25cm";
+            row.Format.SpaceAfter = "0,05cm";
 
             //// Add the additional fee row
             //row = this.table.AddRow();
@@ -275,22 +321,26 @@ namespace Biller.Data.PDF
             //totalExtendedPrice += 0.19 * totalExtendedPrice;
             //row.Cells[5].AddParagraph(totalExtendedPrice.ToString("0.00") + " €");
 
-            // Set the borders of the specified cell range
-            this.table.SetEdge(5, this.table.Rows.Count - 4, 1, 4, Edge.Box, BorderStyle.Single, 0.75);
 
             // Add the notes paragraph
             paragraph = this.document.LastSection.AddParagraph();
             paragraph.Format.SpaceBefore = "1cm";
-            paragraph.Format.Borders.Width = 0.75;
-            paragraph.Format.Borders.Distance = 3;
-            paragraph.Format.Borders.Color = TableBorder;
-            paragraph.Format.Shading.Color = TableGray;
             paragraph.AddText(order.OrderClosingText);
+
+
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+            renderer.Document = document;
+
+            renderer.RenderDocument();
+
+            //renderer.Save("test.pdf");
+
+            //Process.Start("test.pdf");
         }
         // Some pre-defined colors
 #if true
         // RGB colors
-        readonly static Color TableBorder = new Color(81, 125, 192);
+        readonly static Color TableBorder = new Color(0, 0, 0);
         readonly static Color TableBlue = new Color(235, 240, 249);
         readonly static Color TableGray = new Color(242, 242, 242);
 #else

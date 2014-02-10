@@ -27,6 +27,8 @@ namespace Biller.Data.Orders
             OrderSummary = new EMoney(0, true);
             NetOrderSummary = new EMoney(0, false);
             OrderRebate = new EMoney(0, true);
+            NetShipment = new EMoney(0, false);
+            NetOrderRebate = new EMoney(0, false);
             TaxValues = new ObservableCollection<Models.TaxClassMoneyModel>();
             parentOrder.OrderedArticles.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(OnOrderedArticleCollectionChanged);
             parentOrder.OrderRebate.PropertyChanged += article_PropertyChanged;
@@ -100,6 +102,7 @@ namespace Biller.Data.Orders
             {
                 var temp = OrderSummary.Amount;
                 OrderSummary.Amount = OrderSummary.Amount * (1 - _parentOrder.OrderRebate.Amount);
+                NetOrderRebate.Amount = NetOrderSummary.Amount - NetOrderSummary.Amount * (1 - _parentOrder.OrderRebate.Amount);
                 NetOrderSummary.Amount = NetOrderSummary.Amount * (1 - _parentOrder.OrderRebate.Amount);
                 OrderRebate = new EMoney(temp - OrderSummary.Amount);
                 foreach (var item in TaxValues)               
@@ -118,11 +121,11 @@ namespace Biller.Data.Orders
                 // Austria: Shipping has reduced taxes
                 // CH: 
                 OrderSummary.Amount += _parentOrder.OrderShipment.DefaultPrice.Amount;
-                NetOrderSummary.Amount = NetArticleSummary.Amount;
 
                 if (GlobalSettings.UseGermanSupplementaryTaxRegulation)
                 {
                     var wholetax = 0.0;
+                    var wholeShipmentTax = 0.0;
                     foreach (var item in TaxValues)
                         wholetax += item.Value.Amount;
 
@@ -131,7 +134,7 @@ namespace Biller.Data.Orders
                     {
                         var ratio = 1 / (wholetax / taxitem.Value.Amount);
                         var shipment = new OrderedArticle(new Article());
-                        shipment.TaxClass = taxitem.TaxClass; ;
+                        shipment.TaxClass = taxitem.TaxClass;
                         shipment.OrderedAmount = 1;
                         shipment.OrderPrice.Price1 = _parentOrder.OrderShipment.DefaultPrice;
                         if (GlobalSettings.TaxSupplementaryWorkSeperate)
@@ -142,11 +145,14 @@ namespace Biller.Data.Orders
                         {
                             taxitem.Value += (ratio * shipment.ExactVAT);
                         }
+                        wholeShipmentTax += ratio * shipment.ExactVAT;
                     }
+                    NetShipment.Amount = _parentOrder.OrderShipment.DefaultPrice.Amount - wholeShipmentTax;
+                    NetOrderSummary.Amount += NetShipment.Amount;
+
                     foreach (Models.TaxClassMoneyModel temporaryTax in temporaryTaxes)
                     {
                         TaxValues.Add(temporaryTax);
-                        NetOrderSummary.Amount -= temporaryTax.Value.Amount;
                     }
                 }
                 else
@@ -156,7 +162,8 @@ namespace Biller.Data.Orders
                     shipment.OrderedAmount = 1;
                     shipment.OrderPrice.Price1 = _parentOrder.OrderShipment.DefaultPrice;
                     TaxValues.Add(new Models.TaxClassMoneyModel() { Value = new Money(shipment.ExactVAT), TaxClass = shipment.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
-                    NetOrderSummary.Amount -= shipment.ExactVAT;
+                    NetShipment.Amount = _parentOrder.OrderShipment.DefaultPrice.Amount - shipment.ExactVAT;
+                    NetOrderSummary.Amount += NetShipment.Amount;
                 }
             }
 
@@ -178,6 +185,8 @@ namespace Biller.Data.Orders
             RaiseUpdateManually("NetArticleSummary");
             RaiseUpdateManually("NetOrderSummary");
             RaiseUpdateManually("OrderSummary");
+            RaiseUpdateManually("NetShipment");
+            RaiseUpdateManually("NetOrderRebate");
         }
 
         /// <summary>
@@ -191,12 +200,16 @@ namespace Biller.Data.Orders
 
         public EMoney NetOrderSummary { get { return GetValue(() => NetOrderSummary); } set { SetValue(value); } }
 
+        public EMoney NetShipment { get { return GetValue(() => NetShipment); } set { SetValue(value); } }
+
         /// <summary>
         /// Skonto
         /// </summary>
         public EMoney CashBack { get { return GetValue(() => CashBack); } set { SetValue(value); } }
 
         public EMoney OrderRebate { get { return GetValue(() => OrderRebate); } set { SetValue(value); } }
+
+        public EMoney NetOrderRebate { get { return GetValue(() => NetOrderRebate); } set { SetValue(value); } }
 
         public ObservableCollection<Models.TaxClassMoneyModel> TaxValues { get { return GetValue(() => TaxValues); } set { SetValue(value); } }
 

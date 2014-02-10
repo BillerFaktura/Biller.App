@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:md="clr-namespace:MigraDoc.Rendering.Windows;assembly=MigraDoc.Rendering-WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded">
+             d:DesignHeight="300" d:DesignWidth="300" Loaded="UserControl_Loaded" Margin="6" GotFocus="UserControl_GotFocus">
     <Grid>
         <md:DocumentPreview x:Name="preview"/>
     </Grid>
