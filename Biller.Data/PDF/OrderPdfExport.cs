@@ -198,7 +198,7 @@ namespace Biller.Data.PDF
                 paragraph.AddFormattedText(article.ArticleDescription, TextFormat.Bold);
                 paragraph.AddLineBreak();
                 paragraph.AddText(article.ArticleText);
-                row1.Cells[4].AddParagraph(new Utils.Percentage() { Amount = article.TaxClass.TaxRate }.PercentageString);
+                row1.Cells[4].AddParagraph(new Utils.Percentage() { Amount = article.TaxClass.TaxRate.Amount }.PercentageString);
                 row1.Cells[5].AddParagraph(article.RoundedGrossOrderValue.AmountString);
                 row1.Format.SpaceBefore = "0,1cm";
                 row1.Format.SpaceAfter = "0,4cm";

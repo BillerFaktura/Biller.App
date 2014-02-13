@@ -12,7 +12,8 @@ namespace Biller.Data.Utils
     {
         public TaxClass()
         {
-            Name = "";   
+            Name = "";
+            TaxRate = new Percentage();
         }
 
         public virtual string Name
@@ -24,7 +25,7 @@ namespace Biller.Data.Utils
         /// <summary>
         /// TaxRate has to be between 0 and 1
         /// </summary>
-        public virtual double TaxRate
+        public virtual Percentage TaxRate
         {
             get { return GetValue(() => TaxRate); }
             set { SetValue(value); }
@@ -34,7 +35,7 @@ namespace Biller.Data.Utils
         {
             if (obj is TaxClass)
             {
-                if ((obj as TaxClass).Name == Name && (obj as TaxClass).TaxRate == TaxRate)
+                if ((obj as TaxClass).Name == Name && (obj as TaxClass).TaxRate.Amount == TaxRate.Amount)
                     return true;
             }
             return false;
@@ -42,7 +43,7 @@ namespace Biller.Data.Utils
 
         public override string ToString()
         {
-            return ("{TaxClass: Name="  +Name + "; TaxRate=" + TaxRate.ToString() + "}");
+            return ("{TaxClass: Name="  +Name + "; TaxRate=" + TaxRate.Amount.ToString() + "}");
         }
 
         public override int GetHashCode()
@@ -64,7 +65,7 @@ namespace Biller.Data.Utils
         {
             var objectnode = new XElement("TaxClass");
             objectnode.Add(new XElement("Name", Name));
-            objectnode.Add(new XElement("TaxRate", TaxRate));
+            objectnode.Add(TaxRate.GetXElement());
             return objectnode;
         }
 
@@ -77,19 +78,7 @@ namespace Biller.Data.Utils
                 throw new Exception("The given source element is not named TaxClass and will not be parsed!");
 
             Name = source.Element("Name").Value;
-            double temp;
-            NumberFormatInfo provider = new NumberFormatInfo();
-            provider.NumberDecimalSeparator = ".";
-
-            bool parse = double.TryParse(source.Element("TaxRate").Value, NumberStyles.Number, provider, out temp);
-            if (parse)
-            {
-                TaxRate = temp;
-            }
-            else
-            {
-                throw new Exception("Could not parse a valid TaxRate for the TaxClass named:" + Name);
-            }
+            TaxRate.ParseFromXElement(source.Element(TaxRate.XElementName));
         }
 
         /// <summary>

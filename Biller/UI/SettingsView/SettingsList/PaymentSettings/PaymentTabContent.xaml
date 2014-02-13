@@ -63,7 +63,7 @@
                     <GridView>
                         <GridViewColumn Width="{Binding ElementName=w0, Path=ActualWidth}" DisplayMemberBinding="{Binding Name}" Header="{StaticResource name}"/>
                         <GridViewColumn Width="{Binding ElementName=w1, Path=ActualWidth}" DisplayMemberBinding="{Binding Text}" Header="{StaticResource text}"/>
-                        <GridViewColumn Width="{Binding ElementName=w2, Path=ActualWidth}" DisplayMemberBinding="{Binding DiscountString}" Header="{StaticResource discount}"/>
+                        <GridViewColumn Width="{Binding ElementName=w2, Path=ActualWidth}" DisplayMemberBinding="{Binding Discount.PercentageString}" Header="{StaticResource discount}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -80,7 +80,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                         <TextBlock Text="{StaticResource discount}" Width="{Binding ElementName=gspan1, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
-                        <controls:WatermarkTextBox Text="{Binding SelectedPaymentMethode.DiscountString}" Width="{Binding ElementName=gspan2, Path=ActualWidth}"/>
+                        <controls:WatermarkTextBox Text="{Binding SelectedPaymentMethode.Discount.PercentageString}" Width="{Binding ElementName=gspan2, Path=ActualWidth}" SelectTextBeforeSpace="True"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <controls:Office2013Button Content="{StaticResource resetfields}" Height="92" Width="100" Margin="2" Click="Office2013Button_Click">

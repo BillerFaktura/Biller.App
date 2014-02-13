@@ -13,7 +13,7 @@ namespace Biller.Data.Utils
         public PaymentMethode()
         {
             //insert empty values to avoid null exceptions
-            Name = ""; Text = "";
+            Name = ""; Text = ""; Discount = new Percentage();
         }
         
         /// <summary>
@@ -49,29 +49,15 @@ namespace Biller.Data.Utils
         /// You can set discount and allowances for the payment methode.\n
         /// The value should be between 0 and 1
         /// </summary>
-        public double Discount
+        public Percentage Discount
         {
             get { return GetValue(() => Discount); }
             set { SetValue(value); }
         }
 
-        /// <summary>
-        /// Gets or sets the discount in percent including the symbol '%'.
-        /// </summary>
-        public string DiscountString
-        {
-            get { return (Discount * 100).ToString("0.00") + " %"; }
-            set
-            {
-                double temp;
-                if (Double.TryParse(value.Replace("%", "").Trim(), NumberStyles.Number, CultureInfo.InvariantCulture, out temp))
-                    Discount = temp;
-            }
-        }
-
         public System.Xml.Linq.XElement GetXElement()
         {
-            return new System.Xml.Linq.XElement(XElementName, new XElement("Name", Name), new XElement("Discount", Discount), new XElement("Text", Text));
+            return new System.Xml.Linq.XElement(XElementName, new XElement("Name", Name), Discount.GetXElement(), new XElement("Text", Text));
         }
 
         public void ParseFromXElement(System.Xml.Linq.XElement source)
@@ -80,7 +66,7 @@ namespace Biller.Data.Utils
                 throw new Exception("Can not parse " + source.Name + " with " + XElementName);
 
             Name = source.Element("Name").Value;
-            Discount = double.Parse(source.Element("Discount").Value);
+            Discount.ParseFromXElement(source.Element(Discount.XElementName));
             Text = source.Element("Text").Value;
         }
 

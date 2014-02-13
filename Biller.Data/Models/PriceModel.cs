@@ -28,14 +28,14 @@ namespace Biller.Data.Models
                 {
                     Price1.PropertyChanged -= Price1_PropertyChanged;
                     Price1.IsGross = false;
-                    Price1.Amount = Price2.Amount / (1 + _parentArticle.TaxClass.TaxRate);
+                    Price1.Amount = Price2.Amount / (1 + _parentArticle.TaxClass.TaxRate.Amount);
                     Price1.PropertyChanged += Price1_PropertyChanged;
                 }
                 else
                 {
                     Price1.PropertyChanged -= Price1_PropertyChanged;
                     Price1.IsGross = false;
-                    Price1.Amount = Price2.Amount * (1 + _parentArticle.TaxClass.TaxRate);
+                    Price1.Amount = Price2.Amount * (1 + _parentArticle.TaxClass.TaxRate.Amount);
                     Price1.PropertyChanged += Price1_PropertyChanged;
                 }
             }
@@ -49,14 +49,14 @@ namespace Biller.Data.Models
                 {
                     Price2.PropertyChanged -= Price2_PropertyChanged;
                     Price2.IsGross = false;
-                    Price2.Amount = Price1.Amount / (1 + _parentArticle.TaxClass.TaxRate);
+                    Price2.Amount = Price1.Amount / (1 + _parentArticle.TaxClass.TaxRate.Amount);
                     Price2.PropertyChanged += Price2_PropertyChanged;
                 }
                 else
                 {
                     Price2.PropertyChanged -= Price2_PropertyChanged;
                     Price2.IsGross = false;
-                    Price2.Amount = Price1.Amount * (1 + _parentArticle.TaxClass.TaxRate);
+                    Price2.Amount = Price1.Amount * (1 + _parentArticle.TaxClass.TaxRate.Amount);
                     Price2.PropertyChanged += Price2_PropertyChanged;
                 }
             }

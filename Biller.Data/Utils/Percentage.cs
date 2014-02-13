@@ -50,7 +50,11 @@ namespace Biller.Data.Utils
 
         public void ParseFromXElement(System.Xml.Linq.XElement source)
         {
-            throw new NotImplementedException();
+            string t = source.Value;
+            if (t.Contains("%"))
+                t = t.Replace("%", "");
+            t = t.Trim();
+            Amount = Convert.ToDouble(t) / 100;
         }
 
         public string XElementName

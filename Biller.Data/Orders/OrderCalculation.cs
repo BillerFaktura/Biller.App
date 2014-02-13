@@ -168,9 +168,9 @@ namespace Biller.Data.Orders
             }
 
             // Skonto
-            if (_parentOrder.PaymentMethode.Discount > 0)
+            if (_parentOrder.PaymentMethode.Discount.Amount > 0)
             {
-                CashBack = new EMoney(_parentOrder.PaymentMethode.Discount * ArticleSummary.Amount);
+                CashBack = new EMoney(_parentOrder.PaymentMethode.Discount.Amount * ArticleSummary.Amount);
             }
             else
             {

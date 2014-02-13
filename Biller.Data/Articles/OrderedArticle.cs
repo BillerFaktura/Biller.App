@@ -189,10 +189,10 @@ namespace Biller.Data.Articles
             get
             {
                 if (OrderPrice.Price1.IsGross)
-                    return RoundedGrossOrderValue.Amount * (TaxClass.TaxRate / (1 + TaxClass.TaxRate));
+                    return RoundedGrossOrderValue.Amount * (TaxClass.TaxRate.Amount / (1 + TaxClass.TaxRate.Amount));
                 
                 //Net
-                return RoundedNetOrderValue.Amount * (TaxClass.TaxRate);
+                return RoundedNetOrderValue.Amount * (TaxClass.TaxRate.Amount);
             }
         }
 
