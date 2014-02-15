@@ -8,11 +8,19 @@ using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.Rendering;
 using System.Diagnostics;
+using MigraDoc.Rendering.Printing;
+using MigraDoc.DocumentObjectModel.IO;
 
 namespace Biller.Data.PDF
 {
-    public class OrderPdfExport
+    public class OrderPdfExport : Interfaces.IExport
     {
+        public OrderPdfExport()
+        {
+            PreviewElement = new MigraDoc.Rendering.Windows.DocumentPreview();
+            PrintDialog = new System.Windows.Forms.PrintDialog();
+        }
+
         /// <summary>
         /// The MigraDoc document that represents the invoice.
         /// </summary>
@@ -28,25 +36,9 @@ namespace Biller.Data.PDF
         /// </summary>
         Table table;
 
-        /// <summary>
-        /// Creates the invoice document.
-        /// </summary>
-        public MigraDoc.DocumentObjectModel.Document CreateDocument(Orders.Order order)
-        {
-            // Create a new MigraDoc document
-            this.document = new MigraDoc.DocumentObjectModel.Document();
-            this.document.Info.Title = "A sample invoice";
-            this.document.Info.Subject = "Demonstrates how to create an invoice.";
-            this.document.Info.Author = "Stefan Lange";
+        MigraDoc.Rendering.Windows.DocumentPreview PreviewElement;
 
-            DefineStyles();
-
-            CreatePage(order);
-
-            FillContent(order);
-
-            return this.document;
-        }
+        System.Windows.Forms.PrintDialog PrintDialog;
 
         /// <summary>
         /// Defines the styles used to format the MigraDoc document.
@@ -302,52 +294,90 @@ namespace Biller.Data.PDF
             row.Format.SpaceBefore = "0,25cm";
             row.Format.SpaceAfter = "0,05cm";
 
-            //// Add the additional fee row
-            //row = this.table.AddRow();
-            //row.Cells[0].Borders.Visible = false;
-            //row.Cells[0].AddParagraph("Shipping and Handling");
-            //row.Cells[5].AddParagraph(0.ToString("0.00") + " €");
-            //row.Cells[0].Format.Font.Bold = true;
-            //row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-            //row.Cells[0].MergeRight = 4;
-
-            //// Add the total due row
-            //row = this.table.AddRow();
-            //row.Cells[0].AddParagraph("Total Due");
-            //row.Cells[0].Borders.Visible = false;
-            //row.Cells[0].Format.Font.Bold = true;
-            //row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-            //row.Cells[0].MergeRight = 4;
-            //totalExtendedPrice += 0.19 * totalExtendedPrice;
-            //row.Cells[5].AddParagraph(totalExtendedPrice.ToString("0.00") + " €");
-
-
             // Add the notes paragraph
             paragraph = this.document.LastSection.AddParagraph();
             paragraph.Format.SpaceBefore = "1cm";
             paragraph.AddText(order.OrderClosingText);
-
-
-            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
-            renderer.Document = document;
-
-            renderer.RenderDocument();
-
-            //renderer.Save("test.pdf");
-
-            //Process.Start("test.pdf");
         }
-        // Some pre-defined colors
-#if true
-        // RGB colors
+
         readonly static Color TableBorder = new Color(0, 0, 0);
         readonly static Color TableBlue = new Color(235, 240, 249);
         readonly static Color TableGray = new Color(242, 242, 242);
-#else
-    // CMYK colors
-    readonly static Color tableBorder = Color.FromCmyk(100, 50, 0, 30);
-    readonly static Color tableBlue = Color.FromCmyk(0, 80, 50, 30);
-    readonly static Color tableGray = Color.FromCmyk(30, 0, 0, 0, 100);
-#endif
+
+        public System.Windows.UIElement PreviewControl
+        {
+            get { return PreviewElement; }
+            set { }
+        }
+
+        public void RenderDocumentPreview(Document.Document document)
+        {
+            if (document is Orders.Order)
+            {
+                PreviewElement.Ddl = DdlWriter.WriteToString(GetDocument(document as Orders.Order));
+            }
+        }
+
+        private MigraDoc.DocumentObjectModel.Document GetDocument(Orders.Order order)
+        {
+            // Create a new MigraDoc document
+            this.document = new MigraDoc.DocumentObjectModel.Document();
+            this.document.Info.Title = "A sample invoice";
+            this.document.Info.Subject = "Demonstrates how to create an invoice.";
+            this.document.Info.Author = "Biller";
+
+            DefineStyles();
+
+            CreatePage(order);
+
+            FillContent(order);
+
+            return this.document;
+        }
+
+        public void SaveDocument(Document.Document document, string filename, bool OpenOnSuccess = true)
+        {
+            if (document is Orders.Order)
+            {
+                PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
+                renderer.Document = GetDocument(document as Orders.Order);
+
+                renderer.RenderDocument();
+                renderer.Save(filename);
+
+                if (OpenOnSuccess)
+                    Process.Start(filename);
+            }
+        }
+
+        public void PrintDocument(Document.Document document)
+        {
+            // Reuse the renderer from the preview
+            RenderDocumentPreview(document);
+            DocumentRenderer renderer = this.PreviewElement.Renderer;
+            if (renderer != null)
+            {
+                int pageCount = renderer.FormattedDocument.PageCount;
+                // Creates a PrintDocument that simplyfies printing of MigraDoc documents
+                MigraDocPrintDocument printDocument = new MigraDocPrintDocument();
+
+                if (PrintDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    // Attach the current printer settings
+                    printDocument.PrinterSettings = this.PrintDialog.PrinterSettings;
+
+                    if (this.PrintDialog.PrinterSettings.PrintRange == System.Drawing.Printing.PrintRange.Selection)
+                        printDocument.SelectedPage = this.PreviewElement.Page;
+
+                    renderer.PrepareDocument();
+
+                    // Attach the current document renderer
+                    printDocument.Renderer = renderer;
+                    
+                    // Print the document
+                    printDocument.Print();
+                }
+            }
+        }
     }
 }

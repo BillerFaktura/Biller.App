@@ -67,5 +67,18 @@ namespace Biller.UI.OrderView.Contextual
         {
             GroupOrderFolder.Items.Add(button);
         }
+
+        private void buttonPDFOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+            saveFileDialog.Filter="*.pdf|PDF";
+            if (saveFileDialog.ShowDialog() == true)
+                _ViewModel.ExportClass.SaveDocument(_ViewModel.Document, saveFileDialog.FileName);
+        }
+
+        private void buttonPrintOrder_Click(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.ExportClass.PrintDocument(_ViewModel.Document);
+        }
     }
 }

@@ -9,26 +9,7 @@
     </Fluent:RibbonTabItem.Resources>
 
     <Fluent:RibbonGroupBox Header="{StaticResource addOrder}" Name="GroupOrderFolder">
-        <!--<Fluent:Button Header="{StaticResource addOffer}" Icon="" LargeIcon="">
-            <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
-        <Fluent:Button Header="{StaticResource addDelivery}" Icon="" LargeIcon="">
-            <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
-        <Fluent:Button Header="{StaticResource addInvoice}" Icon="" LargeIcon="" Click="ButtonAddInvoice_Click">
-            <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
-        <Fluent:Button Header="{StaticResource addCredit}" Icon="" LargeIcon="">
-            <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>-->
+        
     </Fluent:RibbonGroupBox>
     
     <!--<Fluent:RibbonGroupBox Header="" Visibility="Collapsed" Name="GroupOrder1">
@@ -58,12 +39,12 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="{StaticResource export}" Visibility="Collapsed" Name="GroupOrder3">
-        <Fluent:Button Name="buttonPDFOrder" Header="{StaticResource orderaspdf}" Icon="../../Images\pdf.png" LargeIcon="../../Images\pdf.png" IsEnabled="True">
+        <Fluent:Button Name="buttonPDFOrder" Header="{StaticResource orderaspdf}" Icon="../../Images\pdf.png" LargeIcon="../../Images\pdf.png" IsEnabled="True" Click="buttonPDFOrder_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderaspdftooltipdirect}"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="../../Images\print.png" LargeIcon="../../Images\print.png" IsEnabled="True">
+        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="../../Images\print.png" LargeIcon="../../Images\print.png" IsEnabled="True" Click="buttonPrintOrder_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
             </Fluent:Button.ToolTip>

@@ -94,6 +94,7 @@ namespace Biller.UI.OrderView.Contextual
             {
                 EditContentTabs.Add(tab);
             }
+            ExportClass = factory.GetNewExportClass();
             await LoadData();
             await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID("", Document.DocumentID, Document.DocumentType);
             DisplayedTabContent = OrderEditTabHolder;
@@ -163,5 +164,7 @@ namespace Biller.UI.OrderView.Contextual
         public Data.Customers.Customer PreviewCustomer { get { return GetValue(() => PreviewCustomer); } set { SetValue(value); } }
 
         public Data.Articles.Article PreviewArticle { get { return GetValue(() => PreviewArticle); } set { SetValue(value); } }
+
+        public Data.Interfaces.IExport ExportClass { get { return GetValue(() => ExportClass); } set { SetValue(value); } }
     }
 }

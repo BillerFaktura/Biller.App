@@ -88,6 +88,7 @@ namespace Biller.UI.OrderView
                 {
                     orderEditControl.EditContentTabs.Add(tab);
                 }
+                orderEditControl.ExportClass = factory.GetNewExportClass();
                 await orderEditControl.LoadData();
                 ParentViewModel.AddTabContentViewModel(orderEditControl);
                 orderEditControl.RibbonTabItem.IsSelected = true;
@@ -109,6 +110,7 @@ namespace Biller.UI.OrderView
                 Fluent.Button button = factory.GetCreationButton();
                 button.DataContext = orderEditControl;
                 orderEditControl.OrderEditRibbonTabItem.AddDocumentButton(button);
+
             }
             await orderEditControl.LoadData();
 
@@ -142,6 +144,7 @@ namespace Biller.UI.OrderView
                         {
                             orderEditControl.EditContentTabs.Add(tab);
                         }
+                        orderEditControl.ExportClass = factory.GetNewExportClass();
                         await orderEditControl.LoadData();
                         ParentViewModel.AddTabContentViewModel(orderEditControl);
                         orderEditControl.RibbonTabItem.IsSelected = true;
