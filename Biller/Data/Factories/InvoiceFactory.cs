@@ -44,5 +44,11 @@ namespace Biller.Data.Factories
                 return invoice.LocalizedDocumentType;
             }
         }
+
+
+        public Interfaces.IExport GetNewExportClass()
+        {
+            return new Data.PDF.OrderPdfExport();
+        }
     }
 }

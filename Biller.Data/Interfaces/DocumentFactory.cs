@@ -19,5 +19,7 @@ namespace Biller.Data.Interfaces
         List<UIElement> GetEditContentTabs();
 
         Fluent.Button GetCreationButton();
+
+        IExport GetNewExportClass();
     }
 }
