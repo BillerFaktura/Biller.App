@@ -50,5 +50,54 @@ namespace Biller.Data.Factories
         {
             return new Data.PDF.OrderPdfExport();
         }
+
+
+        public void ReceiveData(object source, Document.Document target)
+        {
+            if (target is Order)
+            {
+                if (source is Data.Customers.Customer)
+                {
+                    (target as Data.Orders.Order).Customer = (source as Data.Customers.Customer);
+                    (target as Data.Orders.Order).PaymentMethode = (source as Data.Customers.Customer).DefaultPaymentMethode;
+                }
+
+                if (source is Data.Articles.Article)
+                {
+                    if (target is Data.Orders.Order)
+                    {
+                        if (!String.IsNullOrEmpty((target as Data.Orders.Order).Customer.MainAddress.OneLineString))
+                        {
+                            //Check pricegroup
+                            var customer = (target as Data.Orders.Order).Customer;
+                            var orderedArticle = new Data.Articles.OrderedArticle(source as Data.Articles.Article);
+                            orderedArticle.OrderedAmount = 1;
+
+                            switch (customer.Pricegroup)
+                            {
+                                case 0:
+                                    orderedArticle.OrderPrice = orderedArticle.Price1;
+                                    break;
+                                case 1:
+                                    orderedArticle.OrderPrice = orderedArticle.Price2;
+                                    break;
+                                case 2:
+                                    orderedArticle.OrderPrice = orderedArticle.Price3;
+                                    break;
+                            }
+                            (target as Data.Orders.Order).OrderedArticles.Add(orderedArticle);
+
+                        }
+                        else
+                        {
+                            var orderedArticle = new Data.Articles.OrderedArticle(source as Data.Articles.Article);
+                            orderedArticle.OrderedAmount = 1;
+                            orderedArticle.OrderPrice = orderedArticle.Price1;
+                            (target as Data.Orders.Order).OrderedArticles.Add(orderedArticle);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

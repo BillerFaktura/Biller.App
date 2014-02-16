@@ -119,46 +119,8 @@ namespace Biller.UI.OrderView.Contextual
 
         public void ReceiveData(object data)
         {
-            if (data is Data.Customers.Customer)
-            {
-                (Document as Data.Orders.Order).Customer = (data as Data.Customers.Customer);
-            }
-
-            if (data is Data.Articles.Article)
-            {
-                if (Document is Data.Orders.Order)
-                {
-                    if (!String.IsNullOrEmpty((Document as Data.Orders.Order).Customer.MainAddress.OneLineString))
-                    {
-                        //Check pricegroup
-                        var customer = (Document as Data.Orders.Order).Customer;
-                        var orderedArticle = new Data.Articles.OrderedArticle(data as Data.Articles.Article);
-                        orderedArticle.OrderedAmount = 1;
-                        
-                        switch (customer.Pricegroup)
-                        {
-                            case 0:
-                                orderedArticle.OrderPrice = orderedArticle.Price1;
-                                break;
-                            case 1:
-                                orderedArticle.OrderPrice = orderedArticle.Price2;
-                                break;
-                            case 2:
-                                orderedArticle.OrderPrice = orderedArticle.Price3;
-                                break;
-                        }
-                        (Document as Data.Orders.Order).OrderedArticles.Add(orderedArticle);
-                        
-                    }
-                    else
-                    {
-                        var orderedArticle = new Data.Articles.OrderedArticle(data as Data.Articles.Article);
-                        orderedArticle.OrderedAmount = 1;
-                        orderedArticle.OrderPrice = orderedArticle.Price1;
-                        (Document as Data.Orders.Order).OrderedArticles.Add(orderedArticle);
-                    }
-                }
-            }
+            var factory = ParentViewModel.GetFactory(Document.DocumentType);
+            factory.ReceiveData(data, Document);
         }
 
         public Data.Customers.Customer PreviewCustomer { get { return GetValue(() => PreviewCustomer); } set { SetValue(value); } }
