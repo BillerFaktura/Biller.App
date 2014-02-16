@@ -67,19 +67,22 @@ namespace Biller.UI.ArticleView
 
         public async Task ReceiveEditArticleCommand(object sender)
         {
-            if (ViewModelRequestingArticle == null)
+            if (SelectedArticle != null)
             {
-                var temp = await ParentViewModel.Database.GetArticle(SelectedArticle.ArticleID);
-                var orderEditControl = new ArticleView.Contextual.ArticleEditViewModel(this, temp);
-                ParentViewModel.AddTabContentViewModel(orderEditControl);
-                orderEditControl.RibbonTabItem.IsSelected = true;
-            }
-            else
-            {
-                var temp = await ParentViewModel.Database.GetArticle(SelectedArticle.ArticleID);
-                ViewModelRequestingArticle.ReceiveData(temp);
-                ParentViewModel.SelectedContent = ViewModelRequestingArticle.TabContent;
-                ViewModelRequestingArticle = null;
+                if (ViewModelRequestingArticle == null)
+                {
+                    var temp = await ParentViewModel.Database.GetArticle(SelectedArticle.ArticleID);
+                    var orderEditControl = new ArticleView.Contextual.ArticleEditViewModel(this, temp);
+                    ParentViewModel.AddTabContentViewModel(orderEditControl);
+                    orderEditControl.RibbonTabItem.IsSelected = true;
+                }
+                else
+                {
+                    var temp = await ParentViewModel.Database.GetArticle(SelectedArticle.ArticleID);
+                    ViewModelRequestingArticle.ReceiveData(temp);
+                    ParentViewModel.SelectedContent = ViewModelRequestingArticle.TabContent;
+                    ViewModelRequestingArticle = null;
+                }
             }
         }
 

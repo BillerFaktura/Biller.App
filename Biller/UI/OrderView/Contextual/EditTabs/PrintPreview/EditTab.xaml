@@ -23,8 +23,8 @@
             </Grid>
             <Grid Margin="68,0,0,0">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,5" ClipToBounds="False">
-                    <TextBlock Text="{StaticResource ReceiverHeader}"/>
-                    <TextBlock Text="{StaticResource ReceiverDescr}" Foreground="DimGray" TextWrapping="Wrap" />
+                    <TextBlock Text="{StaticResource PrintPreviewHeader}"/>
+                    <TextBlock Text="{StaticResource PrintPreviewDescription}" Foreground="DimGray" TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
         </Grid>

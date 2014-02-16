@@ -188,4 +188,7 @@
     <sys:String x:Key="PaymentTextHeader">Rabatte, Zahlung &amp; Texte</sys:String>
     <sys:String x:Key="PaymentTextDescription">Passen Sie weitere Auftragsdaten an</sys:String>
     <sys:String x:Key="ValueChangingPositions">Wertändernde Positionen</sys:String>
+
+    <sys:String x:Key="PrintPreviewHeader">Druckvorschau</sys:String>
+    <sys:String x:Key="PrintPreviewDescription">Sehen Sie eine Druckvorschau mit der Möglichkeit des Direktdrucks</sys:String>
 </ResourceDictionary>

@@ -352,6 +352,7 @@ namespace Biller.Data.PDF
 
         public void PrintDocument(Document.Document document)
         {
+            /*
             // Reuse the renderer from the preview
             RenderDocumentPreview(document);
             DocumentRenderer renderer = this.PreviewElement.Renderer;
@@ -378,6 +379,9 @@ namespace Biller.Data.PDF
                     printDocument.Print();
                 }
             }
+            */
+
+            SaveDocument(document, document.DocumentType + document.DocumentID);
         }
     }
 }
