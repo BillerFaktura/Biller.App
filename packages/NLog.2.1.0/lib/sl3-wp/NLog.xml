@@ -643,12 +643,22 @@
             <param name="secondValue">The second value.</param>
             <returns><b>true</b> when two objects are equal, <b>false</b> otherwise.</returns>
         </member>
+        <member name="M:NLog.Conditions.ConditionMethods.Equals2(System.String,System.String)">
+            <summary>
+            Compares two strings for equality.
+            </summary>
+            <param name="firstValue">The first string.</param>
+            <param name="secondValue">The second string.</param>
+            <param name="ignoreCase">Optional. If <c>true</c>, case is ignored; if <c>false</c> (default), case is significant.</param>
+            <returns><b>true</b> when two strings are equal, <b>false</b> otherwise.</returns>
+        </member>
         <member name="M:NLog.Conditions.ConditionMethods.Contains(System.String,System.String)">
             <summary>
             Gets or sets a value indicating whether the second string is a substring of the first one.
             </summary>
             <param name="haystack">The first string.</param>
             <param name="needle">The second string.</param>
+            <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
             <returns><b>true</b> when the second string is a substring of the first string, <b>false</b> otherwise.</returns>
         </member>
         <member name="M:NLog.Conditions.ConditionMethods.StartsWith(System.String,System.String)">
@@ -657,6 +667,7 @@
             </summary>
             <param name="haystack">The first string.</param>
             <param name="needle">The second string.</param>
+            <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
             <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         </member>
         <member name="M:NLog.Conditions.ConditionMethods.EndsWith(System.String,System.String)">
@@ -665,6 +676,7 @@
             </summary>
             <param name="haystack">The first string.</param>
             <param name="needle">The second string.</param>
+            <param name="ignoreCase">Optional. If <c>true</c> (default), case is ignored; if <c>false</c>, case is significant.</param>
             <returns><b>true</b> when the second string is a prefix of the first string, <b>false</b> otherwise.</returns>
         </member>
         <member name="M:NLog.Conditions.ConditionMethods.Length(System.String)">
@@ -1149,6 +1161,12 @@
             Gets the ambient property factory.
             </summary>
             <value>The ambient property factory.</value>
+        </member>
+        <member name="P:NLog.Config.ConfigurationItemFactory.TimeSources">
+            <summary>
+            Gets the time source factory.
+            </summary>
+            <value>The time source factory.</value>
         </member>
         <member name="P:NLog.Config.ConfigurationItemFactory.ConditionMethods">
             <summary>
@@ -2207,17 +2225,6 @@
             Clears the content of the GDC.
             </summary>
         </member>
-        <member name="T:NLog.Internal.CurrentTimeGetter">
-            <summary>
-            Optimized methods to get current time.
-            </summary>
-        </member>
-        <member name="P:NLog.Internal.CurrentTimeGetter.Now">
-            <summary>
-            Gets the current time in an optimized fashion.
-            </summary>
-            <value>Current time.</value>
-        </member>
         <member name="T:NLog.Internal.DictionaryAdapter`2">
             <summary>
             Provides untyped IDictionary interface on top of generic IDictionary.
@@ -2960,14 +2967,6 @@
             <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
             <remarks>To be overridden in inheriting classes.</remarks>
         </member>
-        <member name="M:NLog.Internal.NetworkSenders.NetworkSender.ParseEndpointAddress(System.Uri,System.Net.Sockets.AddressFamily)">
-            <summary>
-            Parses the URI into an endpoint address.
-            </summary>
-            <param name="uri">The URI to parse.</param>
-            <param name="addressFamily">The address family.</param>
-            <returns>Parsed endpoint.</returns>
-        </member>
         <member name="P:NLog.Internal.NetworkSenders.NetworkSender.Address">
             <summary>
             Gets the address of the network endpoint.
@@ -3013,11 +3012,6 @@
             A newly created network sender.
             </returns>
         </member>
-        <member name="T:NLog.Internal.NetworkSenders.ISocket">
-            <summary>
-            Interface for mocking socket calls.
-            </summary>
-        </member>
         <member name="T:NLog.Internal.NetworkSenders.NetworkSenderFactory">
             <summary>
             Default implementation of <see cref="T:NLog.Internal.NetworkSenders.INetworkSenderFactory"/>.
@@ -3036,101 +3030,6 @@
             /// <returns>
             A newly created network sender.
             </returns>
-        </member>
-        <member name="T:NLog.Internal.NetworkSenders.SocketProxy">
-            <summary>
-            Socket proxy for mocking Socket code.
-            </summary>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.SocketProxy.#ctor(System.Net.Sockets.AddressFamily,System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Internal.NetworkSenders.SocketProxy"/> class.
-            </summary>
-            <param name="addressFamily">The address family.</param>
-            <param name="socketType">Type of the socket.</param>
-            <param name="protocolType">Type of the protocol.</param>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.SocketProxy.Close">
-            <summary>
-            Closes the wrapped socket.
-            </summary>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.SocketProxy.ConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)">
-            <summary>
-            Invokes ConnectAsync method on the wrapped socket.
-            </summary>
-            <param name="args">The <see cref="T:System.Net.Sockets.SocketAsyncEventArgs"/> instance containing the event data.</param>
-            <returns>Result of original method.</returns>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.SocketProxy.SendAsync(System.Net.Sockets.SocketAsyncEventArgs)">
-            <summary>
-            Invokes SendAsync method on the wrapped socket.
-            </summary>
-            <param name="args">The <see cref="T:System.Net.Sockets.SocketAsyncEventArgs"/> instance containing the event data.</param>
-            <returns>Result of original method.</returns>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.SocketProxy.Dispose">
-            <summary>
-            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="T:NLog.Internal.NetworkSenders.TcpNetworkSender">
-            <summary>
-            Sends messages over a TCP network connection.
-            </summary>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.TcpNetworkSender.#ctor(System.String,System.Net.Sockets.AddressFamily)">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.Internal.NetworkSenders.TcpNetworkSender"/> class.
-            </summary>
-            <param name="url">URL. Must start with tcp://.</param>
-            <param name="addressFamily">The address family.</param>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.TcpNetworkSender.CreateSocket(System.Net.Sockets.AddressFamily,System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType)">
-            <summary>
-            Creates the socket with given parameters. 
-            </summary>
-            <param name="addressFamily">The address family.</param>
-            <param name="socketType">Type of the socket.</param>
-            <param name="protocolType">Type of the protocol.</param>
-            <returns>Instance of <see cref="T:NLog.Internal.NetworkSenders.ISocket"/> which represents the socket.</returns>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.TcpNetworkSender.DoInitialize">
-            <summary>
-            Performs sender-specific initialization.
-            </summary>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.TcpNetworkSender.DoClose(NLog.Common.AsyncContinuation)">
-            <summary>
-            Closes the socket.
-            </summary>
-            <param name="continuation">The continuation.</param>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.TcpNetworkSender.DoFlush(NLog.Common.AsyncContinuation)">
-            <summary>
-            Performs sender-specific flush.
-            </summary>
-            <param name="continuation">The continuation.</param>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.TcpNetworkSender.DoSend(System.Byte[],System.Int32,System.Int32,NLog.Common.AsyncContinuation)">
-            <summary>
-            Sends the specified text over the connected socket.
-            </summary>
-            <param name="bytes">The bytes to be sent.</param>
-            <param name="offset">Offset in buffer.</param>
-            <param name="length">Number of bytes to send.</param>
-            <param name="asyncContinuation">The async continuation to be invoked after the buffer has been sent.</param>
-            <remarks>To be overridden in inheriting classes.</remarks>
-        </member>
-        <member name="T:NLog.Internal.NetworkSenders.TcpNetworkSender.MySocketAsyncEventArgs">
-            <summary>
-            Facilitates mocking of <see cref="T:System.Net.Sockets.SocketAsyncEventArgs"/> class.
-            </summary>
-        </member>
-        <member name="M:NLog.Internal.NetworkSenders.TcpNetworkSender.MySocketAsyncEventArgs.RaiseCompleted">
-            <summary>
-            Raises the Completed event.
-            </summary>
         </member>
         <member name="T:NLog.Internal.ObjectGraphScanner">
             <summary>
@@ -3415,9 +3314,9 @@
             </summary>
             <param name="name">Ambient property name.</param>
         </member>
-        <member name="T:NLog.LayoutRenderers.CallSiteLayoutRenderer">
+        <member name="T:NLog.LayoutRenderers.AssemblyVersionLayoutRenderer">
             <summary>
-            The call site (class name, method name and source information).
+            Assembly version.
             </summary>
         </member>
         <member name="T:NLog.LayoutRenderers.LayoutRenderer">
@@ -3493,6 +3392,18 @@
         <member name="P:NLog.LayoutRenderers.LayoutRenderer.LoggingConfiguration">
             <summary>
             Gets the logging configuration this target is part of.
+            </summary>
+        </member>
+        <member name="M:NLog.LayoutRenderers.AssemblyVersionLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
+            <summary>
+            Renders assembly version and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
+            </summary>
+            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
+            <param name="logEvent">Logging event.</param>
+        </member>
+        <member name="T:NLog.LayoutRenderers.CallSiteLayoutRenderer">
+            <summary>
+            The call site (class name, method name and source information).
             </summary>
         </member>
         <member name="M:NLog.LayoutRenderers.CallSiteLayoutRenderer.#ctor">
@@ -3604,18 +3515,6 @@
             Gets or sets a value indicating whether to output UTC time instead of local time.
             </summary>
             <docgen category='Rendering Options' order='10' />
-        </member>
-        <member name="T:NLog.LayoutRenderers.DocumentUriLayoutRenderer">
-            <summary>
-            URI of the HTML page which hosts the current Silverlight application.
-            </summary>
-        </member>
-        <member name="M:NLog.LayoutRenderers.DocumentUriLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
-            <summary>
-            Renders the specified environmental information and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
-            </summary>
-            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
-            <param name="logEvent">Logging event.</param>
         </member>
         <member name="T:NLog.LayoutRenderers.EventContextLayoutRenderer">
             <summary>
@@ -4144,39 +4043,6 @@
             Gets or sets a value indicating whether to output UTC time instead of local time.
             </summary>
             <docgen category='Rendering Options' order='10' />
-        </member>
-        <member name="T:NLog.LayoutRenderers.SilverlightApplicationInfoLayoutRenderer">
-            <summary>
-            Information about Silverlight application.
-            </summary>
-        </member>
-        <member name="M:NLog.LayoutRenderers.SilverlightApplicationInfoLayoutRenderer.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:NLog.LayoutRenderers.SilverlightApplicationInfoLayoutRenderer"/> class.
-            </summary>
-        </member>
-        <member name="M:NLog.LayoutRenderers.SilverlightApplicationInfoLayoutRenderer.Append(System.Text.StringBuilder,NLog.LogEventInfo)">
-            <summary>
-            Renders the specified environmental information and appends it to the specified <see cref="T:System.Text.StringBuilder"/>.
-            </summary>
-            <param name="builder">The <see cref="T:System.Text.StringBuilder"/> to append the rendered data to.</param>
-            <param name="logEvent">Logging event.</param>
-        </member>
-        <member name="P:NLog.LayoutRenderers.SilverlightApplicationInfoLayoutRenderer.Option">
-            <summary>
-            Gets or sets specific information to display.
-            </summary>
-            <docgen category='Rendering Options' order='10' />
-        </member>
-        <member name="T:NLog.LayoutRenderers.SilverlightApplicationInfoOption">
-            <summary>
-            Specifies application information to display in ${sl-appinfo} renderer.
-            </summary>
-        </member>
-        <member name="F:NLog.LayoutRenderers.SilverlightApplicationInfoOption.XapUri">
-            <summary>
-            URI of the current application XAP file.
-            </summary>
         </member>
         <member name="T:NLog.LayoutRenderers.SpecialFolderLayoutRenderer">
             <summary>
@@ -6590,6 +6456,13 @@
             Off log level.
             </summary>
         </member>
+        <member name="M:NLog.LogLevel.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of <see cref="T:NLog.LogLevel"/>.
+            </summary>
+            <param name="name">The log level name.</param>
+            <param name="ordinal">The log level ordinal number.</param>
+        </member>
         <member name="M:NLog.LogLevel.op_Equality(NLog.LogLevel,NLog.LogLevel)">
             <summary>
             Compares two <see cref="T:NLog.LogLevel"/> objects 
@@ -7110,6 +6983,12 @@
             <summary>
             Occurs when Close operation has completed.
             </summary>
+        </member>
+        <member name="P:NLog.LogReceiverService.WcfLogReceiverClient.CookieContainer">
+            <summary>
+            Gets or sets the cookie container.
+            </summary>
+            <value>The cookie container.</value>
         </member>
         <member name="T:NLog.MappedDiagnosticsContext">
             <summary>
@@ -7954,6 +7833,12 @@
             </summary>
             <value>The name of the endpoint configuration.</value>
             <docgen category='Connection Options' order='10' />
+        </member>
+        <member name="P:NLog.Targets.LogReceiverWebServiceTarget.UseBinaryEncoding">
+            <summary>
+            Gets or sets a value indicating whether to use binary message encoding.
+            </summary>
+            <docgen category='Payload Options' order='10' />
         </member>
         <member name="P:NLog.Targets.LogReceiverWebServiceTarget.ClientId">
             <summary>
@@ -9176,6 +9061,98 @@
             optimize batch writes.
             </summary>
             <param name="logEvents">Logging events to be written out.</param>
+        </member>
+        <member name="T:NLog.Time.AccurateLocalTimeSource">
+            <summary>
+            Current local time retrieved directly from DateTime.Now.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.TimeSource">
+            <summary>
+            Defines source of current time.
+            </summary>
+        </member>
+        <member name="M:NLog.Time.TimeSource.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents this instance.
+            </returns>
+        </member>
+        <member name="P:NLog.Time.TimeSource.Time">
+            <summary>
+            Gets current time.
+            </summary>
+        </member>
+        <member name="P:NLog.Time.TimeSource.Current">
+            <summary>
+            Gets or sets current global time source used in all log events.
+            </summary>
+            <remarks>
+            Default time source is <see cref="T:NLog.Time.FastLocalTimeSource"/>.
+            </remarks>
+        </member>
+        <member name="P:NLog.Time.AccurateLocalTimeSource.Time">
+            <summary>
+            Gets current local time directly from DateTime.Now.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.AccurateUtcTimeSource">
+            <summary>
+            Current UTC time retrieved directly from DateTime.UtcNow.
+            </summary>
+        </member>
+        <member name="P:NLog.Time.AccurateUtcTimeSource.Time">
+            <summary>
+            Gets current UTC time directly from DateTime.UtcNow.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.CachedTimeSource">
+            <summary>
+            Fast time source that updates current time only once per tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="P:NLog.Time.CachedTimeSource.FreshTime">
+            <summary>
+            Gets raw uncached time from derived time source.
+            </summary>
+        </member>
+        <member name="P:NLog.Time.CachedTimeSource.Time">
+            <summary>
+            Gets current time cached for one system tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="T:NLog.Time.FastLocalTimeSource">
+            <summary>
+            Fast local time source that is updated once per tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="P:NLog.Time.FastLocalTimeSource.FreshTime">
+            <summary>
+            Gets uncached local time directly from DateTime.Now.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.FastUtcTimeSource">
+            <summary>
+            Fast UTC time source that is updated once per tick (15.6 milliseconds).
+            </summary>
+        </member>
+        <member name="P:NLog.Time.FastUtcTimeSource.FreshTime">
+            <summary>
+            Gets uncached UTC time directly from DateTime.UtcNow.
+            </summary>
+        </member>
+        <member name="T:NLog.Time.TimeSourceAttribute">
+            <summary>
+            Marks class as a time source and assigns a name to it.
+            </summary>
+        </member>
+        <member name="M:NLog.Time.TimeSourceAttribute.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NLog.Time.TimeSourceAttribute"/> class.
+            </summary>
+            <param name="name">Name of the time source.</param>
         </member>
     </members>
 </doc>
