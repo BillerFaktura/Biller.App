@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biller.Data.Settings
+namespace Biller.Data.Models
 {
-    class CompanySettings : Utils.PropertyChangedHelper, Interfaces.IXMLStorageable
+    public class CompanySettings : Utils.PropertyChangedHelper, Interfaces.IXMLStorageable
     {
         public CompanySettings()
         {

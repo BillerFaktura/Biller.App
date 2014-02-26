@@ -97,7 +97,7 @@
     <Compile Include="Performance\Stopwatch.cs" />
     <Compile Include="Samples\Customer.cs" />
     <Compile Include="Samples\Units.cs" />
-    <Compile Include="Settings\CompanySettings.cs" />
+    <Compile Include="Models\CompanySettings.cs" />
     <Compile Include="Utils\Address.cs" />
     <Compile Include="Utils\Contact.cs" />
     <Compile Include="Customers\Customer.cs" />
