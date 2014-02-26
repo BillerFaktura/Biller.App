@@ -72,7 +72,7 @@ namespace Biller.UI.OrderView.Contextual
         private void buttonPDFOrder_Click(object sender, RoutedEventArgs e)
         {
             var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
-            saveFileDialog.Filter="*.pdf|PDF";
+            saveFileDialog.Filter="PDF Dokument|*.pdf";
             if (saveFileDialog.ShowDialog() == true)
                 _ViewModel.ExportClass.SaveDocument(_ViewModel.Document, saveFileDialog.FileName);
         }
