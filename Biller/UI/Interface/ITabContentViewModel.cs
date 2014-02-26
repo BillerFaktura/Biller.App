@@ -7,14 +7,10 @@ using System.Windows;
 
 namespace Biller.UI.Interface
 {
-    public interface ITabContentViewModel
+    public interface ITabContentViewModel : IViewModel
     {
         Fluent.RibbonTabItem RibbonTabItem { get; }
 
         UIElement TabContent { get; }
-
-        Task LoadData();
-
-        void ReceiveData(object data);
     }
 }
