@@ -40,6 +40,7 @@ namespace Biller.UI.ViewModel
             CustomerTabViewModel = new CustomerView.CustomerTabViewModel(this);
             logger.Debug("Initializing SettingsTabViewModel");
             SettingsTabViewModel = new SettingsView.SettingsTabViewModel(this);
+            BackstageViewModel = new Backstage.BackstageViewModel(this);
 
             logger.Debug("Adding Viewmodels to the collection");
             AddTabContentViewModel(OrderTabViewModel);
@@ -66,6 +67,11 @@ namespace Biller.UI.ViewModel
         /// The current instance of <see cref="Biller.UI.OrderView.CustomerTabViewModel"/>.
         /// </summary>
         public Biller.UI.CustomerView.CustomerTabViewModel CustomerTabViewModel { get; private set; }
+
+        /// <summary>
+        /// The current instance of <see cref="Biller.UI.Backstage.BackstageViewModel"/>.
+        /// </summary>
+        public Biller.UI.Backstage.BackstageViewModel BackstageViewModel { get; private set; }
 
         /// <summary>
         /// 
@@ -141,14 +147,24 @@ namespace Biller.UI.ViewModel
 
             logger.Debug("Connecting database");
             database = new Data.Database.XDatabase(AssemblyLocation);
-            await database.Connect();
-            await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
-            logger.Info("Connecting to database was successfull");
+            if (await database.Connect() == true)
+            {
+                await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
+                logger.Info("Connecting to database was successfull");
 
-            await SettingsTabViewModel.LoadData();
-            await ArticleTabViewModel.LoadData();
-            await CustomerTabViewModel.LoadData();
-            await OrderTabViewModel.LoadData();
+                await SettingsTabViewModel.LoadData();
+                await ArticleTabViewModel.LoadData();
+                await CustomerTabViewModel.LoadData();
+                await OrderTabViewModel.LoadData();
+            }
+            else
+            {
+                logger.Info("Connecting to database was not successfull");
+                if (database.IsFirstLoad)
+                {
+                    logger.Info("First Load of the Database");
+                }
+            }
         }
     }
 }

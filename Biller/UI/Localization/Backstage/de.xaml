@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="companyname">Firmenname</sys:String>
+    <sys:String x:Key="forname">Vorname</sys:String>
+    <sys:String x:Key="surname">Nachname</sys:String>
+    <sys:String x:Key="addition">Adresszusatz</sys:String>
+    <sys:String x:Key="street">Straße</sys:String>
+    <sys:String x:Key="housenumber">Hausnummer</sys:String>
+    <sys:String x:Key="zip">Postleitzahl</sys:String>
+    <sys:String x:Key="city">Stadt</sys:String>
+    <sys:String x:Key="country">Land</sys:String>
+    <sys:String x:Key="next">Weiter</sys:String>
+    <sys:String x:Key="vatFreeRule">Diese Firma ist aufgrund einer Kleinunternehmerregelung von der Abfuhr der Umsatzsteuer befreit.</sys:String>
+    
+</ResourceDictionary>
