@@ -1,4 +1,5 @@
-﻿namespace Biller
+﻿using System.Diagnostics;
+namespace Biller
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
@@ -33,6 +34,11 @@
         private async void RibbonWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             await MainWindowViewModel.LoadData();
+        }
+
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/LastElb/BillerV2/issues");
         }
     }
 }

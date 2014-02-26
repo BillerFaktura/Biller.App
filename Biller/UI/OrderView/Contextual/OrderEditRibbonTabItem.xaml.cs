@@ -60,7 +60,8 @@ namespace Biller.UI.OrderView.Contextual
 
         private async void buttonQuickSaveOrder_Click(object sender, RoutedEventArgs e)
         {
-           await _ViewModel.ParentViewModel.SaveOrUpdateDocument(_ViewModel.Document);
+            _ViewModel.OrderEditRibbonTabItem.Focus(); // MVVM
+            await _ViewModel.ParentViewModel.SaveOrUpdateDocument(_ViewModel.Document);
         }
 
         public void AddDocumentButton(Fluent.Button button)

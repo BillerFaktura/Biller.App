@@ -24,6 +24,16 @@
                     </Fluent:BackstageTabControl>
                 </Fluent:Backstage>
             </Fluent:Ribbon.Menu>
+            <Fluent:Ribbon.ToolBarItems>
+                <Fluent:Button Fluent:RibbonAttachedProperties.RibbonSizeDefinition="Small" Margin="0,0,5,0" Click="Button_Click" Icon="./Images/GitHub-Mark.png" LargeIcon="./Images/GitHub-Mark.png">
+                    <Fluent:Button.ToolTip>
+                        <Fluent:ScreenTip Title="Bugs melden"
+                                          Text="Öffnet das Bugverzeichnis auf github.com"
+                                          Width="190"
+                                          IsRibbonAligned="True" />
+                    </Fluent:Button.ToolTip>
+                </Fluent:Button>
+            </Fluent:Ribbon.ToolBarItems>
         </Fluent:Ribbon>
         <ContentPresenter Content="{Binding SelectedContent}"/>
     </DockPanel>

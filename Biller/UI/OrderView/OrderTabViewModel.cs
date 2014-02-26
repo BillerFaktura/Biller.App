@@ -194,6 +194,17 @@ namespace Biller.UI.OrderView
             await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
         }
 
+        public async Task ShowDocumentsInInterval()
+        {
+            DisplayedOrders.Clear();
+            var monthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            var monthEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, monthStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
+            
+            var result = await ParentViewModel.Database.DocumentsInInterval(monthStart, monthEnd);
+            foreach (Data.Document.PreviewDocument item in result)
+                DisplayedOrders.Add(item);
+        }
+
         public void ReceiveData(object data)
         {
             throw new System.NotImplementedException();
@@ -216,6 +227,18 @@ namespace Biller.UI.OrderView
             }
 
             bool result = await ParentViewModel.Database.SaveOrUpdateDocument(source);
+
+            //await ShowDocumentsInInterval();
+
+            if (DisplayedOrders.Contains(tempPreview))
+            {
+                var index = DisplayedOrders.IndexOf(tempPreview);
+                DisplayedOrders.RemoveAt(index); DisplayedOrders.Insert(index, tempPreview);
+            }
+            else
+            {
+                DisplayedOrders.Add(tempPreview);
+            }
         }
 
         public void AddDocumentFactory(Data.Interfaces.DocumentFactory DocumentFactory)
