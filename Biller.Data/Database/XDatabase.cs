@@ -38,7 +38,7 @@ namespace Biller.Data.Database
             {
                 logger.Debug(DatabasePath + "Settings.xml" + " didn't exist -> First load");
                 IsFirstLoad = true;
-                return true;
+                return false;
             }
 
             try
@@ -182,6 +182,7 @@ namespace Biller.Data.Database
             }
             else
             {
+                //Case when FirstLoad is true
                 try
                 {
                     doc = XElement.Parse(File.ReadAllText(DatabasePath + "Settings.xml", Encoding.UTF8));
