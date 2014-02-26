@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 namespace Biller.UI.Ribbon
 {
     public class RibbonFactory
@@ -82,6 +83,19 @@ namespace Biller.UI.Ribbon
             {
                 //empty list
                 return 0;
+            }
+        }
+
+        public void AddBackStageTabItem(Fluent.BackstageTabItem BackstageTabItem)
+        {
+            var backstage = Ribbon.Menu;
+            if (backstage is Fluent.Backstage)
+            {
+                var tabcontrol = (backstage as Fluent.Backstage).Content;
+                if (tabcontrol is Fluent.BackstageTabControl)
+                {
+                    (tabcontrol as Fluent.BackstageTabControl).Items.Add(BackstageTabItem);
+                }
             }
         }
     }
