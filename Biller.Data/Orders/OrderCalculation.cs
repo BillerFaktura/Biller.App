@@ -46,7 +46,7 @@ namespace Biller.Data.Orders
             }
             if (e.PropertyName == "OrderShipment")
             {
-                _parentOrder.OrderShipment.PropertyChanged += article_PropertyChanged;
+                _parentOrder.OrderShipment.DefaultPrice.PropertyChanged += article_PropertyChanged;
                 CalculateValues();
             }
         }
