@@ -163,6 +163,14 @@
     <Compile Include="UI\ArticleView\Contextual\Controls\ArticleEditControlTabItem.xaml.cs">
       <DependentUpon>ArticleEditControlTabItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Backstage\BackstageViewModel.cs" />
+    <Compile Include="UI\Backstage\NewCompany\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Backstage\NewCompany\ContentTabItem.xaml.cs">
+      <DependentUpon>ContentTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Backstage\NewCompany\NewCompanyViewModel.cs" />
     <Compile Include="UI\CustomerView\Contextual\CustomerContextualViewModel.cs" />
     <Compile Include="UI\CustomerView\Contextual\ContextualTabContent.xaml.cs">
       <DependentUpon>ContextualTabContent.xaml</DependentUpon>
@@ -184,8 +192,10 @@
     </Compile>
     <Compile Include="UI\CustomerView\CustomerTabViewModel.cs" />
     <Compile Include="UI\Interface\IArticleEditContentItem.cs" />
+    <Compile Include="UI\Interface\IBackstageContentViewModel.cs" />
     <Compile Include="UI\Interface\IRibbonTabItem.cs" />
     <Compile Include="UI\Interface\ITabContentViewModel.cs" />
+    <Compile Include="UI\Interface\IViewModel.cs" />
     <Compile Include="UI\OrderView\Contextual\EditTabs\Articles\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
@@ -314,6 +324,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Backstage\NewCompany\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Backstage\NewCompany\ContentTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\CustomerView\Contextual\ContextualTabContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -341,6 +359,10 @@
     <Page Include="UI\Localization\ArticleView\de.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Localization\Backstage\de.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Localization\CustomerView\de.xaml">
       <Generator>MSBuild:Compile</Generator>

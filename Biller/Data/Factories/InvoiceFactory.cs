@@ -72,6 +72,7 @@ namespace Biller.Data.Factories
                             var customer = (target as Data.Orders.Order).Customer;
                             var orderedArticle = new Data.Articles.OrderedArticle(source as Data.Articles.Article);
                             orderedArticle.OrderedAmount = 1;
+                            orderedArticle.OrderPosition = (target as Data.Orders.Order).OrderedArticles.Count + 1;
 
                             switch (customer.Pricegroup)
                             {
@@ -93,6 +94,7 @@ namespace Biller.Data.Factories
                             var orderedArticle = new Data.Articles.OrderedArticle(source as Data.Articles.Article);
                             orderedArticle.OrderedAmount = 1;
                             orderedArticle.OrderPrice = orderedArticle.Price1;
+                            orderedArticle.OrderPosition = (target as Data.Orders.Order).OrderedArticles.Count + 1;
                             (target as Data.Orders.Order).OrderedArticles.Add(orderedArticle);
                         }
                     }

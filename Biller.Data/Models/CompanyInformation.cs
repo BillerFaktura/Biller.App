@@ -73,5 +73,10 @@ namespace Biller.Data.Models
         {
             return new CompanyInformation();
         }
+
+        public void GenerateNewID()
+        {
+            CompanyID = Guid.NewGuid().ToString();
+        }
     }
 }

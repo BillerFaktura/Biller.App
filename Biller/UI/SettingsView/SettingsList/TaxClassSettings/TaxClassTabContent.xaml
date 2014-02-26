@@ -97,7 +97,6 @@
                             </controls:Office2013Button.Vector>
                         </controls:Office2013Button>
                     </StackPanel>
-                    <CheckBox Content="Die Firma ist aufgrund einer Kleinunternehmerregelung von der Abfuhr der Umsatzsteuer befreit." FontSize="13" Margin="2,10,0,0"/>
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
