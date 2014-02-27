@@ -26,19 +26,39 @@ namespace Biller.UI.OrderView
             await _ParentViewModel.ReceiveNewDocumentCommand(this);
         }
 
-        private void buttonEditOrder_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void buttonEditOrder_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            await _ParentViewModel.ReceiveEditOrderCommand(this);
         }
 
-        private void buttonOrderPDF_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void buttonOrderPDF_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            var factory = _ParentViewModel.GetFactory(_ParentViewModel.SelectedDocument.DocumentType);
+            if (factory != null)
+            {
+                var loadingDocument = factory.GetNewDocument();
+                loadingDocument.DocumentID = _ParentViewModel.SelectedDocument.DocumentID;
+                loadingDocument = await _ParentViewModel.ParentViewModel.Database.GetDocument(loadingDocument);
 
+                var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+                saveFileDialog.Filter = "PDF Dokument|*.pdf";
+                saveFileDialog.FileName = loadingDocument.LocalizedDocumentType + " " + loadingDocument.ID;
+                if (saveFileDialog.ShowDialog() == true)
+                    factory.GetNewExportClass().SaveDocument(loadingDocument, saveFileDialog.FileName);
+            }
         }
 
-        private void buttonPrintOrder_Click(object sender, System.Windows.RoutedEventArgs e)
+        private async void buttonPrintOrder_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            var factory = _ParentViewModel.GetFactory(_ParentViewModel.SelectedDocument.DocumentType);
+            if (factory != null)
+            {
+                var loadingDocument = factory.GetNewDocument();
+                loadingDocument.DocumentID = _ParentViewModel.SelectedDocument.DocumentID;
+                loadingDocument = await _ParentViewModel.ParentViewModel.Database.GetDocument(loadingDocument);
 
+                factory.GetNewExportClass().PrintDocument(loadingDocument);
+            }
         }
 
         private void cb_month_filter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
@@ -60,5 +80,7 @@ namespace Biller.UI.OrderView
         {
 
         }
+
+        
     }
 }

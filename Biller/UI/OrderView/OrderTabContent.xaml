@@ -14,7 +14,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <ListView HorizontalAlignment="Stretch" Margin="6" Name="ListView1" VerticalAlignment="Stretch" SelectionMode="Single" UseLayoutRounding="True" ItemsSource="{Binding DisplayedOrders}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedItem="{Binding SelectedDocument}" MouseDoubleClick="ListView1_MouseDoubleClick">
+        <ListView HorizontalAlignment="Stretch" Margin="6" Name="ListView1" VerticalAlignment="Stretch" SelectionMode="Single" UseLayoutRounding="True" ItemsSource="{Binding DisplayedDocuments}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectedItem="{Binding SelectedDocument}" MouseDoubleClick="ListView1_MouseDoubleClick">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Center" />

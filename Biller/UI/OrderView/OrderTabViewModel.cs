@@ -21,7 +21,7 @@ namespace Biller.UI.OrderView
         {
             this.ParentViewModel = parentViewModel;
             ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = "Auftragsmappen", Background = Brushes.LimeGreen, BorderBrush = Brushes.LimeGreen, Visibility=System.Windows.Visibility.Visible};
-            DisplayedOrders = new ObservableCollection<Data.Document.PreviewDocument>();
+            DisplayedDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
             
             OrderRibbonTabItem = new OrderRibbonTabItem(this);
             OrderTabContent = new OrderTabContent(this);
@@ -42,11 +42,26 @@ namespace Biller.UI.OrderView
         /// </summary>
         public OrderTabContent OrderTabContent { get; private set; }
 
-        public ObservableCollection<Data.Document.PreviewDocument> AllOrders { get { return GetValue(() => AllOrders); } set { SetValue(value); } }
+        public ObservableCollection<Data.Document.PreviewDocument> AllDocuments { get { return GetValue(() => AllDocuments); } set { SetValue(value); } }
 
-        public ObservableCollection<Data.Document.PreviewDocument> DisplayedOrders { get { return GetValue(() => DisplayedOrders); } set { SetValue(value); } }
+        public ObservableCollection<Data.Document.PreviewDocument> DisplayedDocuments { get { return GetValue(() => DisplayedDocuments); } set { SetValue(value); } }
 
-        public Data.Document.PreviewDocument SelectedDocument { get { return GetValue(() => SelectedDocument); } set { SetValue(value); } }
+        public Data.Document.PreviewDocument SelectedDocument
+        {
+            get { return GetValue(() => SelectedDocument); }
+            set
+            {
+                SetValue(value);
+                if (value is Data.Document.PreviewDocument)
+                {
+                    SetEditButtonEnabled(true);
+                }
+                else
+                {
+                    SetEditButtonEnabled(false);
+                }
+            }
+        }
 
         public ObservableCollection<string> YearRange { get { return GetValue(() => YearRange); } set { SetValue(value); } }
 
@@ -68,6 +83,13 @@ namespace Biller.UI.OrderView
             {
                 return OrderTabContent;
             }
+        }
+
+        void SetEditButtonEnabled(bool isEnabled)
+        {
+            OrderRibbonTabItem.buttonEditOrder.IsEnabled = isEnabled;
+            OrderRibbonTabItem.buttonPrintOrder.IsEnabled = isEnabled;
+            OrderRibbonTabItem.buttonOrderPDF.IsEnabled = isEnabled;
         }
 
         /// <summary>
@@ -174,35 +196,35 @@ namespace Biller.UI.OrderView
 
         public async Task LoadData()
         {
-            AllOrders = new ObservableCollection<Data.Document.PreviewDocument>();
+            AllDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
             if (firstStart)
             {
-                DisplayedOrders.Clear();
+                DisplayedDocuments.Clear();
                 var monthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
                 var monthEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, monthStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
 
                 var result = await ParentViewModel.Database.DocumentsInInterval(monthStart, monthEnd);
                 foreach (Data.Document.PreviewDocument item in result)
-                    DisplayedOrders.Add(item);
+                    DisplayedDocuments.Add(item);
 
                 firstStart = false;
             }
             else
             {
-                DisplayedOrders = new ObservableCollection<Data.Document.PreviewDocument>();
+                DisplayedDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
             }
             await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
         }
 
-        public async Task ShowDocumentsInInterval()
+        public void ShowDocumentsInInterval(DateTime start, DateTime end)
         {
-            DisplayedOrders.Clear();
-            var monthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
-            var monthEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, monthStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
-            
-            var result = await ParentViewModel.Database.DocumentsInInterval(monthStart, monthEnd);
+            DisplayedDocuments.Clear();
+            //var monthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            //var monthEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, monthStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
+
+            var result = from documents in AllDocuments where documents.Date >= start && documents.Date <= end select documents;
             foreach (Data.Document.PreviewDocument item in result)
-                DisplayedOrders.Add(item);
+                DisplayedDocuments.Add(item);
         }
 
         public void ReceiveData(object data)
@@ -216,28 +238,28 @@ namespace Biller.UI.OrderView
             if (source is Data.Orders.Order)
                 tempPreview = Data.Orders.Order.PreviewFromOrder(source as Data.Orders.Order);
 
-            if (AllOrders.Contains(tempPreview))
+            if (AllDocuments.Contains(tempPreview))
             {
-                var index = AllOrders.IndexOf(tempPreview);
-                AllOrders.RemoveAt(index); AllOrders.Insert(index, tempPreview);
+                var index = AllDocuments.IndexOf(tempPreview);
+                AllDocuments.RemoveAt(index); AllDocuments.Insert(index, tempPreview);
             }
             else
             {
-                AllOrders.Add(tempPreview);
+                AllDocuments.Add(tempPreview);
             }
 
             bool result = await ParentViewModel.Database.SaveOrUpdateDocument(source);
 
             //await ShowDocumentsInInterval();
 
-            if (DisplayedOrders.Contains(tempPreview))
+            if (DisplayedDocuments.Contains(tempPreview))
             {
-                var index = DisplayedOrders.IndexOf(tempPreview);
-                DisplayedOrders.RemoveAt(index); DisplayedOrders.Insert(index, tempPreview);
+                var index = DisplayedDocuments.IndexOf(tempPreview);
+                DisplayedDocuments.RemoveAt(index); DisplayedDocuments.Insert(index, tempPreview);
             }
             else
             {
-                DisplayedOrders.Add(tempPreview);
+                DisplayedDocuments.Add(tempPreview);
             }
         }
 

@@ -50,7 +50,7 @@ namespace Biller.Data.PDF
             // Because all styles are derived from Normal, the next line changes the 
             // font of the whole document. Or, more exactly, it changes the font of
             // all styles and paragraphs that do not redefine the font.
-            style.Font.Name = "Arial";
+            style.Font.Name = "Calibri";
 
             style = this.document.Styles[StyleNames.Header];
             style.ParagraphFormat.AddTabStop("16cm", TabAlignment.Right);
@@ -60,8 +60,7 @@ namespace Biller.Data.PDF
 
             // Create a new style called Table based on style Normal
             style = this.document.Styles.AddStyle("Table", "Normal");
-            style.Font.Name = "Arial";
-            style.Font.Name = "Arial";
+            style.Font.Name = "Calibri";
             style.Font.Size = 9;
 
             // Create a new style called Reference based on style Normal
@@ -79,21 +78,32 @@ namespace Biller.Data.PDF
             // Each MigraDoc document needs at least one section.
             Section section = this.document.AddSection();
 
-            // Put a logo in the header
-            Image image = section.Headers.Primary.AddImage("../../PowerBooks.png");
-            image.Height = "2.5cm";
-            image.LockAspectRatio = true;
-            image.RelativeVertical = RelativeVertical.Line;
-            image.RelativeHorizontal = RelativeHorizontal.Margin;
-            image.Top = ShapePosition.Top;
-            image.Left = ShapePosition.Right;
-            image.WrapFormat.Style = WrapStyle.Through;
-
             // Create footer
-            Paragraph paragraph = section.Footers.Primary.AddParagraph();
-            paragraph.AddText("Absender");
-            paragraph.Format.Font.Size = 9;
-            paragraph.Format.Alignment = ParagraphAlignment.Center;
+            var mycryptominerfooter = section.Footers.Primary.AddTable();
+            mycryptominerfooter.Style = "Table";
+            mycryptominerfooter.Borders.Color = Color.Empty;
+            mycryptominerfooter.Borders.Visible = false;
+            mycryptominerfooter.Rows.LeftIndent = 0;
+            mycryptominerfooter.LeftPadding = "-1cm";
+
+            Column footercolumn = mycryptominerfooter.AddColumn("4.75cm");
+            footercolumn.Borders.Visible = false;
+            footercolumn.Format.Alignment = ParagraphAlignment.Left;
+            footercolumn = mycryptominerfooter.AddColumn("4.5cm");
+            footercolumn.Borders.Visible = false;
+            footercolumn.Format.Alignment = ParagraphAlignment.Left;
+            footercolumn = mycryptominerfooter.AddColumn("4.0cm");
+            footercolumn.Borders.Visible = false;
+            footercolumn.Format.Alignment = ParagraphAlignment.Left;
+            footercolumn = mycryptominerfooter.AddColumn("5.75cm");
+            footercolumn.Borders.Visible = false;
+            footercolumn.Format.Alignment = ParagraphAlignment.Left;
+
+            Row footerrow = mycryptominerfooter.AddRow();
+            footerrow.Cells[0].AddParagraph("MyCryptoMiner\nLückel, Lamshöft, Müns GbR\nHegelstraße 28\n39104 Magdeburg\n\nGeschäftsführung:\nIgor Lückel, Kevin Lamshöft, Malte Müns");
+            footerrow.Cells[1].AddParagraph("Tel.: 0391 50 54 93 80\nFax:  0391 50 54 93 88\n\ninfo@mycryptominer.de\nwww.mycryptominer.de");
+            footerrow.Cells[2].AddParagraph("USt-IdNr: DE293144142\nSt-Nr: 102/174/62008");
+            footerrow.Cells[3].AddParagraph("IBAN: DE19 8601 0090 0981 4789 00\nBIC: PBNKDEFF\nPostbank Hamburg");            
 
             // Create the text frame for the address
             this.addressFrame = section.AddTextFrame();
@@ -105,16 +115,36 @@ namespace Biller.Data.PDF
             this.addressFrame.RelativeVertical = RelativeVertical.Page;
 
             // Put sender in address frame
-            paragraph = this.addressFrame.AddParagraph("Absender");
-            paragraph.Format.Font.Name = "Arial";
-            paragraph.Format.Font.Size = 7;
+            Paragraph paragraph = this.addressFrame.AddParagraph("MyCryptoMiner | Hegelstraße 38 | 39104 Magdeburg");
+            paragraph.Format.Font.Name = "Calibri";
+            paragraph.Format.Font.Size = 8;
             paragraph.Format.SpaceAfter = 3;
 
-            // Add the print date field
+            // Datum
             paragraph = section.AddParagraph();
-            paragraph.Format.SpaceBefore = "8cm";
+            paragraph.Format.SpaceBefore = "4cm";
+            paragraph.Format.Alignment = ParagraphAlignment.Right;
+            paragraph.Format.RightIndent = "-0.5cm";
+            paragraph.AddText("Rechnungsdatum:");
+            paragraph.AddTab();
+            paragraph.AddText(order.Date.ToString("dd.MM.yyyy"));
+            paragraph.AddLineBreak();
+            paragraph.AddText("Leistungsdatum:");
+            paragraph.AddTab();
+            paragraph.AddTab();
+            paragraph.AddText(order.Date.ToString("dd.MM.yyyy"));
+
+
+            paragraph = section.AddParagraph();
+            paragraph.Format.SpaceBefore = "2cm";
             paragraph.Style = "Reference";
             paragraph.AddFormattedText(order.LocalizedDocumentType + " Nr. " + order.DocumentID, TextFormat.Bold);
+
+            if (!String.IsNullOrEmpty(order.OrderOpeningText))
+            {
+                paragraph = section.AddParagraph(order.OrderOpeningText);
+                paragraph.Format.SpaceAfter = "0.75cm";
+            }
 
             // Create the item table
             this.table = section.AddTable();
@@ -129,16 +159,19 @@ namespace Biller.Data.PDF
             Column column = this.table.AddColumn("1cm");
             column.Format.Alignment = ParagraphAlignment.Center;
 
-            column = this.table.AddColumn("2.5cm");
-            column.Format.Alignment = ParagraphAlignment.Center;
-
-            column = this.table.AddColumn("3cm");
-            column.Format.Alignment = ParagraphAlignment.Center;
-
-            column = this.table.AddColumn("7cm");
+            column = this.table.AddColumn("1.75cm");
             column.Format.Alignment = ParagraphAlignment.Center;
 
             column = this.table.AddColumn("2cm");
+            column.Format.Alignment = ParagraphAlignment.Center;
+
+            column = this.table.AddColumn("6.5cm");
+            column.Format.Alignment = ParagraphAlignment.Center;
+
+            column = this.table.AddColumn("2cm");
+            column.Format.Alignment = ParagraphAlignment.Center;
+
+            column = this.table.AddColumn("1.5cm");
             column.Format.Alignment = ParagraphAlignment.Center;
 
             column = this.table.AddColumn("2cm");
@@ -157,10 +190,12 @@ namespace Biller.Data.PDF
             row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
             row.Cells[3].AddParagraph("Text");
             row.Cells[3].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[4].AddParagraph("Ust.");
+            row.Cells[4].AddParagraph("Einzelpreis");
             row.Cells[4].Format.Alignment = ParagraphAlignment.Center;
-            row.Cells[5].AddParagraph("Gesamtpreis");
-            row.Cells[5].Format.Alignment = ParagraphAlignment.Right;
+            row.Cells[5].AddParagraph("Ust.");
+            row.Cells[5].Format.Alignment = ParagraphAlignment.Center;
+            row.Cells[6].AddParagraph("Gesamtpreis");
+            row.Cells[6].Format.Alignment = ParagraphAlignment.Right;
             row.Format.SpaceBefore = "0,1cm";
             row.Format.SpaceAfter = "0,25cm";
             //this.table.SetEdge(0, 0, 6, 1, Edge.Box, BorderStyle.Single, 0.75, Color.Empty);
@@ -187,11 +222,12 @@ namespace Biller.Data.PDF
                 row1.Cells[1].AddParagraph(article.OrderedAmountString);
                 row1.Cells[2].AddParagraph(article.ArticleID);
                 paragraph = row1.Cells[3].AddParagraph();
-                paragraph.AddFormattedText(article.ArticleDescription, TextFormat.Bold);
+                paragraph.AddText(article.ArticleDescription);
                 paragraph.AddLineBreak();
                 paragraph.AddText(article.ArticleText);
-                row1.Cells[4].AddParagraph(new Utils.Percentage() { Amount = article.TaxClass.TaxRate.Amount }.PercentageString);
-                row1.Cells[5].AddParagraph(article.RoundedGrossOrderValue.AmountString);
+                row1.Cells[4].AddParagraph(article.OrderPrice.Price1.ToString());
+                row1.Cells[5].AddParagraph(new Utils.Percentage() { Amount = article.TaxClass.TaxRate.Amount }.PercentageString);
+                row1.Cells[6].AddParagraph(article.RoundedGrossOrderValue.AmountString);
                 row1.Format.SpaceBefore = "0,1cm";
                 row1.Format.SpaceAfter = "0,4cm";
                 //this.table.SetEdge(0, this.table.Rows.Count - 2, 6, 2, Edge.Box, BorderStyle.Single, 0.75);
@@ -215,42 +251,40 @@ namespace Biller.Data.PDF
             row.Cells[0].AddParagraph("Zwischensumme Netto");
             row.Cells[0].Format.Font.Bold = true;
             row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-            row.Cells[0].MergeRight = 4;
-            row.Cells[5].AddParagraph(order.OrderCalculation.NetArticleSummary.AmountString);
+            row.Cells[0].MergeRight = 5;
+            row.Cells[6].AddParagraph(order.OrderCalculation.NetArticleSummary.AmountString);
             row.Format.SpaceBefore = "0,1cm";
             row.Cells[0].Borders.Bottom = NoBorder.Clone();
-            row.Cells[5].Borders.Bottom = NoBorder.Clone();
+            row.Cells[6].Borders.Bottom = NoBorder.Clone();
             row.Cells[0].Borders.Top = NoBorder.Clone();
-            row.Cells[5].Borders.Top = NoBorder.Clone();
+            row.Cells[6].Borders.Top = NoBorder.Clone();
 
             if (order.OrderCalculation.OrderRebate.Amount > 0)
             {
                 row = this.table.AddRow();
                 row.Cells[0].AddParagraph("Abzgl. " + order.OrderRebate.PercentageString + " Gesamtrabatt" );
-                row.Cells[0].Format.Font.Bold = true;
                 row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-                row.Cells[0].MergeRight = 4;
-                row.Cells[5].AddParagraph(order.OrderCalculation.NetOrderRebate.AmountString);
+                row.Cells[0].MergeRight = 5;
+                row.Cells[6].AddParagraph(order.OrderCalculation.NetOrderRebate.AmountString);
                 row.Format.SpaceBefore = "0,1cm";
                 row.Cells[0].Borders.Bottom = NoBorder.Clone();
-                row.Cells[5].Borders.Bottom = NoBorder.Clone();
+                row.Cells[6].Borders.Bottom = NoBorder.Clone();
                 row.Cells[0].Borders.Top = NoBorder.Clone();
-                row.Cells[5].Borders.Top = NoBorder.Clone();
+                row.Cells[6].Borders.Top = NoBorder.Clone();
             }
 
             if (!String.IsNullOrEmpty(order.OrderShipment.Name))
             {
                 row = this.table.AddRow();
                 row.Cells[0].AddParagraph("Zzgl. " + order.OrderShipment.Name);
-                row.Cells[0].Format.Font.Bold = true;
                 row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-                row.Cells[0].MergeRight = 4;
-                row.Cells[5].AddParagraph(order.OrderCalculation.NetShipment.AmountString);
+                row.Cells[0].MergeRight = 5;
+                row.Cells[6].AddParagraph(order.OrderCalculation.NetShipment.AmountString);
                 row.Format.SpaceBefore = "0,1cm";
                 row.Cells[0].Borders.Bottom = BlackBorder.Clone();
-                row.Cells[5].Borders.Bottom = BlackBorder.Clone();
+                row.Cells[6].Borders.Bottom = BlackBorder.Clone();
                 row.Cells[0].Borders.Top = NoBorder.Clone();
-                row.Cells[5].Borders.Top = NoBorder.Clone();
+                row.Cells[6].Borders.Top = NoBorder.Clone();
             }
 
             if (order.OrderCalculation.OrderRebate.Amount > 0 || !String.IsNullOrEmpty(order.OrderShipment.Name))
@@ -259,13 +293,13 @@ namespace Biller.Data.PDF
                 row.Cells[0].AddParagraph("Zwischensumme Netto");
                 row.Cells[0].Format.Font.Bold = true;
                 row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-                row.Cells[0].MergeRight = 4;
-                row.Cells[5].AddParagraph(order.OrderCalculation.NetOrderSummary.AmountString);
+                row.Cells[0].MergeRight = 5;
+                row.Cells[6].AddParagraph(order.OrderCalculation.NetOrderSummary.AmountString);
                 row.Format.SpaceBefore = "0,1cm";
                 row.Cells[0].Borders.Bottom = NoBorder.Clone();
-                row.Cells[5].Borders.Bottom = NoBorder.Clone();
+                row.Cells[6].Borders.Bottom = NoBorder.Clone();
                 row.Cells[0].Borders.Top = BlackBorder.Clone();
-                row.Cells[5].Borders.Top = BlackBorder.Clone();
+                row.Cells[6].Borders.Top = BlackBorder.Clone();
             }
 
             // Add the VAT row
@@ -273,14 +307,13 @@ namespace Biller.Data.PDF
             {
                 row = this.table.AddRow();
                 row.Cells[0].AddParagraph("Zzgl. " + tax.TaxClass.Name + " "+ tax.TaxClassAddition);
-                row.Cells[0].Format.Font.Bold = true;
                 row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-                row.Cells[0].MergeRight = 4;
-                row.Cells[5].AddParagraph(tax.Value.AmountString);
+                row.Cells[0].MergeRight = 5;
+                row.Cells[6].AddParagraph(tax.Value.AmountString);
                 row.Cells[0].Borders.Bottom = NoBorder.Clone();
-                row.Cells[5].Borders.Bottom = NoBorder.Clone();
+                row.Cells[6].Borders.Bottom = NoBorder.Clone();
                 row.Cells[0].Borders.Top = NoBorder.Clone();
-                row.Cells[5].Borders.Top = NoBorder.Clone();
+                row.Cells[6].Borders.Top = NoBorder.Clone();
             }
 
             row = this.table.AddRow();
@@ -288,9 +321,9 @@ namespace Biller.Data.PDF
             row.Cells[0].AddParagraph("Gesamtbetrag");
             row.Cells[0].Format.Font.Bold = true;
             row.Cells[0].Format.Alignment = ParagraphAlignment.Right;
-            row.Cells[0].MergeRight = 4;
-            row.Cells[5].AddParagraph(order.OrderCalculation.OrderSummary.AmountString);
-            row.Cells[5].Borders.Bottom = BlackThickBorder.Clone();
+            row.Cells[0].MergeRight = 5;
+            row.Cells[6].AddParagraph(order.OrderCalculation.OrderSummary.AmountString);
+            row.Cells[6].Borders.Bottom = BlackThickBorder.Clone();
             row.Format.SpaceBefore = "0,25cm";
             row.Format.SpaceAfter = "0,05cm";
 
@@ -381,7 +414,7 @@ namespace Biller.Data.PDF
             }
             */
 
-            SaveDocument(document, document.DocumentType + document.DocumentID);
+            SaveDocument(document, document.DocumentType + document.DocumentID + ".pdf");
         }
     }
 }

@@ -34,6 +34,12 @@ namespace Biller.Data.Document
             private set { SetValue(value); }
         }
 
+        public DateTime Date
+        {
+            get { return GetValue(() => Date); }
+            set { SetValue(value); }
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is PreviewDocument)
