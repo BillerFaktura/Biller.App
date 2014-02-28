@@ -2,6 +2,8 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
@@ -166,5 +168,37 @@ namespace Biller.UI.ViewModel
                 }
             }
         }
+
+        private UI.Interface.IPlugIn LoadAssembly(string assemblyPath)
+        {
+            string assembly = Path.GetFullPath(assemblyPath);
+            Assembly ptrAssembly = Assembly.LoadFile(assembly);
+            foreach (Type item in ptrAssembly.GetTypes())
+            {
+                if (!item.IsClass) continue;
+                foreach (var interfaceitem in item.GetInterfaces())
+                {
+                    try
+                    {
+                        object[] @params = new object[1];
+                        @params[0] = this;
+                        bool ignoreCase = true;
+                        BindingFlags bindingAttr = BindingFlags.Default;
+                        Binder binder = null;
+                        object[] args = @params;
+                        CultureInfo culture = null;
+                        object[] activationAttributes = null;
+
+                        object instance = ptrAssembly.CreateInstance(item.FullName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes);
+                        UI.Interface.IPlugIn plugin = (UI.Interface.IPlugIn)instance;
+                        return plugin;
+                    }
+                    catch (Exception e)
+                    { }
+                    
+                }
+            }
+            throw new Exception("Invalid DLL, Interface not found!");
+        } 
     }
 }

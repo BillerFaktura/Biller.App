@@ -80,7 +80,5 @@ namespace Biller.UI.OrderView
         {
 
         }
-
-        
     }
 }
