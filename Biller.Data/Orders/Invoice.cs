@@ -64,7 +64,7 @@ namespace Biller.Data.Orders
                 new XElement("OrderedArticles",
                     from articles in this.OrderedArticles
                     select articles.GetXElement()),
-                new XElement("PreviewValue", OrderCalculation.ArticleSummary.GetXElement()), new XElement("PreviewCustomer", Customer.DisplayName));
+                new XElement("PreviewValue", OrderCalculation.OrderSummary.GetXElement()), new XElement("PreviewCustomer", Customer.DisplayName), OrderShipment.GetXElement(), PaymentMethode.GetXElement());
             if (DeliveryAddress != null)
                 element.Add(DeliveryAddress.GetXElement());
 

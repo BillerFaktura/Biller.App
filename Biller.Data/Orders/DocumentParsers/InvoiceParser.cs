@@ -39,6 +39,17 @@ namespace Biller.Data.Orders.DocumentParsers
                     temp.ParseFromXElement(article);
                     (document as Invoice).OrderedArticles.Add(temp);
                 }
+
+                try
+                {
+                    (document as Invoice).PaymentMethode.ParseFromXElement(data.Element((document as Invoice).PaymentMethode.XElementName));
+                    (document as Invoice).OrderShipment.ParseFromXElement(data.Element((document as Invoice).OrderShipment.XElementName));
+                }
+                catch (Exception e)
+                { }
+
+                
+
                 var money = new Utils.Money(0);
             }
             else
