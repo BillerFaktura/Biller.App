@@ -1,6 +1,6 @@
 ﻿namespace Biller.UI.Interface
 {
-    internal interface IRibbonTabItem
+    public interface IRibbonTabItem
     {
         Biller.UI.Interface.ITabContentViewModel ParentViewModel { get; }
     }
