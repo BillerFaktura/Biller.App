@@ -103,7 +103,8 @@ namespace Biller.Data.Orders
             preview.DocumentID = source.DocumentID;
             preview.Date = source.Date;
             preview.Customer = source.Customer.DisplayName;
-            preview.Value = source.OrderCalculation.ArticleSummary;
+            preview.Value = source.OrderCalculation.OrderSummary;
+            preview.LocalizedDocumentType = source.LocalizedDocumentType;
 
             return preview;
         }
