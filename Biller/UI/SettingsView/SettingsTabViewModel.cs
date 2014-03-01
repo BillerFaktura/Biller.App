@@ -21,6 +21,7 @@ namespace Biller.UI.SettingsView
             SettingsList = new ObservableCollection<TabItem>();
             ArticleUnits = new ObservableCollection<Data.Utils.Unit>();
             PaymentMethodes = new ObservableCollection<Data.Utils.PaymentMethode>();
+            DocumentFolder = new ObservableCollection<Data.Models.DocumentFolderModel>();
 
             logger.Debug("Creating new UnitTabItem");
             SettingsList.Add(new SettingsList.UnitSettings.UnitTabItem());
@@ -43,15 +44,22 @@ namespace Biller.UI.SettingsView
         {
             logger.Debug("Start loading data in SettingsTabViewModel");
             await ParentViewModel.Database.RegisterStorageableItem(new Data.Utils.Shipment());
-            await ParentViewModel.Database.RegisterStorageableItem(new Data.Models.OrderFolderModel());
+            await ParentViewModel.Database.RegisterStorageableItem(new Data.Models.DocumentFolderModel());
 
             ArticleUnits = new ObservableCollection<Data.Utils.Unit>(await ParentViewModel.Database.ArticleUnits());
             PaymentMethodes = new ObservableCollection<Data.Utils.PaymentMethode>(await ParentViewModel.Database.PaymentMethodes());
             TaxClasses = new ObservableCollection<Data.Utils.TaxClass>(await ParentViewModel.Database.TaxClasses());
+
             var result = await ParentViewModel.Database.AllStorageableItems(new Data.Utils.Shipment());
             Shipments = new ObservableCollection<Data.Utils.Shipment>();
             foreach (Data.Utils.Shipment item in result)
                 Shipments.Add(item);
+
+            var resultFolder = await ParentViewModel.Database.AllStorageableItems(new Data.Models.DocumentFolderModel());
+            DocumentFolder = new ObservableCollection<Data.Models.DocumentFolderModel>();
+            foreach (Data.Models.DocumentFolderModel item in resultFolder)
+                DocumentFolder.Add(item);
+
             Data.GlobalSettings.UseGermanSupplementaryTaxRegulation = true;
             Data.GlobalSettings.TaxSupplementaryWorkSeperate = true;
             Data.GlobalSettings.LocalizedOnSupplementaryWork = "auf Nebenleistung";
@@ -71,6 +79,8 @@ namespace Biller.UI.SettingsView
         public ObservableCollection<Data.Utils.TaxClass> TaxClasses { get { return GetValue(() => TaxClasses); } set { SetValue(value); } }
 
         public ObservableCollection<Data.Utils.Shipment> Shipments { get { return GetValue(() => Shipments); } set { SetValue(value); } }
+
+        public ObservableCollection<Data.Models.DocumentFolderModel> DocumentFolder { get { return GetValue(() => DocumentFolder); } set { SetValue(value); } }
 
         public Data.Utils.Unit SelectedUnit { get { return GetValue(() => SelectedUnit); } set { SetValue(value); } }
 
@@ -158,9 +168,24 @@ namespace Biller.UI.SettingsView
             ParentViewModel.Database.SaveOrUpdateStorageableItem(source);
         }
 
+        public void SaveOrUpdateDocumentFolder(Data.Models.DocumentFolderModel source)
+        {
+            if (DocumentFolder.Contains(source))
+            {
+                var index = DocumentFolder.IndexOf(source);
+                Shipments.RemoveAt(index);
+                DocumentFolder.Insert(index, source);
+            }
+            else
+            {
+                DocumentFolder.Add(source);
+            }
+            ParentViewModel.Database.SaveOrUpdateStorageableItem(source);
+        }
+
         public void ReceiveData(object data)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

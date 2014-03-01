@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Biller.Data.Models
 {
-    public class OrderFolderModel : Utils.PropertyChangedHelper, Interfaces.IXMLStorageable
+    public class DocumentFolderModel : Utils.PropertyChangedHelper, Interfaces.IXMLStorageable
     {
-        public OrderFolderModel()
+        public DocumentFolderModel()
         {
         }
 
@@ -32,7 +32,7 @@ namespace Biller.Data.Models
 
         public string XElementName
         {
-            get { throw new NotImplementedException(); }
+            get { return "DocumentFolder"; }
         }
 
         public string ID { get; private set; }
@@ -44,7 +44,15 @@ namespace Biller.Data.Models
 
         public Interfaces.IXMLStorageable GetNewInstance()
         {
-            return new OrderFolderModel();
+            return new DocumentFolderModel();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is DocumentFolderModel)
+                if ((obj as DocumentFolderModel).ID == this.ID)
+                    return true;
+            return false;
         }
     }
 }

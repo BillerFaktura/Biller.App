@@ -17,7 +17,7 @@ namespace Biller.UI.OrderView.Contextual
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedOrders = new Data.Models.OrderFolderModel();
+            LinkedOrders = new Data.Models.DocumentFolderModel();
             OrderEditRibbonTabItem = new OrderEditRibbonTabItem(this);
             OrderEditTabHolder = new OrderEditTabHolder() { DataContext = this };
             OrderFolderControl = new Controls.OrderFolder() { DataContext = this };
@@ -36,7 +36,7 @@ namespace Biller.UI.OrderView.Contextual
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedOrders = new Data.Models.OrderFolderModel();
+            LinkedOrders = new Data.Models.DocumentFolderModel();
             OrderEditRibbonTabItem = new OrderEditRibbonTabItem(this);
             OrderEditTabHolder = new OrderEditTabHolder() { DataContext = this };
             OrderFolderControl = new Controls.OrderFolder() { DataContext = this };
@@ -53,7 +53,7 @@ namespace Biller.UI.OrderView.Contextual
         public OrderEditRibbonTabItem OrderEditRibbonTabItem { get; private set; }
         public OrderEditTabHolder OrderEditTabHolder { get; private set; }
         public Controls.OrderFolder OrderFolderControl { get; private set; }
-        public Data.Models.OrderFolderModel LinkedOrders { get; set; }
+        public Data.Models.DocumentFolderModel LinkedOrders { get; set; }
 
         public bool EditMode { get { return GetValue(() => EditMode); } private set { SetValue(value); } }
 
@@ -117,7 +117,7 @@ namespace Biller.UI.OrderView.Contextual
 
             if (Document != null)
             {
-                var list = from Data.Models.OrderFolderModel folder in (await ParentViewModel.ParentViewModel.Database.AllStorageableItems(new Data.Models.OrderFolderModel())) where folder.Documents.Contains(new Data.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
+                var list = from Data.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(new Data.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
                 if (list.Count() > 0)
                     LinkedOrders = list.First();
             }
