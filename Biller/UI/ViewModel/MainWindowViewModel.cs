@@ -158,6 +158,9 @@ namespace Biller.UI.ViewModel
                 await ArticleTabViewModel.LoadData();
                 await CustomerTabViewModel.LoadData();
                 await OrderTabViewModel.LoadData();
+
+                var plugin = LoadAssembly("C:\\Users\\Igor\\Documents\\Visual Studio 2012\\Projects\\BillerV2\\Biller\\bin\\Debug\\Woo@Biller.dll");
+                plugin.Activate();
             }
             else
             {
@@ -195,7 +198,6 @@ namespace Biller.UI.ViewModel
                     }
                     catch (Exception e)
                     { }
-                    
                 }
             }
             throw new Exception("Invalid DLL, Interface not found!");

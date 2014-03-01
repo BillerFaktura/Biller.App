@@ -17,7 +17,7 @@ namespace Biller.UI.OrderView.Contextual
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedOrders = new ObservableCollection<Data.Document.PreviewDocument>();
+            LinkedOrders = new Data.Models.OrderFolderModel();
             OrderEditRibbonTabItem = new OrderEditRibbonTabItem(this);
             OrderEditTabHolder = new OrderEditTabHolder() { DataContext = this };
             OrderFolderControl = new Controls.OrderFolder() { DataContext = this };
@@ -25,9 +25,9 @@ namespace Biller.UI.OrderView.Contextual
             EditMode = true;
 
             // Sample Data //
-            LinkedOrders.Add(new Data.Document.PreviewDocument("Rechnung") { DocumentID = "1000" });
-            LinkedOrders.Add(new Data.Document.PreviewDocument("Lieferschein") { DocumentID = "1023" });
-            LinkedOrders.Add(new Data.Document.PreviewDocument("Gutschrift") { DocumentID = "1430" });
+            //LinkedOrders.Add(new Data.Document.PreviewDocument("Rechnung") { DocumentID = "1000" });
+            //LinkedOrders.Add(new Data.Document.PreviewDocument("Lieferschein") { DocumentID = "1023" });
+            //LinkedOrders.Add(new Data.Document.PreviewDocument("Gutschrift") { DocumentID = "1430" });
 
             EditContentTabs = new ObservableCollection<UIElement>();
         }
@@ -36,7 +36,7 @@ namespace Biller.UI.OrderView.Contextual
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedOrders = new ObservableCollection<Data.Document.PreviewDocument>();
+            LinkedOrders = new Data.Models.OrderFolderModel();
             OrderEditRibbonTabItem = new OrderEditRibbonTabItem(this);
             OrderEditTabHolder = new OrderEditTabHolder() { DataContext = this };
             OrderFolderControl = new Controls.OrderFolder() { DataContext = this };
@@ -53,6 +53,7 @@ namespace Biller.UI.OrderView.Contextual
         public OrderEditRibbonTabItem OrderEditRibbonTabItem { get; private set; }
         public OrderEditTabHolder OrderEditTabHolder { get; private set; }
         public Controls.OrderFolder OrderFolderControl { get; private set; }
+        public Data.Models.OrderFolderModel LinkedOrders { get; set; }
 
         public bool EditMode { get { return GetValue(() => EditMode); } private set { SetValue(value); } }
 
@@ -109,12 +110,17 @@ namespace Biller.UI.OrderView.Contextual
             await ParentViewModel.ReceiveCloseEditControl(this);
         }
 
-        public ObservableCollection<Data.Document.PreviewDocument> LinkedOrders { get; set; }
-
         public async Task LoadData()
         {
             if (Document != null && EditMode == true)
                 this.Document.DocumentID = (await ParentViewModel.ParentViewModel.Database.GetNextDocumentID(this.Document.DocumentType)).ToString();
+
+            if (Document != null)
+            {
+                var list = from Data.Models.OrderFolderModel folder in (await ParentViewModel.ParentViewModel.Database.AllStorageableItems(new Data.Models.OrderFolderModel())) where folder.Documents.Contains(new Data.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
+                if (list.Count() > 0)
+                    LinkedOrders = list.First();
+            }
         }
 
         public void ReceiveData(object data)

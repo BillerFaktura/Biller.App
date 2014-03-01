@@ -43,6 +43,8 @@ namespace Biller.UI.SettingsView
         {
             logger.Debug("Start loading data in SettingsTabViewModel");
             await ParentViewModel.Database.RegisterStorageableItem(new Data.Utils.Shipment());
+            await ParentViewModel.Database.RegisterStorageableItem(new Data.Models.OrderFolderModel());
+
             ArticleUnits = new ObservableCollection<Data.Utils.Unit>(await ParentViewModel.Database.ArticleUnits());
             PaymentMethodes = new ObservableCollection<Data.Utils.PaymentMethode>(await ParentViewModel.Database.PaymentMethodes());
             TaxClasses = new ObservableCollection<Data.Utils.TaxClass>(await ParentViewModel.Database.TaxClasses());

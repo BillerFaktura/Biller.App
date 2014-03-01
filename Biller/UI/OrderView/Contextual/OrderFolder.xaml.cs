@@ -24,5 +24,16 @@ namespace Biller.UI.OrderView.Contextual.Controls
         {
             InitializeComponent();
         }
+
+
+        /// <summary>
+        /// This methode gets called when the user clicks on one of the templated controls
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void itemtemplate_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

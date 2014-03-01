@@ -28,7 +28,7 @@
                 <Setter Property="TextWrapping" Value="Wrap"/>
             </Style>
             <DataTemplate x:Key="GalleryItem">
-                <StackPanel Width="176" Height="252" Name="itemtemplate">
+                <StackPanel Width="176" Height="252" Name="itemtemplate" MouseUp="itemtemplate_MouseUp">
                     <Grid Width="156" Height="202" Background="White" VerticalAlignment="Top" Margin="0,12,0,0">
                         <Border BorderBrush="#FFC6C6C6" BorderThickness="1">
                             <StackPanel>
