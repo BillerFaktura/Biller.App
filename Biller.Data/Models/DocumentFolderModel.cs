@@ -22,12 +22,22 @@ namespace Biller.Data.Models
 
         public System.Xml.Linq.XElement GetXElement()
         {
-            throw new NotImplementedException();
+            return new System.Xml.Linq.XElement(XElementName, new System.Xml.Linq.XElement(IDFieldName,ID),
+                new System.Xml.Linq.XElement("Documents",
+                    from docs in this.Documents
+                    select docs));
         }
 
         public void ParseFromXElement(System.Xml.Linq.XElement source)
         {
-            throw new NotImplementedException();
+            if (source.Name != XElementName)
+                throw new Exception("Expected " + XElementName + " but got " + source.Name);
+
+            ID = source.Element("ID").Value;
+            var docs = source.Element("Documents").Elements();
+            Documents.Clear();
+            //foreach (var doc in docs)
+            //    Documents.Add(doc.Value);
         }
 
         public string XElementName
@@ -35,7 +45,7 @@ namespace Biller.Data.Models
             get { return "DocumentFolder"; }
         }
 
-        public string ID { get; private set; }
+        public string ID { get { return GetValue(() => ID); } private set { SetValue(value); } }
 
         public string IDFieldName
         {

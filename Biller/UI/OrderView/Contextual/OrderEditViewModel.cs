@@ -98,6 +98,7 @@ namespace Biller.UI.OrderView.Contextual
             ExportClass = factory.GetNewExportClass();
             await LoadData();
             await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID("", Document.DocumentID, Document.DocumentType);
+            LinkedOrders.GenerateID();
             DisplayedTabContent = OrderEditTabHolder;
             EditMode = true;
         }

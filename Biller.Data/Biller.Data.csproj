@@ -93,7 +93,7 @@
     <Compile Include="Interfaces\PreviewDocumentParser.cs" />
     <Compile Include="Models\CompanyInformation.cs" />
     <Compile Include="Models\MoneyDescriptionModel.cs" />
-    <Compile Include="Models\OrderFolderModel.cs" />
+    <Compile Include="Models\DocumentFolderModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\TaxClassMoneyModel.cs" />
     <Compile Include="Orders\DocumentParsers\InvoiceParser.cs" />

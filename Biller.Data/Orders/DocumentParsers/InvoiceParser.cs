@@ -48,8 +48,6 @@ namespace Biller.Data.Orders.DocumentParsers
                 catch (Exception e)
                 { }
 
-                
-
                 var money = new Utils.Money(0);
             }
             else

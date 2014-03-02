@@ -219,8 +219,6 @@ namespace Biller.UI.OrderView
         public void ShowDocumentsInInterval(DateTime start, DateTime end)
         {
             DisplayedDocuments.Clear();
-            //var monthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
-            //var monthEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, monthStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
 
             var result = from documents in AllDocuments where documents.Date >= start && documents.Date <= end select documents;
             foreach (Data.Document.PreviewDocument item in result)
