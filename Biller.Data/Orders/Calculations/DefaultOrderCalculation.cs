@@ -11,15 +11,15 @@ using System.Threading.Tasks;
 
 namespace Biller.Data.Orders
 {
-    public class OrderCalculation : Utils.PropertyChangedHelper
+    public class DefaultOrderCalculation : Utils.PropertyChangedHelper
     {
         private Order _parentOrder;
 
         /// <summary>
-        /// Default constructor for <see cref="OrderCalculation"/>.
+        /// Default constructor for <see cref="DefaultOrderCalculation"/>.
         /// </summary>
         /// <param name="parentOrder">The calculations are based on the <see cref="Order"/> passed with the constructor.</param>
-        public OrderCalculation(Order parentOrder)
+        public DefaultOrderCalculation(Order parentOrder)
         {
             _parentOrder = parentOrder;
             ArticleSummary = new EMoney(0, true);
@@ -67,7 +67,7 @@ namespace Biller.Data.Orders
                 CalculateValues();
         }
 
-        void CalculateValues()
+        public virtual void CalculateValues()
         {
             TaxValues.Clear();
             ArticleSummary.Amount = 0;

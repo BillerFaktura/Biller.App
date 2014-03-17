@@ -42,6 +42,10 @@ namespace Biller.UI.OrderView
         /// </summary>
         public OrderTabContent OrderTabContent { get; private set; }
 
+        public DateTime IntervalStart { get { return GetValue(() => IntervalStart); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, IntervalEnd); } }
+
+        public DateTime IntervalEnd { get { return GetValue(() => IntervalEnd); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, IntervalEnd); } }
+
         public ObservableCollection<Data.Document.PreviewDocument> AllDocuments { get { return GetValue(() => AllDocuments); } set { SetValue(value); } }
 
         public ObservableCollection<Data.Document.PreviewDocument> DisplayedDocuments { get { return GetValue(() => DisplayedDocuments); } set { SetValue(value); } }
@@ -196,31 +200,18 @@ namespace Biller.UI.OrderView
 
         public async Task LoadData()
         {
-            AllDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
-            if (firstStart)
-            {
-                DisplayedDocuments.Clear();
-                var monthStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
-                var monthEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, monthStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
-
-                var result = await ParentViewModel.Database.DocumentsInInterval(monthStart, monthEnd);
-                foreach (Data.Document.PreviewDocument item in result)
-                    DisplayedDocuments.Add(item);
-
-                firstStart = false;
-            }
-            else
-            {
-                DisplayedDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
-            }
             await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
+            AllDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
+            IntervalStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            IntervalEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, IntervalStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
+            foreach (var item in await ParentViewModel.Database.DocumentsInInterval(new DateTime(DateTime.Now.Year, 1, 1), new DateTime(DateTime.Now.Year, 12, 31)))
+                AllDocuments.Add(item);
         }
 
-        public void ShowDocumentsInInterval(DateTime start, DateTime end)
+        public async Task ShowDocumentsInInterval(DateTime start, DateTime end)
         {
+            var result = await ParentViewModel.Database.DocumentsInInterval(IntervalStart, IntervalEnd);
             DisplayedDocuments.Clear();
-
-            var result = from documents in AllDocuments where documents.Date >= start && documents.Date <= end select documents;
             foreach (Data.Document.PreviewDocument item in result)
                 DisplayedDocuments.Add(item);
         }

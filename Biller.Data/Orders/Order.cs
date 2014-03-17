@@ -25,7 +25,7 @@ namespace Biller.Data.Orders
             OrderRebate = new Utils.Percentage();
             OrderShipment = new Utils.Shipment();
             PaymentMethode = new Utils.PaymentMethode();
-            OrderCalculation = new OrderCalculation(this);
+            OrderCalculation = new DefaultOrderCalculation(this);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Biller.Data.Orders
             set { SetValue(value); }
         }
 
-        public virtual OrderCalculation OrderCalculation
+        public virtual DefaultOrderCalculation OrderCalculation
         {
             get { return GetValue(() => OrderCalculation); }
             set { SetValue(value); }

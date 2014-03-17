@@ -75,7 +75,15 @@
         </Fluent:RibbonToolBar>-->
         <!--<Fluent:ToggleButton Name="buttonAuftragFiltern" Header="{StaticResource showselection}" Icon="Images\filter.png" LargeIcon="Images\filter.png" IsEnabled="False" Size="Large" Margin="5,0,0,0" />
     </Fluent:RibbonGroupBox>-->
-    <Fluent:RibbonGroupBox Header="{StaticResource directaccess}">
+    <Fluent:RibbonGroupBox Header="Betrachtungszeitraum">
+        <Fluent:DropDownButton Header="Start">
+            <DatePicker SelectedDate="{Binding IntervalStart}"/>
+        </Fluent:DropDownButton>
+        <Fluent:DropDownButton Header="Ende">
+            <DatePicker SelectedDate="{Binding IntervalEnd}"/>
+        </Fluent:DropDownButton>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="{StaticResource directaccess}" IsEnabled="False">
         <Fluent:Button Name="buttonOrderSearch" Header="{StaticResource searchOrder}" Icon="Images\search.png" LargeIcon="Images\search.png" Margin="0,0,0,0" Click="buttonOrderSearch_Click" />
         <Fluent:Button Name="buttonOrderFastPick" Header="{StaticResource fastPickOrder}" Icon="Images\search.png" LargeIcon="Images\search.png" Margin="0,0,0,0" Click="buttonOrderFastPick_Click" />
     </Fluent:RibbonGroupBox>

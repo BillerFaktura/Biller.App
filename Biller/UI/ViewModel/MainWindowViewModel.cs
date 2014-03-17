@@ -154,13 +154,18 @@ namespace Biller.UI.ViewModel
                 await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
                 logger.Info("Connecting to database was successfull");
 
+                foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*.bdll"))
+                {
+                    var plugin = LoadAssembly(currentfile);
+                    plugin.Activate();
+                    foreach (UI.Interface.IViewModel vm in plugin.ViewModels())
+                        await vm.LoadData();
+                }
+
                 await SettingsTabViewModel.LoadData();
                 await ArticleTabViewModel.LoadData();
                 await CustomerTabViewModel.LoadData();
                 await OrderTabViewModel.LoadData();
-
-                var plugin = LoadAssembly("C:\\Users\\Igor\\Documents\\Visual Studio 2012\\Projects\\BillerV2\\Biller\\bin\\Debug\\Woo@Biller.dll");
-                plugin.Activate();
             }
             else
             {

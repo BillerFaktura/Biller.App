@@ -29,7 +29,6 @@ namespace Biller.Data.Factories
             return list;
         }
 
-
         public Fluent.Button GetCreationButton()
         {
             return new Buttons.InvoiceButton();
@@ -45,12 +44,10 @@ namespace Biller.Data.Factories
             }
         }
 
-
         public Interfaces.IExport GetNewExportClass()
         {
             return new Data.PDF.OrderPdfExport();
         }
-
 
         public void ReceiveData(object source, Document.Document target)
         {

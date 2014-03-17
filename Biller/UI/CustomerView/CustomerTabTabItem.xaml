@@ -21,27 +21,27 @@
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
-    <Fluent:RibbonGroupBox>
+    <!--<Fluent:RibbonGroupBox>
         <Fluent:Button Name="buttonDeleteCustomer" Header="{StaticResource deletecustomer}" Icon="Images\kundeloeschen.png" LargeIcon="Images\kundeloeschen.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource deletecustomer}" HelpLabelVisibility="Collapsed" Width="450" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-    </Fluent:RibbonGroupBox>
+    </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="{StaticResource customerlist}">
-        <Fluent:Button Name="buttonExportListAsPDF" Header="{StaticResource saveaspdf}" Icon="Images\pdf.png" LargeIcon="Images\pdf.png">
+        <Fluent:Button Name="buttonExportListAsPDF" Header="{StaticResource saveaspdf}" Icon="Images\pdf.png" LargeIcon="Images\pdf.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource saveaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste als PDF speichern." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonPrintList" Header="{StaticResource print}" Icon="Images\print.png" LargeIcon="Images\print.png">
+        <Fluent:Button Name="buttonPrintList" Header="{StaticResource print}" Icon="Images\print.png" LargeIcon="Images\print.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource print}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste drucken." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="">
-        <Fluent:Button Name="buttonCustomerStatistics" Header="{StaticResource customerstatistics}" Icon="Images/chart.png" LargeIcon="Images/chart.png" >
+        <Fluent:Button Name="buttonCustomerStatistics" Header="{StaticResource customerstatistics}" Icon="Images/chart.png" LargeIcon="Images/chart.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource customerstatistics}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie Kundenstatistiken visualisieren und als PDF speichern" DisableReason="Diese Funktion ist noch nicht verfügbar."/>
             </Fluent:Button.ToolTip>

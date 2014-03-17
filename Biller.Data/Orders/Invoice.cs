@@ -51,8 +51,7 @@ namespace Biller.Data.Orders
             Date = DateTime.Parse(source.Element("Date").Value);
             DateOfDelivery = DateTime.Parse(source.Element("DateOfDelivery").Value);
             OrderOpeningText = source.Element("OrderOpeningText").Value;
-            OrderClosingText = source.Element("OrderClosingText").Value;
-            
+            OrderClosingText = source.Element("OrderClosingText").Value; 
         }
 
         public override XElement GetXElement()

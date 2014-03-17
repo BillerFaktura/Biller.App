@@ -74,7 +74,7 @@
                             BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
                             Padding="{Binding Path=Padding, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}">
                         <Grid>
-                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3"/>
+                            <Decorator x:Name="PART_ContentHost" VerticalAlignment="Center" Margin="3"/>
                             <TextBlock Text="{TemplateBinding TextBoxInfo}" x:Name="Message"
 								Foreground="Black" IsHitTestVisible="False"
 								FontStyle="Italic" Opacity="0.67" HorizontalAlignment="Left" VerticalAlignment="Center"

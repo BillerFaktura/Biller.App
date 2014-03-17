@@ -63,6 +63,10 @@ namespace Biller.UI.SettingsView
             Data.GlobalSettings.UseGermanSupplementaryTaxRegulation = true;
             Data.GlobalSettings.TaxSupplementaryWorkSeperate = true;
             Data.GlobalSettings.LocalizedOnSupplementaryWork = "auf Nebenleistung";
+            Data.GlobalSettings.ArticleUnits = ArticleUnits;
+            Data.GlobalSettings.TaxClasses = TaxClasses;
+            Data.GlobalSettings.PaymentMethodes = PaymentMethodes;
+
             logger.Debug("Finished loading data in SettingsTabViewModel");
         }
 

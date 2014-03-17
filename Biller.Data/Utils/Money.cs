@@ -30,8 +30,17 @@ namespace Biller.Data.Utils
                 if (t.Contains(GetCurrencySymbol()))
                     t = t.Replace(GetCurrencySymbol(), "");
                 t = t.Trim();
-                Amount = Convert.ToDouble(t);
-                SetValue(value);
+                try
+                {
+                    Amount = Convert.ToDouble(t);
+                    SetValue(value);
+                }
+                catch (Exception e)
+                {
+                    Amount = 0;
+                    SetValue(0);
+                }
+               
             }
         }
 

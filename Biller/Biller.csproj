@@ -138,7 +138,6 @@
       <DependentUpon>InvoiceButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Factories\InvoiceFactory.cs" />
-    <Compile Include="Data\Settings\VariousData.cs" />
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
@@ -517,9 +516,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Samples\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <SplashScreen Include="SplashScreen.png" />
   </ItemGroup>

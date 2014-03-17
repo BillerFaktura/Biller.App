@@ -101,7 +101,7 @@ namespace Biller.Data.PDF
 
             Row footerrow = mycryptominerfooter.AddRow();
             footerrow.Cells[0].AddParagraph("MyCryptoMiner\nLückel, Lamshöft, Müns GbR\nHegelstraße 28\n39104 Magdeburg\n\nGeschäftsführung:\nIgor Lückel, Kevin Lamshöft, Malte Müns");
-            footerrow.Cells[1].AddParagraph("Tel.: 0391 50 54 93 80\nFax:  0391 50 54 93 88\n\ninfo@mycryptominer.de\nwww.mycryptominer.de");
+            footerrow.Cells[1].AddParagraph("Tel.: 0391 50 54 97 21\nFax:  0391 50 54 97 23\n\ninfo@mycryptominer.de\nwww.mycryptominer.de");
             footerrow.Cells[2].AddParagraph("USt-IdNr: DE293144142\nSt-Nr: 102/174/62008");
             footerrow.Cells[3].AddParagraph("IBAN: DE19 8601 0090 0981 4789 00\nBIC: PBNKDEFF\nPostbank Hamburg");            
 

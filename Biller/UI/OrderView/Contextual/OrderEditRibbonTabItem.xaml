@@ -56,9 +56,9 @@
                 <Fluent:ScreenTip Title="" HelpLabelVisibility="Collapsed" Width="450" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonOrderSave" Header="{StaticResource Save}" Icon="../../Images\saveback.png" LargeIcon="../../Images\saveback.png" IsEnabled="False">
+        <Fluent:Button Name="buttonOrderSave" Header="{StaticResource Save}" Icon="../../Images\saveback.png" LargeIcon="../../Images\saveback.png" Click="buttonOrderSave_Click">
             <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="" HelpLabelVisibility="Collapsed" Width="450"/>
+                <Fluent:ScreenTip Title="{StaticResource Save}" HelpLabelVisibility="Collapsed" Width="450"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>

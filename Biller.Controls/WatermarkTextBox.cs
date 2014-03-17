@@ -101,7 +101,6 @@ namespace Biller.Controls
                     {
                         // No space in the string
                     }
-                    
                 }));
         }
     }

@@ -39,11 +39,6 @@ namespace Biller.UI.OrderView.Contextual
             await _ViewModel.ReceiveCloseCommand();
         }
 
-        private async void ButtonAddInvoice_Click(object sender, RoutedEventArgs e)
-        {
-            await _ViewModel.ReceiveInternalDocumentCreation(this, "Invoice");
-        }
-
         public void ShowDocumentControls()
         {
             GroupOrderFolder.Visibility = System.Windows.Visibility.Collapsed;
@@ -81,6 +76,13 @@ namespace Biller.UI.OrderView.Contextual
         private void buttonPrintOrder_Click(object sender, RoutedEventArgs e)
         {
             _ViewModel.ExportClass.PrintDocument(_ViewModel.Document);
+        }
+
+        private async void buttonOrderSave_Click(object sender, RoutedEventArgs e)
+        {
+            _ViewModel.OrderEditRibbonTabItem.Focus(); // MVVM
+            await _ViewModel.ParentViewModel.SaveOrUpdateDocument(_ViewModel.Document);
+            await _ViewModel.ReceiveCloseCommand();
         }
     }
 }
