@@ -87,21 +87,21 @@ namespace Biller.Controls
 
                 //Horizontal Key Strokes Code
 
-                if (keyPressed == Key.Right)
-                {
-                    newHorizontalPos = NormalizeScrollPos(thisScroller, (newHorizontalPos + 16), Orientation.Horizontal);
-                    isKeyHandled = true;
-                }
-                else if (keyPressed == Key.Left)
-                {
-                    newHorizontalPos = NormalizeScrollPos(thisScroller, (newHorizontalPos - 16), Orientation.Horizontal);
-                    isKeyHandled = true;
-                }
+                //if (keyPressed == Key.Right)
+                //{
+                //    newHorizontalPos = NormalizeScrollPos(thisScroller, (newHorizontalPos + 16), Orientation.Horizontal);
+                //    isKeyHandled = true;
+                //}
+                //else if (keyPressed == Key.Left)
+                //{
+                //    newHorizontalPos = NormalizeScrollPos(thisScroller, (newHorizontalPos - 16), Orientation.Horizontal);
+                //    isKeyHandled = true;
+                //}
 
-                if (newHorizontalPos != thisScroller.TargetHorizontalOffset)
-                {
-                    thisScroller.TargetHorizontalOffset = newHorizontalPos;
-                }
+                //if (newHorizontalPos != thisScroller.TargetHorizontalOffset)
+                //{
+                //    thisScroller.TargetHorizontalOffset = newHorizontalPos;
+                //}
 
                 e.Handled = isKeyHandled;
             }

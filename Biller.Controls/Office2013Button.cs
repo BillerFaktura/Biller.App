@@ -11,7 +11,7 @@ namespace Biller.Controls
     {
         static Office2013Button()
         {
-            //DefaultStyleKeyProperty.OverrideMetadata(typeof(Office2013Button), new FrameworkPropertyMetadata(typeof(Office2013Button)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(Office2013Button), new FrameworkPropertyMetadata(typeof(Office2013Button)));
         }
 
         /// <summary>
