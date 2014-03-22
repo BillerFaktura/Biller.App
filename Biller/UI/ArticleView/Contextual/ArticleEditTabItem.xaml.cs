@@ -23,28 +23,47 @@ namespace Biller.UI.ArticleView.Contextual
             get { return _ParentViewModel; }
         }
 
+        /// <summary>
+        /// Handles actions from the "Close" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCloseArticle_Click(object sender, RoutedEventArgs e)
         {
             _ParentViewModel.ReceiveCloseCommand();
         }
 
-        private void buttonArticleQuickSave_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Handles actions from the "Save" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void buttonArticleQuickSave_Click(object sender, RoutedEventArgs e)
         {
             if (CheckIfAllPropertiesSet())
             {
-                _ParentViewModel.ReceiveSaveCommand();
+                await _ParentViewModel.ReceiveSaveCommand();
             }
         }
 
-        private void buttonArticleSaveAndExit_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Handles actions from the "Save & Exit" button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void buttonArticleSaveAndExit_Click(object sender, RoutedEventArgs e)
         {
             if (CheckIfAllPropertiesSet())
             {
-                _ParentViewModel.ReceiveSaveCommand();
+                await _ParentViewModel.ReceiveSaveCommand();
                 _ParentViewModel.ReceiveCloseCommand();
             }
         }
 
+        /// <summary>
+        /// Checks if all settings required for an <see cref="Article"/> are set.
+        /// </summary>
+        /// <returns></returns>
         private bool CheckIfAllPropertiesSet()
         {
             string missingproperties = "";
@@ -89,6 +108,11 @@ namespace Biller.UI.ArticleView.Contextual
             return result;
         }
 
+        /// <summary>
+        /// Logic for creating an <see cref="Article"/> from a template.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCreateFromTemplate_Click(object sender, RoutedEventArgs e)
         {
             _ParentViewModel.ParentViewModel.ReceiveRequestArticleCommand(_ParentViewModel);

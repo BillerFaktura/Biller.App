@@ -239,6 +239,10 @@ namespace Biller.Data.Articles
             OrderRebate = double.Parse(source.Element("OrderRebate").Value, CultureInfo.InvariantCulture);       
         }
 
+        /// <summary>
+        /// Returns a <see cref="XElement"/> with all data that need to be saved.
+        /// </summary>
+        /// <returns></returns>
         public new XElement GetXElement()
         {
             return new XElement(XElementName, new XElement("ArticleID", ArticleID), new XElement("ArticleDescription", ArticleDescription),
@@ -248,6 +252,11 @@ namespace Biller.Data.Articles
                          new XElement("ArticleUnit", ArticleUnit.Name), new XElement("TaxClass", TaxClass.Name));
         }
 
+        /// <summary>
+        /// Compares two objects and returns wheter the objects are equal or not.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             if (obj is OrderedArticle)

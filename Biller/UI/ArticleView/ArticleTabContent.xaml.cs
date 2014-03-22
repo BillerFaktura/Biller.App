@@ -18,6 +18,12 @@ namespace Biller.UI.ArticleView
 
         private ArticleTabViewModel ParentViewModel;
 
+        /// <summary>
+        /// This methode allows to add an extra column to the articleoverview. Also allows binding to a specific value.
+        /// </summary>
+        /// <param name="columnheader"></param>
+        /// <param name="binding"></param>
+        /// <param name="starWidth"></param>
         public void AddNewColumn(string columnheader, string binding, double starWidth)
         {
             var newColumn = new GridViewColumn();

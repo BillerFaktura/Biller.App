@@ -175,19 +175,26 @@ namespace Biller.Data.Articles
             get { return "Article"; }
         }
 
-
+        /// <summary>
+        /// Returns <see cref="ArticleID"/>
+        /// </summary>
         public string ID
         {
             get { return ArticleID; }
         }
 
-
+        /// <summary>
+        /// Returns a new <see cref="Article"/>.
+        /// </summary>
+        /// <returns></returns>
         public Interfaces.IXMLStorageable GetNewInstance()
         {
             return new Article();
         }
 
-
+        /// <summary>
+        /// Returns "ArticleID".
+        /// </summary>
         public string IDFieldName
         {
             get { return "ArticleID"; }

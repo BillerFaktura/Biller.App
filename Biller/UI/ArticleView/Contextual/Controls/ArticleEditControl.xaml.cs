@@ -19,6 +19,11 @@ namespace Biller.UI.ArticleView.Contextual.Controls
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Checks if the entered <see cref="ArticleID"/> already exists or not.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             try

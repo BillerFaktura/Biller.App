@@ -85,13 +85,24 @@ namespace Biller.Data.Customers
             }
         }
 
+        /// <summary>
+        /// <list type="bullet">
+        /// <item>0 for pricegroup 1</item>
+        /// <item>1 for pricegroup 2</item>
+        /// <item>2 for pricegroup 3</item>
+        /// </list>
+        /// </summary>
         public int Pricegroup
         {
             get { return GetValue(() => Pricegroup); }
             set { SetValue(value); }
         }
 
-        public System.Xml.Linq.XElement GetXElement()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public XElement GetXElement()
         {
             var element = new XElement(XElementName);
             element.Add(new XElement("CustomerID", CustomerID), new XElement("IsCompany", IsCompany), Contact.GetXElement(), new XElement("PriceGroup", Pricegroup),
@@ -141,18 +152,26 @@ namespace Biller.Data.Customers
             get { return "Customer"; }
         }
 
-
+        /// <summary>
+        /// Returns <see cref="CustomerID"/>.
+        /// </summary>
         public string ID
         {
             get { return CustomerID; }
         }
 
-
+        /// <summary>
+        /// Returns a new instance of <see cref="Customer"/>.
+        /// </summary>
+        /// <returns></returns>
         public Interfaces.IXMLStorageable GetNewInstance()
         {
             return new Customer();
         }
 
+        /// <summary>
+        /// Returns "CustomerID".
+        /// </summary>
         public string IDFieldName
         {
             get { return "CustomerID"; }
