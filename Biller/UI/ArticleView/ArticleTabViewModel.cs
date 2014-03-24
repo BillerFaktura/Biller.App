@@ -168,7 +168,8 @@ namespace Biller.UI.ArticleView
         /// <returns></returns>
         public async Task SaveOrUpdateArticle(Data.Articles.Article source)
         {
-            var tempPreview = Data.Articles.PreviewArticle.FromArticle(source);
+            dynamic tempPreview = Data.Articles.PreviewArticle.FromArticle(source);
+
             if (AllArticles.Contains(tempPreview))
             {
                 var index = AllArticles.IndexOf(tempPreview);

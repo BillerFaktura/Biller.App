@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Biller.Data.Database
 {
+    /// <summary>
+    /// Not yet implemented
+    /// </summary>
     public class JSONDatabase : Interfaces.IDatabase
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();

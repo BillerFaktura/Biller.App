@@ -87,6 +87,7 @@
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="Import\csv.cs" />
     <Compile Include="Interfaces\DocumentFactory.cs" />
+    <Compile Include="Interfaces\IPreviewObjectDataProvider.cs" />
     <Compile Include="Interfaces\IDatabase.cs" />
     <Compile Include="Interfaces\IExport.cs" />
     <Compile Include="Interfaces\IXMLStorageable.cs" />
