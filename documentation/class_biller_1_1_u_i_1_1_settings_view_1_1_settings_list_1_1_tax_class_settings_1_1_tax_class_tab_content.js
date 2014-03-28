@@ -1,0 +1,4 @@
+var class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_tax_class_settings_1_1_tax_class_tab_content =
+[
+    [ "TaxClassTabContent", "class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_tax_class_settings_1_1_tax_class_tab_content.html#aa3e00403d0a42fdbcd0e66bed3872b1a", null ]
+];

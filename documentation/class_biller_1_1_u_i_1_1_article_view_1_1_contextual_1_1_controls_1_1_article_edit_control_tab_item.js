@@ -1,0 +1,4 @@
+var class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_controls_1_1_article_edit_control_tab_item =
+[
+    [ "ArticleEditControlTabItem", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_controls_1_1_article_edit_control_tab_item.html#a2827d23e5a9abe1c6cf222221dd67e48", null ]
+];

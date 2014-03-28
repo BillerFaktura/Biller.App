@@ -1,0 +1,4 @@
+var class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_shipment_settings_1_1_shipment_tab_content =
+[
+    [ "ShipmentTabContent", "class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_shipment_settings_1_1_shipment_tab_content.html#a830a338fa1b943f2ee161f1a64ffc04d", null ]
+];

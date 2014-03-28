@@ -1,0 +1,5 @@
+var namespace_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_tax_class_settings =
+[
+    [ "TaxClassTabContent", "class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_tax_class_settings_1_1_tax_class_tab_content.html", "class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_tax_class_settings_1_1_tax_class_tab_content" ],
+    [ "TaxClassTabItem", "class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_tax_class_settings_1_1_tax_class_tab_item.html", "class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_tax_class_settings_1_1_tax_class_tab_item" ]
+];

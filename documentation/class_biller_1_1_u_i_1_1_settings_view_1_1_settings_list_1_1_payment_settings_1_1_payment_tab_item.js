@@ -1,0 +1,4 @@
+var class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_payment_settings_1_1_payment_tab_item =
+[
+    [ "PaymentTabItem", "class_biller_1_1_u_i_1_1_settings_view_1_1_settings_list_1_1_payment_settings_1_1_payment_tab_item.html#aa5db4c3ac04bb2897c7bb67a07b44323", null ]
+];

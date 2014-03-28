@@ -1,0 +1,5 @@
+var namespace_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_controls =
+[
+    [ "ArticleEditControl", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_controls_1_1_article_edit_control.html", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_controls_1_1_article_edit_control" ],
+    [ "ArticleEditControlTabItem", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_controls_1_1_article_edit_control_tab_item.html", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_controls_1_1_article_edit_control_tab_item" ]
+];
