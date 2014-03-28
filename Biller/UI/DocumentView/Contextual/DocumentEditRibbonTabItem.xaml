@@ -1,0 +1,72 @@
+﻿<Fluent:RibbonTabItem x:Class="Biller.UI.DocumentView.Contextual.DocumentEditRibbonTabItem"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+                      Header="Übersicht" Group="{Binding ContextualTabGroup}">
+    <Fluent:RibbonTabItem.Resources>
+        <ResourceDictionary Source="../../Localization/OrderView/de.xaml" />
+    </Fluent:RibbonTabItem.Resources>
+
+    <Fluent:RibbonGroupBox Header="{StaticResource addOrder}" Name="GroupOrderFolder">
+        
+    </Fluent:RibbonGroupBox>
+    
+    <!--<Fluent:RibbonGroupBox Header="" Visibility="Collapsed" Name="GroupOrder1">
+        <Fluent:RibbonToolBar>
+            <Fluent:RibbonToolBar.LayoutDefinitions>
+                <Fluent:RibbonToolBarLayoutDefinition >
+                    <Fluent:RibbonToolBarRow>
+                        <Fluent:RibbonToolBarControlDefinition Target="lbl2" Width="55" />
+                        <Fluent:RibbonToolBarControlDefinition Target="spinner" Width="55"/>
+                    </Fluent:RibbonToolBarRow>
+                </Fluent:RibbonToolBarLayoutDefinition>
+            </Fluent:RibbonToolBar.LayoutDefinitions>
+            <Label Name="lbl2">Nummer</Label>
+            <Fluent:Spinner x:Name="spinner" Format="0" Maximum="Infinity" Minimum="1">
+                <Fluent:Spinner.ToolTip>
+                    <Fluent:ScreenTip Title="" HelpLabelVisibility="Collapsed" Width="450" Text=""/>
+                </Fluent:Spinner.ToolTip>
+            </Fluent:Spinner>
+        </Fluent:RibbonToolBar>
+        <DatePicker Margin="5,22,0,0"></DatePicker>
+    </Fluent:RibbonGroupBox>-->
+    <Fluent:RibbonGroupBox Header="" Visibility="Collapsed" Name="GroupOrder2">
+        <Fluent:Button Name="buttonOrderAddArticle" Header="Artikel hinzufügen" Icon="../../Images/artikeladd.png" LargeIcon="../../Images/artikeladd.png" Click="buttonOrderAddArticle_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="" HelpLabelVisibility="Collapsed" Width="450" Text=""/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="{StaticResource export}" Visibility="Collapsed" Name="GroupOrder3">
+        <Fluent:Button Name="buttonPDFOrder" Header="{StaticResource orderaspdf}" Icon="../../Images\pdf.png" LargeIcon="../../Images\pdf.png" IsEnabled="True" Click="buttonPDFOrder_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource orderaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderaspdftooltipdirect}"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="../../Images\print.png" LargeIcon="../../Images\print.png" IsEnabled="True" Click="buttonPrintOrder_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="" Visibility="Collapsed" Name="GroupOrder4">
+        <Fluent:Button Name="buttonQuickSaveOrder" Header="{StaticResource QuickSaveButton}" Click="buttonQuickSaveOrder_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="" HelpLabelVisibility="Collapsed" Width="450" />
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+        <Fluent:Button Name="buttonOrderSave" Header="{StaticResource Save}" Icon="../../Images\saveback.png" LargeIcon="../../Images\saveback.png" Click="buttonOrderSave_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="{StaticResource Save}" HelpLabelVisibility="Collapsed" Width="450"/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+    <Fluent:RibbonGroupBox Header="">
+        <Fluent:Button Name="buttonCloseControl" Header="{StaticResource abort}" Click="buttonCloseControl_Click">
+            <Fluent:Button.ToolTip>
+                <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
+            </Fluent:Button.ToolTip>
+        </Fluent:Button>
+    </Fluent:RibbonGroupBox>
+</Fluent:RibbonTabItem>

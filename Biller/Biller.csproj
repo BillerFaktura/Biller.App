@@ -199,51 +199,51 @@
     <Compile Include="UI\Interface\ITabContentViewModel.cs" />
     <Compile Include="UI\Interface\IViewModel.cs" />
     <Compile Include="UI\Notifications\Notificationmanager.cs" />
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Articles\Content.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Articles\EditTab.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\EditTab.xaml.cs">
       <DependentUpon>EditTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Others\Content.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Others\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Others\EditTab.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Others\EditTab.xaml.cs">
       <DependentUpon>EditTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\PrintPreview\Content.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\PrintPreview\EditTab.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\EditTab.xaml.cs">
       <DependentUpon>EditTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Receipent\Content.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Receipent\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Receipent\EditTab.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Receipent\EditTab.xaml.cs">
       <DependentUpon>EditTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Settings\Content.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Settings\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\EditTabs\Settings\EditTab.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\EditTabs\Settings\EditTab.xaml.cs">
       <DependentUpon>EditTab.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\OrderEditTabHolder.xaml.cs">
-      <DependentUpon>OrderEditTabHolder.xaml</DependentUpon>
+    <Compile Include="UI\DocumentView\Contextual\DocumentEditTabHolder.xaml.cs">
+      <DependentUpon>DocumentEditTabHolder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\OrderFolder.xaml.cs">
+    <Compile Include="UI\DocumentView\Contextual\OrderFolder.xaml.cs">
       <DependentUpon>OrderFolder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\OrderEditRibbonTabItem.xaml.cs">
-      <DependentUpon>OrderEditRibbonTabItem.xaml</DependentUpon>
+    <Compile Include="UI\DocumentView\Contextual\DocumentEditRibbonTabItem.xaml.cs">
+      <DependentUpon>DocumentEditRibbonTabItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\OrderEditTabContent.xaml.cs">
-      <DependentUpon>OrderEditTabContent.xaml</DependentUpon>
+    <Compile Include="UI\DocumentView\Contextual\DocumentEditTabContent.xaml.cs">
+      <DependentUpon>DocumentEditTabContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\Contextual\OrderEditViewModel.cs" />
-    <Compile Include="UI\OrderView\OrderTabContent.xaml.cs">
-      <DependentUpon>OrderTabContent.xaml</DependentUpon>
+    <Compile Include="UI\DocumentView\Contextual\DocumentEditViewModel.cs" />
+    <Compile Include="UI\DocumentView\DocumentTabContent.xaml.cs">
+      <DependentUpon>DocumentTabContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\SettingsView\SettingsList\PaymentSettings\PaymentTabContent.xaml.cs">
       <DependentUpon>PaymentTabContent.xaml</DependentUpon>
@@ -278,10 +278,10 @@
     <Compile Include="UI\SettingsView\SettingsTabViewModel.cs" />
     <Compile Include="UI\TreeView\TreeViewItemHelper.cs" />
     <Compile Include="UI\ViewModel\MainWindowViewModel.cs" />
-    <Compile Include="UI\OrderView\OrderRibbonTabItem.xaml.cs">
-      <DependentUpon>OrderRibbonTabItem.xaml</DependentUpon>
+    <Compile Include="UI\DocumentView\DocumentRibbonTabItem.xaml.cs">
+      <DependentUpon>DocumentRibbonTabItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\OrderView\OrderTabViewModel.cs" />
+    <Compile Include="UI\DocumentView\DocumentTabViewModel.cs" />
     <Compile Include="UI\Ribbon\RibbonFactory.cs" />
     <Page Include="Data\Factories\Buttons\InvoiceButton.xaml">
       <SubType>Designer</SubType>
@@ -379,67 +379,67 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Articles\Content.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Articles\EditTab.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Articles\EditTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Others\Content.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Others\Content.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Others\EditTab.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Others\EditTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\PrintPreview\Content.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\Content.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\PrintPreview\EditTab.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\EditTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Receipent\Content.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Receipent\Content.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Receipent\EditTab.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Receipent\EditTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Settings\Content.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Settings\Content.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\EditTabs\Settings\EditTab.xaml">
+    <Page Include="UI\DocumentView\Contextual\EditTabs\Settings\EditTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\OrderEditTabHolder.xaml">
+    <Page Include="UI\DocumentView\Contextual\DocumentEditTabHolder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\OrderFolder.xaml">
+    <Page Include="UI\DocumentView\Contextual\OrderFolder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\OrderEditRibbonTabItem.xaml">
+    <Page Include="UI\DocumentView\Contextual\DocumentEditRibbonTabItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\Contextual\OrderEditTabContent.xaml">
+    <Page Include="UI\DocumentView\Contextual\DocumentEditTabContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\OrderRibbonTabItem.xaml">
+    <Page Include="UI\DocumentView\DocumentRibbonTabItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\OrderView\OrderTabContent.xaml">
+    <Page Include="UI\DocumentView\DocumentTabContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

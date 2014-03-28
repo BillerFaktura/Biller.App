@@ -35,7 +35,7 @@ namespace Biller.UI.ViewModel
             TabContentViewModels = new ObservableCollection<UI.Interface.ITabContentViewModel>();
 
             logger.Debug("Initializing OrderTabViewModel");
-            OrderTabViewModel = new OrderView.OrderTabViewModel(this);
+            OrderTabViewModel = new DocumentView.DocumentTabViewModel(this);
             logger.Debug("Initializing ArticleTabViewModel");
             ArticleTabViewModel = new ArticleView.ArticleTabViewModel(this);
             logger.Debug("Initializing CustomerTabViewModel");
@@ -56,17 +56,17 @@ namespace Biller.UI.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// The current instance of <see cref="Biller.UI.OrderView.ArticleTabViewModel"/>.
+        /// The current instance of <see cref="Biller.UI.DocumentView.ArticleTabViewModel"/>.
         /// </summary>
         public Biller.UI.ArticleView.ArticleTabViewModel ArticleTabViewModel { get; private set; }
 
         /// <summary>
-        /// The current instance of <see cref="Biller.UI.OrderView.OrderTabViewModel"/>.
+        /// The current instance of <see cref="Biller.UI.DocumentView.DocumentTabViewModel"/>.
         /// </summary>
-        public Biller.UI.OrderView.OrderTabViewModel OrderTabViewModel { get; private set; }
+        public Biller.UI.DocumentView.DocumentTabViewModel OrderTabViewModel { get; private set; }
 
         /// <summary>
-        /// The current instance of <see cref="Biller.UI.OrderView.CustomerTabViewModel"/>.
+        /// The current instance of <see cref="Biller.UI.DocumentView.CustomerTabViewModel"/>.
         /// </summary>
         public Biller.UI.CustomerView.CustomerTabViewModel CustomerTabViewModel { get; private set; }
 

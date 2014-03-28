@@ -27,10 +27,10 @@ namespace Biller.Data.Factories.Buttons
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is UI.OrderView.Contextual.OrderEditViewModel)
+            if (DataContext is UI.DocumentView.Contextual.DocumentEditViewModel)
             {
-                await (DataContext as UI.OrderView.Contextual.OrderEditViewModel).ReceiveInternalDocumentCreation(this, "Invoice");
-                (DataContext as UI.OrderView.Contextual.OrderEditViewModel).OrderEditRibbonTabItem.ShowDocumentControls();
+                await (DataContext as UI.DocumentView.Contextual.DocumentEditViewModel).ReceiveInternalDocumentCreation(this, "Invoice");
+                (DataContext as UI.DocumentView.Contextual.DocumentEditViewModel).OrderEditRibbonTabItem.ShowDocumentControls();
             }
         }
     }

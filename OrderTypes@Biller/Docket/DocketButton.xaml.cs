@@ -27,10 +27,10 @@ namespace OrderTypes_Biller.Docket
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is Biller.UI.OrderView.Contextual.OrderEditViewModel)
+            if (DataContext is Biller.UI.DocumentView.Contextual.DocumentEditViewModel)
             {
-                await (DataContext as Biller.UI.OrderView.Contextual.OrderEditViewModel).ReceiveInternalDocumentCreation(this, "Docket");
-                (DataContext as Biller.UI.OrderView.Contextual.OrderEditViewModel).OrderEditRibbonTabItem.ShowDocumentControls();
+                await (DataContext as Biller.UI.DocumentView.Contextual.DocumentEditViewModel).ReceiveInternalDocumentCreation(this, "Docket");
+                (DataContext as Biller.UI.DocumentView.Contextual.DocumentEditViewModel).OrderEditRibbonTabItem.ShowDocumentControls();
             }
         }
     }

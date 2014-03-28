@@ -23,11 +23,11 @@ namespace OrderTypes_Biller.Docket
         public List<UIElement> GetEditContentTabs()
         {
             var list = new List<UIElement>();
-            list.Add(new Biller.UI.OrderView.Contextual.EditTabs.Settings.EditTab());
-            list.Add(new Biller.UI.OrderView.Contextual.EditTabs.Receipent.EditTab());
-            list.Add(new Biller.UI.OrderView.Contextual.EditTabs.Articles.EditTab());
-            list.Add(new Biller.UI.OrderView.Contextual.EditTabs.Others.EditTab());
-            list.Add(new Biller.UI.OrderView.Contextual.EditTabs.PrintPreview.EditTab());
+            list.Add(new Biller.UI.DocumentView.Contextual.EditTabs.Settings.EditTab());
+            list.Add(new Biller.UI.DocumentView.Contextual.EditTabs.Receipent.EditTab());
+            list.Add(new Biller.UI.DocumentView.Contextual.EditTabs.Articles.EditTab());
+            list.Add(new Biller.UI.DocumentView.Contextual.EditTabs.Others.EditTab());
+            list.Add(new Biller.UI.DocumentView.Contextual.EditTabs.PrintPreview.EditTab());
             return list;
         }
 
