@@ -52,6 +52,10 @@
     <Compile Include="Messagebox.xaml.cs">
       <DependentUpon>Messagebox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Notification\Notification.cs" />
+    <Compile Include="Notification\NotificationWindow.xaml.cs">
+      <DependentUpon>NotificationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Office2013Button.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -79,6 +83,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Messagebox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notification\NotificationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

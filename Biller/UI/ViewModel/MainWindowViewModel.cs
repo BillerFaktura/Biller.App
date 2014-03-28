@@ -31,7 +31,7 @@ namespace Biller.UI.ViewModel
 
             logger.Debug("Initializing RibbonFactory");
             RibbonFactory = new Ribbon.RibbonFactory(MainWindow.ribbon);
-
+            Notificationmanager = new Notifications.Notificationmanager();
             TabContentViewModels = new ObservableCollection<UI.Interface.ITabContentViewModel>();
 
             logger.Debug("Initializing OrderTabViewModel");
@@ -142,6 +142,8 @@ namespace Biller.UI.ViewModel
             }
         }
 
+        public Biller.UI.Notifications.Notificationmanager Notificationmanager { get; set; }
+
         public async Task LoadData()
         {
             string AssemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "") + "Data\\";
@@ -175,6 +177,7 @@ namespace Biller.UI.ViewModel
                     logger.Info("First Load of the Database");
                 }
             }
+            Notificationmanager.ShowNotification();
         }
 
         private UI.Interface.IPlugIn LoadAssembly(string assemblyPath)
