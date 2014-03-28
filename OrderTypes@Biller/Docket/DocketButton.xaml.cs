@@ -30,7 +30,7 @@ namespace OrderTypes_Biller.Docket
             if (DataContext is Biller.UI.DocumentView.Contextual.DocumentEditViewModel)
             {
                 await (DataContext as Biller.UI.DocumentView.Contextual.DocumentEditViewModel).ReceiveInternalDocumentCreation(this, "Docket");
-                (DataContext as Biller.UI.DocumentView.Contextual.DocumentEditViewModel).OrderEditRibbonTabItem.ShowDocumentControls();
+                (DataContext as Biller.UI.DocumentView.Contextual.DocumentEditViewModel).DocumentEditRibbonTabItem.ShowDocumentControls();
             }
         }
     }

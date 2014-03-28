@@ -88,9 +88,6 @@
     <Reference Include="Fluent">
       <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
     </Reference>
-    <Reference Include="FluentValidation">
-      <HintPath>..\packages\FluentValidation.5.1.0.0\lib\Net40\FluentValidation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack">
       <HintPath>..\Assemblies\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
@@ -116,10 +113,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Assemblies\Fluent\NET 4.5\Release\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -232,8 +225,8 @@
     <Compile Include="UI\DocumentView\Contextual\DocumentEditTabHolder.xaml.cs">
       <DependentUpon>DocumentEditTabHolder.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\DocumentView\Contextual\OrderFolder.xaml.cs">
-      <DependentUpon>OrderFolder.xaml</DependentUpon>
+    <Compile Include="UI\DocumentView\Contextual\DocumentFolder.xaml.cs">
+      <DependentUpon>DocumentFolder.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\DocumentView\Contextual\DocumentEditRibbonTabItem.xaml.cs">
       <DependentUpon>DocumentEditRibbonTabItem.xaml</DependentUpon>
@@ -423,7 +416,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\DocumentView\Contextual\OrderFolder.xaml">
+    <Page Include="UI\DocumentView\Contextual\DocumentFolder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

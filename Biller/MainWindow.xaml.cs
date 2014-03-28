@@ -40,5 +40,11 @@ namespace Biller
         {
             Process.Start("https://github.com/LastElb/BillerV2/issues");
         }
+
+        protected override void OnClosed(System.EventArgs e)
+        {
+            MainWindowViewModel.MainWindowCloseActions(e);
+            base.OnClosed(e);
+        }
     }
 }

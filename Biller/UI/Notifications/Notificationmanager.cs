@@ -20,9 +20,19 @@ namespace Biller.UI.Notifications
             notificationWindow.Left = SystemParameters.WorkArea.Left + SystemParameters.WorkArea.Width - leftOffset;
         }
 
-        public void ShowNotification()
+        public void ShowNotification(string title, string description)
         {
-            notificationWindow.AddNotification(new Notification { Title = "Mesage #1", Message = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." });
+            notificationWindow.AddNotification(new Notification { Title = title, Message = description });
+        }
+
+        public void ShowNotification(Notification notification)
+        {
+            notificationWindow.AddNotification(notification);
+        }
+
+        public void Close()
+        {
+            notificationWindow.Close();
         }
     }
 }

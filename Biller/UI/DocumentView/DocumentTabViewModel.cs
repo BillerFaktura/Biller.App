@@ -135,7 +135,7 @@ namespace Biller.UI.DocumentView
             {
                 Fluent.Button button = factory.GetCreationButton();
                 button.DataContext = orderEditControl;
-                orderEditControl.OrderEditRibbonTabItem.AddDocumentButton(button);
+                orderEditControl.DocumentEditRibbonTabItem.AddDocumentButton(button);
 
             }
             await orderEditControl.LoadData();
@@ -153,33 +153,47 @@ namespace Biller.UI.DocumentView
         {
             if (SelectedDocument != null)
             {
-                var list = from factories in documentFactories where factories.DocumentType == SelectedDocument.DocumentType select factories;
-                Data.Document.Document loadingDocument;
-                if (list.Count() > 0)
+                if (ViewModelRequestingDocument != null)
                 {
-                    try
+                    ViewModelRequestingDocument.ReceiveData(SelectedDocument);
+                    ParentViewModel.SelectedContent = ViewModelRequestingDocument.TabContent;
+                    ViewModelRequestingDocument = null;
+                }
+                else
+                {
+                    var list = from factories in documentFactories where factories.DocumentType == SelectedDocument.DocumentType select factories;
+                    Data.Document.Document loadingDocument;
+                    if (list.Count() > 0)
                     {
-                        var factory = list.First();
-
-                        loadingDocument = factory.GetNewDocument();
-                        loadingDocument.DocumentID = SelectedDocument.DocumentID;
-                        loadingDocument = await ParentViewModel.Database.GetDocument(loadingDocument);
-
-                        var orderEditControl = new UI.DocumentView.Contextual.DocumentEditViewModel(this, loadingDocument, false);
-                        foreach (var tab in factory.GetEditContentTabs())
+                        try
                         {
-                            orderEditControl.EditContentTabs.Add(tab);
+                            var factory = list.First();
+
+                            loadingDocument = factory.GetNewDocument();
+                            loadingDocument.DocumentID = SelectedDocument.DocumentID;
+                            loadingDocument = await ParentViewModel.Database.GetDocument(loadingDocument);
+
+                            var orderEditControl = new UI.DocumentView.Contextual.DocumentEditViewModel(this, loadingDocument, false);
+                            foreach (var tab in factory.GetEditContentTabs())
+                            {
+                                orderEditControl.EditContentTabs.Add(tab);
+                            }
+                            orderEditControl.ExportClass = factory.GetNewExportClass();
+                            await orderEditControl.LoadData();
+                            ParentViewModel.AddTabContentViewModel(orderEditControl);
+                            orderEditControl.RibbonTabItem.IsSelected = true;
                         }
-                        orderEditControl.ExportClass = factory.GetNewExportClass();
-                        await orderEditControl.LoadData();
-                        ParentViewModel.AddTabContentViewModel(orderEditControl);
-                        orderEditControl.RibbonTabItem.IsSelected = true;
+                        catch (Exception e)
+                        {
+                            logger.ErrorException("Error loading document. Sender was " + sender.ToString(), e);
+                        }
                     }
-                    catch (Exception e)
+                    else
                     {
-                        logger.ErrorException("Error loading document. Sender was " + sender.ToString(), e);
+                        ParentViewModel.Notificationmanager.ShowNotification("Fehler beim Laden", "Es existiert kein Modul, um das Dokument zu laden");
                     }
                 }
+                
                 //TODO: Messagebox for missing module
             }
         }
@@ -216,9 +230,13 @@ namespace Biller.UI.DocumentView
                 DisplayedDocuments.Add(item);
         }
 
+        /// <summary>
+        /// Does nothing here
+        /// </summary>
+        /// <param name="data"></param>
         public void ReceiveData(object data)
         {
-            throw new System.NotImplementedException();
+            // Do nothing
         }
 
         public async Task SaveOrUpdateDocument(Data.Document.Document source)
@@ -268,6 +286,13 @@ namespace Biller.UI.DocumentView
             if (list.Count() > 0)
                 return list.First();
             return null;
+        }
+
+        Biller.UI.Interface.ITabContentViewModel ViewModelRequestingDocument;
+        public void ReceiveRequestDocumentCommand(Biller.UI.Interface.ITabContentViewModel source)
+        {
+            ViewModelRequestingDocument = source;
+            ParentViewModel.SelectedContent = TabContent;
         }
     }
 }

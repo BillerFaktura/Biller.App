@@ -177,7 +177,7 @@ namespace Biller.UI.SettingsView
             if (DocumentFolder.Contains(source))
             {
                 var index = DocumentFolder.IndexOf(source);
-                Shipments.RemoveAt(index);
+                DocumentFolder.RemoveAt(index);
                 DocumentFolder.Insert(index, source);
             }
             else

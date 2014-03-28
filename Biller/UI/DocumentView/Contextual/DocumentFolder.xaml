@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="Biller.UI.DocumentView.Contextual.Controls.OrderFolder"
+﻿<UserControl x:Class="Biller.UI.DocumentView.Contextual.DocumentFolder"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:convert="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+             xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
@@ -68,14 +69,15 @@
     <StackPanel>
         <TextBlock Style="{StaticResource HeaderStyle}" Text="Auftragsmappe"/>
         <TextBlock Style="{StaticResource ContentStyle}" Text="Die Organisation von mehreren logisch zusammenhängenden findet in sogenannten Auftragsmappen statt. So können Sie ganz einfach eine Rechnung zu einem Lieferschein erstellen oder eine Gutschrift ausstellen."/>
-        <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich folgende gespeicherten Aufträge:" Visibility="{Binding LinkedOrders, Converter={StaticResource EmptyListVisibilityConverter}}"/>
-        <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich momentan keine gespeicherten Aufträge." Visibility="{Binding LinkedOrders, Converter={StaticResource EmptyListInverseVisibilityConverter}}"/>
-        <ItemsControl ItemsSource="{Binding LinkedOrders.Documents}" ItemTemplate="{StaticResource GalleryItem}" Margin="24,0,24,12" Visibility="{Binding LinkedOrders.Documents, Converter={StaticResource EmptyListVisibilityConverter}}">
+        <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich folgende gespeicherten Aufträge:" Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListVisibilityConverter}}"/>
+        <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich momentan keine gespeicherten Aufträge." Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListInverseVisibilityConverter}}"/>
+        <ItemsControl ItemsSource="{Binding LinkedOrders.Documents}" ItemTemplate="{StaticResource GalleryItem}" Margin="24,0,24,12" Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListVisibilityConverter}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
+        <controls:Office2013Button Content="Zu bestehender Mappe hinzufügen" Width="130" HorizontalAlignment="Left" Margin="12,0,0,0" Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListInverseVisibilityConverter}}" Click="Office2013Button_Click"/>
     </StackPanel>
 </UserControl>

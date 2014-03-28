@@ -159,9 +159,16 @@ namespace Biller.UI.ViewModel
                 foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*.bdll"))
                 {
                     var plugin = LoadAssembly(currentfile);
-                    plugin.Activate();
-                    foreach (UI.Interface.IViewModel vm in plugin.ViewModels())
-                        await vm.LoadData();
+                    try
+                    {
+                        plugin.Activate();
+                        foreach (UI.Interface.IViewModel vm in plugin.ViewModels())
+                            await vm.LoadData();
+                    }catch (Exception e)
+                    {
+                        logger.FatalException("Error integrating plugin " + plugin.Name, e);
+                        Notificationmanager.ShowNotification("Fehler beim Laden von " + plugin.Name, "Das Plugin konnte nicht geladen werden. Eine genaue Fehlerbeschreibung wurde in die Logdatei geschrieben.");
+                    }
                 }
 
                 await SettingsTabViewModel.LoadData();
@@ -177,7 +184,6 @@ namespace Biller.UI.ViewModel
                     logger.Info("First Load of the Database");
                 }
             }
-            Notificationmanager.ShowNotification();
         }
 
         private UI.Interface.IPlugIn LoadAssembly(string assemblyPath)
@@ -209,6 +215,11 @@ namespace Biller.UI.ViewModel
                 }
             }
             throw new Exception("Invalid DLL, Interface not found!");
-        } 
+        }
+
+        public void MainWindowCloseActions(System.EventArgs e)
+        {
+            Notificationmanager.Close();
+        }
     }
 }

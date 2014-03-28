@@ -30,7 +30,7 @@ namespace Biller.Data.Factories.Buttons
             if (DataContext is UI.DocumentView.Contextual.DocumentEditViewModel)
             {
                 await (DataContext as UI.DocumentView.Contextual.DocumentEditViewModel).ReceiveInternalDocumentCreation(this, "Invoice");
-                (DataContext as UI.DocumentView.Contextual.DocumentEditViewModel).OrderEditRibbonTabItem.ShowDocumentControls();
+                (DataContext as UI.DocumentView.Contextual.DocumentEditViewModel).DocumentEditRibbonTabItem.ShowDocumentControls();
             }
         }
     }

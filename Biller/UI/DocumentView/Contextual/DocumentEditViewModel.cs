@@ -1,5 +1,4 @@
-﻿using Biller.UI.DocumentView.Contextual.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,15 +12,19 @@ namespace Biller.UI.DocumentView.Contextual
 {
     public class DocumentEditViewModel : Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
+        /// <summary>
+        /// Use this constructor if you want to show the document creation introduction.
+        /// </summary>
+        /// <param name="parentViewModel">The parent ViewModel</param>
         public DocumentEditViewModel(DocumentView.DocumentTabViewModel parentViewModel)
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedOrders = new Data.Models.DocumentFolderModel();
-            OrderEditRibbonTabItem = new DocumentEditRibbonTabItem(this);
-            OrderEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
-            OrderFolderControl = new Controls.OrderFolder() { DataContext = this };
-            DisplayedTabContent = OrderFolderControl;
+            LinkedDocuments = new Data.Models.DocumentFolderModel();
+            DocumentEditRibbonTabItem = new DocumentEditRibbonTabItem(this);
+            DocumentEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
+            DocumentFolderControl = new DocumentFolder() { DataContext = this };
+            DisplayedTabContent = DocumentFolderControl;
             EditMode = true;
 
             // Sample Data //
@@ -32,28 +35,38 @@ namespace Biller.UI.DocumentView.Contextual
             EditContentTabs = new ObservableCollection<UIElement>();
         }
 
+        /// <summary>
+        /// Use this constructor if you have a document loaded or you have already created an empty existing document. The UI shows the edit tabs.
+        /// </summary>
+        /// <param name="parentViewModel">The parent ViewModel</param>
+        /// <param name="document">The loaded document</param>
+        /// <param name="editEnabled">Determines wheter you can change the <see cref="Document"/>s ID.</param>
         public DocumentEditViewModel(DocumentView.DocumentTabViewModel parentViewModel, Data.Document.Document document, bool editEnabled)
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedOrders = new Data.Models.DocumentFolderModel();
-            OrderEditRibbonTabItem = new DocumentEditRibbonTabItem(this);
-            OrderEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
-            OrderFolderControl = new Controls.OrderFolder() { DataContext = this };
-            DisplayedTabContent = OrderEditTabHolder;
+            LinkedDocuments = new Data.Models.DocumentFolderModel();
+            DocumentEditRibbonTabItem = new DocumentEditRibbonTabItem(this);
+            DocumentEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
+            DocumentFolderControl = new DocumentFolder(this) { DataContext = this };
+            DisplayedTabContent = DocumentEditTabHolder;
             this.Document = document;
             EditMode = editEnabled;
             EditContentTabs = new ObservableCollection<UIElement>();
-            OrderEditRibbonTabItem.ShowDocumentControls();
+            DocumentEditRibbonTabItem.ShowDocumentControls();
         }
 
         public DocumentView.DocumentTabViewModel ParentViewModel { get; private set; }
 
         public Fluent.RibbonContextualTabGroup ContextualTabGroup { get; private set; }
-        public DocumentEditRibbonTabItem OrderEditRibbonTabItem { get; private set; }
-        public DocumentEditTabHolder OrderEditTabHolder { get; private set; }
-        public Controls.OrderFolder OrderFolderControl { get; private set; }
-        public Data.Models.DocumentFolderModel LinkedOrders { get; set; }
+
+        public DocumentEditRibbonTabItem DocumentEditRibbonTabItem { get; private set; }
+
+        public DocumentEditTabHolder DocumentEditTabHolder { get; private set; }
+
+        public DocumentFolder DocumentFolderControl { get; private set; }
+
+        public Data.Models.DocumentFolderModel LinkedDocuments { get; private set; }
 
         public bool EditMode { get { return GetValue(() => EditMode); } private set { SetValue(value); } }
 
@@ -61,7 +74,7 @@ namespace Biller.UI.DocumentView.Contextual
 
         public Fluent.RibbonTabItem RibbonTabItem
         {
-            get { return OrderEditRibbonTabItem; }
+            get { return DocumentEditRibbonTabItem; }
         }
 
         public Data.Document.Document Document
@@ -98,14 +111,14 @@ namespace Biller.UI.DocumentView.Contextual
             ExportClass = factory.GetNewExportClass();
             await LoadData();
             await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID("", Document.DocumentID, Document.DocumentType);
-            LinkedOrders.GenerateID();
-            DisplayedTabContent = OrderEditTabHolder;
+            LinkedDocuments.GenerateID();
+            DisplayedTabContent = DocumentEditTabHolder;
             EditMode = true;
         }
 
         public async Task ReceiveCloseCommand()
         {
-            OrderEditRibbonTabItem.Focus();
+            DocumentEditRibbonTabItem.Focus();
             if (Document != null)
                 await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID(Document.DocumentID, "", Document.DocumentType);
             await ParentViewModel.ReceiveCloseEditControl(this);
@@ -118,16 +131,24 @@ namespace Biller.UI.DocumentView.Contextual
 
             if (Document != null)
             {
+                // Loads the DocumentFolder containing the current Document.
                 var list = from Data.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(new Data.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
                 if (list.Count() > 0)
-                    LinkedOrders = list.First();
+                    LinkedDocuments = list.First();
             }
         }
 
         public void ReceiveData(object data)
         {
-            var factory = ParentViewModel.GetFactory(Document.DocumentType);
-            factory.ReceiveData(data, Document);
+            if (data is Data.Document.PreviewDocument)
+            {
+                //ToDo: Load DocumentFolder from SettingsTabViewModel
+            }
+            else
+            {
+                var factory = ParentViewModel.GetFactory(Document.DocumentType);
+                factory.ReceiveData(data, Document);
+            }
         }
 
         public Data.Customers.Customer PreviewCustomer { get { return GetValue(() => PreviewCustomer); } set { SetValue(value); } }

@@ -82,7 +82,7 @@
 			<Setter Property="HorizontalAlignment" Value="Stretch"/>
 		</Style>
 		<DataTemplate x:Key="MessageTemplate" DataType="Model:Notification">
-			<Grid x:Name="NotificationWindow" Tag="{Binding Path=Id}" Background="Transparent" SizeChanged="NotificationWindowSizeChanged" RenderTransformOrigin="0.5,0.5">
+			<Grid x:Name="NotificationWindow" Tag="{Binding Path=Id}" Background="Transparent" SizeChanged="NotificationWindowSizeChanged" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,25" >
 				<Grid.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -103,10 +103,10 @@
 						</Grid.ColumnDefinitions>
 						<Image Grid.RowSpan="2" Source="{Binding Path=ImageUrl}" Width="90" Height="90" ></Image>
 						<TextBlock Grid.Column="1" Text="{Binding Path=Title}"  TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Foreground="White" 
-								   FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  Margin="2,18,4,2" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+								   FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  Margin="2,18,35,2" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Height="20" />
 						<Button x:Name="CloseButton" Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,0,0,0" Style="{StaticResource CloseButton}" VerticalAlignment="Top" />
 						<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Message}"  TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Foreground="White" 
-								   VerticalAlignment="Center"  Margin="2,2,4,4" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+								   VerticalAlignment="Center"  Margin="2,2,25,4" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Height="30"/>
 					</Grid>
 				</Border>
 			</Grid>
