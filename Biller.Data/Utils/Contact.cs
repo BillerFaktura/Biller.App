@@ -37,7 +37,7 @@ namespace Biller.Data.Utils
         /// </summary>
         public string Phone2
         {
-            get { return GetValue(() => Phone1); }
+            get { return GetValue(() => Phone2); }
             set { SetValue(value); }
         }
 
