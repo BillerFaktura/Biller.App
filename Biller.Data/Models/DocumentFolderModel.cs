@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Biller.Data.Models
 {
@@ -11,6 +12,8 @@ namespace Biller.Data.Models
     {
         public DocumentFolderModel()
         {
+            Documents = new ObservableCollection<Document.PreviewDocument>();
+            ID = Guid.NewGuid().ToString();
         }
 
         public void GenerateID()
@@ -20,12 +23,14 @@ namespace Biller.Data.Models
 
         public ObservableCollection<Document.PreviewDocument> Documents { get { return GetValue(() => Documents); } set { SetValue(value); } }
 
-        public System.Xml.Linq.XElement GetXElement()
+        public XElement GetXElement()
         {
-            return new System.Xml.Linq.XElement(XElementName, new System.Xml.Linq.XElement(IDFieldName,ID),
-                new System.Xml.Linq.XElement("Documents",
-                    from docs in this.Documents
-                    select docs));
+            var output = new System.Xml.Linq.XElement(XElementName, new XElement(IDFieldName,ID));
+            foreach(var doc in Documents)
+            {
+                output.Add(new XElement("Entry", new XAttribute("Type", doc.DocumentType), new XAttribute("ID", doc.DocumentID)));
+            }
+            return output;
         }
 
         public void ParseFromXElement(System.Xml.Linq.XElement source)
@@ -36,8 +41,8 @@ namespace Biller.Data.Models
             ID = source.Element("ID").Value;
             var docs = source.Element("Documents").Elements();
             Documents.Clear();
-            //foreach (var doc in docs)
-            //    Documents.Add(doc.Value);
+            foreach (var doc in docs)
+                Documents.Add(new Document.PreviewDocument(doc.Attribute("Type").Value) { DocumentID = doc.Attribute("ID").Value });
         }
 
         public string XElementName
