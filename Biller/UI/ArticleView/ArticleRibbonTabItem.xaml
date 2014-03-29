@@ -34,31 +34,31 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="" IsEnabled="False">
-        <Fluent:Button Name="buttonNewCategory" Header="{StaticResource createcategory}" Icon="Images\catladd.png" LargeIcon="Images\catladd.png">
+        <Fluent:Button Name="buttonNewCategory" Header="{StaticResource createcategory}" Icon="..\..\Images\appbar.list.create.png" LargeIcon="..\..\Images\appbar.list.create.png">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource createcategory}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource createcategorytooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonEditCategory" Header="{StaticResource editcategory}" Icon="Images\catledit.png" LargeIcon="Images\catledit.png">
+        <Fluent:Button Name="buttonEditCategory" Header="{StaticResource editcategory}" Icon="..\..\Images\appbar.list.gear.png" LargeIcon="..\..\Images\appbar.list.gear.png">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource editcategory}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource editcategorytooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="{StaticResource export}" IsEnabled="False">
-        <Fluent:Button Name="buttonPDFArticlelist" Header="{StaticResource pdfArticlelist}" Icon="Images\pdf.png" LargeIcon="Images\pdf.png">
+        <Fluent:Button Name="buttonPDFArticlelist" Header="{StaticResource pdfArticlelist}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource pdfArticlelist}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource pdfArticlelisttooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonPrintArticlelist" Header="{StaticResource printArticlelist}" Icon="Images\print.png" LargeIcon="Images\print.png">
+        <Fluent:Button Name="buttonPrintArticlelist" Header="{StaticResource printArticlelist}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource printArticlelist}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource printArticlelisttooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="" IsEnabled="False">
-        <Fluent:Button Name="buttonArticleStats" Header="{StaticResource statsArticle}" Icon="Images/chart.png" LargeIcon="Images/chart.png">
+        <Fluent:Button Name="buttonArticleStats" Header="{StaticResource statsArticle}" Icon="..\..\Images\appbar.page.powerpoint.png" LargeIcon="..\..\Images\appbar.page.powerpoint.png">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource statsArticletooltipHeader}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource statsArticletooltip}" />
             </Fluent:Button.ToolTip>

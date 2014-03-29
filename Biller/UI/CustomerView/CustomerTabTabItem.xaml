@@ -10,7 +10,7 @@
         <ResourceDictionary Source="../Localization/CustomerView/de.xaml" />
     </Fluent:RibbonTabItem.Resources>
     <Fluent:RibbonGroupBox>
-        <Fluent:Button Name="buttonNewCustomer" Header="{StaticResource createnewcustomer}" Icon="Images\kundehinzufuegen.png" LargeIcon="Images\kundehinzufuegen.png" Click="buttonNewCustomer_Click">
+        <Fluent:Button Name="buttonNewCustomer" Header="{StaticResource createnewcustomer}" Icon="..\..\Images\appbar.people.png" LargeIcon="..\..\Images\appbar.people.png" Click="buttonNewCustomer_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource createnewcustomer}" HelpLabelVisibility="Collapsed" Width="450"/>
             </Fluent:Button.ToolTip>
@@ -29,19 +29,19 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="{StaticResource customerlist}">
-        <Fluent:Button Name="buttonExportListAsPDF" Header="{StaticResource saveaspdf}" Icon="Images\pdf.png" LargeIcon="Images\pdf.png" IsEnabled="False">
+        <Fluent:Button Name="buttonExportListAsPDF" Header="{StaticResource saveaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource saveaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste als PDF speichern." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonPrintList" Header="{StaticResource print}" Icon="Images\print.png" LargeIcon="Images\print.png" IsEnabled="False">
+        <Fluent:Button Name="buttonPrintList" Header="{StaticResource print}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource print}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste drucken." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="">
-        <Fluent:Button Name="buttonCustomerStatistics" Header="{StaticResource customerstatistics}" Icon="Images/chart.png" LargeIcon="Images/chart.png" IsEnabled="False">
+        <Fluent:Button Name="buttonCustomerStatistics" Header="{StaticResource customerstatistics}" Icon="..\..\Images\appbar.page.powerpoint.png" LargeIcon="..\..\Images\appbar.page.powerpoint.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource customerstatistics}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie Kundenstatistiken visualisieren und als PDF speichern" DisableReason="Diese Funktion ist noch nicht verfügbar."/>
             </Fluent:Button.ToolTip>

@@ -8,12 +8,12 @@
         <ResourceDictionary Source="../Localization/OrderView/de.xaml" />
     </Fluent:RibbonTabItem.Resources>
     <Fluent:RibbonGroupBox Header="">
-        <Fluent:Button Name="buttonNewOrder" Header="{StaticResource createorder}" Icon="Images\auftragadd.png" LargeIcon="Images\auftragadd.png" Click="buttonNewOrder_Click">
+        <Fluent:Button Name="buttonNewOrder" Header="{StaticResource createorder}" Icon="..\..\Images\appbar.page.new.png" LargeIcon="..\..\Images\appbar.page.new.png" Click="buttonNewOrder_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource createorder}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource createordertooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonEditOrder" Header="{StaticResource editorder}" Icon="Images\auftragedit.png" LargeIcon="Images\auftragedit.png" IsEnabled="False" Click="buttonEditOrder_Click">
+        <Fluent:Button Name="buttonEditOrder" Header="{StaticResource editorder}" Icon="..\..\Images\appbar.page.edit.png" LargeIcon="..\..\Images\appbar.page.edit.png" IsEnabled="False" Click="buttonEditOrder_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource editorder}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource editordertooltip}" DisableReason="{StaticResource editordertooltipdisable}" />
             </Fluent:Button.ToolTip>
@@ -27,64 +27,27 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="{StaticResource export}">
-        <Fluent:Button Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="Images\pdf.png" LargeIcon="Images\pdf.png" IsEnabled="False" Click="buttonOrderPDF_Click">
+        <Fluent:Button Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" IsEnabled="False" Click="buttonOrderPDF_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderaspdftooltip}" DisableReason="{StaticResource orderaspdftooltipdisable}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="Images\print.png" LargeIcon="Images\print.png" IsEnabled="False" Click="buttonPrintOrder_Click">
+        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png" IsEnabled="False" Click="buttonPrintOrder_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderprint}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderprinttooltip}" DisableReason="{StaticResource orderprinttooltipdisable}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
-    <!--<Fluent:RibbonGroupBox Header="{StaticResource filter}">
-        <Fluent:RibbonToolBar>
-            <Fluent:RibbonToolBar.LayoutDefinitions>
-                <Fluent:RibbonToolBarLayoutDefinition RowCount="2">
-                    <Fluent:RibbonToolBarRow>
-                        <Fluent:RibbonToolBarControlDefinition Target="cb_month_filter" Width="127" />
-                    </Fluent:RibbonToolBarRow>
-                    <Fluent:RibbonToolBarRow>
-                        <Fluent:RibbonToolBarControlDefinition Target="cb_year_filter" Width="127" />
-                    </Fluent:RibbonToolBarRow>
-                </Fluent:RibbonToolBarLayoutDefinition>
-            </Fluent:RibbonToolBar.LayoutDefinitions>
-            <Fluent:ComboBox IsEditable="True" InputWidth="100" Name="cb_month_filter" SelectedIndex="-1" IsReadOnly="True" CanAddToQuickAccessToolBar="False" DropDownHeight="300" SelectionChanged="cb_month_filter_SelectionChanged">
-                <ComboBoxItem Content="{StaticResource january}" />
-                <ComboBoxItem Content="{StaticResource february}" />
-                <ComboBoxItem Content="{StaticResource march}" />
-                <ComboBoxItem Content="{StaticResource april}" />
-                <ComboBoxItem Content="{StaticResource may}" />
-                <ComboBoxItem Content="{StaticResource june}" />
-                <ComboBoxItem Content="{StaticResource july}" />
-                <ComboBoxItem Content="{StaticResource august}" />
-                <ComboBoxItem Content="{StaticResource september}" />
-                <ComboBoxItem Content="{StaticResource october}" />
-                <ComboBoxItem Content="{StaticResource november}" />
-                <ComboBoxItem Content="{StaticResource december}" />
-                <Fluent:ComboBox.ToolTip>
-                    <Fluent:ScreenTip Title="{StaticResource selectmonth}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource selectmonthtooltip}" />
-                </Fluent:ComboBox.ToolTip>
-            </Fluent:ComboBox>
-            <Fluent:ComboBox IsEditable="True" InputWidth="100" Name="cb_year_filter" ItemsSource="{Binding YearRange}" CanAddToQuickAccessToolBar="False" DropDownHeight="300" SelectionChanged="cb_year_filter_SelectionChanged">
-                <Fluent:ComboBox.ToolTip>
-                    <Fluent:ScreenTip Title="{StaticResource selectyear}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource selectyeartooltip}" />
-                </Fluent:ComboBox.ToolTip>
-            </Fluent:ComboBox>
-        </Fluent:RibbonToolBar>-->
-        <!--<Fluent:ToggleButton Name="buttonAuftragFiltern" Header="{StaticResource showselection}" Icon="Images\filter.png" LargeIcon="Images\filter.png" IsEnabled="False" Size="Large" Margin="5,0,0,0" />
-    </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="Betrachtungszeitraum">
-        <Fluent:DropDownButton Header="Start">
+        <Fluent:DropDownButton Header="Start" Icon="..\..\Images\appbar.calendar.future.png" LargeIcon="..\..\Images\appbar.calendar.future.png">
             <DatePicker SelectedDate="{Binding IntervalStart}"/>
         </Fluent:DropDownButton>
-        <Fluent:DropDownButton Header="Ende">
+        <Fluent:DropDownButton Header="Ende" Icon="..\..\Images\appbar.calendar.reverse.png" LargeIcon="..\..\Images\appbar.calendar.reverse.png">
             <DatePicker SelectedDate="{Binding IntervalEnd}"/>
         </Fluent:DropDownButton>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="{StaticResource directaccess}" IsEnabled="False">
-        <Fluent:Button Name="buttonOrderSearch" Header="{StaticResource searchOrder}" Icon="Images\search.png" LargeIcon="Images\search.png" Margin="0,0,0,0" Click="buttonOrderSearch_Click" />
-        <Fluent:Button Name="buttonOrderFastPick" Header="{StaticResource fastPickOrder}" Icon="Images\search.png" LargeIcon="Images\search.png" Margin="0,0,0,0" Click="buttonOrderFastPick_Click" />
+        <Fluent:Button Name="buttonOrderSearch" Header="{StaticResource searchOrder}" Icon="..\..\Images\appbar.page.search.png" LargeIcon="..\..\Images\appbar.page.search.png" Margin="0,0,0,0" Click="buttonOrderSearch_Click" />
+        <Fluent:Button Name="buttonOrderFastPick" Header="{StaticResource fastPickOrder}" Icon="..\..\Images\appbar.page.search.png" LargeIcon="..\..\Images\appbar.page.search.png" Margin="0,0,0,0" Click="buttonOrderFastPick_Click" />
     </Fluent:RibbonGroupBox>
 </Fluent:RibbonTabItem>

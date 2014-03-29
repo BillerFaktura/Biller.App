@@ -28,7 +28,7 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox>
-        <Fluent:Button Name="buttonArticleQuickSave" Header="{StaticResource save}" Icon="Images\save.png" LargeIcon="Images\save.png" Click="buttonArticleQuickSave_Click">
+        <Fluent:Button Name="buttonArticleQuickSave" Header="{StaticResource save}" Icon="..\..\..\Images\appbar.save.png" LargeIcon="..\..\..\Images\appbar.save.png" Click="buttonArticleQuickSave_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource save}" HelpLabelVisibility="Collapsed" Width="450"/>
             </Fluent:Button.ToolTip>
@@ -40,7 +40,7 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox>
-        <Fluent:Button Name="buttonCloseArticle" Header="{StaticResource abort}" Icon="Images\cancel.png" LargeIcon="Images\cancel.png" Click="buttonCloseArticle_Click">
+        <Fluent:Button Name="buttonCloseArticle" Header="{StaticResource abort}" Icon="..\..\..\Images\appbar.cancel.png" LargeIcon="..\..\..\Images\appbar.cancel.png" Click="buttonCloseArticle_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource abort}" Width="450" HelpLabelVisibility="Collapsed"/>
             </Fluent:Button.ToolTip>

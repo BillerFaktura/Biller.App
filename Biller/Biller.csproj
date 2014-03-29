@@ -497,6 +497,29 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Images\GitHub-Mark.png" />
+    <Resource Include="Images\appbar.page.edit.png" />
+    <Resource Include="Images\appbar.page.new.png" />
+    <Resource Include="Images\appbar.page.pdf.png" />
+    <Resource Include="Images\appbar.page.powerpoint.png" />
+    <Resource Include="Images\appbar.printer.text.png" />
+    <Resource Include="Images\appbar.calendar.future.png" />
+    <Resource Include="Images\appbar.calendar.reverse.png" />
+    <Resource Include="Images\appbar.page.search.png" />
+    <Resource Include="Images\appbar.list.create.png" />
+    <Resource Include="Images\appbar.list.gear.png" />
+    <Resource Include="Images\appbar.people.png" />
+    <Resource Include="Images\appbar.money.png" />
+    <Resource Include="Images\appbar.save.png" />
+    <Resource Include="Images\appbar.paypal.png" />
+    <Resource Include="Images\appbar.layer.add.png" />
+    <Resource Include="Images\appbar.cancel.png" />
+    <Resource Include="Images\appbar.percent.off.png" />
+    <Resource Include="Images\appbar.interface.textbox.png" />
+    <Resource Include="Images\appbar.edit.box.png" />
+    <Resource Include="Images\appbar.home.location.round.png" />
+    <Resource Include="Images\appbar.phone.png" />
+    <Resource Include="Images\appbar.add.png" />
+    <Resource Include="Images\appbar.fingerprint.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

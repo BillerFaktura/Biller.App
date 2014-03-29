@@ -81,7 +81,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid>
-                <Image Height="64"/>
+                <Image Height="64" Width="64" Source="..\..\..\..\Images\appbar.fingerprint.png"/>
             </Grid>
             <StackPanel Grid.Column="1">
                 <local:WatermarkTextBox Watermark="{StaticResource customerid}" Text="{Binding Customer.CustomerID}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" IsEnabled="{Binding EditMode, Converter={StaticResource InverseBooleanConverter}}" TextChanged="WatermarkTextBox_TextChanged"/>
@@ -95,7 +95,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid>
-                <Image Height="64" />
+                <Image Height="64" Width="64" Source="..\..\..\..\Images\appbar.home.location.round.png"/>
             </Grid>
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
@@ -131,7 +131,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid>
-                <local:Office2013Button Content="{StaticResource addaddress}" Click="Office2013Button_Click" Margin="25,10,25,0" Height="92" Width="100" VerticalAlignment="Top"/>
+                <local:Office2013Button Content="{StaticResource addaddress}" Click="Office2013Button_Click" Margin="25,10,25,0" Height="92" Width="100" VerticalAlignment="Top" Image="..\..\..\..\Images\appbar.add.png"/>
             </Grid>
             <StackPanel Grid.Column="1">
                 <ItemsControl ItemsSource="{Binding Customer.ExtraAddresses}">
@@ -191,7 +191,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid>
-                <Image Height="64" Source="../../Images/contact.png"/>
+                <Image Height="64" Width="64" Source="..\..\..\..\Images\appbar.phone.png"/>
             </Grid>
             <StackPanel Grid.Column="1">
                 <local:WatermarkTextBox Watermark="{StaticResource telephone}" Text="{Binding Customer.Contact.Phone1}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1,5,1,1"/>
