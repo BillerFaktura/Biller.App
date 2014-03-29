@@ -13,7 +13,7 @@ namespace Biller.Data.Models
         public DocumentFolderModel()
         {
             Documents = new ObservableCollection<Document.PreviewDocument>();
-            ID = Guid.NewGuid().ToString();
+            GenerateID();
         }
 
         public void GenerateID()
@@ -39,7 +39,7 @@ namespace Biller.Data.Models
                 throw new Exception("Expected " + XElementName + " but got " + source.Name);
 
             ID = source.Element("ID").Value;
-            var docs = source.Element("Documents").Elements();
+            var docs = source.Elements("Entry");
             Documents.Clear();
             foreach (var doc in docs)
                 Documents.Add(new Document.PreviewDocument(doc.Attribute("Type").Value) { DocumentID = doc.Attribute("ID").Value });

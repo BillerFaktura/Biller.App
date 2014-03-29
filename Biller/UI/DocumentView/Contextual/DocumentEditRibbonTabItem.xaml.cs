@@ -57,6 +57,8 @@ namespace Biller.UI.DocumentView.Contextual
         {
             _ViewModel.DocumentEditRibbonTabItem.Focus(); // MVVM
             await _ViewModel.ParentViewModel.SaveOrUpdateDocument(_ViewModel.Document);
+            CheckLinkedDocuments();
+            _ViewModel.ParentViewModel.ParentViewModel.SettingsTabViewModel.SaveOrUpdateDocumentFolder(_ViewModel.LinkedDocuments);
         }
 
         public void AddDocumentButton(Fluent.Button button)
@@ -78,10 +80,19 @@ namespace Biller.UI.DocumentView.Contextual
             _ViewModel.ExportClass.PrintDocument(_ViewModel.Document);
         }
 
+        private void CheckLinkedDocuments()
+        {
+            var document = new Biller.Data.Document.PreviewDocument(_ViewModel.Document.DocumentType) { DocumentID = _ViewModel.Document.DocumentID };
+            if (!_ViewModel.LinkedDocuments.Documents.Contains(document))
+                _ViewModel.LinkedDocuments.Documents.Add(document);
+        }
+
         private async void buttonOrderSave_Click(object sender, RoutedEventArgs e)
         {
             _ViewModel.DocumentEditRibbonTabItem.Focus(); // MVVM
             await _ViewModel.ParentViewModel.SaveOrUpdateDocument(_ViewModel.Document);
+            CheckLinkedDocuments();
+            _ViewModel.ParentViewModel.ParentViewModel.SettingsTabViewModel.SaveOrUpdateDocumentFolder(_ViewModel.LinkedDocuments);
             await _ViewModel.ReceiveCloseCommand();
         }
     }

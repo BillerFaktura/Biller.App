@@ -145,7 +145,7 @@ namespace Biller.UI.DocumentView
         }
 
         /// <summary>
-        /// 
+        /// Opens the selected <see cref="Document"/> to allowd editing.
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
@@ -194,6 +194,55 @@ namespace Biller.UI.DocumentView
                     }
                 }
                 
+                //TODO: Messagebox for missing module
+            }
+        }
+
+        public async Task ReceiveEditOrderCommand(object sender, Data.Document.PreviewDocument document)
+        {
+            if (document != null)
+            {
+                if (ViewModelRequestingDocument != null)
+                {
+                    ViewModelRequestingDocument.ReceiveData(SelectedDocument);
+                    ParentViewModel.SelectedContent = ViewModelRequestingDocument.TabContent;
+                    ViewModelRequestingDocument = null;
+                }
+                else
+                {
+                    var list = from factories in documentFactories where factories.DocumentType == document.DocumentType select factories;
+                    Data.Document.Document loadingDocument;
+                    if (list.Count() > 0)
+                    {
+                        try
+                        {
+                            var factory = list.First();
+
+                            loadingDocument = factory.GetNewDocument();
+                            loadingDocument.DocumentID = document.DocumentID;
+                            loadingDocument = await ParentViewModel.Database.GetDocument(loadingDocument);
+
+                            var orderEditControl = new UI.DocumentView.Contextual.DocumentEditViewModel(this, loadingDocument, false);
+                            foreach (var tab in factory.GetEditContentTabs())
+                            {
+                                orderEditControl.EditContentTabs.Add(tab);
+                            }
+                            orderEditControl.ExportClass = factory.GetNewExportClass();
+                            await orderEditControl.LoadData();
+                            ParentViewModel.AddTabContentViewModel(orderEditControl);
+                            orderEditControl.RibbonTabItem.IsSelected = true;
+                        }
+                        catch (Exception e)
+                        {
+                            logger.ErrorException("Error loading document. Sender was " + sender.ToString(), e);
+                        }
+                    }
+                    else
+                    {
+                        ParentViewModel.Notificationmanager.ShowNotification("Fehler beim Laden", "Es existiert kein Modul, um das Dokument zu laden");
+                    }
+                }
+
                 //TODO: Messagebox for missing module
             }
         }
@@ -256,8 +305,6 @@ namespace Biller.UI.DocumentView
             }
 
             bool result = await ParentViewModel.Database.SaveOrUpdateDocument(source);
-
-            //await ShowDocumentsInInterval();
 
             if (DisplayedDocuments.Contains(tempPreview))
             {

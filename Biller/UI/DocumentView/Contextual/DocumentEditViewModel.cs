@@ -23,15 +23,9 @@ namespace Biller.UI.DocumentView.Contextual
             LinkedDocuments = new Data.Models.DocumentFolderModel();
             DocumentEditRibbonTabItem = new DocumentEditRibbonTabItem(this);
             DocumentEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
-            DocumentFolderControl = new DocumentFolder() { DataContext = this };
+            DocumentFolderControl = new DocumentFolder(this) { DataContext = this };
             DisplayedTabContent = DocumentFolderControl;
             EditMode = true;
-
-            // Sample Data //
-            //LinkedOrders.Add(new Data.Document.PreviewDocument("Rechnung") { DocumentID = "1000" });
-            //LinkedOrders.Add(new Data.Document.PreviewDocument("Lieferschein") { DocumentID = "1023" });
-            //LinkedOrders.Add(new Data.Document.PreviewDocument("Gutschrift") { DocumentID = "1430" });
-
             EditContentTabs = new ObservableCollection<UIElement>();
         }
 
@@ -66,7 +60,7 @@ namespace Biller.UI.DocumentView.Contextual
 
         public DocumentFolder DocumentFolderControl { get; private set; }
 
-        public Data.Models.DocumentFolderModel LinkedDocuments { get; private set; }
+        public Data.Models.DocumentFolderModel LinkedDocuments { get { return GetValue(() => LinkedDocuments); } private set { SetValue(value); } }
 
         public bool EditMode { get { return GetValue(() => EditMode); } private set { SetValue(value); } }
 
@@ -111,7 +105,6 @@ namespace Biller.UI.DocumentView.Contextual
             ExportClass = factory.GetNewExportClass();
             await LoadData();
             await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID("", Document.DocumentID, Document.DocumentType);
-            LinkedDocuments.GenerateID();
             DisplayedTabContent = DocumentEditTabHolder;
             EditMode = true;
         }
@@ -142,7 +135,10 @@ namespace Biller.UI.DocumentView.Contextual
         {
             if (data is Data.Document.PreviewDocument)
             {
-                //ToDo: Load DocumentFolder from SettingsTabViewModel
+                //Load DocumentFolder from SettingsTabViewModel and replace the current one.
+                var list = from Data.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(data as Data.Document.PreviewDocument) select folder;
+                if (list.Count() > 0)
+                    LinkedDocuments = list.First();
             }
             else
             {

@@ -114,7 +114,7 @@
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Text="{StaticResource CurrentDocumentType}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ContentStyle}"/>
-                    <TextBlock Text="{Binding Document.DocumentType}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ContentStyle}" Margin="7,0,0,0"/>
+                    <TextBlock Text="{Binding Document.LocalizedDocumentType}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ContentStyle}" Margin="7,0,0,0"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0">
                     <TextBlock Text="{StaticResource DocumentID}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource ContentStyle}"/>

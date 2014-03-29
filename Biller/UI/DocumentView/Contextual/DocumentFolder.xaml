@@ -62,6 +62,7 @@
                     <Trigger SourceName="itemtemplate" Property="IsMouseOver" Value="True">
                         <Setter TargetName="itemtemplate" Property="Background" Value="#FFC3D6F1"/>
                     </Trigger>
+                    <EventTrigger RoutedEvent="Button.Click"/>
                 </DataTemplate.Triggers>
             </DataTemplate>
         </ResourceDictionary>
@@ -71,7 +72,7 @@
         <TextBlock Style="{StaticResource ContentStyle}" Text="Die Organisation von mehreren logisch zusammenhängenden findet in sogenannten Auftragsmappen statt. So können Sie ganz einfach eine Rechnung zu einem Lieferschein erstellen oder eine Gutschrift ausstellen."/>
         <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich folgende gespeicherten Aufträge:" Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListVisibilityConverter}}"/>
         <TextBlock Style="{StaticResource ContentStyle}" Text="In dieser Auftragsmappe befinden sich momentan keine gespeicherten Aufträge." Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListInverseVisibilityConverter}}"/>
-        <ItemsControl ItemsSource="{Binding LinkedOrders.Documents}" ItemTemplate="{StaticResource GalleryItem}" Margin="24,0,24,12" Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListVisibilityConverter}}">
+        <ItemsControl ItemsSource="{Binding LinkedDocuments.Documents}" ItemTemplate="{StaticResource GalleryItem}" Margin="24,0,24,12" Visibility="{Binding LinkedDocuments.Documents, Converter={StaticResource EmptyListVisibilityConverter}}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel />
