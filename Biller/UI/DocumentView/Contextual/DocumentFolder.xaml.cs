@@ -27,6 +27,7 @@ namespace Biller.UI.DocumentView.Contextual
         }
 
         DocumentEditViewModel ParentViewModel;
+        bool wasMouseDown = false;
 
         /// <summary>
         /// This methode gets called when the user clicks on one of the templated controls. It opens the selected document in a new tab.
@@ -35,8 +36,12 @@ namespace Biller.UI.DocumentView.Contextual
         /// <param name="e"></param>
         private async void itemtemplate_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            var doc = (sender as StackPanel).DataContext as Biller.Data.Document.PreviewDocument;
-            await ParentViewModel.ParentViewModel.ReceiveEditOrderCommand(ParentViewModel, doc);
+            if (wasMouseDown)
+            {
+                var doc = (sender as StackPanel).DataContext as Biller.Data.Document.PreviewDocument;
+                await ParentViewModel.ParentViewModel.ReceiveEditOrderCommand(ParentViewModel, doc);
+                wasMouseDown = false;
+            }
         }
 
         /// <summary>
@@ -47,6 +52,11 @@ namespace Biller.UI.DocumentView.Contextual
         private void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
             ParentViewModel.ParentViewModel.ReceiveRequestDocumentCommand(ParentViewModel);
+        }
+
+        private void itemtemplate_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            wasMouseDown = true;
         }
     }
 }
