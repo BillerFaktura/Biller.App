@@ -66,7 +66,7 @@ namespace Biller.UI.ArticleView.Contextual
         {
             get
             {
-                return "Artikel bearbeiten";
+                return Localization.LocalizationManager.LocalizedStringFetcher("editarticle", ParentViewModel.ArticleTabContent);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Biller.UI.ArticleView.Contextual
         {
             get
             {
-                return "Bearbeiten oder erstellen Sie einen Artikel und speichern ihn in der Stammdatenbank.";
+                return Localization.LocalizationManager.LocalizedStringFetcher("editTabItemDescription", ParentViewModel.ArticleTabContent);
             }
         }
 

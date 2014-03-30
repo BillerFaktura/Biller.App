@@ -13,5 +13,7 @@
     <sys:String x:Key="country">Land</sys:String>
     <sys:String x:Key="next">Weiter</sys:String>
     <sys:String x:Key="vatFreeRule">Diese Firma ist aufgrund einer Kleinunternehmerregelung von der Abfuhr der Umsatzsteuer befreit.</sys:String>
-    
+    <sys:String x:Key="createNewCompany">Eine neue Firma anlegen</sys:String>
+    <sys:String x:Key="TaxID">Steuernummer</sys:String>
+    <sys:String x:Key="SalesTaxID">Umsatzsteuer-ID</sys:String>
 </ResourceDictionary>

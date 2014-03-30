@@ -6,7 +6,7 @@
              xmlns:converter="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
              xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="600" Margin="20">
+             d:DesignHeight="600" d:DesignWidth="600" Margin="20">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -99,7 +99,7 @@
             <Grid Name="GridSpan7Margin" Grid.ColumnSpan="7" Margin="0,0,1,0"/>
         </Grid>
 
-        <TextBlock Text="Eine neue Firma anlegen" Style="{StaticResource HeaderStyle}" Foreground="Black" FontSize="48" FontFamily="Segoe UI Light"/>
+        <TextBlock Text="{StaticResource createNewCompany}" Style="{StaticResource HeaderStyle}" Foreground="Black" FontSize="48" FontFamily="Segoe UI Light"/>
         <controls:WatermarkTextBox Watermark="{StaticResource companyname}" Text="{Binding CompanyInformation.CompanyName}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,30,1,1" Visibility="{Binding Customer.IsCompany, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
             <controls:WatermarkTextBox Watermark="{StaticResource forname}" Text="{Binding CompanySettings.MainAddress.Forname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" MinWidth="140" HorizontalAlignment="Left"/>
@@ -116,8 +116,11 @@
         </StackPanel>
         <controls:WatermarkTextBox Watermark="{StaticResource country}" Text="{Binding CompanySettings.MainAddress.Country}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,5,1,1"/>
 
+        <controls:WatermarkTextBox Watermark="{StaticResource TaxID}" Text="{Binding CompanySettings.TaxID}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,15,1,1"/>
+        <controls:WatermarkTextBox Watermark="{StaticResource SalesTaxID}" Text="{Binding CompanySettings.SalesTaxID}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,5,1,1"/>
+        
         <CheckBox Content="{StaticResource vatFreeRule}" Margin="0,10,0,0"/>
         
-        <controls:Office2013Button Content="Weiter" Margin="0,6,0,0" HorizontalAlignment="Left" Click="Office2013Button_Click"/>
+        <controls:Office2013Button Content="{StaticResource next}" Margin="0,6,0,0" HorizontalAlignment="Left" Click="Office2013Button_Click"/>
     </StackPanel>
 </UserControl>

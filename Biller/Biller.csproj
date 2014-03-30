@@ -193,6 +193,7 @@
     <Compile Include="UI\Interface\IRibbonTabItem.cs" />
     <Compile Include="UI\Interface\ITabContentViewModel.cs" />
     <Compile Include="UI\Interface\IViewModel.cs" />
+    <Compile Include="UI\Localization\LocalizationManager.cs" />
     <Compile Include="UI\Notifications\Notificationmanager.cs" />
     <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>

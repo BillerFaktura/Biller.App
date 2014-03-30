@@ -22,7 +22,7 @@ namespace Biller.UI.CustomerView
             tabItem = new CustomerTabTabItem(this) { DataContext = this };
 
             //Contextual Tab Group
-            ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = "Kunde bearbeiten", Background = Brushes.Tomato, BorderBrush = Brushes.Tomato, Visibility = System.Windows.Visibility.Visible };
+            ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = Localization.LocalizationManager.LocalizedStringFetcher("editcustomer", tabContent), Background = Brushes.Tomato, BorderBrush = Brushes.Tomato, Visibility = System.Windows.Visibility.Visible };
             parentViewModel.RibbonFactory.AddContextualGroup(ContextualTabGroup);
 
             registeredObservers = new ObservableCollection<Interface.IEditObserver>();

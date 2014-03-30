@@ -31,19 +31,19 @@
     <Fluent:RibbonGroupBox Header="{StaticResource customerlist}">
         <Fluent:Button Name="buttonExportListAsPDF" Header="{StaticResource saveaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="{StaticResource saveaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste als PDF speichern." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
+                <Fluent:ScreenTip Title="{StaticResource saveaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource customerListPdfTooltip}" DisableReason="{StaticResource functionNotAvailableTooltip}"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
         <Fluent:Button Name="buttonPrintList" Header="{StaticResource print}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="{StaticResource print}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie eine Kundenliste drucken." DisableReason="Diese Funktion ist noch nicht verfügbar."/>
+                <Fluent:ScreenTip Title="{StaticResource print}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource customerListPrintTooltip}" DisableReason="{StaticResource functionNotAvailableTooltip}"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="">
         <Fluent:Button Name="buttonCustomerStatistics" Header="{StaticResource customerstatistics}" Icon="..\..\Images\appbar.page.powerpoint.png" LargeIcon="..\..\Images\appbar.page.powerpoint.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="{StaticResource customerstatistics}" HelpLabelVisibility="Collapsed" Width="450" Text="Mit dieser Funktion können Sie Kundenstatistiken visualisieren und als PDF speichern" DisableReason="Diese Funktion ist noch nicht verfügbar."/>
+                <Fluent:ScreenTip Title="{StaticResource customerstatistics}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource customerStatisticTooltip}" DisableReason="{StaticResource functionNotAvailableTooltip}"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>

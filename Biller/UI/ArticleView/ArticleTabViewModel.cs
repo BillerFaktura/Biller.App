@@ -16,7 +16,7 @@ namespace Biller.UI.ArticleView
             this.ParentViewModel = parentViewModel;
             ArticleRibbonTabItem = new ArticleRibbonTabItem(this) { DataContext = this };
             ArticleTabContent = new ArticleTabContent(this) { DataContext = this };
-            ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = "Artikel bearbeiten", Background = Brushes.Orange, BorderBrush = Brushes.Orange, Visibility = System.Windows.Visibility.Visible };
+            ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = Localization.LocalizationManager.LocalizedStringFetcher("editarticle", ArticleTabContent), Background = Brushes.Orange, BorderBrush = Brushes.Orange, Visibility = System.Windows.Visibility.Visible };
             parentViewModel.RibbonFactory.AddContextualGroup(ContextualTabGroup);
             registeredObservers = new ObservableCollection<Interface.IEditObserver>();
         }

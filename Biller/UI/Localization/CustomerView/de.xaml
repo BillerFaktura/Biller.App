@@ -57,4 +57,9 @@
     <sys:String x:Key="description">Bezeichnung</sys:String>
     <sys:String x:Key="addaddress">Adresse hinzufügen</sys:String>
     <sys:String x:Key="noadditionaladdresses">Keine Extraadressen</sys:String>
+
+    <sys:String x:Key="customerListPdfTooltip">Mit dieser Funktion können Sie eine Kundenliste als PDF speichern.</sys:String>
+    <sys:String x:Key="customerListPrintTooltip">Mit dieser Funktion können Sie eine Kundenliste drucken.</sys:String>
+    <sys:String x:Key="customerStatisticTooltip">Mit dieser Funktion können Sie Kundenstatistiken visualisieren und als PDF speichern.</sys:String>
+    <sys:String x:Key="functionNotAvailableTooltip">Diese Funktion ist noch nicht verfügbar.</sys:String>
 </ResourceDictionary>
