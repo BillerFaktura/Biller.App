@@ -45,7 +45,10 @@ namespace Biller.UI.CustomerView.Contextual
         private ContextualTabItem TabItem { get; set; }
         private ContextualTabContent tabContent { get; set; }
 
-        public ObservableCollection<TabItem> ContextualTabList { get { return GetValue(() => ContextualTabList); } set { SetValue(value); } }
+        /// <summary>
+        /// Collection of the shown EditTabs.
+        /// </summary>
+        public ObservableCollection<TabItem> ContextualTabList { get { return GetValue(() => ContextualTabList); } private set { SetValue(value); } }
 
         public Fluent.RibbonTabItem RibbonTabItem
         {

@@ -22,7 +22,7 @@ namespace Biller.UI.ArticleView.Contextual
                 Article.ArticleID = ID.ToString();
             EditMode = false;
             TabItem = new ArticleEditTabItem(this);
-            Content = new ArticleEditTabContent(this);           
+            Content = new ArticleEditTabContent(this);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Biller.UI.ArticleView.Contextual
             get { return Content; }
         }
 
-        public ObservableCollection<UIElement> EditContentTabs { get; set; }
+        public ObservableCollection<UIElement> EditContentTabs { get; private set; }
 
         public string TabItemName
         {

@@ -17,11 +17,5 @@ namespace Biller.UI.Interface
         void Activate();
 
         List<IViewModel> ViewModels();
-
-        void ReceiveArticleEditViewModel(Biller.UI.ArticleView.Contextual.ArticleEditViewModel articleEditViewModel);
-
-        void ReceiveCustomerEditViewModel(Biller.UI.CustomerView.Contextual.CustomerEditViewModel customerEditViewModel);
-
-        void ReceiveDocumentEditViewModel(Biller.UI.DocumentView.Contextual.DocumentEditViewModel documentEditViewModel);
     }
 }

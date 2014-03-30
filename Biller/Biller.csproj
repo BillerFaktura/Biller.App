@@ -188,6 +188,7 @@
     <Compile Include="UI\CustomerView\CustomerTabViewModel.cs" />
     <Compile Include="UI\Interface\IArticleEditContentItem.cs" />
     <Compile Include="UI\Interface\IBackstageContentViewModel.cs" />
+    <Compile Include="UI\Interface\IEditObserver.cs" />
     <Compile Include="UI\Interface\IPlugIn.cs" />
     <Compile Include="UI\Interface\IRibbonTabItem.cs" />
     <Compile Include="UI\Interface\ITabContentViewModel.cs" />
