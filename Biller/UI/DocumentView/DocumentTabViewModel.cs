@@ -122,8 +122,14 @@ namespace Biller.UI.DocumentView
                 foreach (var observer in registeredObservers)
                     observer.ReceiveDocumentEditViewModel(documentEditViewModel);
             }
-            
-            //TODO: Messagebox for missing module
+            else
+            {
+                var ErrorNotification = new Controls.Notification.Notification();
+                ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
+                ErrorNotification.Title = "Fehler beim Laden";
+                ErrorNotification.Message = "Für " + DocumentType + " existiert kein registrierter Dienst.";
+                ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+            }
         }
 
         /// <summary>
@@ -195,11 +201,13 @@ namespace Biller.UI.DocumentView
                     }
                     else
                     {
-                        ParentViewModel.Notificationmanager.ShowNotification("Fehler beim Laden", "Es existiert kein Modul, um das Dokument zu laden");
+                        var ErrorNotification = new Controls.Notification.Notification();
+                        ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
+                        ErrorNotification.Title = "Fehler beim Laden";
+                        ErrorNotification.Message = "Für " + SelectedDocument.DocumentType + " existiert kein registrierter Dienst.";
+                        ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
                     }
                 }
-                
-                //TODO: Messagebox for missing module
             }
         }
 
@@ -247,11 +255,13 @@ namespace Biller.UI.DocumentView
                     }
                     else
                     {
-                        ParentViewModel.Notificationmanager.ShowNotification("Fehler beim Laden", "Es existiert kein Modul, um das Dokument zu laden");
+                        var ErrorNotification = new Controls.Notification.Notification();
+                        ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
+                        ErrorNotification.Title = "Fehler beim Laden";
+                        ErrorNotification.Message = "Für " + SelectedDocument.DocumentType + " existiert kein registrierter Dienst.";
+                        ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
                     }
                 }
-
-                //TODO: Messagebox for missing module
             }
         }
 

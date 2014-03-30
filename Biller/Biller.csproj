@@ -521,6 +521,7 @@
     <Resource Include="Images\appbar.phone.png" />
     <Resource Include="Images\appbar.add.png" />
     <Resource Include="Images\appbar.fingerprint.png" />
+    <Resource Include="Images\appbar.app.remove.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
