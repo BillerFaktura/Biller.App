@@ -9,9 +9,9 @@ using System.Windows.Controls;
 
 namespace Biller.UI.CustomerView.Contextual
 {
-    public class CustomerContextualViewModel : Data.Utils.PropertyChangedHelper, UI.Interface.ITabContentViewModel
+    public class CustomerEditViewModel : Data.Utils.PropertyChangedHelper, UI.Interface.ITabContentViewModel
     {
-        public CustomerContextualViewModel(CustomerTabViewModel parentViewModel, int ID = -1)
+        public CustomerEditViewModel(CustomerTabViewModel parentViewModel, int ID = -1)
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             Customer = new Data.Customers.Customer();
@@ -27,7 +27,7 @@ namespace Biller.UI.CustomerView.Contextual
             EditMode = false;
         }
 
-        public CustomerContextualViewModel(CustomerTabViewModel parentViewModel, Customer customer)
+        public CustomerEditViewModel(CustomerTabViewModel parentViewModel, Customer customer)
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             Customer = customer;

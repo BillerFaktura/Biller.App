@@ -89,7 +89,7 @@ namespace Biller.UI.CustomerView
             logger.Debug("New Customer Control");
 
             var tempid = await ParentViewModel.Database.GetNextCustomerID();
-            var CustomerEditControl = new CustomerView.Contextual.CustomerContextualViewModel(this, tempid);
+            var CustomerEditControl = new CustomerView.Contextual.CustomerEditViewModel(this, tempid);
             ParentViewModel.AddTabContentViewModel(CustomerEditControl);
             CustomerEditControl.RibbonTabItem.IsSelected = true;
         }
@@ -101,7 +101,7 @@ namespace Biller.UI.CustomerView
                 if (ViewModelRequestingCustomer == null)
                 {
                     var temp = await ParentViewModel.Database.GetCustomer(SelectedCustomer.CustomerID);
-                    var customerEdit = new Contextual.CustomerContextualViewModel(this, temp);
+                    var customerEdit = new Contextual.CustomerEditViewModel(this, temp);
                     ParentViewModel.AddTabContentViewModel(customerEdit);
                     customerEdit.RibbonTabItem.IsSelected = true;
                 }
@@ -116,7 +116,7 @@ namespace Biller.UI.CustomerView
             }
         }
 
-        public void ReceiveCloseArticleControl(Contextual.CustomerContextualViewModel customerEditViewModel)
+        public void ReceiveCloseArticleControl(Contextual.CustomerEditViewModel customerEditViewModel)
         {
             //We need to change the visibility due to a bug in the RibbonControl which shows the contextual TabHeader after removing a visible item
             customerEditViewModel.RibbonTabItem.Visibility = System.Windows.Visibility.Collapsed;

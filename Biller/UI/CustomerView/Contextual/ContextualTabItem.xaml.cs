@@ -20,7 +20,7 @@ namespace Biller.UI.CustomerView.Contextual
     /// </summary>
     public partial class ContextualTabItem : Fluent.RibbonTabItem, Biller.UI.Interface.IRibbonTabItem
     {
-        public ContextualTabItem(CustomerContextualViewModel parentViewModel)
+        public ContextualTabItem(CustomerEditViewModel parentViewModel)
         {
             InitializeComponent();
             ParentViewModel = parentViewModel;
@@ -31,18 +31,18 @@ namespace Biller.UI.CustomerView.Contextual
 
         private async void buttonAbort_Click(object sender, RoutedEventArgs e)
         {
-            await (ParentViewModel as CustomerContextualViewModel).ReceiveCloseCommand();
+            await (ParentViewModel as CustomerEditViewModel).ReceiveCloseCommand();
         }
 
         private async void buttonSaveAndExit_Click(object sender, RoutedEventArgs e)
         {
-            await (ParentViewModel as CustomerContextualViewModel).ReceiveSaveCommand();
-            await (ParentViewModel as CustomerContextualViewModel).ReceiveCloseCommand();
+            await (ParentViewModel as CustomerEditViewModel).ReceiveSaveCommand();
+            await (ParentViewModel as CustomerEditViewModel).ReceiveCloseCommand();
         }
 
         private async void buttonQuickSave_Click(object sender, RoutedEventArgs e)
         {
-            await (ParentViewModel as CustomerContextualViewModel).ReceiveSaveCommand();
+            await (ParentViewModel as CustomerEditViewModel).ReceiveSaveCommand();
         }
     }
 }

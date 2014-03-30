@@ -166,7 +166,7 @@
       <DependentUpon>ContentTabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Backstage\NewCompany\NewCompanyViewModel.cs" />
-    <Compile Include="UI\CustomerView\Contextual\CustomerContextualViewModel.cs" />
+    <Compile Include="UI\CustomerView\Contextual\CustomerEditViewModel.cs" />
     <Compile Include="UI\CustomerView\Contextual\ContextualTabContent.xaml.cs">
       <DependentUpon>ContextualTabContent.xaml</DependentUpon>
     </Compile>

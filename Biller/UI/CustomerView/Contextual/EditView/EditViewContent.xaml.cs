@@ -34,10 +34,10 @@ namespace Biller.UI.CustomerView.Contextual.EditView
                 if ((sender as TextBox).IsFocused == true)
                 {
                     bool result = true;
-                    try { result = await (DataContext as CustomerContextualViewModel).ParentViewModel.ParentViewModel.Database.CustomerExists((sender as TextBox).Text); }
+                    try { result = await (DataContext as CustomerEditViewModel).ParentViewModel.ParentViewModel.Database.CustomerExists((sender as TextBox).Text); }
                     catch { }
                     
-                    if (result && (DataContext as CustomerContextualViewModel).EditMode == true)
+                    if (result && (DataContext as CustomerEditViewModel).EditMode == true)
                     {
                         (sender as TextBox).BorderBrush = Brushes.Red;
                         (sender as TextBox).BorderThickness = new System.Windows.Thickness(2);
@@ -50,7 +50,7 @@ namespace Biller.UI.CustomerView.Contextual.EditView
                         (sender as TextBox).BorderThickness = new System.Windows.Thickness(1);
                     }
 
-                    result = await (DataContext as CustomerContextualViewModel).ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedCustomerID(previousID, (sender as TextBox).Text);
+                    result = await (DataContext as CustomerEditViewModel).ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedCustomerID(previousID, (sender as TextBox).Text);
                     previousID = (sender as TextBox).Text;
                 }
                 
@@ -60,12 +60,12 @@ namespace Biller.UI.CustomerView.Contextual.EditView
 
         private void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as CustomerContextualViewModel).Customer.ExtraAddresses.Add(new Data.Utils.EAddress());
+            (DataContext as CustomerEditViewModel).Customer.ExtraAddresses.Add(new Data.Utils.EAddress());
         }
 
         private void Office2013Button_Click_1(object sender, RoutedEventArgs e)
         {
-            (DataContext as CustomerContextualViewModel).Customer.ExtraAddresses.Remove((sender as Biller.Controls.Office2013Button).DataContext as Data.Utils.EAddress);
+            (DataContext as CustomerEditViewModel).Customer.ExtraAddresses.Remove((sender as Biller.Controls.Office2013Button).DataContext as Data.Utils.EAddress);
         }
     }
 }
