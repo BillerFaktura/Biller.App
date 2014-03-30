@@ -24,6 +24,8 @@ namespace Biller.UI.CustomerView
             //Contextual Tab Group
             ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = "Kunde bearbeiten", Background = Brushes.Tomato, BorderBrush = Brushes.Tomato, Visibility = System.Windows.Visibility.Visible };
             parentViewModel.RibbonFactory.AddContextualGroup(ContextualTabGroup);
+
+            registeredObservers = new ObservableCollection<Interface.IEditObserver>();
         }
 
         private CustomerTabContent tabContent { get; set; }
@@ -86,12 +88,15 @@ namespace Biller.UI.CustomerView
 
         public async Task ReceiveNewCustomerCommand()
         {
-            logger.Debug("New Customer Control");
+            logger.Debug("New Customer command called");
 
             var tempid = await ParentViewModel.Database.GetNextCustomerID();
-            var CustomerEditControl = new CustomerView.Contextual.CustomerEditViewModel(this, tempid);
-            ParentViewModel.AddTabContentViewModel(CustomerEditControl);
-            CustomerEditControl.RibbonTabItem.IsSelected = true;
+            var CustomerEditViewModel = new CustomerView.Contextual.CustomerEditViewModel(this, tempid);
+            ParentViewModel.AddTabContentViewModel(CustomerEditViewModel);
+            CustomerEditViewModel.RibbonTabItem.IsSelected = true;
+
+            foreach (var observer in registeredObservers)
+                observer.ReceiveCustomerEditViewModel(CustomerEditViewModel);
         }
 
         public async Task ReceiveEditCustomerCommand(object source)
@@ -101,9 +106,12 @@ namespace Biller.UI.CustomerView
                 if (ViewModelRequestingCustomer == null)
                 {
                     var temp = await ParentViewModel.Database.GetCustomer(SelectedCustomer.CustomerID);
-                    var customerEdit = new Contextual.CustomerEditViewModel(this, temp);
-                    ParentViewModel.AddTabContentViewModel(customerEdit);
-                    customerEdit.RibbonTabItem.IsSelected = true;
+                    var customerEditViewModel = new Contextual.CustomerEditViewModel(this, temp);
+                    ParentViewModel.AddTabContentViewModel(customerEditViewModel);
+                    customerEditViewModel.RibbonTabItem.IsSelected = true;
+
+                    foreach (var observer in registeredObservers)
+                        observer.ReceiveCustomerEditViewModel(customerEditViewModel);
                 }
                 else
                 {
@@ -151,6 +159,13 @@ namespace Biller.UI.CustomerView
         {
             ViewModelRequestingCustomer = source;
             ParentViewModel.SelectedContent = TabContent;
+        }
+
+        ObservableCollection<Interface.IEditObserver> registeredObservers;
+
+        public void RegisterObserver(Interface.IEditObserver observer)
+        {
+            registeredObservers.Add(observer);
         }
     }
 }

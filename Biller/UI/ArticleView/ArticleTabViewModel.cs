@@ -18,6 +18,7 @@ namespace Biller.UI.ArticleView
             ArticleTabContent = new ArticleTabContent(this) { DataContext = this };
             ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = "Artikel bearbeiten", Background = Brushes.Orange, BorderBrush = Brushes.Orange, Visibility = System.Windows.Visibility.Visible };
             parentViewModel.RibbonFactory.AddContextualGroup(ContextualTabGroup);
+            registeredObservers = new ObservableCollection<Interface.IEditObserver>();
         }
 
         /// <summary>
@@ -59,20 +60,25 @@ namespace Biller.UI.ArticleView
 
         /// <summary>
         /// Awaitable function that shows all controls to create a new <see cref="Article"/>.\n
-        /// Generates a new <see cref="ArticleEditViewModel"/>, tries to get the next <see cref="ArticleID"/> and calls <see cref="AddTabContentViewModel"/> to add the viewmodel to the window.
+        /// Generates a new <see cref="ArticleEditViewModel"/>, tries to get the next <see cref="ArticleID"/> and calls <see cref="AddTabContentViewModel"/> to add the viewmodel to the window.\n
+        /// Calls <see cref="Interface.IEditObserver.ReceiveArticleEditViewModel"/> for each registered <see cref="IEditObserver"/> in this instance.
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
         public async Task ReceiveNewArticleCommand(object sender)
         {
             var tempid = await ParentViewModel.Database.GetNextArticleID();
-            var orderEditControl = new ArticleView.Contextual.ArticleEditViewModel(this, tempid);
-            ParentViewModel.AddTabContentViewModel(orderEditControl);
-            orderEditControl.RibbonTabItem.IsSelected = true;
+            var articleEditViewModel = new ArticleView.Contextual.ArticleEditViewModel(this, tempid);
+            ParentViewModel.AddTabContentViewModel(articleEditViewModel);
+            articleEditViewModel.RibbonTabItem.IsSelected = true;
+
+            foreach (var observer in registeredObservers)
+                observer.ReceiveArticleEditViewModel(articleEditViewModel);
         }
 
         /// <summary>
-        /// Awaitable function that either shows all controls to modify an existing <see cref="Article"/> or loads the selected <see cref="Article"/> and uses <see cref="ReceiveData"/> of the viewmodel referenced <see cref="ReceiveRequestArticleCommand"/>.
+        /// Awaitable function that either shows all controls to modify an existing <see cref="Article"/> or loads the selected <see cref="Article"/> and uses <see cref="ReceiveData"/> of the viewmodel referenced <see cref="ReceiveRequestArticleCommand"/>.\n
+        /// Calls <see cref="Interface.IEditObserver.ReceiveArticleEditViewModel"/> for each registered <see cref="IEditObserver"/> in this instance when <see cref="ViewModelRequestingArticle"/> is null.
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
@@ -83,9 +89,12 @@ namespace Biller.UI.ArticleView
                 if (ViewModelRequestingArticle == null)
                 {
                     var temp = await ParentViewModel.Database.GetArticle(SelectedArticle.ArticleID);
-                    var orderEditControl = new ArticleView.Contextual.ArticleEditViewModel(this, temp);
-                    ParentViewModel.AddTabContentViewModel(orderEditControl);
-                    orderEditControl.RibbonTabItem.IsSelected = true;
+                    var articleEditViewModel = new ArticleView.Contextual.ArticleEditViewModel(this, temp);
+                    ParentViewModel.AddTabContentViewModel(articleEditViewModel);
+                    articleEditViewModel.RibbonTabItem.IsSelected = true;
+
+                    foreach (var observer in registeredObservers)
+                        observer.ReceiveArticleEditViewModel(articleEditViewModel);
                 }
                 else
                 {
@@ -192,6 +201,13 @@ namespace Biller.UI.ArticleView
         public void ReceiveData(object data)
         {
             
+        }
+
+        ObservableCollection<Interface.IEditObserver> registeredObservers;
+
+        public void RegisterObserver(Interface.IEditObserver observer)
+        {
+            registeredObservers.Add(observer);
         }
     }
 }

@@ -9,7 +9,6 @@ namespace Biller.UI.DocumentView
 {
     public class DocumentTabViewModel : Biller.Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
-        private bool firstStart = true;
         private Collection<Data.Interfaces.DocumentFactory> documentFactories;
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -30,6 +29,8 @@ namespace Biller.UI.DocumentView
 
             documentFactories = new Collection<Data.Interfaces.DocumentFactory>();
             documentFactories.Add(new Data.Factories.InvoiceFactory());
+
+            registeredObservers = new ObservableCollection<Interface.IEditObserver>();
         }
 
         /// <summary>
@@ -109,15 +110,17 @@ namespace Biller.UI.DocumentView
             {
                 var factory = list.First();
                 var document = factory.GetNewDocument();
-                var orderEditControl = new UI.DocumentView.Contextual.DocumentEditViewModel(this, document, true);
+                var documentEditViewModel = new UI.DocumentView.Contextual.DocumentEditViewModel(this, document, true);
                 foreach (var tab in factory.GetEditContentTabs())
-                {
-                    orderEditControl.EditContentTabs.Add(tab);
-                }
-                orderEditControl.ExportClass = factory.GetNewExportClass();
-                await orderEditControl.LoadData();
-                ParentViewModel.AddTabContentViewModel(orderEditControl);
-                orderEditControl.RibbonTabItem.IsSelected = true;
+                    documentEditViewModel.EditContentTabs.Add(tab);
+
+                documentEditViewModel.ExportClass = factory.GetNewExportClass();
+                await documentEditViewModel.LoadData();
+                ParentViewModel.AddTabContentViewModel(documentEditViewModel);
+                documentEditViewModel.RibbonTabItem.IsSelected = true;
+
+                foreach (var observer in registeredObservers)
+                    observer.ReceiveDocumentEditViewModel(documentEditViewModel);
             }
             
             //TODO: Messagebox for missing module
@@ -136,7 +139,6 @@ namespace Biller.UI.DocumentView
                 Fluent.Button button = factory.GetCreationButton();
                 button.DataContext = orderEditControl;
                 orderEditControl.DocumentEditRibbonTabItem.AddDocumentButton(button);
-
             }
             await orderEditControl.LoadData();
 
@@ -173,15 +175,18 @@ namespace Biller.UI.DocumentView
                             loadingDocument.DocumentID = SelectedDocument.DocumentID;
                             loadingDocument = await ParentViewModel.Database.GetDocument(loadingDocument);
 
-                            var orderEditControl = new UI.DocumentView.Contextual.DocumentEditViewModel(this, loadingDocument, false);
+                            var documentEditViewModel = new UI.DocumentView.Contextual.DocumentEditViewModel(this, loadingDocument, false);
                             foreach (var tab in factory.GetEditContentTabs())
                             {
-                                orderEditControl.EditContentTabs.Add(tab);
+                                documentEditViewModel.EditContentTabs.Add(tab);
                             }
-                            orderEditControl.ExportClass = factory.GetNewExportClass();
-                            await orderEditControl.LoadData();
-                            ParentViewModel.AddTabContentViewModel(orderEditControl);
-                            orderEditControl.RibbonTabItem.IsSelected = true;
+                            documentEditViewModel.ExportClass = factory.GetNewExportClass();
+                            await documentEditViewModel.LoadData();
+                            ParentViewModel.AddTabContentViewModel(documentEditViewModel);
+                            documentEditViewModel.RibbonTabItem.IsSelected = true;
+
+                            foreach (var observer in registeredObservers)
+                                observer.ReceiveDocumentEditViewModel(documentEditViewModel);
                         }
                         catch (Exception e)
                         {
@@ -222,15 +227,18 @@ namespace Biller.UI.DocumentView
                             loadingDocument.DocumentID = document.DocumentID;
                             loadingDocument = await ParentViewModel.Database.GetDocument(loadingDocument);
 
-                            var orderEditControl = new UI.DocumentView.Contextual.DocumentEditViewModel(this, loadingDocument, false);
+                            var documentEditViewModel = new UI.DocumentView.Contextual.DocumentEditViewModel(this, loadingDocument, false);
                             foreach (var tab in factory.GetEditContentTabs())
                             {
-                                orderEditControl.EditContentTabs.Add(tab);
+                                documentEditViewModel.EditContentTabs.Add(tab);
                             }
-                            orderEditControl.ExportClass = factory.GetNewExportClass();
-                            await orderEditControl.LoadData();
-                            ParentViewModel.AddTabContentViewModel(orderEditControl);
-                            orderEditControl.RibbonTabItem.IsSelected = true;
+                            documentEditViewModel.ExportClass = factory.GetNewExportClass();
+                            await documentEditViewModel.LoadData();
+                            ParentViewModel.AddTabContentViewModel(documentEditViewModel);
+                            documentEditViewModel.RibbonTabItem.IsSelected = true;
+
+                            foreach (var observer in registeredObservers)
+                                observer.ReceiveDocumentEditViewModel(documentEditViewModel);
                         }
                         catch (Exception e)
                         {
@@ -340,6 +348,13 @@ namespace Biller.UI.DocumentView
         {
             ViewModelRequestingDocument = source;
             ParentViewModel.SelectedContent = TabContent;
+        }
+
+        ObservableCollection<Interface.IEditObserver> registeredObservers;
+
+        public void RegisterObserver(Interface.IEditObserver observer)
+        {
+            registeredObservers.Add(observer);
         }
     }
 }
