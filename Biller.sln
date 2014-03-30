@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biller", "Biller\Biller.csproj", "{6C93775C-0207-4C88-8497-E8982E72132E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biller.Data", "Biller.Data\Biller.Data.csproj", "{1A5B3D3A-01A8-4946-8F7B-1DE9093B3022}"
@@ -19,6 +21,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderTypes@Biller", "OrderTypes@Biller\OrderTypes@Biller.csproj", "{3722DAF8-C28A-42E4-9A21-FE60C3D8CABB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagement@Biller", "..\StockManagement@Biller\StockManagement@Biller\StockManagement@Biller.csproj", "{AF316633-CB77-49FF-90D8-A19A8E1AFE91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F8E6884-4C14-4CC8-9588-30FFEBA5F2C8}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -44,12 +44,6 @@ namespace Biller.UI.ViewModel
             SettingsTabViewModel = new SettingsView.SettingsTabViewModel(this);
             BackstageViewModel = new Backstage.BackstageViewModel(this);
 
-            logger.Debug("Adding Viewmodels to the collection");
-            AddTabContentViewModel(OrderTabViewModel);
-            AddTabContentViewModel(ArticleTabViewModel);
-            AddTabContentViewModel(CustomerTabViewModel);
-            AddTabContentViewModel(SettingsTabViewModel);
-
             logger.Debug("Finished constructor of MainWindowViewModel");
         }
 
@@ -156,6 +150,13 @@ namespace Biller.UI.ViewModel
                 await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
                 logger.Info("Connecting to database was successfull");
 
+                logger.Debug("Adding Viewmodels to the collection");
+                AddTabContentViewModel(OrderTabViewModel);
+                AddTabContentViewModel(ArticleTabViewModel);
+                AddTabContentViewModel(CustomerTabViewModel);
+                AddTabContentViewModel(SettingsTabViewModel);
+                SelectedContent = OrderTabViewModel.TabContent;
+
                 foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*.bdll"))
                 {
                     var plugin = LoadAssembly(currentfile);
@@ -182,6 +183,7 @@ namespace Biller.UI.ViewModel
                 if (database.IsFirstLoad)
                 {
                     logger.Info("First Load of the Database");
+                    RibbonFactory.OpenBackstage();
                 }
             }
         }

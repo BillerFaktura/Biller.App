@@ -8,17 +8,6 @@ namespace Biller.UI.Ribbon
     {
         public Fluent.Ribbon Ribbon { get; private set; }
 
-        public Biller.UI.ViewModel.MainWindowViewModel MainWindowViewModel
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
         public RibbonFactory(Fluent.Ribbon ribbon)
         {
             Ribbon = ribbon;
@@ -97,6 +86,25 @@ namespace Biller.UI.Ribbon
                     (tabcontrol as Fluent.BackstageTabControl).Items.Add(BackstageTabItem);
                 }
             }
+        }
+
+        /// <summary>
+        /// Opens the backstage part.
+        /// </summary>
+        public void OpenBackstage()
+        {
+            var backstage = Ribbon.Menu as Fluent.Backstage;
+            backstage.IsOpen = true;
+
+        }
+
+        /// <summary>
+        /// Closes the backstage part.
+        /// </summary>
+        public void CloseBackstage()
+        {
+            var backstage = Ribbon.Menu as Fluent.Backstage;
+            backstage.IsOpen = false;
         }
     }
 }

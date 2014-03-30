@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biller.UI.Backstage.NewCompany
 {
-    public class NewCompanyViewModel : Interface.IBackstageContentViewModel
+    public class NewCompanyViewModel : Data.Utils.PropertyChangedHelper, Interface.IBackstageContentViewModel
     {
         public NewCompanyViewModel(BackstageViewModel parent)
         {
@@ -24,16 +24,23 @@ namespace Biller.UI.Backstage.NewCompany
 
         public Task LoadData()
         {
-            throw new NotImplementedException();
+            // Do nothing
+            return null;
         }
 
         public void ReceiveData(object data)
         {
-            throw new NotImplementedException();
+            // Do nothing
         }
 
-        public Biller.Data.Models.CompanyInformation CompanyInformation { get; private set; }
+        public void ResetCompanyInformation()
+        {
+            CompanyInformation = new Data.Models.CompanyInformation();
+            CompanySettings = new Data.Models.CompanySettings();
+        }
 
-        public Biller.Data.Models.CompanySettings CompanySettings { get; private set; }
+        public Biller.Data.Models.CompanyInformation CompanyInformation { get { return GetValue(() => CompanyInformation); } private set { SetValue(value); } }
+
+        public Biller.Data.Models.CompanySettings CompanySettings { get { return GetValue(() => CompanySettings); } private set { SetValue(value); } }
     }
 }

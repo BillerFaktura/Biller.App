@@ -9,11 +9,11 @@ namespace Biller.UI.Backstage
 {
     public class BackstageViewModel : Data.Utils.PropertyChangedHelper, Interface.IViewModel
     {
-        public UI.ViewModel.MainWindowViewModel parentViewModel { get; private set; }
+        public UI.ViewModel.MainWindowViewModel ParentViewModel { get; private set; }
 
         public BackstageViewModel(UI.ViewModel.MainWindowViewModel parent)
         {
-            parentViewModel = parent;
+            ParentViewModel = parent;
             BackstageItems = new ObservableCollection<Interface.IBackstageContentViewModel>();
             ReceiveData(new NewCompany.NewCompanyViewModel(this));
         }
@@ -28,7 +28,7 @@ namespace Biller.UI.Backstage
             if (data is Interface.IBackstageContentViewModel)
             {
                 BackstageItems.Add(data as Interface.IBackstageContentViewModel);
-                parentViewModel.RibbonFactory.AddBackStageTabItem((data as Interface.IBackstageContentViewModel).BackstageTabItem);
+                ParentViewModel.RibbonFactory.AddBackStageTabItem((data as Interface.IBackstageContentViewModel).BackstageTabItem);
             }
         }
 

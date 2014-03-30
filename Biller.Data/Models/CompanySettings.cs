@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Biller.Data.Models
 {
@@ -14,6 +15,7 @@ namespace Biller.Data.Models
             Contact = new Utils.Contact();
             TaxID = "";
             SalesTaxID = "";
+            ID = Guid.NewGuid().ToString();
         }
 
         public Utils.Address MainAddress
@@ -46,29 +48,36 @@ namespace Biller.Data.Models
             set { SetValue(value); }
         }
 
-        public System.Xml.Linq.XElement GetXElement()
+        public XElement GetXElement()
         {
-            throw new NotImplementedException();
+            var output = new XElement(XElementName, new XElement("TaxID", TaxID), new XElement("SalesTaxID", SalesTaxID), MainAddress.GetXElement(), Contact.GetXElement());
+            return output;
         }
 
-        public void ParseFromXElement(System.Xml.Linq.XElement source)
+        public void ParseFromXElement(XElement source)
         {
-            throw new NotImplementedException();
+            if (source.Name != XElementName)
+                throw new Exception("Expected " + XElementName + " but got " + source.Name);
+            TaxID = source.Element("TaxID").Value;
+            SalesTaxID = source.Element("SalesTaxID").Value;
+            MainAddress.ParseFromXElement(source.Element(MainAddress.XElementName));
+            MainAddress.ParseFromXElement(source.Element(MainAddress.XElementName));
         }
 
         public string XElementName
         {
-            get { throw new NotImplementedException(); }
+            get { return "CompanySettings"; }
         }
 
         public string ID
         {
-            get { throw new NotImplementedException(); }
+            get { return GetValue(() => ID); }
+            private set { SetValue(value); }
         }
 
         public string IDFieldName
         {
-            get { throw new NotImplementedException(); }
+            get { return "ID"; }
         }
 
         public Interfaces.IXMLStorageable GetNewInstance()
