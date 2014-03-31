@@ -10,6 +10,8 @@ namespace Biller.Data.Import.BillerV1
     {
         public Import()
         {
+            var bdb = new FuncClasses.FastXML(DataDirectory);
+            bdb.Connect();
         }
 
         private FuncClasses.User user = new FuncClasses.User();
@@ -23,10 +25,8 @@ namespace Biller.Data.Import.BillerV1
             return await Task<bool>.Run(() => importCustomers());
         }
 
-        private bool importCustomers()
+        private bool importCustomers(FuncClasses.FastXML bdb)
         {
-            var bdb = new FuncClasses.FastXML(DataDirectory);
-            bdb.Connect();
             var list = bdb.GetAllCustomers(user);
             foreach (var cusprev in list)
             {
@@ -104,6 +104,46 @@ namespace Biller.Data.Import.BillerV1
                     eAddress.Salutation = address.Salutation;
                     importedCustomer.ExtraAddresses.Add(eAddress);
                 }
+            }
+            return true;
+        }
+
+        private async Task<bool> ImportArticle()
+        {
+            return await Task<bool>.Run(() => importArticle());
+        }
+
+        private bool importArticle(FuncClasses.FastXML bdb)
+        {
+            var list = bdb.GetAllArticles(user);
+            foreach(var prevart in list)
+            {
+                var article = bdb.GetArticle(prevart.ArticleID, user);
+                var outputArticle = new Articles.Article();
+
+                outputArticle.ArticleID = article.ArticleID;
+                outputArticle.ArticleDescription = article.ArticleDescription;
+                outputArticle.ArticleCategory = article.ArticleCategory;
+                outputArticle.ArticleText = article.ArticleText;
+                //outputArticle.ArticleWeight = article.WeightString;
+                outputArticle.Price1 = new Models.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice1.Amount, article.ArticlePrice1.IsGross) };
+                outputArticle.Price2 = new Models.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice2.Amount, article.ArticlePrice2.IsGross) };
+                outputArticle.Price3 = new Models.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice3.Amount, article.ArticlePrice3.IsGross) };
+                
+                // TaxClass
+                var TaxClass = new Utils.TaxClass();
+                TaxClass.Name = article.TaxClass.Name;
+                TaxClass.TaxRate = new Utils.Percentage() { PercentageString = article.TaxClass.TaxRateString };
+                Database.SaveOrUpdateTaxClass(TaxClass);
+                outputArticle.TaxClass = TaxClass;
+
+                // Unit
+                var ArticleUnit = new Utils.Unit();
+                ArticleUnit.DecimalSeperator = ",";
+                // Gets the count of digits after the seperating "."
+                ArticleUnit.DecimalDigits = article.ArticleUnit.UnitFormat.Split(new Char[] { '.' })[1].Length;
+                ArticleUnit.Name = article.ArticleUnit.Name;
+                outputArticle.ArticleUnit = ArticleUnit;
             }
             return true;
         }
