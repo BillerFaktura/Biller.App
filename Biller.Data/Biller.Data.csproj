@@ -33,12 +33,34 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsvHelper">
       <HintPath>..\packages\CsvHelper.2.3.0\lib\net40-client\CsvHelper.dll</HintPath>
     </Reference>
     <Reference Include="Fluent">
       <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="FuncClasses">
+      <HintPath>..\..\Biller\FuncClasses\bin\Debug\FuncClasses.dll</HintPath>
     </Reference>
     <Reference Include="MigraDoc.DocumentObjectModel-WPF">
       <HintPath>..\Assemblies\MigraDoc\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
@@ -86,6 +108,7 @@
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\PreviewDocument.cs" />
     <Compile Include="GlobalSettings.cs" />
+    <Compile Include="Import\BillerV1\Import.cs" />
     <Compile Include="Import\csv.cs" />
     <Compile Include="Interfaces\DocumentFactory.cs" />
     <Compile Include="Interfaces\IPreviewObjectDataProvider.cs" />
