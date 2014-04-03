@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 namespace Biller.UI.DocumentView.Contextual
 {
     /// <summary>
-    /// Interaktionslogik für OrderEditRibbonTabItem.xaml
+    /// Interaktionslogik für DocumentEditRibbonTabItem.xaml
     /// </summary>
     public partial class DocumentEditRibbonTabItem : Fluent.RibbonTabItem, Biller.UI.Interface.IRibbonTabItem
     {

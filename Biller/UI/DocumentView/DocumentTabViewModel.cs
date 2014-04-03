@@ -14,7 +14,7 @@ namespace Biller.UI.DocumentView
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Creates a new instance of the OrderTabViewModel. This is the controller and datastorage for <see cref="OrderRibbonTabItem"/> and <see cref="OrderTabContent"/>
+        /// Creates a new instance of the OrderTabViewModel. This is the controller and datastorage for <see cref="DocumentRibbonTabItem"/> and <see cref="DocumentTabContent"/>
         /// </summary>
         public DocumentTabViewModel(ViewModel.MainWindowViewModel parentViewModel)
         {
@@ -22,8 +22,8 @@ namespace Biller.UI.DocumentView
             ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = "Auftragsmappen", Background = Brushes.LimeGreen, BorderBrush = Brushes.LimeGreen, Visibility=System.Windows.Visibility.Visible};
             DisplayedDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
             
-            OrderRibbonTabItem = new DocumentRibbonTabItem(this);
-            OrderTabContent = new DocumentTabContent(this);
+            DocumentRibbonTabItem = new DocumentRibbonTabItem(this);
+            DocumentTabContent = new DocumentTabContent(this);
 
             parentViewModel.RibbonFactory.AddContextualGroup(ContextualTabGroup);
 
@@ -34,14 +34,14 @@ namespace Biller.UI.DocumentView
         }
 
         /// <summary>
-        /// Holds a reference to <see cref="OrderRibbonTabItem"/>
+        /// Holds a reference to <see cref="DocumentRibbonTabItem"/>
         /// </summary>
-        public DocumentRibbonTabItem OrderRibbonTabItem { get; private set; }
+        public DocumentRibbonTabItem DocumentRibbonTabItem { get; private set; }
 
         /// <summary>
-        /// Holds a reference to <see cref="OrderTabContent"/>
+        /// Holds a reference to <see cref="DocumentTabContent"/>
         /// </summary>
-        public DocumentTabContent OrderTabContent { get; private set; }
+        public DocumentTabContent DocumentTabContent { get; private set; }
 
         public DateTime IntervalStart { get { return GetValue(() => IntervalStart); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, IntervalEnd); } }
 
@@ -78,7 +78,7 @@ namespace Biller.UI.DocumentView
         {
             get
             {
-                return OrderRibbonTabItem;
+                return DocumentRibbonTabItem;
             }
         }
 
@@ -86,15 +86,15 @@ namespace Biller.UI.DocumentView
         {
             get
             {
-                return OrderTabContent;
+                return DocumentTabContent;
             }
         }
 
         void SetEditButtonEnabled(bool isEnabled)
         {
-            OrderRibbonTabItem.buttonEditOrder.IsEnabled = isEnabled;
-            OrderRibbonTabItem.buttonPrintOrder.IsEnabled = isEnabled;
-            OrderRibbonTabItem.buttonOrderPDF.IsEnabled = isEnabled;
+            DocumentRibbonTabItem.buttonEditOrder.IsEnabled = isEnabled;
+            DocumentRibbonTabItem.buttonPrintOrder.IsEnabled = isEnabled;
+            DocumentRibbonTabItem.buttonOrderPDF.IsEnabled = isEnabled;
         }
 
         /// <summary>
@@ -139,17 +139,17 @@ namespace Biller.UI.DocumentView
         /// <returns></returns>
         public async Task ReceiveNewDocumentCommand(object sender)
         {
-            var orderEditControl = new DocumentView.Contextual.DocumentEditViewModel(this);
+            var documentEditControl = new DocumentView.Contextual.DocumentEditViewModel(this);
             foreach (var factory in documentFactories)
             {
                 Fluent.Button button = factory.GetCreationButton();
-                button.DataContext = orderEditControl;
-                orderEditControl.DocumentEditRibbonTabItem.AddDocumentButton(button);
+                button.DataContext = documentEditControl;
+                documentEditControl.DocumentEditRibbonTabItem.AddDocumentButton(button);
             }
-            await orderEditControl.LoadData();
+            await documentEditControl.LoadData();
 
-            ParentViewModel.AddTabContentViewModel(orderEditControl);
-            orderEditControl.RibbonTabItem.IsSelected = true;
+            ParentViewModel.AddTabContentViewModel(documentEditControl);
+            documentEditControl.RibbonTabItem.IsSelected = true;
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Biller.UI.DocumentView
         /// </summary>
         /// <param name="sender"></param>
         /// <returns></returns>
-        public async Task ReceiveEditOrderCommand(object sender)
+        public async Task ReceiveEditDocumentCommand(object sender)
         {
             if (SelectedDocument != null)
             {
@@ -276,7 +276,7 @@ namespace Biller.UI.DocumentView
             EditOrderControlViewModel.RibbonTabItem.Visibility = System.Windows.Visibility.Collapsed;
 
             ParentViewModel.RibbonFactory.RemoveTabItem(EditOrderControlViewModel.RibbonTabItem);
-            OrderRibbonTabItem.IsSelected = true;
+            DocumentRibbonTabItem.IsSelected = true;
         }
 
         public async Task LoadData()
@@ -365,6 +365,12 @@ namespace Biller.UI.DocumentView
         public void RegisterObserver(Interface.IEditObserver observer)
         {
             registeredObservers.Add(observer);
+        }
+
+        public void LetObserverWatch(Contextual.DocumentEditViewModel documentEditViewModel)
+        {
+            foreach (var observer in registeredObservers)
+                observer.ReceiveDocumentEditViewModel(documentEditViewModel);
         }
     }
 }

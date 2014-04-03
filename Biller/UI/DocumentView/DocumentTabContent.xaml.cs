@@ -65,7 +65,7 @@ namespace Biller.UI.DocumentView
 
         private async void ListView1_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            await ParentViewModel.ReceiveEditOrderCommand(this);
+            await ParentViewModel.ReceiveEditDocumentCommand(this);
         }
     }
 }

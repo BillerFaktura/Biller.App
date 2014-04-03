@@ -107,6 +107,7 @@ namespace Biller.UI.DocumentView.Contextual
             await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID("", Document.DocumentID, Document.DocumentType);
             DisplayedTabContent = DocumentEditTabHolder;
             EditMode = true;
+            ParentViewModel.LetObserverWatch(this);
         }
 
         public async Task ReceiveCloseCommand()

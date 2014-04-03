@@ -28,7 +28,7 @@ namespace Biller.UI.DocumentView
 
         private async void buttonEditOrder_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            await _ParentViewModel.ReceiveEditOrderCommand(this);
+            await _ParentViewModel.ReceiveEditDocumentCommand(this);
         }
 
         private async void buttonOrderPDF_Click(object sender, System.Windows.RoutedEventArgs e)

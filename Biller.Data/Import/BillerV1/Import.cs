@@ -10,11 +10,13 @@ namespace Biller.Data.Import.BillerV1
     {
         public Import()
         {
-            var bdb = new FuncClasses.FastXML(DataDirectory);
+            bdb = new FuncClasses.FastXML(DataDirectory);
             bdb.Connect();
         }
 
         private FuncClasses.User user = new FuncClasses.User();
+
+        FuncClasses.FastXML bdb;
 
         public string DataDirectory { get; set; }
 
@@ -22,12 +24,13 @@ namespace Biller.Data.Import.BillerV1
 
         public async Task<bool> ImportCustomers()
         {
-            return await Task<bool>.Run(() => importCustomers());
+            return await Task<bool>.Run(() => importCustomers(bdb));
         }
 
         private bool importCustomers(FuncClasses.FastXML bdb)
         {
             var list = bdb.GetAllCustomers(user);
+            var savingList = new List<Customers.Customer>();
             foreach (var cusprev in list)
             {
                 var importedCustomer = new Data.Customers.Customer();
@@ -104,18 +107,21 @@ namespace Biller.Data.Import.BillerV1
                     eAddress.Salutation = address.Salutation;
                     importedCustomer.ExtraAddresses.Add(eAddress);
                 }
+                savingList.Add(importedCustomer);
             }
+            Database.SaveOrUpdateCustomer(savingList);
             return true;
         }
 
-        private async Task<bool> ImportArticle()
+        public async Task<bool> ImportArticle()
         {
-            return await Task<bool>.Run(() => importArticle());
+            return await Task<bool>.Run(() => importArticle(bdb));
         }
 
         private bool importArticle(FuncClasses.FastXML bdb)
         {
             var list = bdb.GetAllArticles(user);
+            var savingList = new List<Articles.Article>();
             foreach(var prevart in list)
             {
                 var article = bdb.GetArticle(prevart.ArticleID, user);
@@ -144,6 +150,62 @@ namespace Biller.Data.Import.BillerV1
                 ArticleUnit.DecimalDigits = article.ArticleUnit.UnitFormat.Split(new Char[] { '.' })[1].Length;
                 ArticleUnit.Name = article.ArticleUnit.Name;
                 outputArticle.ArticleUnit = ArticleUnit;
+
+                savingList.Add(outputArticle);
+            }
+            Database.SaveOrUpdateArticle(savingList);
+            return true;
+        }
+
+        public async Task<bool> ImportDocuments()
+        {
+            return await Task<bool>.Run(() => importDocuments(bdb));
+        }
+
+        private bool importDocuments(FuncClasses.FastXML bdb)
+        {
+            var list = bdb.GetAllOrders(user);
+            foreach (var prevOrder in list)
+            {
+                // We just want to import invoices
+                if (prevOrder.OrderTyp != "1")
+                    continue;
+                var invoice = bdb.GetOrder(prevOrder.OrderID, FuncClasses.Dokumentart.Rechnung, user);
+                var output = new Orders.Invoice();
+                
+                // Customer
+                var task = Database.GetCustomer(prevOrder.CustomerID);
+                output.Customer = task.Result;
+
+                output.Date = invoice.Datum.ToDate();
+                output.DocumentID = invoice.OrderID.ToString();
+                output.OrderClosingText = invoice.OrderText;
+                output.OrderOpeningText = invoice.TextBefore;
+
+                // Rebate
+                //!## Fixed reduction not supported ##!\\
+                //!## Collect those orders and notify the user he has to adjust the rebate ##!\\
+                output.OrderRebate = new Utils.Percentage() { Amount = Convert.ToDouble(invoice.Rebate) };
+                
+                //Payment methode
+                var payment = new Utils.PaymentMethode() { Name = invoice.PaymentMethode.Name, Text = invoice.PaymentMethode.Text, Discount = new Utils.Percentage() { PercentageString = invoice.PaymentMethode.ReductionString } };
+                Database.SaveOrUpdatePaymentMethode(payment);
+                output.PaymentMethode = payment;
+
+                // Articles
+                foreach(var Article in invoice.OrderedArticles)
+                {
+                    var taskArticle = Database.GetArticle(Article.ArticleID);
+                    var basearticle = taskArticle.Result;
+                    var orderedArticle = new Articles.OrderedArticle(basearticle);
+                    orderedArticle.ArticleText = Article.OrderText;
+                    orderedArticle.OrderedAmount = Convert.ToDouble(Article.OrderedAmount);
+                    orderedArticle.OrderRebate.Amount = Convert.ToDouble(Article.OrderRebate);
+                    orderedArticle.OrderPrice.Price1.AmountString = Article.OrderPrice.AmountString;
+                    orderedArticle.OrderPosition = Article.OrderPosition;
+                    output.OrderedArticles.Add(orderedArticle);
+                }
+                Database.SaveOrUpdateDocument(output);
             }
             return true;
         }

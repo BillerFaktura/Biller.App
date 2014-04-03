@@ -31,6 +31,7 @@ namespace Biller.Data.Articles
             this.ArticleWeight = article.ArticleWeight;
             this.ArticleText = article.ArticleText;
             this.OrderText = article.ArticleText;
+            this.OrderRebate = new Utils.Percentage();
 
             // insert empty values to avoid null exceptions
             OrderArticleID = Guid.NewGuid().ToString(); 
@@ -81,7 +82,7 @@ namespace Biller.Data.Articles
         /// <summary>
         /// Percentage rebate to <see cref="OrderPrice"/>. Use values between 0 and 1.
         /// </summary>
-        public double OrderRebate
+        public Utils.Percentage OrderRebate
         {
             get { return GetValue(() => OrderRebate); }
             set { SetValue(value); RaiseRecalculateEvents(); }
@@ -129,7 +130,7 @@ namespace Biller.Data.Articles
             get
             {
                 if (OrderPrice.Price1.IsGross)
-                    return new Utils.Money(OrderPrice.Price1.Amount * OrderedAmount * (1 - OrderRebate));
+                    return new Utils.Money(OrderPrice.Price1.Amount * OrderedAmount * (1 - OrderRebate.Amount));
                 
                 //Net
                 return RoundedNetOrderValue + ExactVAT;
@@ -144,7 +145,7 @@ namespace Biller.Data.Articles
             get
             {
                 if (!OrderPrice.Price1.IsGross)
-                    return new Utils.Money(OrderPrice.Price1.Amount * OrderedAmount * (1 - OrderRebate));
+                    return new Utils.Money(OrderPrice.Price1.Amount * OrderedAmount * (1 - OrderRebate.Amount));
 
                 //Gross
                 return RoundedGrossOrderValue - ExactVAT * OrderedAmount;
@@ -162,7 +163,7 @@ namespace Biller.Data.Articles
                     return RoundedNetOrderValue.Amount;
 
                 //Gross
-                return RoundedGrossOrderValue.Amount - ExactVAT * OrderedAmount * (1 - OrderRebate);
+                return RoundedGrossOrderValue.Amount - ExactVAT * OrderedAmount * (1 - OrderRebate.Amount);
             }
         }
 
@@ -177,7 +178,7 @@ namespace Biller.Data.Articles
                     return RoundedGrossOrderValue.Amount;
 
                 //Net
-                return RoundedNetOrderValue.Amount + ExactVAT * OrderedAmount * (1 - OrderRebate);
+                return RoundedNetOrderValue.Amount + ExactVAT * OrderedAmount * (1 - OrderRebate.Amount);
             }
         }
 
@@ -236,7 +237,7 @@ namespace Biller.Data.Articles
             OrderedAmount = double.Parse(source.Element("OrderedAmount").Value, CultureInfo.InvariantCulture);
             OrderPosition = int.Parse(source.Element("ArticlePosition").Value);
             OrderPrice.ParseFromXElement(source.Element("OrderPrice").Element("PriceGroup"));
-            OrderRebate = double.Parse(source.Element("OrderRebate").Value, CultureInfo.InvariantCulture);       
+            OrderRebate.Amount = double.Parse(source.Element("OrderRebate").Value, CultureInfo.InvariantCulture);       
         }
 
         /// <summary>
