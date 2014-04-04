@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Import_Biller.UI.TabContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
+             xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600" Margin="6">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Biller.Controls;Component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="TextBlock" x:Key="HeaderStyle">
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="SubHeaderStyle">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="0,5"/>
+            </Style>
+            <Style TargetType="TextBlock" x:Key="ContentStyle">
+                <Setter Property="FontSize" Value="13"/>
+                <Setter Property="Margin" Value="1"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <StackPanel>
+        <TextBlock Text="Daten importieren" Style="{StaticResource HeaderStyle}" FontSize="48" FontFamily="Segoe UI Light"/>
+        <TextBlock Style="{StaticResource ContentStyle}" TextWrapping="WrapWithOverflow">
+            <Run Text="Importieren Sie Daten aus einer früheren Version von Biller."/>
+            <LineBreak/>
+            <Run Text="Tragen Sie im unteren Textfeld den Pfad zu den Daten ein. Normalerweise setzt sich dieser aus dem Installationsverzeichnis + dem Unterordner &quot;Firma&quot; zusammen."/>
+        </TextBlock>
+        <controls:WatermarkTextBox Watermark="Doppelklicken zum Ändern" MouseDoubleClick="WatermarkTextBox_MouseDoubleClick" Name="pathTextbox"/>
+        <controls:Office2013Button Content="Daten importieren" Click="Office2013Button_Click" Height="100" Width="150" HorizontalAlignment="Left"/>
+        <metro:ProgressRing HorizontalAlignment="Left" Name="progressring"/>
+    </StackPanel>
+</UserControl>

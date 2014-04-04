@@ -108,6 +108,7 @@
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\PreviewDocument.cs" />
     <Compile Include="GlobalSettings.cs" />
+    <Compile Include="Import\BillerV1\CompanyDocumentListModel.cs" />
     <Compile Include="Import\BillerV1\Import.cs" />
     <Compile Include="Import\csv.cs" />
     <Compile Include="Interfaces\DocumentFactory.cs" />

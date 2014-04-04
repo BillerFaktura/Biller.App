@@ -8,19 +8,72 @@ namespace Biller.Data.Import.BillerV1
 {
     public class Import
     {
-        public Import()
+        public Import(string dataDirectory, Interfaces.IDatabase database)
         {
+            Database = database;
+            DataDirectory = dataDirectory;
+            DocumentsToModify = new List<CompanyDocumentListModel>();
             bdb = new FuncClasses.FastXML(DataDirectory);
             bdb.Connect();
+            Database.RegisterStorageableItem(new Models.CompanySettings());
         }
 
         private FuncClasses.User user = new FuncClasses.User();
 
         FuncClasses.FastXML bdb;
 
+        public async Task<bool> ImportEverything()
+        {
+            await ImportCompanies();
+            foreach (var company in bdb.GetAllCompanys())
+            {
+                bdb.LastCompany = company.CompanyName;
+                bdb = new FuncClasses.FastXML(DataDirectory);
+                bdb.Connect();
+                await ImportArticle();
+                await ImportCustomers();
+                await ImportDocuments();
+            }
+            return await Task<bool>.Run(() => { return true; });
+        }
+
         public string DataDirectory { get; set; }
 
         public Interfaces.IDatabase Database { get; set; }
+
+        public async Task<bool> ImportCompanies()
+        {
+            return await Task<bool>.Run(() => importCompanies(bdb));
+        }
+
+        private async Task<bool> importCompanies(FuncClasses.FastXML bdb)
+        {
+            foreach (var company in bdb.GetAllCompanys())
+            {
+                var newCompany = new Models.CompanyInformation();
+                newCompany.CompanyName = company.CompanyName;
+                newCompany.GenerateNewID();
+                Database.AddCompany(newCompany);
+                await Database.ChangeCompany(newCompany);
+                
+                var companySettings = new Models.CompanySettings();
+                companySettings.SalesTaxID = company.TradeID;
+                companySettings.TaxID = company.TaxID;
+
+                companySettings.MainAddress.Addition = company.ToAddress().Addition;
+                companySettings.MainAddress.Forname = company.ToAddress().Forname;
+                companySettings.MainAddress.Surname = company.ToAddress().Surname;
+                companySettings.MainAddress.Title = company.ToAddress().Title;
+                companySettings.MainAddress.Salutation = company.ToAddress().Salutation;
+                companySettings.MainAddress.Street = company.ToAddress().Street;
+                companySettings.MainAddress.HouseNumber = company.ToAddress().No;
+                companySettings.MainAddress.Zip = company.ToAddress().ZipCode;
+                companySettings.MainAddress.City = company.ToAddress().City;
+                companySettings.MainAddress.Country = company.ToAddress().Country;
+                await Database.SaveOrUpdateStorageableItem(companySettings);
+            }
+            return true;
+        }
 
         public async Task<bool> ImportCustomers()
         {
@@ -39,9 +92,15 @@ namespace Biller.Data.Import.BillerV1
                 var customer = bdb.GetCustomer(cusprev.CustomerID, user);
 
                 // Payment methode
-                var payment = new Utils.PaymentMethode() {Name=customer.PaymentMethode.Name, Text=customer.PaymentMethode.Text, Discount= new Utils.Percentage() {PercentageString = customer.PaymentMethode.ReductionString}};
-                Database.SaveOrUpdatePaymentMethode(payment);
-                importedCustomer.DefaultPaymentMethode = payment;
+                if(customer.PaymentMethode != null)
+                {
+                    if (!String.IsNullOrEmpty(customer.PaymentMethode.Name))
+                    {
+                        var payment = new Utils.PaymentMethode() { Name = customer.PaymentMethode.Name, Text = customer.PaymentMethode.Text, Discount = new Utils.Percentage() { PercentageString = customer.PaymentMethode.ReductionString } };
+                        Database.SaveOrUpdatePaymentMethode(payment);
+                        importedCustomer.DefaultPaymentMethode = payment;
+                    }   
+                }
 
                 // Pricegroup
                 switch(customer.Preisgruppe)
@@ -147,9 +206,20 @@ namespace Biller.Data.Import.BillerV1
                 var ArticleUnit = new Utils.Unit();
                 ArticleUnit.DecimalSeperator = ",";
                 // Gets the count of digits after the seperating "."
-                ArticleUnit.DecimalDigits = article.ArticleUnit.UnitFormat.Split(new Char[] { '.' })[1].Length;
+                var format = article.ArticleUnit.UnitFormat.Split(new Char[] { '.' });
+                if (format.Length>1)
+                {
+                    ArticleUnit.DecimalDigits = format[1].Length;
+                }
+                else
+                {
+                    ArticleUnit.DecimalDigits = 0;
+                }
+                
                 ArticleUnit.Name = article.ArticleUnit.Name;
+                ArticleUnit.ShortName = article.ArticleUnit.ShortName;
                 outputArticle.ArticleUnit = ArticleUnit;
+                Database.SaveOrUpdateArticleUnit(ArticleUnit);
 
                 savingList.Add(outputArticle);
             }
@@ -188,10 +258,13 @@ namespace Biller.Data.Import.BillerV1
                 output.OrderRebate = new Utils.Percentage() { Amount = Convert.ToDouble(invoice.Rebate) };
                 
                 //Payment methode
-                var payment = new Utils.PaymentMethode() { Name = invoice.PaymentMethode.Name, Text = invoice.PaymentMethode.Text, Discount = new Utils.Percentage() { PercentageString = invoice.PaymentMethode.ReductionString } };
-                Database.SaveOrUpdatePaymentMethode(payment);
-                output.PaymentMethode = payment;
-
+                if(invoice.PaymentMethode != null)
+                {
+                    var payment = new Utils.PaymentMethode() { Name = invoice.PaymentMethode.Name, Text = invoice.PaymentMethode.Text, Discount = new Utils.Percentage() { PercentageString = invoice.PaymentMethode.ReductionString } };
+                    Database.SaveOrUpdatePaymentMethode(payment);
+                    output.PaymentMethode = payment;
+                }
+                
                 // Articles
                 foreach(var Article in invoice.OrderedArticles)
                 {
@@ -206,8 +279,27 @@ namespace Biller.Data.Import.BillerV1
                     output.OrderedArticles.Add(orderedArticle);
                 }
                 Database.SaveOrUpdateDocument(output);
+
+                // When the imported invoice has a fixed reduction (e.g. 20€ rebate) we add the document to a seperate list. The user needs to open these documents to adjust the correct end price.
+                if (invoice.Reduction.Amount > 0)
+                {
+                    var listOfDocumentCompanyModels = DocumentsToModify.Where(x => x.Company.CompanyID == Database.CurrentCompany.CompanyID);
+                    if (listOfDocumentCompanyModels.Count()>0)
+                    {
+                        var model = listOfDocumentCompanyModels.First();
+                        model.Documents.Add(output);
+                    }
+                    else
+                    {
+                        var model = new CompanyDocumentListModel() { Company = Database.CurrentCompany };
+                        model.Documents.Add(output);
+                        DocumentsToModify.Add(model);
+                    }
+                }
             }
             return true;
         }
+
+        public List<CompanyDocumentListModel> DocumentsToModify { get; set; }
     }
 }

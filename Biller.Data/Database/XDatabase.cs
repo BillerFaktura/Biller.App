@@ -285,7 +285,17 @@ namespace Biller.Data.Database
         {
             if (!SettingsDB.Elements("TaxClasses").Any())
                 SettingsDB.Add(new XElement("TaxClasses"));
-            SettingsDB.Element("TaxClasses").Add(source.GetXElement());
+
+            if (SettingsDB.Element("TaxClasses").Elements(source.XElementName).Any(x => x.Element("Name").Value == source.Name))
+            {
+                SettingsDB.Element("TaxClasses").Elements(source.XElementName).Single(x => x.Element("Name").Value == source.Name).ReplaceWith(source.GetXElement());
+            }
+            else
+            {
+                SettingsDB.Element("TaxClasses").Add(source.GetXElement());
+            }
+
+            
             try { File.WriteAllText(DatabasePath + CurrentCompany.CompanyID + "\\Others.xml", SettingsDB.ToString()); }
             catch (Exception e) { logger.FatalException("Error saving changes to " + DatabasePath + CurrentCompany.CompanyID + "\\Others.xml" + "TaxClass was changed.", e); }
         }
@@ -320,9 +330,9 @@ namespace Biller.Data.Database
             if (!SettingsDB.Elements("Units").Any())
                 SettingsDB.Add(new XElement("Units"));
 
-            if (SettingsDB.Element("Units").Elements(source.XElementName).Any(x => x.Attribute("Name").Value == source.Name))
+            if (SettingsDB.Element("Units").Elements(source.XElementName).Any(x => x.Element("Name").Value == source.Name))
             {
-                SettingsDB.Element("Units").Elements(source.XElementName).Single(x => x.Attribute("Name").Value == source.Name).ReplaceWith(source.GetXElement());
+                SettingsDB.Element("Units").Elements(source.XElementName).Single(x => x.Element("Name").Value == source.Name).ReplaceWith(source.GetXElement());
             }
             else
             {
@@ -662,7 +672,7 @@ namespace Biller.Data.Database
                 var xitem = CustomerDB.Elements("Customer").Single(x => x.Element("CustomerID").Value == CustomerID);
                 temp.ParseFromXElement(xitem);
                 if (paymentMethodesList().Any(x => x.Name == xitem.Element("DefaultPaymentMethode").Value))
-                    temp.DefaultPaymentMethode = paymentMethodesList().Single(x => x.Name == xitem.Element("DefaultPaymentMethode").Value);
+                    temp.DefaultPaymentMethode = paymentMethodesList().First(x => x.Name == xitem.Element("DefaultPaymentMethode").Value);
                 sw.Stop();
                 sw.PrintResultToConsole();
                 logger.Trace(sw.Result());

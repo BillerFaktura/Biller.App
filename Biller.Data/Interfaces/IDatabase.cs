@@ -38,7 +38,7 @@ namespace Biller.Data.Interfaces
         void AddCompany(Models.CompanyInformation source);
 
         /// <summary>
-        /// Changes the database. According to this you have to refresh all your data. \n
+        /// Changes the database. It will also call <see cref="Connect"/>. \n
         /// This function is awaitable.
         /// </summary>
         /// <param name="target">Object that contains information about the company you want switch to.</param>
