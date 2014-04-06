@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FuncClasses, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Biller\FuncClasses\bin\Debug\FuncClasses.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro">
       <HintPath>..\packages\MahApps.Metro.0.12.1.0\lib\net45\MahApps.Metro.dll</HintPath>
     </Reference>
@@ -54,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Import\BillerV1\CompanyDocumentListModel.cs" />
+    <Compile Include="Import\BillerV1\Import.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Tab.xaml.cs">
       <DependentUpon>Tab.xaml</DependentUpon>
@@ -74,6 +80,10 @@
     <ProjectReference Include="..\Biller\Biller.csproj">
       <Project>{6c93775c-0207-4c88-8497-e8982e72132e}</Project>
       <Name>Biller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderTypes%40Biller\OrderTypes%40Biller.csproj">
+      <Project>{3722daf8-c28a-42e4-9a21-fe60c3d8cabb}</Project>
+      <Name>OrderTypes%40Biller</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -91,7 +91,7 @@
 						<TranslateTransform/>
 					</TransformGroup>
 				</Grid.RenderTransform>
-				<Border Name="border" Background="#2a3345">
+                <Border Name="border" Background="#FF5195B7">
 					<Grid Height="90" Width="385">
 						<Grid.RowDefinitions>
 							<RowDefinition Height="Auto"></RowDefinition>

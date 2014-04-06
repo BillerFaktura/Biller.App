@@ -27,16 +27,16 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="{StaticResource export}">
-        <Fluent:Button Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" IsEnabled="False" Click="buttonOrderPDF_Click">
-            <Fluent:Button.ToolTip>
+        <Fluent:SplitButton Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" IsEnabled="False" Click="buttonOrderPDF_Click">
+            <Fluent:SplitButton.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderaspdftooltip}" DisableReason="{StaticResource orderaspdftooltipdisable}" />
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
-        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png" IsEnabled="False" Click="buttonPrintOrder_Click">
-            <Fluent:Button.ToolTip>
+            </Fluent:SplitButton.ToolTip>
+        </Fluent:SplitButton>
+        <Fluent:SplitButton Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png" IsEnabled="False" Click="buttonPrintOrder_Click">
+            <Fluent:SplitButton.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderprint}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderprinttooltip}" DisableReason="{StaticResource orderprinttooltipdisable}" />
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
+            </Fluent:SplitButton.ToolTip>
+        </Fluent:SplitButton>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="Betrachtungszeitraum">
         <Fluent:DropDownButton Header="Start" Icon="..\..\Images\appbar.calendar.future.png" LargeIcon="..\..\Images\appbar.calendar.future.png">

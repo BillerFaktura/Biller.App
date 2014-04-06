@@ -1,4 +1,5 @@
 ﻿using Fluent;
+using System.Linq;
 
 namespace Biller.UI.DocumentView
 {
@@ -43,8 +44,13 @@ namespace Biller.UI.DocumentView
                 var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
                 saveFileDialog.Filter = "PDF Dokument|*.pdf";
                 saveFileDialog.FileName = loadingDocument.LocalizedDocumentType + " " + loadingDocument.ID;
+                
                 if (saveFileDialog.ShowDialog() == true)
-                    factory.GetNewExportClass().SaveDocument(loadingDocument, saveFileDialog.FileName);
+                {
+                    _ParentViewModel.ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport().SaveDocument(loadingDocument, saveFileDialog.FileName);
+                    //factory.GetNewExportClass().SaveDocument(loadingDocument, saveFileDialog.FileName);
+                }
+                    
             }
         }
 
@@ -57,18 +63,8 @@ namespace Biller.UI.DocumentView
                 loadingDocument.DocumentID = _ParentViewModel.SelectedDocument.DocumentID;
                 loadingDocument = await _ParentViewModel.ParentViewModel.Database.GetDocument(loadingDocument);
 
-                factory.GetNewExportClass().PrintDocument(loadingDocument);
+                _ParentViewModel.ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport().PrintDocument(loadingDocument);
             }
-        }
-
-        private void cb_month_filter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void cb_year_filter_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
         }
 
         private void buttonOrderSearch_Click(object sender, System.Windows.RoutedEventArgs e)

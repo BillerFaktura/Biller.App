@@ -1,22 +1,20 @@
-﻿using Biller.Data;
-using Biller;
-using Biller.Data.Document;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using System.Windows;
 
-namespace OrderTypes_Biller.Docket
+namespace OrderTypes_Biller.Invoice
 {
-    public class DocketFactory : Biller.Data.Interfaces.DocumentFactory
+    public class InvoiceFactory : Biller.Data.Interfaces.DocumentFactory
     {
-        public string DocumentType { get { return "Docket"; } }
+        public string DocumentType { get { return "Invoice"; } }
 
-        public Document GetNewDocument()
+        public Biller.Data.Document.Document GetNewDocument()
         {
-            return new Docket();
+            return new Invoice();
         }
 
         public List<UIElement> GetEditContentTabs()
@@ -32,20 +30,20 @@ namespace OrderTypes_Biller.Docket
 
         public Fluent.Button GetCreationButton()
         {
-            return new DocketButton();
+            return new Button();
         }
 
 
         public string LocalizedDocumentType
         {
-            get
+            get 
             {
-                var docket = new Docket();
-                return docket.LocalizedDocumentType;
+                var invoice = new Invoice();
+                return invoice.LocalizedDocumentType;
             }
         }
 
-        public void ReceiveData(object source, Document target)
+        public void ReceiveData(object source, Biller.Data.Document.Document target)
         {
             if (target is Order.Order)
             {

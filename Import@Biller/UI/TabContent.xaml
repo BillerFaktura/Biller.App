@@ -35,5 +35,62 @@
         <controls:WatermarkTextBox Watermark="Doppelklicken zum Ändern" MouseDoubleClick="WatermarkTextBox_MouseDoubleClick" Name="pathTextbox"/>
         <controls:Office2013Button Content="Daten importieren" Click="Office2013Button_Click" Height="100" Width="150" HorizontalAlignment="Left"/>
         <metro:ProgressRing HorizontalAlignment="Left" Name="progressring"/>
+        <ItemsControl Name="DocumentsToChangeList">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <Border>
+                            <TextBlock Text="{Binding CompanyInformation.CompanyName}"/>
+                        </Border>
+                        <ItemsControl ItemsSource="{Binding Documents}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Click="Button_Click">
+                                        <Button.Style>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="Foreground" Value="White" />
+                                                <Setter Property="FontSize" Value="15" />
+                                                <Setter Property="SnapsToDevicePixels" Value="True" />
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Background="{TemplateBinding Background}">
+                                                                <Grid>
+                                                                    <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                                                </Grid>
+                                                            </Border>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#E59400" />
+                                                                    <Setter Property="Foreground" Value="White" />
+                                                                </Trigger>
+                                                                <Trigger Property="IsPressed" Value="True">
+                                                                    <Setter Property="Background" Value="OrangeRed" />
+                                                                    <Setter Property="Foreground" Value="White" />
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </Button.Style>
+                                        <Button.Content>
+                                            <StackPanel>
+                                                <TextBlock>
+                                                    <Run Text="{Binding LocalizedDocumentType}"/>
+                                                    <Run Text=" "/>
+                                                    <Run Text="{Binding DocumentID}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </StackPanel>
 </UserControl>

@@ -40,7 +40,15 @@ namespace Biller.UI.DocumentView.Contextual.EditTabs.Articles
             var button = (sender as Button);
             if (button.DataContext is Data.Articles.OrderedArticle)
             {
-                ((DataContext as DocumentEditViewModel).Document as Data.Orders.Order).OrderedArticles.Remove(button.DataContext as Data.Articles.OrderedArticle);
+                try
+                {
+                    dynamic document = ((DataContext as DocumentEditViewModel).Document);
+                    document.OrderedArticles.Remove(button.DataContext as Data.Articles.OrderedArticle);
+                }
+                catch(Exception ex)
+                {
+
+                }
             }
         }
     }

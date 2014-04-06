@@ -35,7 +35,7 @@ namespace Biller.Data.Articles
 
             // insert empty values to avoid null exceptions
             OrderArticleID = Guid.NewGuid().ToString(); 
-            OrderPrice = new Models.PriceModel(this);
+            OrderPrice = new Interfaces.PriceModel(this);
 
             OrderPrice.Price1.PropertyChanged += Price1_PropertyChanged;
         }
@@ -47,7 +47,8 @@ namespace Biller.Data.Articles
             : base()
         {
             OrderArticleID = Guid.NewGuid().ToString();
-            OrderPrice = new Models.PriceModel(this);
+            OrderPrice = new Interfaces.PriceModel(this);
+            this.OrderRebate = new Utils.Percentage();
         }
 
         /// <summary>
@@ -91,7 +92,7 @@ namespace Biller.Data.Articles
         /// <summary>
         /// The price the customer has to pay.
         /// </summary>
-        public Models.PriceModel OrderPrice
+        public Interfaces.PriceModel OrderPrice
         {
             get { return GetValue(() => OrderPrice); }
             set

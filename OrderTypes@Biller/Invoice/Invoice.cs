@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Biller.Data.Orders
+namespace OrderTypes_Biller.Invoice
 {
     /// <summary>
     /// Explicit implementation of <see cref="Order"/>.\n
     /// This class implements invoices.
     /// </summary>
-    public class Invoice : Order
+    public class Invoice : Order.Order
     {
         public Invoice()
             : base()
@@ -70,13 +70,13 @@ namespace Biller.Data.Orders
             return element;
         }
 
-        public Utils.EAddress DeliveryAddress
+        public Biller.Data.Utils.EAddress DeliveryAddress
         {
             get { return GetValue(() => DeliveryAddress); }
             set { SetValue(value); }
         }
 
-        public override Interfaces.IXMLStorageable GetNewInstance()
+        public override Biller.Data.Interfaces.IXMLStorageable GetNewInstance()
         {
             return new Invoice();
         }

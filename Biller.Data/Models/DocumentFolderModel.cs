@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Biller.Data.Models
+namespace Biller.Data.Interfaces
 {
     public class DocumentFolderModel : Utils.PropertyChangedHelper, Interfaces.IXMLStorageable
     {

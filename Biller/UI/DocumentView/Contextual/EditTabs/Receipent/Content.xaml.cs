@@ -55,9 +55,17 @@ namespace Biller.UI.DocumentView.Contextual.EditTabs.Receipent
             var viewmodel = (DataContext as DocumentEditViewModel);
             if (e.Key == Key.Enter && viewmodel.PreviewCustomer != null)
             {
-                (viewmodel.Document as Data.Orders.Order).Customer = viewmodel.PreviewCustomer;
-                viewmodel.PreviewCustomer = null;
-                (sender as TextBox).Text = "";
+                try
+                {
+                    dynamic document = (viewmodel.Document);
+                    document.Customer = viewmodel.PreviewCustomer;
+                    viewmodel.PreviewCustomer = null;
+                    (sender as TextBox).Text = "";
+                }
+                catch(Exception ex)
+                {
+
+                }
             }
         }
     }

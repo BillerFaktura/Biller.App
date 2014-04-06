@@ -20,8 +20,6 @@ namespace Biller.Data.Interfaces
 
         Fluent.Button GetCreationButton();
 
-        IExport GetNewExportClass();
-
         void ReceiveData(object source, Document.Document target);
     }
 }

@@ -147,7 +147,7 @@ namespace Biller.UI.ViewModel
             database = new Data.Database.XDatabase(AssemblyLocation);
             if (await database.Connect() == true)
             {
-                await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
+                //await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
                 logger.Info("Connecting to database was successfull");
 
                 logger.Debug("Adding Viewmodels to the collection");

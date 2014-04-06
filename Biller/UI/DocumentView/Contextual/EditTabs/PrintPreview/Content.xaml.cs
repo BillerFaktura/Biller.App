@@ -29,7 +29,10 @@ namespace Biller.UI.DocumentView.Contextual.EditTabs.PrintPreview
         private void UpdatePreview()
         {
             var viewmodel = (DataContext as DocumentEditViewModel);
-            viewmodel.ExportClass.RenderDocumentPreview(viewmodel.Document);
+            if (viewmodel.ExportClass != null)
+            {
+                viewmodel.ExportClass.RenderDocumentPreview(viewmodel.Document);
+            }
         }
 
         private void UserControl_GotFocus(object sender, RoutedEventArgs e)

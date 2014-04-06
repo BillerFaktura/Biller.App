@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Biller.Data;
 
-namespace Biller.Data.Orders.DocumentParsers
+namespace OrderTypes_Biller.Invoice
 {
-    public class InvoiceParser : Interfaces.DocumentParser
+    public class InvoiceParser : Biller.Data.Interfaces.DocumentParser
     {
         /// <summary>
         /// Parses <see cref="Customer"/> and <see cref="OrderedArticles"/>.
@@ -16,7 +17,7 @@ namespace Biller.Data.Orders.DocumentParsers
         /// <param name="data"></param>
         /// <param name="database"></param>
         /// <returns></returns>
-        public bool ParseAdditionalData(ref Document.Document document, XElement data, Interfaces.IDatabase database)
+        public bool ParseAdditionalData(ref Biller.Data.Document.Document document, XElement data, Biller.Data.Interfaces.IDatabase database)
         {
             if (document is Invoice)
             {
@@ -28,7 +29,7 @@ namespace Biller.Data.Orders.DocumentParsers
                 (document as Invoice).OrderedArticles.Clear();
                 foreach (XElement article in articles)
                 {
-                    var temp = new Articles.OrderedArticle();
+                    var temp = new Biller.Data.Articles.OrderedArticle();
 
                     var task = database.ArticleUnits();
                     temp.ArticleUnit = task.Result.Where(x => x.Name == article.Element("ArticleUnit").Value).Single();
@@ -48,7 +49,7 @@ namespace Biller.Data.Orders.DocumentParsers
                 catch (Exception e)
                 { }
 
-                var money = new Utils.Money(0);
+                var money = new Biller.Data.Utils.Money(0);
             }
             else
             {
@@ -61,7 +62,7 @@ namespace Biller.Data.Orders.DocumentParsers
 
         public bool ParseAdditionalPreviewData(ref dynamic document, XElement data)
         {
-            var money = new Utils.EMoney(0);
+            var money = new Biller.Data.Utils.EMoney(0);
             money.ParseFromXElement(data.Element("PreviewValue").Element(money.XElementName));
             document.Value = money;
             document.LocalizedDocumentType = LocalizedDocumentType;

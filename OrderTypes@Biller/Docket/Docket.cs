@@ -1,5 +1,4 @@
-﻿using Biller.Data.Orders;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,7 +8,7 @@ using System.Xml.Linq;
 
 namespace OrderTypes_Biller.Docket
 {
-    public class Docket : Order
+    public class Docket : Order.Order
     {
         public Docket()
             : base()

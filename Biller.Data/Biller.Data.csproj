@@ -59,8 +59,8 @@
     <Reference Include="Fluent">
       <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
     </Reference>
-    <Reference Include="FuncClasses">
-      <HintPath>..\..\Biller\FuncClasses\bin\Debug\FuncClasses.dll</HintPath>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\DotNetZip.1.9.2\lib\net20\Ionic.Zip.dll</HintPath>
     </Reference>
     <Reference Include="MigraDoc.DocumentObjectModel-WPF">
       <HintPath>..\Assemblies\MigraDoc\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
@@ -108,8 +108,6 @@
     <Compile Include="Document\Document.cs" />
     <Compile Include="Document\PreviewDocument.cs" />
     <Compile Include="GlobalSettings.cs" />
-    <Compile Include="Import\BillerV1\CompanyDocumentListModel.cs" />
-    <Compile Include="Import\BillerV1\Import.cs" />
     <Compile Include="Import\csv.cs" />
     <Compile Include="Interfaces\DocumentFactory.cs" />
     <Compile Include="Interfaces\IPreviewObjectDataProvider.cs" />
@@ -118,15 +116,11 @@
     <Compile Include="Interfaces\IXMLStorageable.cs" />
     <Compile Include="Interfaces\PreviewDocumentParser.cs" />
     <Compile Include="Models\CompanyInformation.cs" />
+    <Compile Include="Interfaces\DocumentExportModel.cs" />
     <Compile Include="Models\MoneyDescriptionModel.cs" />
     <Compile Include="Models\DocumentFolderModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\TaxClassMoneyModel.cs" />
-    <Compile Include="Orders\Calculations\EUInternationalCalculation.cs" />
-    <Compile Include="Orders\DocumentParsers\InvoiceParser.cs" />
-    <Compile Include="Orders\EUInternationalInvoice.cs" />
-    <Compile Include="Orders\Invoice.cs" />
-    <Compile Include="PDF\OrderPdfExport.cs" />
     <Compile Include="Performance\Stopwatch.cs" />
     <Compile Include="Samples\Units.cs" />
     <Compile Include="Models\CompanySettings.cs" />
@@ -134,8 +128,6 @@
     <Compile Include="Utils\Contact.cs" />
     <Compile Include="Customers\Customer.cs" />
     <Compile Include="Customers\PreviewCustomer.cs" />
-    <Compile Include="Orders\Order.cs" />
-    <Compile Include="Orders\Calculations\DefaultOrderCalculation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\EAddress.cs" />
     <Compile Include="Utils\EMoney.cs" />

@@ -28,7 +28,6 @@ namespace Biller.UI.DocumentView
             parentViewModel.RibbonFactory.AddContextualGroup(ContextualTabGroup);
 
             documentFactories = new Collection<Data.Interfaces.DocumentFactory>();
-            documentFactories.Add(new Data.Factories.InvoiceFactory());
 
             registeredObservers = new ObservableCollection<Interface.IEditObserver>();
         }
@@ -114,7 +113,7 @@ namespace Biller.UI.DocumentView
                 foreach (var tab in factory.GetEditContentTabs())
                     documentEditViewModel.EditContentTabs.Add(tab);
 
-                documentEditViewModel.ExportClass = factory.GetNewExportClass();
+                documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (DocumentType)).First().GetExport();
                 await documentEditViewModel.LoadData();
                 ParentViewModel.AddTabContentViewModel(documentEditViewModel);
                 documentEditViewModel.RibbonTabItem.IsSelected = true;
@@ -186,7 +185,20 @@ namespace Biller.UI.DocumentView
                             {
                                 documentEditViewModel.EditContentTabs.Add(tab);
                             }
-                            documentEditViewModel.ExportClass = factory.GetNewExportClass();
+
+                            try
+                            {
+                                documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport();
+                            }
+                            catch(Exception e)
+                            {
+                                var ErrorNotification = new Controls.Notification.Notification();
+                                ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
+                                ErrorNotification.Title = "Fehler beim Laden";
+                                ErrorNotification.Message = "Für " + SelectedDocument.DocumentType + " existiert keine registrierte Exportfunktion.";
+                                ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+                            }
+                                                        
                             await documentEditViewModel.LoadData();
                             ParentViewModel.AddTabContentViewModel(documentEditViewModel);
                             documentEditViewModel.RibbonTabItem.IsSelected = true;
@@ -240,7 +252,7 @@ namespace Biller.UI.DocumentView
                             {
                                 documentEditViewModel.EditContentTabs.Add(tab);
                             }
-                            documentEditViewModel.ExportClass = factory.GetNewExportClass();
+                            documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport();
                             await documentEditViewModel.LoadData();
                             ParentViewModel.AddTabContentViewModel(documentEditViewModel);
                             documentEditViewModel.RibbonTabItem.IsSelected = true;
@@ -281,7 +293,7 @@ namespace Biller.UI.DocumentView
 
         public async Task LoadData()
         {
-            await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
+            //await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
             AllDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
             IntervalStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
             IntervalEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, IntervalStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
@@ -309,8 +321,8 @@ namespace Biller.UI.DocumentView
         public async Task SaveOrUpdateDocument(Data.Document.Document source)
         {
             dynamic tempPreview = new Data.Document.PreviewDocument(source.DocumentType);
-            if (source is Data.Orders.Order)
-                tempPreview = Data.Orders.Order.PreviewFromOrder(source as Data.Orders.Order);
+            //if (source is Data.Orders.Order)
+            //    tempPreview = Data.Orders.Order.PreviewFromOrder(source as Data.Orders.Order);
 
             if (AllDocuments.Contains(tempPreview))
             {

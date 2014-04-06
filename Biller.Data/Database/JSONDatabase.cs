@@ -58,7 +58,7 @@ namespace Biller.Data.Database
 
             try
             {
-                CurrentCompany = JsonConvert.DeserializeObject<Models.CompanyInformation>(File.ReadAllText(DatabasePath + "Settings.json"));
+                CurrentCompany = JsonConvert.DeserializeObject<Interfaces.CompanyInformation>(File.ReadAllText(DatabasePath + "Settings.json"));
             }
             catch (Exception e)
             {
@@ -124,19 +124,19 @@ namespace Biller.Data.Database
             return true;
         }
 
-        public Models.CompanyInformation CurrentCompany { get; private set; }
+        public Interfaces.CompanyInformation CurrentCompany { get; private set; }
 
-        public void AddCompany(Models.CompanyInformation source)
+        public void AddCompany(Interfaces.CompanyInformation source)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> ChangeCompany(Models.CompanyInformation target)
+        public Task<bool> ChangeCompany(Interfaces.CompanyInformation target)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Models.CompanyInformation>> GetCompanyList()
+        public Task<IEnumerable<Interfaces.CompanyInformation>> GetCompanyList()
         {
             throw new NotImplementedException();
         }

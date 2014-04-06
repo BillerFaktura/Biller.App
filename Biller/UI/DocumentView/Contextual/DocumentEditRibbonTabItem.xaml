@@ -3,9 +3,15 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+                      xmlns:converter="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
                       Header="Übersicht" Group="{Binding ContextualTabGroup}">
     <Fluent:RibbonTabItem.Resources>
-        <ResourceDictionary Source="../../Localization/OrderView/de.xaml" />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Localization/OrderView/de.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <converter:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
+        </ResourceDictionary>
     </Fluent:RibbonTabItem.Resources>
 
     <Fluent:RibbonGroupBox Header="{StaticResource addOrder}" Name="GroupOrderFolder">
@@ -39,12 +45,12 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="{StaticResource export}" Visibility="Collapsed" Name="GroupOrder3">
-        <Fluent:Button Name="buttonPDFOrder" Header="{StaticResource orderaspdf}" Icon="../../Images\pdf.png" LargeIcon="../../Images\pdf.png" IsEnabled="True" Click="buttonPDFOrder_Click">
+        <Fluent:Button Name="buttonPDFOrder" Header="{StaticResource orderaspdf}" Icon="../../Images/pdf.png" LargeIcon="../../Images/pdf.png" Click="buttonPDFOrder_Click" IsEnabled="{Binding ExportClass, Converter={StaticResource NullToBooleanConverter}}">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderaspdftooltipdirect}"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="../../Images\print.png" LargeIcon="../../Images\print.png" IsEnabled="True" Click="buttonPrintOrder_Click">
+        <Fluent:Button Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="../../Images/print.png" LargeIcon="../../Images/print.png" Click="buttonPrintOrder_Click" IsEnabled="{Binding ExportClass, Converter={StaticResource NullToBooleanConverter}}">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="" Width="450" HelpLabelVisibility="Collapsed" Text=""/>
             </Fluent:Button.ToolTip>

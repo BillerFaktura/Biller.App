@@ -153,10 +153,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\Factories\Buttons\InvoiceButton.xaml.cs">
-      <DependentUpon>InvoiceButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Data\Factories\InvoiceFactory.cs" />
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
@@ -301,10 +297,6 @@
     </Compile>
     <Compile Include="UI\DocumentView\DocumentTabViewModel.cs" />
     <Compile Include="UI\Ribbon\RibbonFactory.cs" />
-    <Page Include="Data\Factories\Buttons\InvoiceButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Runtime.CompilerServices;
-using System.ComponentModel;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using System.Windows;
+using Biller.Data;
+using OrderTypes_Biller.Calculations;
+using Biller.Data.Document;
 
-namespace Biller.Data.Orders
+namespace OrderTypes_Biller.Order
 {
     /// <summary>
     /// Abstract class to implement various types of orders like <see cref="Invoice"/>, Offer, Delivery Note, ...
     /// 
     /// </summary>
-    public abstract class Order : Data.Document.Document
+    public abstract class Order : Biller.Data.Document.Document
     {
         public Order()
         {
             // insert empty values to avoid null exceptions.
-            OrderedArticles = new ObservableCollection<Articles.OrderedArticle>();
-            DocumentID = ""; OrderOpeningText = ""; OrderClosingText = ""; Customer = new Customers.Customer(); Date = DateTime.Now;
-            OrderRebate = new Utils.Percentage();
-            OrderShipment = new Utils.Shipment();
-            PaymentMethode = new Utils.PaymentMethode();
+            OrderedArticles = new ObservableCollection<Biller.Data.Articles.OrderedArticle>();
+            DocumentID = ""; OrderOpeningText = ""; OrderClosingText = ""; Customer = new Biller.Data.Customers.Customer(); Date = DateTime.Now;
+            OrderRebate = new Biller.Data.Utils.Percentage();
+            OrderShipment = new Biller.Data.Utils.Shipment();
+            PaymentMethode = new Biller.Data.Utils.PaymentMethode();
             OrderCalculation = new DefaultOrderCalculation(this);
         }
 
         /// <summary>
         /// Default implementation for storing the <see cref="OrderedArticles"/>.
         /// </summary>
-        public virtual ObservableCollection<Articles.OrderedArticle> OrderedArticles
+        public virtual ObservableCollection<Biller.Data.Articles.OrderedArticle> OrderedArticles
         {
             get { return GetValue(() => OrderedArticles); }
             set { SetValue(value); }
@@ -55,7 +54,7 @@ namespace Biller.Data.Orders
             set { SetValue(value); }
         }
 
-        public virtual Customers.Customer Customer
+        public virtual Biller.Data.Customers.Customer Customer
         {
             get { return GetValue(() => Customer); }
             set { SetValue(value); }
@@ -67,19 +66,19 @@ namespace Biller.Data.Orders
             set { SetValue(value); }
         }
 
-        public virtual Utils.PaymentMethode PaymentMethode
+        public virtual Biller.Data.Utils.PaymentMethode PaymentMethode
         {
             get { return GetValue(() => PaymentMethode); }
             set { SetValue(value); }
         }
 
-        public virtual Utils.Percentage OrderRebate
+        public virtual Biller.Data.Utils.Percentage OrderRebate
         {
             get { return GetValue(() => OrderRebate); }
             set { SetValue(value); }
         }
 
-        public virtual Utils.Shipment OrderShipment
+        public virtual Biller.Data.Utils.Shipment OrderShipment
         {
             get { return GetValue(() => OrderShipment); }
             set { SetValue(value); }
@@ -97,9 +96,9 @@ namespace Biller.Data.Orders
 
         public override abstract void ParseFromXElement(System.Xml.Linq.XElement source);
 
-        public static Document.PreviewDocument PreviewFromOrder(Order source)
+        public static Biller.Data.Document.PreviewDocument PreviewFromOrder(Order source)
         {
-            dynamic preview = new Document.PreviewDocument(source.DocumentType);
+            dynamic preview = new Biller.Data.Document.PreviewDocument(source.DocumentType);
             preview.DocumentID = source.DocumentID;
             preview.Date = source.Date;
             preview.Customer = source.Customer.DisplayName;

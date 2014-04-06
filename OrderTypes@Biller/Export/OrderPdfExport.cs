@@ -11,9 +11,9 @@ using System.Diagnostics;
 using MigraDoc.Rendering.Printing;
 using MigraDoc.DocumentObjectModel.IO;
 
-namespace Biller.Data.PDF
+namespace OrderTypes_Biller.Export
 {
-    public class OrderPdfExport : Interfaces.IExport
+    public class OrderPdfExport : Biller.Data.Interfaces.IExport
     {
         public OrderPdfExport()
         {
@@ -73,7 +73,7 @@ namespace Biller.Data.PDF
         /// <summary>
         /// Creates the static parts of the invoice.
         /// </summary>
-        void CreatePage(Orders.Order order)
+        void CreatePage(Order.Order order)
         {
             // Each MigraDoc document needs at least one section.
             Section section = this.document.AddSection();
@@ -204,7 +204,7 @@ namespace Biller.Data.PDF
         /// <summary>
         /// Creates the dynamic parts of the invoice.
         /// </summary>
-        void FillContent(Orders.Order order)
+        void FillContent(Order.Order order)
         {
             Paragraph paragraph = this.addressFrame.AddParagraph();
             foreach (var line in order.Customer.MainAddress.AddressStrings)
@@ -226,7 +226,7 @@ namespace Biller.Data.PDF
                 paragraph.AddLineBreak();
                 paragraph.AddText(article.ArticleText);
                 row1.Cells[4].AddParagraph(article.OrderPrice.Price1.ToString());
-                row1.Cells[5].AddParagraph(new Utils.Percentage() { Amount = article.TaxClass.TaxRate.Amount }.PercentageString);
+                row1.Cells[5].AddParagraph(new Biller.Data.Utils.Percentage() { Amount = article.TaxClass.TaxRate.Amount }.PercentageString);
                 row1.Cells[6].AddParagraph(article.RoundedGrossOrderValue.AmountString);
                 row1.Format.SpaceBefore = "0,1cm";
                 row1.Format.SpaceAfter = "0,4cm";
@@ -343,15 +343,15 @@ namespace Biller.Data.PDF
             set { }
         }
 
-        public void RenderDocumentPreview(Document.Document document)
+        public void RenderDocumentPreview(Biller.Data.Document.Document document)
         {
-            if (document is Orders.Order)
+            if (document is Order.Order)
             {
-                PreviewElement.Ddl = DdlWriter.WriteToString(GetDocument(document as Orders.Order));
+                PreviewElement.Ddl = DdlWriter.WriteToString(GetDocument(document as Order.Order));
             }
         }
 
-        private MigraDoc.DocumentObjectModel.Document GetDocument(Orders.Order order)
+        private MigraDoc.DocumentObjectModel.Document GetDocument(Order.Order order)
         {
             // Create a new MigraDoc document
             this.document = new MigraDoc.DocumentObjectModel.Document();
@@ -368,12 +368,12 @@ namespace Biller.Data.PDF
             return this.document;
         }
 
-        public void SaveDocument(Document.Document document, string filename, bool OpenOnSuccess = true)
+        public void SaveDocument(Biller.Data.Document.Document document, string filename, bool OpenOnSuccess = true)
         {
-            if (document is Orders.Order)
+            if (document is Order.Order)
             {
                 PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
-                renderer.Document = GetDocument(document as Orders.Order);
+                renderer.Document = GetDocument(document as Order.Order);
 
                 renderer.RenderDocument();
                 renderer.Save(filename);
@@ -383,7 +383,7 @@ namespace Biller.Data.PDF
             }
         }
 
-        public void PrintDocument(Document.Document document)
+        public void PrintDocument(Biller.Data.Document.Document document)
         {
             /*
             // Reuse the renderer from the preview
@@ -415,6 +415,28 @@ namespace Biller.Data.PDF
             */
 
             SaveDocument(document, document.DocumentType + document.DocumentID + ".pdf");
+        }
+
+        public List<string> AvailableDocumentTypes()
+        {
+            var output = new List<string>();
+            output.Add("Invoice");
+            output.Add("Docket");
+            return output;
+        }
+
+
+        public string Name
+        {
+            get
+            {
+                return "Standardlayout für Rechnungen und Lieferscheine";
+            }
+        }
+
+        public string GuID
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }

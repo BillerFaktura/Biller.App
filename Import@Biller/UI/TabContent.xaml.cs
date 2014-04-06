@@ -18,9 +18,10 @@ namespace Import_Biller.UI
         {
             var path = pathTextbox.Text;
             var import = new Biller.Data.Import.BillerV1.Import(path, (DataContext as EntryPoint).ParentViewModel.Database);
-            progressring.IsEnabled = true;
+            progressring.IsActive = true;
             await import.ImportEverything();
-            progressring.IsEnabled = false;
+            DocumentsToChangeList.ItemsSource = import.DocumentsToModify;
+            progressring.IsActive = false;
         }
 
         private void WatermarkTextBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -30,6 +31,11 @@ namespace Import_Biller.UI
             {
                 (sender as TextBox).Text = fb.SelectedPath;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -13,24 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Biller.Data.Factories.Buttons
+namespace OrderTypes_Biller.Invoice
 {
     /// <summary>
-    /// Interaktionslogik für InvoiceButton.xaml
+    /// Interaktionslogik für Button.xaml
     /// </summary>
-    public partial class InvoiceButton : Fluent.Button
+    public partial class Button : Fluent.Button
     {
-        public InvoiceButton()
+        public Button()
         {
             InitializeComponent();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is UI.DocumentView.Contextual.DocumentEditViewModel)
+            if (DataContext is Biller.UI.DocumentView.Contextual.DocumentEditViewModel)
             {
-                await (DataContext as UI.DocumentView.Contextual.DocumentEditViewModel).ReceiveInternalDocumentCreation(this, "Invoice");
-                (DataContext as UI.DocumentView.Contextual.DocumentEditViewModel).DocumentEditRibbonTabItem.ShowDocumentControls();
+                await (DataContext as Biller.UI.DocumentView.Contextual.DocumentEditViewModel).ReceiveInternalDocumentCreation(this, "Invoice");
+                (DataContext as Biller.UI.DocumentView.Contextual.DocumentEditViewModel).DocumentEditRibbonTabItem.ShowDocumentControls();
             }
         }
     }
