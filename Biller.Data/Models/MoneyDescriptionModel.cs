@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Biller.Data.Interfaces
+namespace Biller.Data.Models
 {
     public class MoneyDescriptionModel : Utils.PropertyChangedHelper
     {

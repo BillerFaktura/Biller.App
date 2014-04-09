@@ -29,13 +29,13 @@ namespace Biller.Data.Interfaces
         /// <summary>
         /// Contains information about the current used company.
         /// </summary>
-        Interfaces.CompanyInformation CurrentCompany { get; }
+        Models.CompanyInformation CurrentCompany { get; }
 
         /// <summary>
         /// Creates a database for a new company.
         /// </summary>
         /// <param name="source">Object that contains information about the new company.</param>
-        void AddCompany(Interfaces.CompanyInformation source);
+        void AddCompany(Models.CompanyInformation source);
 
         /// <summary>
         /// Changes the database. It will also call <see cref="Connect"/>. \n
@@ -43,13 +43,13 @@ namespace Biller.Data.Interfaces
         /// </summary>
         /// <param name="target">Object that contains information about the company you want switch to.</param>
         /// <returns>Returns a boolean whether the change was successfull.</returns>
-        Task<bool> ChangeCompany(Interfaces.CompanyInformation target);
+        Task<bool> ChangeCompany(Models.CompanyInformation target);
 
         /// <summary>
         /// Awaitable function that returns a list of all registered companies.
         /// </summary>
         /// <returns>Returns a list of all companies the database can find.</returns>
-        Task<IEnumerable<Interfaces.CompanyInformation>> GetCompanyList();
+        Task<IEnumerable<Models.CompanyInformation>> GetCompanyList();
         #endregion
 
         #region General Settings

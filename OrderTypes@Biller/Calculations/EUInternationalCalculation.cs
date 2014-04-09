@@ -55,7 +55,7 @@ namespace OrderTypes_Biller.Calculations
                 shipment.TaxClass = GlobalSettings.ShipmentTaxClass;
                 shipment.OrderedAmount = 1;
                 shipment.OrderPrice.Price1 = _parentOrder.OrderShipment.DefaultPrice;
-                TaxValues.Add(new Biller.Data.Interfaces.TaxClassMoneyModel() { Value = new Money(shipment.ExactVAT), TaxClass = shipment.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
+                TaxValues.Add(new Biller.Data.Models.TaxClassMoneyModel() { Value = new Money(shipment.ExactVAT), TaxClass = shipment.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
                 NetShipment.Amount = _parentOrder.OrderShipment.DefaultPrice.Amount - shipment.ExactVAT;
                 NetOrderSummary.Amount += NetShipment.Amount;
             }

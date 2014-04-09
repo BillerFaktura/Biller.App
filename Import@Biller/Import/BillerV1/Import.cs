@@ -15,7 +15,7 @@ namespace Biller.Data.Import.BillerV1
             DocumentsToModify = new List<CompanyDocumentListModel>();
             bdb = new FuncClasses.FastXML(DataDirectory);
             bdb.Connect();
-            Database.RegisterStorageableItem(new Interfaces.CompanySettings());
+            Database.RegisterStorageableItem(new Models.CompanySettings());
         }
 
         private FuncClasses.User user = new FuncClasses.User();
@@ -50,13 +50,13 @@ namespace Biller.Data.Import.BillerV1
         {
             foreach (var company in bdb.GetAllCompanys())
             {
-                var newCompany = new Interfaces.CompanyInformation();
+                var newCompany = new Models.CompanyInformation();
                 newCompany.CompanyName = company.CompanyName;
                 newCompany.GenerateNewID();
                 Database.AddCompany(newCompany);
                 await Database.ChangeCompany(newCompany);
-                
-                var companySettings = new Interfaces.CompanySettings();
+
+                var companySettings = new Models.CompanySettings();
                 companySettings.SalesTaxID = company.TradeID;
                 companySettings.TaxID = company.TaxID;
 
@@ -191,9 +191,9 @@ namespace Biller.Data.Import.BillerV1
                 outputArticle.ArticleCategory = article.ArticleCategory;
                 outputArticle.ArticleText = article.ArticleText;
                 //outputArticle.ArticleWeight = article.WeightString;
-                outputArticle.Price1 = new Interfaces.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice1.Amount, article.ArticlePrice1.IsGross) };
-                outputArticle.Price2 = new Interfaces.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice2.Amount, article.ArticlePrice2.IsGross) };
-                outputArticle.Price3 = new Interfaces.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice3.Amount, article.ArticlePrice3.IsGross) };
+                outputArticle.Price1 = new Models.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice1.Amount, article.ArticlePrice1.IsGross) };
+                outputArticle.Price2 = new Models.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice2.Amount, article.ArticlePrice2.IsGross) };
+                outputArticle.Price3 = new Models.PriceModel(outputArticle) { Price1 = new Utils.EMoney(article.ArticlePrice3.Amount, article.ArticlePrice3.IsGross) };
                 
                 // TaxClass
                 var TaxClass = new Utils.TaxClass();

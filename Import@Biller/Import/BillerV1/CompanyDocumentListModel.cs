@@ -19,7 +19,7 @@ namespace Biller.Data.Import.BillerV1
         /// <summary>
         /// The current company
         /// </summary>
-        public Interfaces.CompanyInformation Company { get; set; }
+        public Models.CompanyInformation Company { get; set; }
 
         /// <summary>
         /// The documents associated to the <see cref="Company"/>.

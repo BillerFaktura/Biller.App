@@ -14,8 +14,8 @@ namespace Biller.UI.Backstage.NewCompany
             BackstageTabItem = new ContentTabItem();
             BackstageTabItem.DataContext = this;
 
-            CompanyInformation = new Data.Interfaces.CompanyInformation();
-            CompanySettings = new Data.Interfaces.CompanySettings();
+            CompanyInformation = new Data.Models.CompanyInformation();
+            CompanySettings = new Data.Models.CompanySettings();
         }
 
         public Fluent.BackstageTabItem BackstageTabItem { get; private set; }
@@ -35,12 +35,12 @@ namespace Biller.UI.Backstage.NewCompany
 
         public void ResetCompanyInformation()
         {
-            CompanyInformation = new Data.Interfaces.CompanyInformation();
-            CompanySettings = new Data.Interfaces.CompanySettings();
+            CompanyInformation = new Data.Models.CompanyInformation();
+            CompanySettings = new Data.Models.CompanySettings();
         }
 
-        public Biller.Data.Interfaces.CompanyInformation CompanyInformation { get { return GetValue(() => CompanyInformation); } private set { SetValue(value); } }
+        public Biller.Data.Models.CompanyInformation CompanyInformation { get { return GetValue(() => CompanyInformation); } private set { SetValue(value); } }
 
-        public Biller.Data.Interfaces.CompanySettings CompanySettings { get { return GetValue(() => CompanySettings); } private set { SetValue(value); } }
+        public Biller.Data.Models.CompanySettings CompanySettings { get { return GetValue(() => CompanySettings); } private set { SetValue(value); } }
     }
 }

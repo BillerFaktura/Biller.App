@@ -113,7 +113,7 @@ namespace Biller.UI.DocumentView
                 foreach (var tab in factory.GetEditContentTabs())
                     documentEditViewModel.EditContentTabs.Add(tab);
 
-                documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (DocumentType)).First().GetExport();
+                documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.GetPreferedExportClass(document);
                 await documentEditViewModel.LoadData();
                 ParentViewModel.AddTabContentViewModel(documentEditViewModel);
                 documentEditViewModel.RibbonTabItem.IsSelected = true;
@@ -188,7 +188,7 @@ namespace Biller.UI.DocumentView
 
                             try
                             {
-                                documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport();
+                                documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.GetPreferedExportClass(loadingDocument);
                             }
                             catch(Exception e)
                             {
@@ -252,7 +252,7 @@ namespace Biller.UI.DocumentView
                             {
                                 documentEditViewModel.EditContentTabs.Add(tab);
                             }
-                            documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport();
+                            documentEditViewModel.ExportClass = ParentViewModel.SettingsTabViewModel.GetPreferedExportClass(loadingDocument);
                             await documentEditViewModel.LoadData();
                             ParentViewModel.AddTabContentViewModel(documentEditViewModel);
                             documentEditViewModel.RibbonTabItem.IsSelected = true;

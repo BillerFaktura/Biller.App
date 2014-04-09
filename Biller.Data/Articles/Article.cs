@@ -13,7 +13,7 @@ namespace Biller.Data.Articles
             // insert empty strings to avoid null exceptions.
             ArticleID = ""; ArticleDescription = ""; ArticleText = "";
             TaxClass = new Utils.TaxClass(); ArticleUnit = new Utils.Unit();
-            ArticleCategory = ""; Price1 = new Interfaces.PriceModel(this); Price2 = new Interfaces.PriceModel(this); Price3 = new Interfaces.PriceModel(this);
+            ArticleCategory = ""; Price1 = new Models.PriceModel(this); Price2 = new Models.PriceModel(this); Price3 = new Models.PriceModel(this);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Biller.Data.Articles
         /// <summary>
         /// Represents the price of pricegroup 1.
         /// </summary>
-        public Interfaces.PriceModel Price1
+        public Models.PriceModel Price1
         {
             get { return GetValue(() => Price1); }
             set { SetValue(value); }
@@ -92,7 +92,7 @@ namespace Biller.Data.Articles
         /// <summary>
         /// Represents the price of pricegroup 2.
         /// </summary>
-        public Interfaces.PriceModel Price2
+        public Models.PriceModel Price2
         {
             get { return GetValue(() => Price2); }
             set { SetValue(value); }
@@ -101,7 +101,7 @@ namespace Biller.Data.Articles
         /// <summary>
         /// Represents the price of pricegroup 3.
         /// </summary>
-        public Interfaces.PriceModel Price3
+        public Models.PriceModel Price3
         {
             get { return GetValue(() => Price3); }
             set { SetValue(value); }

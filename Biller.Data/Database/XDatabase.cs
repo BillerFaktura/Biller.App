@@ -43,7 +43,7 @@ namespace Biller.Data.Database
 
             try
             {
-                CurrentCompany = new Interfaces.CompanyInformation();
+                CurrentCompany = new Models.CompanyInformation();
                 CurrentCompany.ParseFromXElement(XElement.Parse(File.ReadAllText(DatabasePath + "Settings.xml")).Element("CurrentCompany").Element(CurrentCompany.XElementName));
             }
             catch (Exception e)
@@ -137,16 +137,16 @@ namespace Biller.Data.Database
         /// <remarks>This function is awaitable to ensure UI experience.</remarks>
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<Interfaces.CompanyInformation>> GetCompanyList()
+        public async Task<IEnumerable<Models.CompanyInformation>> GetCompanyList()
         {
-            return await Task.Run<IEnumerable<Interfaces.CompanyInformation>>(() => getCompanyList());
+            return await Task.Run<IEnumerable<Models.CompanyInformation>>(() => getCompanyList());
         }
 
-        private IEnumerable<Interfaces.CompanyInformation> getCompanyList()
+        private IEnumerable<Models.CompanyInformation> getCompanyList()
         {
             logger.Trace("Start getting company list");
             XDocument CompanySettings;
-            var temp = new ObservableCollection<Interfaces.CompanyInformation>();
+            var temp = new ObservableCollection<Models.CompanyInformation>();
             foreach (string dir in System.IO.Directory.GetDirectories(DatabasePath))
             {
                 logger.Trace("Parsing " + dir + "Others.xml");
@@ -161,16 +161,16 @@ namespace Biller.Data.Database
                     continue;
                 }
 
-                try { temp.Add(new Interfaces.CompanyInformation() { CompanyName = CompanySettings.Element("CompanyName").Value, CompanyID = CompanySettings.Element("CompanyID").Value }); }
+                try { temp.Add(new Models.CompanyInformation() { CompanyName = CompanySettings.Element("CompanyName").Value, CompanyID = CompanySettings.Element("CompanyID").Value }); }
                 catch (Exception e) { logger.TraceException("Error creating CompanyInformation", e); }
             }
             logger.Trace("Finished creating company list with " + temp.Count.ToString() + " items");
             return temp;
         }
 
-        public Interfaces.CompanyInformation CurrentCompany { get; private set; }
+        public Models.CompanyInformation CurrentCompany { get; private set; }
 
-        public async Task<bool> ChangeCompany(Interfaces.CompanyInformation target)
+        public async Task<bool> ChangeCompany(Models.CompanyInformation target)
         {
             logger.Info("Request to change company to " + target.CompanyName + " (" + target.CompanyID + ")");
             XElement doc;
@@ -196,7 +196,7 @@ namespace Biller.Data.Database
             return await Connect();
         }
 
-        public void AddCompany(Interfaces.CompanyInformation source)
+        public void AddCompany(Models.CompanyInformation source)
         {
             logger.Info("Adding new company " + source.CompanyName + "(" + source.CompanyID + ")");
             try { System.IO.Directory.CreateDirectory(DatabasePath + source.CompanyID); }

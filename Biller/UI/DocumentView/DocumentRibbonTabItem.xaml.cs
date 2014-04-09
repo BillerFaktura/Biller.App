@@ -47,7 +47,7 @@ namespace Biller.UI.DocumentView
                 
                 if (saveFileDialog.ShowDialog() == true)
                 {
-                    _ParentViewModel.ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport().SaveDocument(loadingDocument, saveFileDialog.FileName);
+                    _ParentViewModel.ParentViewModel.SettingsTabViewModel.GetPreferedExportClass(loadingDocument).SaveDocument(loadingDocument, saveFileDialog.FileName);
                     //factory.GetNewExportClass().SaveDocument(loadingDocument, saveFileDialog.FileName);
                 }
                     
@@ -63,7 +63,7 @@ namespace Biller.UI.DocumentView
                 loadingDocument.DocumentID = _ParentViewModel.SelectedDocument.DocumentID;
                 loadingDocument = await _ParentViewModel.ParentViewModel.Database.GetDocument(loadingDocument);
 
-                _ParentViewModel.ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (loadingDocument.DocumentType)).First().GetExport().PrintDocument(loadingDocument);
+                _ParentViewModel.ParentViewModel.SettingsTabViewModel.GetPreferedExportClass(loadingDocument).PrintDocument(loadingDocument);
             }
         }
 

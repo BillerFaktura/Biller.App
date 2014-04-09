@@ -436,7 +436,7 @@ namespace OrderTypes_Biller.Export
 
         public string GuID
         {
-            get { throw new NotImplementedException(); }
+            get { return "bfeeab8f-c7fc-4560-8278-85de2a413d40"; }
         }
     }
 }

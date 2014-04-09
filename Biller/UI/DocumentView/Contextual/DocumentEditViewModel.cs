@@ -20,7 +20,7 @@ namespace Biller.UI.DocumentView.Contextual
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedDocuments = new Data.Interfaces.DocumentFolderModel();
+            LinkedDocuments = new Data.Models.DocumentFolderModel();
             DocumentEditRibbonTabItem = new DocumentEditRibbonTabItem(this) { DataContext = this };
             DocumentEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
             DocumentFolderControl = new DocumentFolder(this) { DataContext = this };
@@ -39,7 +39,7 @@ namespace Biller.UI.DocumentView.Contextual
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedDocuments = new Data.Interfaces.DocumentFolderModel();
+            LinkedDocuments = new Data.Models.DocumentFolderModel();
             DocumentEditRibbonTabItem = new DocumentEditRibbonTabItem(this) { DataContext = this };
             DocumentEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
             DocumentFolderControl = new DocumentFolder(this) { DataContext = this };
@@ -60,7 +60,7 @@ namespace Biller.UI.DocumentView.Contextual
 
         public DocumentFolder DocumentFolderControl { get; private set; }
 
-        public Data.Interfaces.DocumentFolderModel LinkedDocuments { get { return GetValue(() => LinkedDocuments); } private set { SetValue(value); } }
+        public Data.Models.DocumentFolderModel LinkedDocuments { get { return GetValue(() => LinkedDocuments); } private set { SetValue(value); } }
 
         public bool EditMode { get { return GetValue(() => EditMode); } private set { SetValue(value); } }
 
@@ -102,7 +102,7 @@ namespace Biller.UI.DocumentView.Contextual
             {
                 EditContentTabs.Add(tab);
             }
-            ExportClass = ParentViewModel.ParentViewModel.SettingsTabViewModel.PreferedExportClasses.Where(x => x.Document.DocumentType == (DocumentType)).First().GetExport();
+            ExportClass = ParentViewModel.ParentViewModel.SettingsTabViewModel.GetPreferedExportClass(Document);
             await LoadData();
             await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID("", Document.DocumentID, Document.DocumentType);
             DisplayedTabContent = DocumentEditTabHolder;
@@ -126,7 +126,7 @@ namespace Biller.UI.DocumentView.Contextual
             if (Document != null)
             {
                 // Loads the DocumentFolder containing the current Document.
-                var list = from Data.Interfaces.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(new Data.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
+                var list = from Data.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(new Data.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
                 if (list.Count() > 0)
                     LinkedDocuments = list.First();
             }
@@ -137,7 +137,7 @@ namespace Biller.UI.DocumentView.Contextual
             if (data is Data.Document.PreviewDocument)
             {
                 //Load DocumentFolder from SettingsTabViewModel and replace the current one.
-                var list = from Data.Interfaces.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(data as Data.Document.PreviewDocument) select folder;
+                var list = from Data.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(data as Data.Document.PreviewDocument) select folder;
                 if (list.Count() > 0)
                     LinkedDocuments = list.First();
             }
