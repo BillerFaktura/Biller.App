@@ -238,7 +238,7 @@ namespace Biller.Data.Articles
             OrderedAmount = double.Parse(source.Element("OrderedAmount").Value, CultureInfo.InvariantCulture);
             OrderPosition = int.Parse(source.Element("ArticlePosition").Value);
             OrderPrice.ParseFromXElement(source.Element("OrderPrice").Element("PriceGroup"));
-            OrderRebate.ParseFromXElement(source.Element("OrderRebate"));       
+            OrderRebate.ParseFromXElement(source.Element(OrderRebate.XElementName));       
         }
 
         /// <summary>
@@ -250,7 +250,7 @@ namespace Biller.Data.Articles
             return new XElement(XElementName, new XElement("ArticleID", ArticleID), new XElement("ArticleDescription", ArticleDescription),
                          new XElement("OrderText", OrderText), new XElement("OrderedAmount", OrderedAmount),
                          new XElement("ArticlePosition", OrderPosition), new XElement("OrderPrice", OrderPrice.GetXElement()),
-                         new XElement("OrderRebate", OrderRebate.GetXElement()), new XElement("ArticleWeight", ArticleWeight),
+                         new XElement(OrderRebate.GetXElement()), new XElement("ArticleWeight", ArticleWeight),
                          new XElement("ArticleUnit", ArticleUnit.Name), new XElement("TaxClass", TaxClass.Name));
         }
 
