@@ -94,5 +94,10 @@ namespace OrderTypes_Biller.Docket
                 }
             }
         }
+
+        public Biller.Data.Document.PreviewDocument GetPreviewDocument(Biller.Data.Document.Document source)
+        {
+            return Order.Order.PreviewFromOrder(source as Order.Order);
+        }
     }
 }

@@ -321,8 +321,9 @@ namespace Biller.UI.DocumentView
         public async Task SaveOrUpdateDocument(Data.Document.Document source)
         {
             dynamic tempPreview = new Data.Document.PreviewDocument(source.DocumentType);
-            //if (source is Data.Orders.Order)
-            //    tempPreview = Data.Orders.Order.PreviewFromOrder(source as Data.Orders.Order);
+            var factory = GetFactory(source.DocumentType);
+            if (factory != null)
+                tempPreview = factory.GetPreviewDocument(source);
 
             if (AllDocuments.Contains(tempPreview))
             {

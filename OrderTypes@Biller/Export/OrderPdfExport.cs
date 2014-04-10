@@ -115,7 +115,7 @@ namespace OrderTypes_Biller.Export
             this.addressFrame.RelativeVertical = RelativeVertical.Page;
 
             // Put sender in address frame
-            Paragraph paragraph = this.addressFrame.AddParagraph("MyCryptoMiner | Hegelstraße 38 | 39104 Magdeburg");
+            Paragraph paragraph = this.addressFrame.AddParagraph("MyCryptoMiner | Hegelstraße 28 | 39104 Magdeburg");
             paragraph.Format.Font.Name = "Calibri";
             paragraph.Format.Font.Size = 8;
             paragraph.Format.SpaceAfter = 3;

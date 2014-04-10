@@ -57,8 +57,9 @@ namespace Biller.UI.DocumentView.Contextual.EditTabs.Receipent
             {
                 try
                 {
-                    dynamic document = (viewmodel.Document);
-                    document.Customer = viewmodel.PreviewCustomer;
+                    var factory = viewmodel.ParentViewModel.GetFactory(viewmodel.Document.DocumentType);
+                    factory.ReceiveData(viewmodel.PreviewCustomer, viewmodel.Document);
+
                     viewmodel.PreviewCustomer = null;
                     (sender as TextBox).Text = "";
                 }

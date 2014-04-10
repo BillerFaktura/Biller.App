@@ -57,8 +57,7 @@
     <StartupObject>Biller.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
@@ -537,6 +536,8 @@
     <Resource Include="Images\appbar.add.png" />
     <Resource Include="Images\appbar.fingerprint.png" />
     <Resource Include="Images\appbar.app.remove.png" />
+    <Resource Include="Images\icon.png" />
+    <Resource Include="icon.ico" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

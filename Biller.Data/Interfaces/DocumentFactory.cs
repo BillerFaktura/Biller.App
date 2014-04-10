@@ -21,5 +21,7 @@ namespace Biller.Data.Interfaces
         Fluent.Button GetCreationButton();
 
         void ReceiveData(object source, Document.Document target);
+
+        Biller.Data.Document.PreviewDocument GetPreviewDocument(Document.Document source);
     }
 }
