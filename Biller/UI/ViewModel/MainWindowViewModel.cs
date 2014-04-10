@@ -35,7 +35,7 @@ namespace Biller.UI.ViewModel
             TabContentViewModels = new ObservableCollection<UI.Interface.ITabContentViewModel>();
 
             logger.Debug("Initializing OrderTabViewModel");
-            OrderTabViewModel = new DocumentView.DocumentTabViewModel(this);
+            DocumentTabViewModel = new DocumentView.DocumentTabViewModel(this);
             logger.Debug("Initializing ArticleTabViewModel");
             ArticleTabViewModel = new ArticleView.ArticleTabViewModel(this);
             logger.Debug("Initializing CustomerTabViewModel");
@@ -57,7 +57,7 @@ namespace Biller.UI.ViewModel
         /// <summary>
         /// The current instance of <see cref="Biller.UI.DocumentView.DocumentTabViewModel"/>.
         /// </summary>
-        public Biller.UI.DocumentView.DocumentTabViewModel OrderTabViewModel { get; private set; }
+        public Biller.UI.DocumentView.DocumentTabViewModel DocumentTabViewModel { get; private set; }
 
         /// <summary>
         /// The current instance of <see cref="Biller.UI.DocumentView.CustomerTabViewModel"/>.
@@ -151,11 +151,11 @@ namespace Biller.UI.ViewModel
                 logger.Info("Connecting to database was successfull");
 
                 logger.Debug("Adding Viewmodels to the collection");
-                AddTabContentViewModel(OrderTabViewModel);
+                AddTabContentViewModel(DocumentTabViewModel);
                 AddTabContentViewModel(ArticleTabViewModel);
                 AddTabContentViewModel(CustomerTabViewModel);
                 AddTabContentViewModel(SettingsTabViewModel);
-                SelectedContent = OrderTabViewModel.TabContent;
+                SelectedContent = DocumentTabViewModel.TabContent;
 
                 foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*.bdll"))
                 {
@@ -175,7 +175,7 @@ namespace Biller.UI.ViewModel
                 await SettingsTabViewModel.LoadData();
                 await ArticleTabViewModel.LoadData();
                 await CustomerTabViewModel.LoadData();
-                await OrderTabViewModel.LoadData();
+                await DocumentTabViewModel.LoadData();
             }
             else
             {
