@@ -54,7 +54,7 @@
                         </Border>
                     </Grid>
                     <StackPanel Orientation="Horizontal" Margin="10,5,10,0">
-                        <TextBlock Text="{Binding DocumentType}" Foreground="#FF404040"/>
+                        <TextBlock Text="{Binding LocalizedDocumentType}" Foreground="#FF404040"/>
                         <TextBlock Text="{Binding DocumentID}" Foreground="#FF404040" Margin="4,0,0,0"/>
                     </StackPanel>
                 </StackPanel>

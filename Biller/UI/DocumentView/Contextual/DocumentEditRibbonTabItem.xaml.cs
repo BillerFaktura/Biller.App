@@ -82,7 +82,9 @@ namespace Biller.UI.DocumentView.Contextual
 
         private void CheckLinkedDocuments()
         {
-            var document = new Biller.Data.Document.PreviewDocument(_ViewModel.Document.DocumentType) { DocumentID = _ViewModel.Document.DocumentID };
+            dynamic document = new Biller.Data.Document.PreviewDocument(_ViewModel.Document.DocumentType) { DocumentID = _ViewModel.Document.DocumentID };
+            document.LocalizedDocumentType = _ViewModel.Document.LocalizedDocumentType;
+
             if (!_ViewModel.LinkedDocuments.Documents.Contains(document))
                 _ViewModel.LinkedDocuments.Documents.Add(document);
         }

@@ -26,9 +26,9 @@ namespace Biller.Data.Models
         public XElement GetXElement()
         {
             var output = new System.Xml.Linq.XElement(XElementName, new XElement(IDFieldName,ID));
-            foreach(var doc in Documents)
+            foreach(dynamic doc in Documents)
             {
-                output.Add(new XElement("Entry", new XAttribute("Type", doc.DocumentType), new XAttribute("ID", doc.DocumentID)));
+                output.Add(new XElement("Entry", new XAttribute("Type", doc.DocumentType), new XAttribute("ID", doc.DocumentID), new XAttribute("LocalizedDocumentType", doc.LocalizedDocumentType)));
             }
             return output;
         }
@@ -42,7 +42,13 @@ namespace Biller.Data.Models
             var docs = source.Elements("Entry");
             Documents.Clear();
             foreach (var doc in docs)
-                Documents.Add(new Document.PreviewDocument(doc.Attribute("Type").Value) { DocumentID = doc.Attribute("ID").Value });
+            {
+                dynamic prevDoc = new Document.PreviewDocument(doc.Attribute("Type").Value) { DocumentID = doc.Attribute("ID").Value };
+                prevDoc.LocalizedDocumentType = doc.Attribute("LocalizedDocumentType").Value;
+                Documents.Add(prevDoc);
+
+            }
+                
         }
 
         public string XElementName
