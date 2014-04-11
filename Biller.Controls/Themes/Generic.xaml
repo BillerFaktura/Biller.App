@@ -12,7 +12,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Office2013Button}">
-                    <Border x:Name="Border" BorderThickness="1" Margin="0" Background="{TemplateBinding Background}" BorderBrush="LightGray">
+                    <Border x:Name="Border" BorderThickness="1" Margin="0" Background="{TemplateBinding Background}" BorderBrush="LightGray" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
                         <StackPanel Margin="2" x:Name="stackPanel" MaxWidth="{Binding ElementName=Border, Path=ActualWidth}">
                             <Image HorizontalAlignment="Center" Height="48" Width="48" VerticalAlignment="Center" Source="{TemplateBinding Image}" Margin="9,2,9,0" SnapsToDevicePixels="True" />
                             <ContentPresenter HorizontalAlignment="Center" Height="48" Width="48" VerticalAlignment="Center" Content="{TemplateBinding Vector}" Margin="9,-46,9,0" SnapsToDevicePixels="True" />

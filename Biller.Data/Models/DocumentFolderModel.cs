@@ -46,7 +46,6 @@ namespace Biller.Data.Models
                 dynamic prevDoc = new Document.PreviewDocument(doc.Attribute("Type").Value) { DocumentID = doc.Attribute("ID").Value };
                 prevDoc.LocalizedDocumentType = doc.Attribute("LocalizedDocumentType").Value;
                 Documents.Add(prevDoc);
-
             }
                 
         }
