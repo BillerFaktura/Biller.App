@@ -51,5 +51,39 @@ namespace Biller.UI.DocumentView.Contextual.EditTabs.Articles
                 }
             }
         }
+
+        private async void WatermarkTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var viewmodel = (DataContext as DocumentEditViewModel);
+            var exists = await viewmodel.ParentViewModel.ParentViewModel.Database.ArticleExists((sender as TextBox).Text);
+            if (exists == true)
+            {
+                viewmodel.PreviewArticle = await viewmodel.ParentViewModel.ParentViewModel.Database.GetArticle((sender as TextBox).Text);
+            }
+            else
+            {
+                viewmodel.PreviewArticle = null;
+            }
+        }
+
+        private void WatermarkTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            var viewmodel = (DataContext as DocumentEditViewModel);
+            if (e.Key == Key.Enter && viewmodel.PreviewArticle != null)
+            {
+                try
+                {
+                    var factory = viewmodel.ParentViewModel.GetFactory(viewmodel.Document.DocumentType);
+                    factory.ReceiveData(viewmodel.PreviewArticle, viewmodel.Document);
+
+                    viewmodel.PreviewArticle = null;
+                    (sender as TextBox).Text = "";
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+        }
     }
 }

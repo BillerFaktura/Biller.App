@@ -9,22 +9,22 @@
     <!-- ResizeDecorator Template -->
     <ControlTemplate x:Key="ResizeDecoratorTemplate" TargetType="{x:Type Control}">
         <Grid>
-            <s:ResizeThumb Height="3" Cursor="SizeNS" Margin="0 -4 0 0"
+            <s:ResizeThumb Height="1" Cursor="SizeNS" Margin="-0.5 -0.5 -0.5 0"
                        VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
-            <s:ResizeThumb Width="3" Cursor="SizeWE" Margin="-4 0 0 0"
+            <s:ResizeThumb Width="1" Cursor="SizeWE" Margin="-0.5 -0.5 0 -0.5"
                        VerticalAlignment="Stretch" HorizontalAlignment="Left"/>
-            <s:ResizeThumb Width="3" Cursor="SizeWE" Margin="0 0 -4 0"
+            <s:ResizeThumb Width="1" Cursor="SizeWE" Margin="0 -0.5 -0.5 -0.5"
                        VerticalAlignment="Stretch" HorizontalAlignment="Right"/>
-            <s:ResizeThumb Height="3" Cursor="SizeNS" Margin="0 0 0 -4"
+            <s:ResizeThumb Height="1" Cursor="SizeNS" Margin="-0.5,0,-0.5,-0.5"
                        VerticalAlignment="Bottom" HorizontalAlignment="Stretch"/>
-            <s:ResizeThumb Width="7" Height="7" Cursor="SizeNWSE" Margin="-6 -6 0 0"
-                       VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <s:ResizeThumb Width="7" Height="7" Cursor="SizeNESW" Margin="0 -6 -6 0"
-                       VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <s:ResizeThumb Width="7" Height="7" Cursor="SizeNESW" Margin="-6 0 0 -6"
-                       VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-            <s:ResizeThumb Width="7" Height="7" Cursor="SizeNWSE" Margin="0 0 -6 -6"
-                       VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <s:ResizeThumb Width="3" Height="3" Cursor="SizeNWSE" Margin="-1.5 -1.5 0 0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <s:ResizeThumb Width="3" Height="3" Cursor="SizeNESW" Margin="0 -1.5 -1.5 0"
+                       VerticalAlignment="Top" HorizontalAlignment="Right" />
+            <s:ResizeThumb Width="3" Height="3" Cursor="SizeNESW" Margin="-1.5 0 0 -1.5"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+            <s:ResizeThumb Width="3" Height="3" Cursor="SizeNWSE" Margin="0 0 -1.5 -1.5"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Right" />
         </Grid>
     </ControlTemplate>
 

@@ -35,6 +35,10 @@
             </Style>
             <converter:EmptyStringConverter x:Key="EmptyStringConverter"/>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converter:ValueConverterGroup x:Key="NullVisibilityConverter">
+                <converter:NullToBooleanConverter/>
+                <BooleanToVisibilityConverter/>
+            </converter:ValueConverterGroup>
             <converter:ValueConverterGroup x:Key="EmptyStringVisibility">
                 <converter:EmptyStringConverter/>
                 <converter:InverseBooleanConverter/>
@@ -80,7 +84,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="4*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" MaxHeight="100"/>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -193,17 +197,39 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" Margin="0,5,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <TextBlock Text="{Binding Document.OrderCalculation.NetArticleSummary}" Style="{StaticResource ContentStyle}"/>
-                <TextBlock Text="{Binding Document.OrderCalculation.ArticleSummary}" Style="{StaticResource ContentStyle}"/>
-                <TextBlock Text="{Binding Document.OrderCalculation.NetOrderSummary}" Style="{StaticResource ContentStyle}"/>
-                <TextBlock Text="{Binding Document.OrderCalculation.OrderSummary}" Style="{StaticResource ContentStyle}"/>
+                <controls:WatermarkTextBox Watermark="Per Artikelnummer hinzufügen" TextChanged="WatermarkTextBox_TextChanged" KeyUp="WatermarkTextBox_KeyUp"/>
+                <TextBlock Style="{StaticResource ContentStyle}" Visibility="{Binding PreviewArticle, Converter={StaticResource NullVisibilityConverter}}">
+                    <TextBlock Text="{Binding PreviewArticle.ArticleID}"/>
+                    <TextBlock Text=" "/>
+                    <TextBlock Text="{Binding PreviewArticle.ArticleDescription}"/>
+                    <TextBlock Text=" "/>
+                    <TextBlock Text="{Binding PreviewArticle.Price1.Price1.AmountString}"/>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="2">
+                <TextBlock Style="{StaticResource ContentStyle}">
+                    <TextBlock Text="Artikelsumme Netto:" />
+                    <TextBlock Text="{Binding Document.OrderCalculation.NetArticleSummary}" HorizontalAlignment="Right" />
+                </TextBlock>
+                <TextBlock Style="{StaticResource ContentStyle}">
+                    <TextBlock Text="Artikelsumme Brutto:" />
+                    <TextBlock Text="{Binding Document.OrderCalculation.ArticleSummary}" HorizontalAlignment="Right" />
+                </TextBlock>
+                <!--<TextBlock Style="{StaticResource ContentStyle}">
+                    <TextBlock Text="Auftragssumme Netto:" />
+                    <TextBlock Text="{Binding Document.OrderCalculation.NetOrderSummary}" HorizontalAlignment="Right" />
+                </TextBlock>
+                <TextBlock Style="{StaticResource ContentStyle}">
+                    <TextBlock Text="Auftragssumme Brutto:" />
+                    <TextBlock Text="{Binding Document.OrderCalculation.OrderSummary}" HorizontalAlignment="Right" />
+                </TextBlock>
                 <ItemsControl ItemsSource="{Binding Document.OrderCalculation.TaxValues}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -216,7 +242,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                </ItemsControl>-->
             </StackPanel>
         </Grid>
     </Grid>
