@@ -208,6 +208,13 @@ namespace Biller.UI.DocumentView
                         }
                         catch (Exception e)
                         {
+                            var ErrorNotification = new Controls.Notification.Notification();
+                            ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
+                            ErrorNotification.Title = "Fehler beim Laden";
+                            dynamic document = SelectedDocument;
+                            ErrorNotification.Message = "Das Dokument " + document.LocalizedDocumentType + " Nr. " + document.DocumentID + " konnte nicht geöffnet werden. Weitere Informationen im Log.";
+                            ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+
                             logger.ErrorException("Error loading document. Sender was " + sender.ToString(), e);
                         }
                     }

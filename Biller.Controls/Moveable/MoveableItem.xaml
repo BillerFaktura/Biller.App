@@ -8,7 +8,7 @@
 
     <!-- ResizeDecorator Template -->
     <ControlTemplate x:Key="ResizeDecoratorTemplate" TargetType="{x:Type Control}">
-        <Grid>
+        <Grid x:Name="grid">
             <s:ResizeThumb Height="1" Cursor="SizeNS" Margin="-0.5 -0.5 -0.5 0"
                        VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
             <s:ResizeThumb Width="1" Cursor="SizeWE" Margin="-0.5 -0.5 0 -0.5"
@@ -26,6 +26,24 @@
             <s:ResizeThumb Width="3" Height="3" Cursor="SizeNWSE" Margin="0 0 -1.5 -1.5"
                        VerticalAlignment="Bottom" HorizontalAlignment="Right" />
         </Grid>
+		<ControlTemplate.Resources>
+			<Storyboard x:Key="FadeOut">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="grid"
+                                        To="0" Duration="0:0:0.1"/>
+                </Storyboard>
+                <Storyboard x:Key="FadeIn">
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity" Storyboard.TargetName="grid"
+                                        To="1" Duration="0:0:0.1"/>
+                </Storyboard>
+		</ControlTemplate.Resources>
+		<ControlTemplate.Triggers>
+			<EventTrigger RoutedEvent="GotFocus">
+                    <BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="LostFocus">
+                    <BeginStoryboard Storyboard="{StaticResource FadeOut}"/>
+                </EventTrigger>
+		</ControlTemplate.Triggers>
     </ControlTemplate>
 
     <!-- Designer Item Template-->

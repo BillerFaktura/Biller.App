@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Biller
@@ -17,20 +19,12 @@ namespace Biller
 
         private async void window_Loaded(object sender, RoutedEventArgs e)
         {
-            string AssemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "") + "Data\\";
-            database = new Data.Database.XDatabase(AssemblyLocation);
-            await database.Connect();
-            //await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
-            var unit = new Biller.Data.Utils.Unit();
-            unit.DecimalDigits=3;
-            unit.DecimalSeperator = ",";
-            unit.Name = "Kilogramm";
-            unit.ShortName = "kg";
-            await database.RegisterStorageableItem(unit);
+            //var folder = new Biller.Data.Models.DocumentFolderModel();
+            //folder.Documents.Add(new Data.Document.PreviewDocument("Rechnung") { DocumentID = "1000" });
+            //folder.Documents.Add(new Data.Document.PreviewDocument("Lieferschein") { DocumentID = "1001" });
+            //MessageBox.Show(folder.GetXElement().ToString());
 
-            await database.SaveOrUpdateStorageableItem(unit);
-
-            var list = await database.AllStorageableItems(unit);
+            Console.WriteLine(await GetOuterString());
         }
 
         //private async void Button_Click(object sender, RoutedEventArgs e)
@@ -41,5 +35,28 @@ namespace Biller
         //    var csv = new Data.Import.csv();
         //    await csv.ImportArticles("C:\\Users\\Igor\\Desktop\\listenpreise 2014 gefiltertArtikel Excel.txt", database);
         //}
+
+        private async Task<string> GetOuterString()
+        {
+            return await Task<string>.Run(() => getOuterString());
+        }
+
+        private string getOuterString()
+        {
+            var task = GetInnerString();
+            //task.RunSynchronously();
+            var inner = task.Result;
+            return "outer " + inner;
+        }
+
+        private async Task<string> GetInnerString()
+        {
+            return await Task<string>.Run(() => getInnerString());
+        }
+
+        private string getInnerString()
+        {
+            return "inner";
+        }
     }
 }

@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="OrderTypes_Biller.Export.Settings.Content"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="700">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Biller.Controls;Component/Moveable/MoveableItem.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1.5*" MinWidth="200"/>
+        </Grid.ColumnDefinitions>
+        <!--controls:AnimatedScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Button Content="Add Text" Click="Button_Click"/>
+                <TreeView ItemsSource="{Binding Elements}" Height="500" Margin="5">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                            <TextBlock Foreground="Red" Text="Blub" />
+                            <HierarchicalDataTemplate.ItemTemplate>
+                                <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                    <TextBlock Text="{Binding Description}" />
+                                </HierarchicalDataTemplate>
+                            </HierarchicalDataTemplate.ItemTemplate>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </StackPanel>
+        </controls:AnimatedScrollViewer>
+        <StackPanel Grid.Column="1">
+            <Border BorderBrush="#C6C6C6" BorderThickness="1" Margin="5,20,5,10" ClipToBounds="True">
+                <Viewbox>
+                    <ItemsControl ItemsSource="{Binding Elements}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas Background="White" Width="210" Height="297"  />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Viewbox>
+            </Border>
+            
+            <StackPanel Orientation="Horizontal" Margin="3,0,0,0">
+                <TextBlock Text="Abstand links: " VerticalAlignment="Center" Width="90"/>
+                <controls:WatermarkTextBox Text="{Binding SelectedElement.(Canvas.Left)}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3,0,0,0">
+                <TextBlock Text="Abstand oben: " VerticalAlignment="Center" Width="90"/>
+                <controls:WatermarkTextBox Text="{Binding SelectedElement.(Canvas.Top)}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3,0,0,0">
+                <TextBlock Text="Breite: " VerticalAlignment="Center" Width="90"/>
+                <controls:WatermarkTextBox Text="{Binding SelectedElement.(Width)}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="3,0,0,0">
+                <TextBlock Text="Höhe: " VerticalAlignment="Center" Width="90"/>
+                <controls:WatermarkTextBox Text="{Binding SelectedElement.(Height)}"/>
+            </StackPanel>
+        </StackPanel>-->
+        
+        
+    </Grid>
+</UserControl>

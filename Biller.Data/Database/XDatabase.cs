@@ -145,23 +145,24 @@ namespace Biller.Data.Database
         private IEnumerable<Models.CompanyInformation> getCompanyList()
         {
             logger.Trace("Start getting company list");
-            XDocument CompanySettings;
+            XElement CompanySettings;
             var temp = new ObservableCollection<Models.CompanyInformation>();
             foreach (string dir in System.IO.Directory.GetDirectories(DatabasePath))
             {
-                logger.Trace("Parsing " + dir + "Others.xml");
+                logger.Trace("Parsing " + dir + "\\Others.xml");
                 try 
                 {
-                    using (StreamReader reader = File.OpenText(dir + "Others.xml"))
-                        CompanySettings = XDocument.Load(reader);
+                    using (StreamReader reader = File.OpenText(dir + "\\Others.xml"))
+                        CompanySettings = XElement.Load(reader);
                 }
                 catch (Exception e)
                 {
-                    logger.TraceException("Error parsing " + dir + "Others.xml", e);
+                    logger.TraceException("Error parsing " + dir + "\\Others.xml", e);
                     continue;
                 }
-
-                try { temp.Add(new Models.CompanyInformation() { CompanyName = CompanySettings.Element("CompanyName").Value, CompanyID = CompanySettings.Element("CompanyID").Value }); }
+                var item = new Models.CompanyInformation();
+                item.ParseFromXElement(CompanySettings.Element(item.XElementName));
+                try { temp.Add(item); }
                 catch (Exception e) { logger.TraceException("Error creating CompanyInformation", e); }
             }
             logger.Trace("Finished creating company list with " + temp.Count.ToString() + " items");

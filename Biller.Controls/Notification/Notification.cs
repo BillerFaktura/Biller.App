@@ -60,6 +60,19 @@ namespace Biller.Controls.Notification
             }
         }
 
+        private int duration = 100000;
+        public int Duration
+        {
+            get { return duration; }
+
+            set
+            {
+                if (duration == value) return;
+                duration = value;
+                OnPropertyChanged("Duration");
+            }
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;

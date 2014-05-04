@@ -43,6 +43,11 @@ namespace OrderTypes_Biller.Invoice
             }
         }
 
+        /// <summary>
+        /// Works with the <see cref="source"/> when <see cref="target"/> is type of <see cref="Order"/>.
+        /// </summary>
+        /// <param name="source">When source is type of <see cref="Biller.Data.Customers.Customer"/> or <see cref="Biller.Data.Articles.Article"/> the data will be passed to the target <see cref="Order.Order"/>.</param>
+        /// <param name="target"><see cref="source"/> will be passed to <see cref="target"/> if it's type of <see cref="Order.Order"/>.</param>
         public void ReceiveData(object source, Biller.Data.Document.Document target)
         {
             if (target is Order.Order)

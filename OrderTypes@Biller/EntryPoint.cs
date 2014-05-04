@@ -39,7 +39,9 @@ namespace OrderTypes_Biller
             await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Invoice.InvoiceParser());
             ParentViewModel.DocumentTabViewModel.AddDocumentFactory(new Invoice.InvoiceFactory());
 
-            ParentViewModel.SettingsTabViewModel.RegisteredExportClasses.Add(new Export.OrderPdfExport());
+            ParentViewModel.SettingsTabViewModel.RegisteredExportClasses.Add(new Export.OrderPdfExport(ParentViewModel));
+
+            ParentViewModel.SettingsTabViewModel.SettingsList.Add(new Export.Settings.SettingsTab { DataContext = new Export.Settings.ViewModel() });
         }
 
         public List<Biller.UI.Interface.IViewModel> ViewModels()

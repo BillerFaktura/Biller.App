@@ -82,6 +82,17 @@
 			<Setter Property="HorizontalAlignment" Value="Stretch"/>
 		</Style>
 		<DataTemplate x:Key="MessageTemplate" DataType="Model:Notification">
+			<DataTemplate.Resources>
+				<Storyboard x:Key="AutoClosingStoryboard">
+					<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="NotificationWindow" >
+						<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0" >
+							<EasingDoubleKeyFrame.EasingFunction>
+								<CubicEase EasingMode="EaseInOut"/>
+							</EasingDoubleKeyFrame.EasingFunction>
+						</EasingDoubleKeyFrame>
+					</DoubleAnimationUsingKeyFrames>
+				</Storyboard>
+			</DataTemplate.Resources>
 			<Grid x:Name="NotificationWindow" Tag="{Binding Path=Id}" Background="Transparent" SizeChanged="NotificationWindowSizeChanged" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,25" >
 				<Grid.RenderTransform>
 					<TransformGroup>
@@ -106,7 +117,7 @@
 								   FontSize="14" FontWeight="Bold" VerticalAlignment="Center"  Margin="2,18,35,2" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Height="20" />
 						<Button x:Name="CloseButton" Grid.Column="1" Width="30" Height="30" HorizontalAlignment="Right" Margin="0,0,0,0" Style="{StaticResource CloseButton}" VerticalAlignment="Top" />
 						<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Message}"  TextOptions.TextRenderingMode="ClearType" TextOptions.TextFormattingMode="Display" Foreground="White" 
-								   VerticalAlignment="Center"  Margin="2,2,25,4" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Height="30"/>
+								   VerticalAlignment="Center"  Margin="2,2,25,4" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" MinHeight="30"/>
 					</Grid>
 				</Border>
 			</Grid>

@@ -106,5 +106,10 @@ namespace Biller.UI.Ribbon
             var backstage = Ribbon.Menu as Fluent.Backstage;
             backstage.IsOpen = false;
         }
+
+        public void ClearRibbonTabItems()
+        {
+            Ribbon.Tabs.Clear();
+        }
     }
 }

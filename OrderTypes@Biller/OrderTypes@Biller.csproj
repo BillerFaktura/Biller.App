@@ -96,6 +96,17 @@
     <Compile Include="Docket\DocketParser.cs" />
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Export\OrderPdfExport.cs" />
+    <Compile Include="Export\Settings\Content.xaml.cs">
+      <DependentUpon>Content.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Settings\Controls\IExportControl.cs" />
+    <Compile Include="Export\Settings\Controls\TextElement.xaml.cs">
+      <DependentUpon>TextElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Settings\SettingsTab.xaml.cs">
+      <DependentUpon>SettingsTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Settings\ViewModel.cs" />
     <Compile Include="Invoice\Button.xaml.cs">
       <DependentUpon>Button.xaml</DependentUpon>
     </Compile>
@@ -124,14 +135,24 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Export\Settings\Content.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Export\Settings\Controls\TextElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Export\Settings\SettingsTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Invoice\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\PrintPreview\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

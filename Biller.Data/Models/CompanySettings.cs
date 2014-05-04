@@ -50,7 +50,7 @@ namespace Biller.Data.Models
 
         public XElement GetXElement()
         {
-            var output = new XElement(XElementName, new XElement("TaxID", TaxID), new XElement("SalesTaxID", SalesTaxID), MainAddress.GetXElement(), Contact.GetXElement());
+            var output = new XElement(XElementName, new XElement("TaxID", TaxID), new XElement("SalesTaxID", SalesTaxID), MainAddress.GetXElement(), Contact.GetXElement(), new XElement(IDFieldName,ID));
             return output;
         }
 
@@ -60,6 +60,7 @@ namespace Biller.Data.Models
                 throw new Exception("Expected " + XElementName + " but got " + source.Name);
             TaxID = source.Element("TaxID").Value;
             SalesTaxID = source.Element("SalesTaxID").Value;
+            ID = source.Element(IDFieldName).Value;
             MainAddress.ParseFromXElement(source.Element(MainAddress.XElementName));
             MainAddress.ParseFromXElement(source.Element(MainAddress.XElementName));
         }

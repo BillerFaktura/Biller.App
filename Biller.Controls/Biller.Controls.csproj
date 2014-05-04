@@ -67,9 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimatedScrollViewer.cs" />
-    <Compile Include="Messagebox.xaml.cs">
-      <DependentUpon>Messagebox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Moveable\MoveThumb.cs" />
     <Compile Include="Moveable\ResizeThumb.cs" />
     <Compile Include="Notification\Notification.cs" />
@@ -102,10 +99,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Messagebox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Moveable\MoveableItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -5,5 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <TabControl Style="{DynamicResource InnerBackstageTabControlStyle}" ItemsSource="{Binding SettingsList}"/>
+    <TabControl Style="{DynamicResource InnerBackstageTabControlStyle}" ItemsSource="{Binding SettingsList}">
+        <TabControl.Template>
+            <ControlTemplate TargetType="TabControl">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0,0,1,0" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Offset="1" Color="#00D2D3D4"/>
+                                <GradientStop Color="#7FD2D3D4"/>
+                                <GradientStop Color="#FFD2D3D4" Offset="0.246"/>
+                                <GradientStop Color="#FFD2D3D4" Offset="0.797"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                    </Border>
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" IsItemsHost="True"/>
+                    </ScrollViewer>
+                    <ContentPresenter x:Name="PART_SelectedContentHost" Grid.Column="1" Margin="0" VerticalAlignment="Stretch" ContentSource="SelectedContent"/>
+                </Grid>
+            </ControlTemplate>
+        </TabControl.Template>
+    </TabControl>
 </UserControl>

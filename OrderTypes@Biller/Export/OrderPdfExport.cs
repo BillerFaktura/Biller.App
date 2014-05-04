@@ -15,8 +15,10 @@ namespace OrderTypes_Biller.Export
 {
     public class OrderPdfExport : Biller.Data.Interfaces.IExport
     {
-        public OrderPdfExport()
+        Biller.UI.ViewModel.MainWindowViewModel ParentViewModel;
+        public OrderPdfExport(Biller.UI.ViewModel.MainWindowViewModel ParentViewModel)
         {
+            this.ParentViewModel = ParentViewModel;
             PreviewElement = new MigraDoc.Rendering.Windows.DocumentPreview();
             PrintDialog = new System.Windows.Forms.PrintDialog();
         }
@@ -87,23 +89,23 @@ namespace OrderTypes_Biller.Export
             mycryptominerfooter.LeftPadding = "-1cm";
 
             Column footercolumn = mycryptominerfooter.AddColumn("4.75cm");
-            footercolumn.Borders.Visible = false;
-            footercolumn.Format.Alignment = ParagraphAlignment.Left;
-            footercolumn = mycryptominerfooter.AddColumn("4.5cm");
-            footercolumn.Borders.Visible = false;
-            footercolumn.Format.Alignment = ParagraphAlignment.Left;
-            footercolumn = mycryptominerfooter.AddColumn("4.0cm");
-            footercolumn.Borders.Visible = false;
-            footercolumn.Format.Alignment = ParagraphAlignment.Left;
-            footercolumn = mycryptominerfooter.AddColumn("5.75cm");
-            footercolumn.Borders.Visible = false;
-            footercolumn.Format.Alignment = ParagraphAlignment.Left;
+            //footercolumn.Borders.Visible = false;
+            //footercolumn.Format.Alignment = ParagraphAlignment.Left;
+            //footercolumn = mycryptominerfooter.AddColumn("4.5cm");
+            //footercolumn.Borders.Visible = false;
+            //footercolumn.Format.Alignment = ParagraphAlignment.Left;
+            //footercolumn = mycryptominerfooter.AddColumn("4.0cm");
+            //footercolumn.Borders.Visible = false;
+            //footercolumn.Format.Alignment = ParagraphAlignment.Left;
+            //footercolumn = mycryptominerfooter.AddColumn("5.75cm");
+            //footercolumn.Borders.Visible = false;
+            //footercolumn.Format.Alignment = ParagraphAlignment.Left;
 
             Row footerrow = mycryptominerfooter.AddRow();
-            footerrow.Cells[0].AddParagraph("MyCryptoMiner\nLückel, Lamshöft, Müns GbR\nHegelstraße 28\n39104 Magdeburg\n\nGeschäftsführung:\nIgor Lückel, Kevin Lamshöft, Malte Müns");
-            footerrow.Cells[1].AddParagraph("Tel.: 0391 50 54 97 21\nFax:  0391 50 54 97 23\n\ninfo@mycryptominer.de\nwww.mycryptominer.de");
-            footerrow.Cells[2].AddParagraph("USt-IdNr: DE293144142\nSt-Nr: 102/174/62008");
-            footerrow.Cells[3].AddParagraph("IBAN: DE19 8601 0090 0981 4789 00\nBIC: PBNKDEFF\nPostbank Leipzig");            
+            //footerrow.Cells[0].AddParagraph("");
+            //footerrow.Cells[1].AddParagraph("");
+            //footerrow.Cells[2].AddParagraph("");
+            //footerrow.Cells[3].AddParagraph("");            
 
             // Create the text frame for the address
             this.addressFrame = section.AddTextFrame();
@@ -115,7 +117,10 @@ namespace OrderTypes_Biller.Export
             this.addressFrame.RelativeVertical = RelativeVertical.Page;
 
             // Put sender in address frame
-            Paragraph paragraph = this.addressFrame.AddParagraph("MyCryptoMiner | Hegelstraße 28 | 39104 Magdeburg");
+            var task = ParentViewModel.Database.AllStorageableItems(new Biller.Data.Models.CompanySettings());
+            var address = (Biller.Data.Models.CompanySettings)task.Result.FirstOrDefault();
+            
+            Paragraph paragraph = this.addressFrame.AddParagraph(address.MainAddress.OneLineString);
             paragraph.Format.Font.Name = "Calibri";
             paragraph.Format.Font.Size = 8;
             paragraph.Format.SpaceAfter = 3;
@@ -355,9 +360,7 @@ namespace OrderTypes_Biller.Export
         {
             // Create a new MigraDoc document
             this.document = new MigraDoc.DocumentObjectModel.Document();
-            this.document.Info.Title = "A sample invoice";
-            this.document.Info.Subject = "Demonstrates how to create an invoice.";
-            this.document.Info.Author = "Biller";
+            this.document.Info.Author = "Biller V2";
 
             DefineStyles();
 
@@ -438,5 +441,6 @@ namespace OrderTypes_Biller.Export
         {
             get { return "bfeeab8f-c7fc-4560-8278-85de2a413d40"; }
         }
+
     }
 }

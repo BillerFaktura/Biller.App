@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Biller.Controls
+namespace OrderTypes_Biller.Export.Settings
 {
     /// <summary>
-    /// Interaktionslogik für Messagebox.xaml
+    /// Interaktionslogik für SettingsTab.xaml
     /// </summary>
-    public partial class Messagebox : Border
+    public partial class SettingsTab : TabItem
     {
-        public Messagebox()
+        public SettingsTab()
         {
             InitializeComponent();
         }

@@ -151,6 +151,8 @@ namespace Biller.UI.ViewModel
                 logger.Info("Connecting to database was successfull");
 
                 logger.Debug("Adding Viewmodels to the collection");
+                TabContentViewModels.Clear();
+                RibbonFactory.ClearRibbonTabItems();
                 AddTabContentViewModel(DocumentTabViewModel);
                 AddTabContentViewModel(ArticleTabViewModel);
                 AddTabContentViewModel(CustomerTabViewModel);
@@ -176,6 +178,7 @@ namespace Biller.UI.ViewModel
                 await ArticleTabViewModel.LoadData();
                 await CustomerTabViewModel.LoadData();
                 await DocumentTabViewModel.LoadData();
+                await BackstageViewModel.LoadData();
             }
             else
             {
