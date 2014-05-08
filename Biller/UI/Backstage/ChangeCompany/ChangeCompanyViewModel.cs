@@ -23,10 +23,12 @@ namespace Biller.UI.Backstage.ChangeCompany
 
         public ObservableCollection<CompanyInformation> AllCompanies { get { return GetValue(() => AllCompanies); } set { SetValue(value); } }
 
+        public string CurrentCompany { get { return GetValue(() => CurrentCompany); } set { SetValue(value); } }
+
         public async Task LoadData()
         {
             AllCompanies = new ObservableCollection<CompanyInformation>(await ParentViewModel.ParentViewModel.Database.GetCompanyList());
-            //Console.WriteLine(AllCompanies.ToString());
+            CurrentCompany = ParentViewModel.ParentViewModel.Database.CurrentCompany.CompanyName;
         }
 
         public void ReceiveData(object data)
