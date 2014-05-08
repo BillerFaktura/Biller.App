@@ -75,7 +75,7 @@ namespace OrderTypes_Biller.Export
         /// <summary>
         /// Creates the static parts of the invoice.
         /// </summary>
-        void CreatePage(Order.Order order)
+        async void CreatePage(Order.Order order)
         {
             // Each MigraDoc document needs at least one section.
             Section section = this.document.AddSection();
@@ -105,7 +105,7 @@ namespace OrderTypes_Biller.Export
             //footerrow.Cells[0].AddParagraph("");
             //footerrow.Cells[1].AddParagraph("");
             //footerrow.Cells[2].AddParagraph("");
-            //footerrow.Cells[3].AddParagraph("");            
+            //footerrow.Cells[3].AddParagraph("");
 
             // Create the text frame for the address
             this.addressFrame = section.AddTextFrame();
@@ -117,8 +117,7 @@ namespace OrderTypes_Biller.Export
             this.addressFrame.RelativeVertical = RelativeVertical.Page;
 
             // Put sender in address frame
-            var task = ParentViewModel.Database.AllStorageableItems(new Biller.Data.Models.CompanySettings());
-            var address = (Biller.Data.Models.CompanySettings)task.Result.FirstOrDefault();
+            var address = (await ParentViewModel.Database.AllStorageableItems(new Biller.Data.Models.CompanySettings())).FirstOrDefault() as Biller.Data.Models.CompanySettings;
             
             Paragraph paragraph = this.addressFrame.AddParagraph(address.MainAddress.OneLineString);
             paragraph.Format.Font.Name = "Calibri";
@@ -348,15 +347,15 @@ namespace OrderTypes_Biller.Export
             set { }
         }
 
-        public void RenderDocumentPreview(Biller.Data.Document.Document document)
+        public async void RenderDocumentPreview(Biller.Data.Document.Document document)
         {
             if (document is Order.Order)
             {
-                PreviewElement.Ddl = DdlWriter.WriteToString(GetDocument(document as Order.Order));
+                PreviewElement.Ddl = DdlWriter.WriteToString(await GetDocument(document as Order.Order));
             }
         }
 
-        private MigraDoc.DocumentObjectModel.Document GetDocument(Order.Order order)
+        private async Task<MigraDoc.DocumentObjectModel.Document> GetDocument(Order.Order order)
         {
             // Create a new MigraDoc document
             this.document = new MigraDoc.DocumentObjectModel.Document();
@@ -364,19 +363,19 @@ namespace OrderTypes_Biller.Export
 
             DefineStyles();
 
-            CreatePage(order);
+            await Task.Run(() => CreatePage(order));
 
             FillContent(order);
 
             return this.document;
         }
 
-        public void SaveDocument(Biller.Data.Document.Document document, string filename, bool OpenOnSuccess = true)
+        public async void SaveDocument(Biller.Data.Document.Document document, string filename, bool OpenOnSuccess = true)
         {
             if (document is Order.Order)
             {
                 PdfDocumentRenderer renderer = new PdfDocumentRenderer(true, PdfSharp.Pdf.PdfFontEmbedding.Always);
-                renderer.Document = GetDocument(document as Order.Order);
+                renderer.Document = await GetDocument(document as Order.Order);
 
                 renderer.RenderDocument();
                 renderer.Save(filename);
