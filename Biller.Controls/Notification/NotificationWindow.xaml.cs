@@ -37,11 +37,23 @@ namespace Biller.Controls.Notification
             if (Notifications.Count + 1 > MAX_NOTIFICATIONS)
                 buffer.Add(notification);
             else
+            {
                 Notifications.Add(notification);
+                notification.Shown();
+            }
+
+            notification.PropertyChanged += notification_PropertyChanged;
+                
 
             //Show window if there're notifications
             if (Notifications.Count > 0 && !IsActive)
                 Show();
+        }
+
+        void notification_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "DurationExpired")
+                RemoveNotification(sender as Notification);
         }
 
         public void RemoveNotification(Notification notification)
@@ -52,6 +64,7 @@ namespace Biller.Controls.Notification
             if (buffer.Count > 0)
             {
                 Notifications.Add(buffer[0]);
+                buffer[0].Shown();
                 buffer.RemoveAt(0);
             }
 

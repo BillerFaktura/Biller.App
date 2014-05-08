@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace Biller.Controls.Notification
 {
@@ -60,7 +62,7 @@ namespace Biller.Controls.Notification
             }
         }
 
-        private int duration = 100000;
+        private int duration = 10000;
         public int Duration
         {
             get { return duration; }
@@ -71,6 +73,33 @@ namespace Biller.Controls.Notification
                 duration = value;
                 OnPropertyChanged("Duration");
             }
+        }
+
+        private bool durationExpired = false;
+        public bool DurationExpired
+        {
+            get { return durationExpired; }
+
+            set
+            {
+                if (durationExpired == value) return;
+                durationExpired = value;
+                OnPropertyChanged("DurationExpired");
+            }
+        }
+
+        public void Shown()
+        {
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(duration);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            (sender as DispatcherTimer).Stop();
+            DurationExpired = true;
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
