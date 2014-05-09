@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Linq;
 using NLog;
+using System.Collections.Generic;
 
 namespace Biller.UI.DocumentView
 {
@@ -49,6 +50,8 @@ namespace Biller.UI.DocumentView
         public ObservableCollection<Data.Document.PreviewDocument> AllDocuments { get { return GetValue(() => AllDocuments); } set { SetValue(value); } }
 
         public ObservableCollection<Data.Document.PreviewDocument> DisplayedDocuments { get { return GetValue(() => DisplayedDocuments); } set { SetValue(value); } }
+
+        public IEnumerable<Data.Interfaces.IExport> AllExportClasses { get { return ParentViewModel.SettingsTabViewModel.RegisteredExportClasses; } }
 
         public Data.Document.PreviewDocument SelectedDocument
         {

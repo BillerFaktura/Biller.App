@@ -27,7 +27,7 @@
         </Fluent:Button>
     </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="{StaticResource export}">
-        <Fluent:SplitButton Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" IsEnabled="False" Click="buttonOrderPDF_Click">
+        <Fluent:SplitButton Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" ItemsSource="{Binding AllExportClasses}"  IsEnabled="False" Click="buttonOrderPDF_Click">
             <Fluent:SplitButton.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderaspdftooltip}" DisableReason="{StaticResource orderaspdftooltipdisable}" />
             </Fluent:SplitButton.ToolTip>

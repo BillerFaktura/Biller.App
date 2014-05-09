@@ -24,6 +24,7 @@ namespace Biller.UI.SettingsView
             DocumentFolder = new ObservableCollection<Data.Models.DocumentFolderModel>();
             RegisteredExportClasses = new List<Data.Interfaces.IExport>();
             PreferedExportClasses = new List<Data.Models.DocumentExportModel>();
+            KeyValueStore = new Data.Utils.KeyValueStore();
 
             logger.Debug("Creating new UnitTabItem");
             SettingsList.Add(new SettingsList.UnitSettings.UnitTabItem());
@@ -42,6 +43,26 @@ namespace Biller.UI.SettingsView
             logger.Info("Finished constructor of SettingsTabViewModel");
         }
 
+        /// <summary>
+        /// Loads all kind of data asynchronously.\n
+        /// Registers following <see cref="IStorageableItem"/>s:
+        /// <list type="bullet">
+        /// <item><see cref="Data.Utils.Shipment"/></item>
+        /// <item><see cref="Data.Models.DocumentFolderModel"/></item>
+        /// <item><see cref="Data.Models.CompanySettings"/></item>
+        /// <item><see cref="Data.Models.DocumentExportModel"/></item>
+        /// </list>
+        /// \n
+        /// Loads following Lists / Collections:
+        /// <list type="bullet">
+        /// <item><see cref="ArticleUnits"/></item>
+        /// <item><see cref="PaymentMethodes"/></item>
+        /// <item><see cref="TaxClasses"/></item>
+        /// <item><see cref="Shipments"/></item>
+        /// <item><see cref="DocumentFolder"/></item>
+        /// </list>
+        /// </summary>
+        /// <returns></returns>
         public async Task LoadData()
         {
             logger.Debug("Start loading data in SettingsTabViewModel");
@@ -67,40 +88,71 @@ namespace Biller.UI.SettingsView
             var resultExport = await ParentViewModel.Database.AllStorageableItems(new Data.Models.DocumentExportModel());
             foreach (Data.Models.DocumentExportModel item in resultExport)
                 RegisterPreferedExportClass(item);
-            if (resultExport.Count() == 0)
-            {
-                
-            }
 
-            Data.GlobalSettings.UseGermanSupplementaryTaxRegulation = true;
-            Data.GlobalSettings.TaxSupplementaryWorkSeperate = true;
-            Data.GlobalSettings.LocalizedOnSupplementaryWork = "auf Nebenleistung";
-            Data.GlobalSettings.ArticleUnits = ArticleUnits;
-            Data.GlobalSettings.TaxClasses = TaxClasses;
-            Data.GlobalSettings.PaymentMethodes = PaymentMethodes;
+            KeyValueStore.Add(new Data.Models.KeyValueModel("UseGermanSupplementaryTaxRegulation", true));
+            KeyValueStore.Add(new Data.Models.KeyValueModel("TaxSupplementaryWorkSeperate", true));
+            KeyValueStore.Add(new Data.Models.KeyValueModel("LocalizedOnSupplementaryWork", "auf Nebenleistung"));
 
             logger.Debug("Finished loading data in SettingsTabViewModel");
         }
 
+        /// <summary>
+        /// The <see cref="Fluent.RibbonTabItem"/> that is shown to the user as "Settings" tab.
+        /// </summary>
         public Fluent.RibbonTabItem RibbonTabItem { get { return GetValue(() => RibbonTabItem); } private set { SetValue(value); } }
 
+        /// <summary>
+        /// The content shown to the user. Used for data binding.
+        /// </summary>
         public System.Windows.UIElement TabContent { get { return GetValue(() => TabContent); } private set { SetValue(value); } }
 
+        /// <summary>
+        /// Holds a list of all registered SettingsTabs as <see cref="TabItem"/>.
+        /// </summary>
         public ObservableCollection<TabItem> SettingsList { get { return GetValue(() => SettingsList); } set { SetValue(value); } }
 
+        /// <summary>
+        /// Holds a list of all saved <see cref="Data.Utils.Unit"/>.\n
+        /// Initial loading of the content happens in <see cref="LoadData"/>.
+        /// </summary>
         public ObservableCollection<Data.Utils.Unit> ArticleUnits { get { return GetValue(() => ArticleUnits); } set { SetValue(value); } }
 
+        /// <summary>
+        /// Holds a list of all saved <see cref="Data.Utils.PaymentMethode"/>.\n
+        /// Initial loading of the content happens in <see cref="LoadData"/>.
+        /// </summary>
         public ObservableCollection<Data.Utils.PaymentMethode> PaymentMethodes { get { return GetValue(() => PaymentMethodes); } set { SetValue(value); } }
 
+        /// <summary>
+        /// Holds a list of all saved <see cref="Data.Utils.TaxClass"/>.\n
+        /// Initial loading of the content happens in <see cref="LoadData"/>.
+        /// </summary>
         public ObservableCollection<Data.Utils.TaxClass> TaxClasses { get { return GetValue(() => TaxClasses); } set { SetValue(value); } }
 
+        /// <summary>
+        /// Holds a list of all saved <see cref="Data.Utils.Shipment"/>.\n
+        /// Initial loading of the content happens in <see cref="LoadData"/>.
+        /// </summary>
         public ObservableCollection<Data.Utils.Shipment> Shipments { get { return GetValue(() => Shipments); } set { SetValue(value); } }
 
+        /// <summary>
+        /// Holds a list of all saved <see cref="Data.Models.DocumentFolderModel"/>.\n
+        /// Initial loading of the content happens in <see cref="LoadData"/>.
+        /// </summary>
         public ObservableCollection<Data.Models.DocumentFolderModel> DocumentFolder { get { return GetValue(() => DocumentFolder); } set { SetValue(value); } }
 
+        /// <summary>
+        /// Holds a list of all registered <see cref="Data.Interfaces.IExport"/>.\n
+        /// Initial loading of the content happens in <see cref="LoadData"/>.
+        /// </summary>
         public List<Data.Interfaces.IExport> RegisteredExportClasses { get { return GetValue(() => RegisteredExportClasses); } set { SetValue(value); } }
 
         private List<Data.Models.DocumentExportModel> PreferedExportClasses { get { return GetValue(() => PreferedExportClasses); } set { SetValue(value); } }
+
+        /// <summary>
+        /// The <see cref="KeyValueStore"/> is designed to hold multiple configuration values from any class. Values inside the <see cref="KeyValueStore"/> will not be saved and loaded with closing / starting the app!
+        /// </summary>
+        public Data.Utils.KeyValueStore KeyValueStore { get { return GetValue(() => KeyValueStore); } set { SetValue(value); } }
 
         public Data.Utils.Unit SelectedUnit { get { return GetValue(() => SelectedUnit); } set { SetValue(value); } }
 

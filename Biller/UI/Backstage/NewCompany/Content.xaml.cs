@@ -32,10 +32,12 @@ namespace Biller.UI.Backstage.NewCompany
         /// <param name="e"></param>
         private async void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
-            var vm = (DataContext as EditCompanyViewModel);
+            EditCompanyViewModel vm = (DataContext as EditCompanyViewModel);
+            
             if (vm.EditMode)
             {
                 vm.BackstageTabItem.Focus(); //For MVVM //
+                vm.CompanySettings.MainAddress.CompanyName = vm.CompanyInformation.CompanyName;
                 await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(vm.CompanySettings);
             }
             else
@@ -44,6 +46,7 @@ namespace Biller.UI.Backstage.NewCompany
                 vm.CompanyInformation.GenerateNewID();
                 vm.ParentViewModel.ParentViewModel.RibbonFactory.CloseBackstage();
                 vm.ParentViewModel.ParentViewModel.Database.AddCompany(vm.CompanyInformation);
+                vm.CompanySettings.MainAddress.CompanyName = vm.CompanyInformation.CompanyName;
                 await vm.ParentViewModel.ParentViewModel.Database.ChangeCompany(vm.CompanyInformation);
                 await vm.ParentViewModel.ParentViewModel.LoadData();
                 await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(vm.CompanySettings);

@@ -885,7 +885,14 @@ namespace Biller.Data.Database
 
                 foreach (Interfaces.DocumentParser parser in AdditionalPreviewParsers.Where(x => x.DocumentType == xelement.Name))
                 {
-                    parser.ParseAdditionalData(ref source, xelement, this); 
+                    try
+                    {
+                        parser.ParseAdditionalData(ref source, xelement, this); 
+                    }
+                    catch (Exception e)
+                    {
+                        logger.ErrorException("Error at ParseAdditionalData", e);
+                    }
                 }
             }
 

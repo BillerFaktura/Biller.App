@@ -45,6 +45,7 @@ namespace Biller.UI.ViewModel
             BackstageViewModel = new Backstage.BackstageViewModel(this);
 
             logger.Debug("Finished constructor of MainWindowViewModel");
+            vm = this;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -225,6 +226,17 @@ namespace Biller.UI.ViewModel
         public void MainWindowCloseActions(System.EventArgs e)
         {
             Notificationmanager.Close();
+        }
+
+        private static MainWindowViewModel vm;
+        /// <summary>
+        /// Returns the current instance of the <see cref="MainWindowViewModel"/>.\n
+        /// For use in modules that don't have access to a viewmodel.
+        /// </summary>
+        /// <returns><see cref="MainWindowViewModel"/></returns>
+        public static MainWindowViewModel GetCurrentMainWindowViewModel()
+        {
+            return vm;
         }
     }
 }

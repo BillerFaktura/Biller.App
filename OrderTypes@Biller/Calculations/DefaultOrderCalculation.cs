@@ -122,8 +122,8 @@ namespace OrderTypes_Biller.Calculations
                 // Austria: Shipping has reduced taxes
                 // CH: 
                 OrderSummary.Amount += _parentOrder.OrderShipment.DefaultPrice.Amount;
-
-                if (GlobalSettings.UseGermanSupplementaryTaxRegulation)
+                var keyValueStore = Biller.UI.ViewModel.MainWindowViewModel.GetCurrentMainWindowViewModel().SettingsTabViewModel.KeyValueStore;
+                if ((bool)keyValueStore.GetByKey("UseGermanSupplementaryTaxRegulation").Value)
                 {
                     var wholetax = 0.0;
                     var wholeShipmentTax = 0.0;
@@ -138,9 +138,9 @@ namespace OrderTypes_Biller.Calculations
                         shipment.TaxClass = taxitem.TaxClass;
                         shipment.OrderedAmount = 1;
                         shipment.OrderPrice.Price1 = _parentOrder.OrderShipment.DefaultPrice;
-                        if (GlobalSettings.TaxSupplementaryWorkSeperate)
+                        if ((bool)keyValueStore.GetByKey("TaxSupplementaryWorkSeperate").Value)
                         {
-                            temporaryTaxes.Add(new Biller.Data.Models.TaxClassMoneyModel() { Value = new Money(ratio * shipment.ExactVAT), TaxClass = taxitem.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
+                            temporaryTaxes.Add(new Biller.Data.Models.TaxClassMoneyModel() { Value = new Money(ratio * shipment.ExactVAT), TaxClass = taxitem.TaxClass, TaxClassAddition = (string)keyValueStore.GetByKey("LocalizedOnSupplementaryWork").Value });
                         }
                         else
                         {
@@ -159,10 +159,10 @@ namespace OrderTypes_Biller.Calculations
                 else
                 {
                     var shipment = new OrderedArticle(new Article());
-                    shipment.TaxClass = GlobalSettings.ShipmentTaxClass;
+                    shipment.TaxClass = (TaxClass)keyValueStore.GetByKey("ShipmentTaxClass").Value;
                     shipment.OrderedAmount = 1;
                     shipment.OrderPrice.Price1 = _parentOrder.OrderShipment.DefaultPrice;
-                    TaxValues.Add(new Biller.Data.Models.TaxClassMoneyModel() { Value = new Money(shipment.ExactVAT), TaxClass = shipment.TaxClass, TaxClassAddition = GlobalSettings.LocalizedOnSupplementaryWork });
+                    TaxValues.Add(new Biller.Data.Models.TaxClassMoneyModel() { Value = new Money(shipment.ExactVAT), TaxClass = shipment.TaxClass, TaxClassAddition = (string)keyValueStore.GetByKey("LocalizedOnSupplementaryWork").Value });
                     NetShipment.Amount = _parentOrder.OrderShipment.DefaultPrice.Amount - shipment.ExactVAT;
                     NetOrderSummary.Amount += NetShipment.Amount;
                 }

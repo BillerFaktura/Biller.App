@@ -118,6 +118,7 @@
     <Compile Include="Models\CompanyInformation.cs" />
     <Compile Include="Models\DocumentExportModel.cs" />
     <Compile Include="Models\DummyExport.cs" />
+    <Compile Include="Models\KeyValueModel.cs" />
     <Compile Include="Models\MoneyDescriptionModel.cs" />
     <Compile Include="Models\DocumentFolderModel.cs" />
     <Compile Include="Models\PriceModel.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\EAddress.cs" />
     <Compile Include="Utils\EMoney.cs" />
+    <Compile Include="Utils\KeyValueStore.cs" />
     <Compile Include="Utils\MathematicalOperation.cs" />
     <Compile Include="Utils\Money.cs" />
     <Compile Include="Utils\PaymentMethode.cs" />
