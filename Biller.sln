@@ -18,13 +18,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{B22067
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Woo@Biller", "..\Woo@Biller\Woo@Biller\Woo@Biller.csproj", "{EB875FF8-E3DC-4B4F-9F84-475CAC5E61AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderTypes@Biller", "OrderTypes@Biller\OrderTypes@Biller.csproj", "{3722DAF8-C28A-42E4-9A21-FE60C3D8CABB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderTypes@Biller", "OrderTypes-Biller\OrderTypes@Biller.csproj", "{3722DAF8-C28A-42E4-9A21-FE60C3D8CABB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockManagement@Biller", "..\StockManagement@Biller\StockManagement@Biller\StockManagement@Biller.csproj", "{AF316633-CB77-49FF-90D8-A19A8E1AFE91}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mail@Biller", "..\..\..\Visual Studio 2013\Projects\Mail@Biller\Mail@Biller\Mail@Biller.csproj", "{D7EEF55C-CFD6-4363-A96A-775166D30927}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Import@Biller", "Import@Biller\Import@Biller.csproj", "{8E15E92D-1BE9-4D38-8C3E-3FDFE257B771}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Import@Biller", "Import-Biller\Import@Biller.csproj", "{8E15E92D-1BE9-4D38-8C3E-3FDFE257B771}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

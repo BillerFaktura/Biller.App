@@ -1,0 +1,6 @@
+[submodule "OrderTypes-Biller"]
+	path = OrderTypes-Biller
+	url = https://github.com/LastElb/OrderTypes-Biller.git
+[submodule "Import-Biller"]
+	path = Import-Biller
+	url = https://github.com/LastElb/Import-Biller.git
