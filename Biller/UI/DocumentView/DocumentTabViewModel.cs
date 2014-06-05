@@ -43,9 +43,9 @@ namespace Biller.UI.DocumentView
         /// </summary>
         public DocumentTabContent DocumentTabContent { get; private set; }
 
-        public DateTime IntervalStart { get { return GetValue(() => IntervalStart); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, IntervalEnd); } }
+        public DateTime IntervalStart { get { return GetValue(() => IntervalStart); } set { SetValue(value); ShowDocumentsInInterval(value, IntervalEnd); } }
 
-        public DateTime IntervalEnd { get { return GetValue(() => IntervalEnd); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, IntervalEnd); } }
+        public DateTime IntervalEnd { get { return GetValue(() => IntervalEnd); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, value); } }
 
         public ObservableCollection<Data.Document.PreviewDocument> AllDocuments { get { return GetValue(() => AllDocuments); } set { SetValue(value); } }
 

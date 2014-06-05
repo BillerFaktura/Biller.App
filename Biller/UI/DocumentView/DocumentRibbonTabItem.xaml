@@ -40,10 +40,10 @@
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="Betrachtungszeitraum">
         <Fluent:DropDownButton Header="Start" Icon="..\..\Images\appbar.calendar.future.png" LargeIcon="..\..\Images\appbar.calendar.future.png">
-            <DatePicker SelectedDate="{Binding IntervalStart}"/>
+            <Calendar SelectedDate="{Binding IntervalStart}" />
         </Fluent:DropDownButton>
         <Fluent:DropDownButton Header="Ende" Icon="..\..\Images\appbar.calendar.reverse.png" LargeIcon="..\..\Images\appbar.calendar.reverse.png">
-            <DatePicker SelectedDate="{Binding IntervalEnd}"/>
+            <Calendar SelectedDate="{Binding IntervalEnd}" />
         </Fluent:DropDownButton>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="{StaticResource directaccess}" IsEnabled="False">
