@@ -76,5 +76,16 @@ namespace Biller.Data.Utils
         {
             return new Percentage();
         }
+
+        //public int GetStorageHash()
+        //{
+        //    unchecked // Overflow is fine, just wrap
+        //    {
+        //        int hash = 17;
+        //        // Suitable nullity checks etc, of course :)
+        //        hash = hash * 23 + PercentageString.GetHashCode();
+        //        return hash;
+        //    }
+        //}
     }
 }

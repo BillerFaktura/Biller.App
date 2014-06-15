@@ -97,6 +97,7 @@
     <Compile Include="Articles\OrderedArticle.cs" />
     <Compile Include="Articles\OrderedArticleSorter.cs" />
     <Compile Include="Articles\PreviewArticle.cs" />
+    <Compile Include="Converters\cmConverter.cs" />
     <Compile Include="Converters\EmptyListConverter.cs" />
     <Compile Include="Converters\EmptyStringConverter.cs" />
     <Compile Include="Converters\InverseBooleanConverter.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Interfaces\IPreviewObjectDataProvider.cs" />
     <Compile Include="Interfaces\IDatabase.cs" />
     <Compile Include="Interfaces\IExport.cs" />
+    <Compile Include="Interfaces\IStorageable.cs" />
     <Compile Include="Interfaces\IXMLStorageable.cs" />
     <Compile Include="Interfaces\PreviewDocumentParser.cs" />
     <Compile Include="Models\CompanyInformation.cs" />

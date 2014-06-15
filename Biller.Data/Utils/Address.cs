@@ -198,7 +198,7 @@ namespace Biller.Data.Utils
             get { return Guid.NewGuid().ToString(); }
         }
 
-        public string IDFieldName
+        public virtual string IDFieldName
         {
             get { throw new NotImplementedException(); }
         }
@@ -207,5 +207,24 @@ namespace Biller.Data.Utils
         {
             return new Address();
         }
+
+        //public virtual int GetStorageHash()
+        //{
+        //    unchecked // Overflow is fine, just wrap
+        //    {
+        //        int hash = 17;
+        //        // Suitable nullity checks etc, of course :)
+        //        hash = hash * 23 + Title.GetHashCode();
+        //        hash = hash * 23 + Forname.GetHashCode();
+        //        hash = hash * 23 + Surname.GetHashCode();
+        //        hash = hash * 23 + Street.GetHashCode();
+        //        hash = hash * 23 + HouseNumber.GetHashCode();
+        //        hash = hash * 23 + Zip.GetHashCode();
+        //        hash = hash * 23 + City.GetHashCode();
+        //        hash = hash * 23 + Country.GetHashCode();
+        //        hash = hash * 23 + Addition.GetHashCode();
+        //        return hash;
+        //    }
+        //}
     }
 }

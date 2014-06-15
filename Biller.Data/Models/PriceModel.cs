@@ -103,7 +103,6 @@ namespace Biller.Data.Models
             get { return "PriceGroup"; }
         }
 
-
         public string ID
         {
             get { return Guid.NewGuid().ToString(); }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace Biller.Data.Models
 {
     public class DocumentFolderModel : Utils.PropertyChangedHelper, Interfaces.IXMLStorageable
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public DocumentFolderModel()
         {
             Documents = new ObservableCollection<Document.PreviewDocument>();
@@ -47,7 +50,6 @@ namespace Biller.Data.Models
                 prevDoc.LocalizedDocumentType = doc.Attribute("LocalizedDocumentType").Value;
                 Documents.Add(prevDoc);
             }
-                
         }
 
         public string XElementName
@@ -62,17 +64,17 @@ namespace Biller.Data.Models
             get { return "ID"; }
         }
 
-        public Interfaces.IXMLStorageable GetNewInstance()
-        {
-            return new DocumentFolderModel();
-        }
-
         public override bool Equals(object obj)
         {
             if (obj is DocumentFolderModel)
                 if ((obj as DocumentFolderModel).ID == this.ID)
                     return true;
             return false;
+        }
+
+        public Interfaces.IXMLStorageable GetNewInstance()
+        {
+            return new DocumentFolderModel();
         }
     }
 }

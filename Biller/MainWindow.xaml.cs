@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using NLog;
+using System.Diagnostics;
 namespace Biller
 {
     /// <summary>
@@ -6,10 +7,17 @@ namespace Biller
     /// </summary>
     public partial class MainWindow
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private Data.Performance.Stopwatch sw;
+
         public UI.ViewModel.MainWindowViewModel MainWindowViewModel { get; private set; }
 
         public MainWindow()
         {
+            logger.Debug("Application started");
+            sw = new Data.Performance.Stopwatch("Application loaded after ");
+            sw.Start();
+
             InitializeComponent();
 
             MainWindowViewModel = new UI.ViewModel.MainWindowViewModel(this);
@@ -34,6 +42,8 @@ namespace Biller
         private async void RibbonWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             await MainWindowViewModel.LoadData();
+            sw.Stop();
+            logger.Debug(sw.Result());
         }
 
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)

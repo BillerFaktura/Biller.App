@@ -10,7 +10,7 @@ namespace Biller.Data.Interfaces
     /// <summary>
     /// Interface for saving any kind of objects into the database.
     /// </summary>
-    public interface IXMLStorageable
+    public interface IXMLStorageable : IStorageable
     {
         /// <summary>
         /// Returns a XElement we can save to a databasefile
@@ -29,13 +29,10 @@ namespace Biller.Data.Interfaces
         /// </summary>
         string XElementName { get; }
 
-        string ID { get; }
-
         /// <summary>
         /// A child inside the object <see cref="XElement"/>. The child needs to be <see cref="XElement"/> as well.
         /// </summary>
         string IDFieldName { get; }
 
-        IXMLStorageable GetNewInstance();
     }
 }

@@ -68,5 +68,17 @@ namespace Biller.Data.Utils
                     return true;
             return false;
         }
+
+        //public int GetStorageHash()
+        //{
+        //    unchecked // Overflow is fine, just wrap
+        //    {
+        //        int hash = 17;
+        //        // Suitable nullity checks etc, of course :)
+        //        hash = hash * 23 + Name.GetHashCode();
+        //        hash = hash * 23 + DefaultPrice.GetHashCode();
+        //        return hash;
+        //    }
+        //}
     }
 }

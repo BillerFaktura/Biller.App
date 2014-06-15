@@ -252,7 +252,7 @@ namespace Biller.Data.Interfaces
 
         Task<bool> SaveOrUpdateStorageableItem(IXMLStorageable StorageableItem);
 
-        Task<bool> RegisterStorageableItem(Interfaces.IXMLStorageable StorageableItem);
+        Task<bool> RegisterStorageableItem(IXMLStorageable StorageableItem);
         #endregion
     }
 }

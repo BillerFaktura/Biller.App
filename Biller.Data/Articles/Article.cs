@@ -199,5 +199,24 @@ namespace Biller.Data.Articles
         {
             get { return "ArticleID"; }
         }
+
+        //public int GetStorageHash()
+        //{
+        //    unchecked // Overflow is fine, just wrap
+        //    {
+        //        int hash = 17;
+        //        // Suitable nullity checks etc, of course :)
+        //        hash = hash * 23 + ArticleID.GetHashCode();
+        //        hash = hash * 23 + ArticleDescription.GetHashCode();
+        //        hash = hash * 23 + TaxClass.GetHashCode();
+        //        hash = hash * 23 + ArticleWeight.GetHashCode();
+        //        hash = hash * 23 + ArticleUnit.GetHashCode();
+        //        hash = hash * 23 + ArticleCategory.GetHashCode();
+        //        hash = hash * 23 + Price1.GetHashCode();
+        //        hash = hash * 23 + Price2.GetHashCode();
+        //        hash = hash * 23 + Price3.GetHashCode();
+        //        return hash;
+        //    }
+        //}
     }
 }

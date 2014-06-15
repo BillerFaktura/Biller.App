@@ -85,5 +85,18 @@ namespace Biller.Data.Models
         {
             return new CompanySettings();
         }
+        //public virtual int GetStorageHash()
+        //{
+        //    unchecked // Overflow is fine, just wrap
+        //    {
+        //        int hash = 17;
+        //        // Suitable nullity checks etc, of course :)
+        //        hash = hash * 23 + MainAddress.GetHashCode();
+        //        hash = hash * 23 + Contact.GetHashCode();
+        //        hash = hash * 23 + TaxID.GetHashCode();
+        //        hash = hash * 23 + SalesTaxID.GetHashCode();
+        //        return hash;
+        //    }
+        //}
     }
 }

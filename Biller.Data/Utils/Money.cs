@@ -195,16 +195,21 @@ namespace Biller.Data.Utils
             return 0;
         }
 
-        public override int GetHashCode()
+        //public override int GetHashCode()
+        //{
+        //    unchecked // Overflow is fine, just wrap
+        //    {
+        //        int hash = 17;
+        //        // Suitable nullity checks etc, of course :)
+        //        hash = hash * 23 + Amount.GetHashCode();
+        //        hash = hash * 23 + GetCurrencySymbol().GetHashCode();
+        //        return hash;
+        //    }
+        //}
+
+        public int GetStorageHash()
         {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 17;
-                // Suitable nullity checks etc, of course :)
-                hash = hash * 23 + Amount.GetHashCode();
-                hash = hash * 23 + AmountString.GetHashCode();
-                return hash;
-            }
+            return GetHashCode();
         }
     }
 
