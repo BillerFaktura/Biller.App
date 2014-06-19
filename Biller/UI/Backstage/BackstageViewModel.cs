@@ -15,13 +15,14 @@ namespace Biller.UI.Backstage
         {
             ParentViewModel = parent;
             BackstageItems = new ObservableCollection<Interface.IBackstageContentViewModel>();
-            ReceiveData(new NewCompany.EditCompanyViewModel(this, true));
             ReceiveData(new NewCompany.EditCompanyViewModel(this, false));
-            ReceiveData(new ChangeCompany.ChangeCompanyViewModel(this));
+           
         }
 
         public async Task LoadData()
         {
+            ReceiveData(new NewCompany.EditCompanyViewModel(this, true));
+            ReceiveData(new ChangeCompany.ChangeCompanyViewModel(this));
             foreach (var item in BackstageItems)
                 await item.LoadData();
         }
