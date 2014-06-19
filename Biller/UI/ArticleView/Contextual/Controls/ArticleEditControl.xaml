@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="../../../Localization/ArticleView/de.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converter:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+            <converter:kgConverter x:Key="kgConverter"/>
             <Style TargetType="TextBlock" x:Key="HeaderStyle">
                 <Setter Property="FontSize" Value="20"/>
             </Style>
@@ -101,7 +102,7 @@
             <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <TextBlock Text="{StaticResource pricegroup1}" VerticalAlignment="Center" Style="{StaticResource ContentStyle}" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}"/>
-                    <controls:WatermarkTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" TextAlignment="Right" Text="{Binding Article.Price1.Price1.AmountString}" />
+                    <controls:WatermarkTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" TextAlignment="Right" Text="{Binding Article.Price1.Price1.AmountString}" SelectTextBeforeSpace="True"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" SelectedIndex="{Binding Article.Price1.Price1.IsGross}" Margin="1" Height="24">
                         <ComboBoxItem Content="{StaticResource pricenet}" />
                         <ComboBoxItem Content="{StaticResource pricegross}" />
@@ -109,7 +110,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <TextBlock Text="{StaticResource pricegroup2}" VerticalAlignment="Center" Style="{StaticResource ContentStyle}" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}"/>
-                    <controls:WatermarkTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" TextAlignment="Right" Text="{Binding Article.Price2.Price1.AmountString}"/>
+                    <controls:WatermarkTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" TextAlignment="Right" Text="{Binding Article.Price2.Price1.AmountString}" SelectTextBeforeSpace="True"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" SelectedIndex="{Binding Article.Price2.Price1.IsGross}" Margin="1" Height="24">
                         <ComboBoxItem Content="{StaticResource pricenet}" />
                         <ComboBoxItem Content="{StaticResource pricegross}" />
@@ -117,7 +118,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <TextBlock Text="{StaticResource pricegroup3}" VerticalAlignment="Center" Style="{StaticResource ContentStyle}" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}"/>
-                    <controls:WatermarkTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" TextAlignment="Right" Text="{Binding Article.Price3.Price1.AmountString}"/>
+                    <controls:WatermarkTextBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" TextAlignment="Right" Text="{Binding Article.Price3.Price1.AmountString}" SelectTextBeforeSpace="True"/>
                     <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="{Binding ElementName=GridSpan2Margin,Path=ActualWidth}" SelectedIndex="{Binding Article.Price3.Price1.IsGross}" Margin="1" Height="24">
                         <ComboBoxItem Content="{StaticResource pricenet}" />
                         <ComboBoxItem Content="{StaticResource pricegross}" />
@@ -142,7 +143,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <TextBlock Style="{StaticResource ContentStyle}" Text="{StaticResource weightperunit}" VerticalAlignment="Center" Width="{Binding ElementName=GridSpan2,Path=ActualWidth}"/>
-                    <controls:WatermarkTextBox VerticalAlignment="Center" Width="{Binding ElementName=GridSpan4,Path=ActualWidth}" Margin="0,1" Height="24" Text="{Binding Article.ArticleWeight}"/>
+                    <controls:WatermarkTextBox VerticalAlignment="Center" Width="{Binding ElementName=GridSpan4,Path=ActualWidth}" TextAlignment="Right" Margin="0,1" Height="24" Text="{Binding Article.ArticleWeight, Converter={StaticResource kgConverter}}" SelectTextBeforeSpace="True"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                     <TextBlock Style="{StaticResource ContentStyle}" Text="{StaticResource taxclass}" VerticalAlignment="Center" Width="{Binding ElementName=GridSpan2,Path=ActualWidth}"/>

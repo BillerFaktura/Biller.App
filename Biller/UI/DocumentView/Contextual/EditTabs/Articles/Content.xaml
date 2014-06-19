@@ -172,7 +172,7 @@
                                 <DataTemplate>
                                     <StackPanel>
                                         <TextBlock Text="{Binding OrderText}" Style="{StaticResource GridBlockStyle}"/>
-                                        <controls:WatermarkTextBox Text="{Binding OrderText}" Style="{StaticResource GridEditStyle}"/>
+                                        <controls:WatermarkTextBox Text="{Binding OrderText}" Style="{StaticResource GridEditStyle}" AcceptsReturn="True"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

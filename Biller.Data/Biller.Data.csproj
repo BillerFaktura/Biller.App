@@ -97,6 +97,7 @@
     <Compile Include="Articles\OrderedArticle.cs" />
     <Compile Include="Articles\OrderedArticleSorter.cs" />
     <Compile Include="Articles\PreviewArticle.cs" />
+    <Compile Include="Converters\kgConverter.cs" />
     <Compile Include="Converters\cmConverter.cs" />
     <Compile Include="Converters\EmptyListConverter.cs" />
     <Compile Include="Converters\EmptyStringConverter.cs" />

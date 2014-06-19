@@ -14,16 +14,16 @@ namespace Biller.Data.Converters
     /// Converts a double to specific decimal format with a unit
     /// </summary>
     [ValueConversion(typeof(double), typeof(string))]
-    public class cmConverter : IValueConverter
+    public class kgConverter : IValueConverter
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public static Unit cmUnit { get; private set; }
+        public static Unit kgUnit { get; private set; }
 
-        public cmConverter()
+        public kgConverter()
         {
-            if (cmConverter.cmUnit == null)
-                cmConverter.cmUnit = new Unit() { DecimalDigits = 2, DecimalSeperator = ",", Name = "Centimeter", ShortName = "cm", ThousandSeperator = "" };
+            if (kgConverter.kgUnit == null)
+                kgConverter.kgUnit = new Unit() { DecimalDigits = 3, DecimalSeperator = ",", Name = "Kilogramm", ShortName = "kg", ThousandSeperator = "" };
         }
 
         #region "IValueConverter Members"
@@ -32,7 +32,7 @@ namespace Biller.Data.Converters
             try
             {
                 var val = (double)value;
-                return cmConverter.cmUnit.ValueToString(val);
+                return kgConverter.kgUnit.ValueToString(val);
             }
             catch (Exception e)
             {
@@ -46,7 +46,7 @@ namespace Biller.Data.Converters
         {
             try
             {
-                return cmConverter.cmUnit.StringToValue(value.ToString());
+                return kgConverter.kgUnit.StringToValue(value.ToString());
             }
             catch (Exception e)
             {
