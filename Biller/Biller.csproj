@@ -186,8 +186,8 @@
     <Compile Include="UI\Backstage\NewCompany\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Backstage\NewCompany\EditContentTabItemn.xaml.cs">
-      <DependentUpon>EditContentTabItemn.xaml</DependentUpon>
+    <Compile Include="UI\Backstage\NewCompany\EditContentTabItem.xaml.cs">
+      <DependentUpon>EditContentTabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Backstage\NewCompany\ContentTabItem.xaml.cs">
       <DependentUpon>ContentTabItem.xaml</DependentUpon>
@@ -358,7 +358,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Backstage\NewCompany\EditContentTabItemn.xaml">
+    <Page Include="UI\Backstage\NewCompany\EditContentTabItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

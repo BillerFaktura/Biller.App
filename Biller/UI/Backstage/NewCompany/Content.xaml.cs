@@ -43,13 +43,16 @@ namespace Biller.UI.Backstage.NewCompany
             else
             {
                 vm.BackstageTabItem.Focus(); //For MVVM //
+
+                var companySetting = vm.CompanySettings;
+
                 vm.CompanyInformation.GenerateNewID();
                 vm.ParentViewModel.ParentViewModel.RibbonFactory.CloseBackstage();
                 vm.ParentViewModel.ParentViewModel.Database.AddCompany(vm.CompanyInformation);
                 vm.CompanySettings.MainAddress.CompanyName = vm.CompanyInformation.CompanyName;
                 await vm.ParentViewModel.ParentViewModel.Database.ChangeCompany(vm.CompanyInformation);
                 await vm.ParentViewModel.ParentViewModel.LoadData();
-                await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(vm.CompanySettings);
+                await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(companySetting);
                 vm.ResetCompanyInformation();
             }
         }
