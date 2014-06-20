@@ -1056,13 +1056,20 @@ namespace Biller.Data.Database
             if (!db.AncestorsAndSelf(StorageableItem.XElementName + "s").Any())
                 db.Add(new XElement(StorageableItem.XElementName + "s"));
 
-            if (db.Elements(StorageableItem.XElementName).Any(x => x.Element(StorageableItem.IDFieldName).Value == StorageableItem.ID))
+            try
             {
-                db.Elements(StorageableItem.XElementName).Single(x => x.Element(StorageableItem.IDFieldName).Value == StorageableItem.ID).ReplaceWith(StorageableItem.GetXElement());
+                if (db.Elements(StorageableItem.XElementName).Any(x => x.Element(StorageableItem.IDFieldName).Value == StorageableItem.ID))
+                {
+                    db.Elements(StorageableItem.XElementName).Single(x => x.Element(StorageableItem.IDFieldName).Value == StorageableItem.ID).ReplaceWith(StorageableItem.GetXElement());
+                }
+                else
+                {
+                    db.Add(StorageableItem.GetXElement());
+                }
             }
-            else
+            catch (Exception e)
             {
-                db.Add(StorageableItem.GetXElement());
+                logger.FatalException("Error saving " + StorageableItem.XElementName, e);
             }
 
             try { File.WriteAllText(DatabasePath + CurrentCompany.CompanyID + "\\" + StorageableItem.XElementName + "s.xml", db.ToString()); }
