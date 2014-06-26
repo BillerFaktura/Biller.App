@@ -22,21 +22,6 @@ namespace Biller
 
             MainWindowViewModel = new UI.ViewModel.MainWindowViewModel(this);
             DataContext = MainWindowViewModel;
-            //if (MainWindowViewModel.Database.IsFirstLoad == true)
-            //{
-            //    var temp = new Data.Models.CompanyInformation("Test");
-            //    MainWindowViewModel.Database.AddCompany(temp);
-            //    MainWindowViewModel.Database.ChangeCompany(temp);
-            //}
-
-            //MainWindowViewModel.OrderTabViewModel.OrderTabContent.AddNewColumn("Auftragsstatus", "State", 0.8);
-
-            //dynamic sampleOrder = new Data.Orders.PreviewOrder();
-            //sampleOrder.State = "Printed";
-
-            //MainWindowViewModel.OrderTabViewModel.DisplayedOrders.Add(sampleOrder);
-            //var window = new TestWindow() { DataContext = MainWindowViewModel };
-            //window.Show();
         }
 
         private async void RibbonWindow_Loaded(object sender, System.Windows.RoutedEventArgs e)
