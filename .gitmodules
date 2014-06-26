@@ -4,3 +4,6 @@
 [submodule "Import-Biller"]
 	path = Import-Biller
 	url = https://github.com/LastElb/Import-Biller.git
+[submodule "Biller.Controls"]
+	path = Biller.Controls
+	url = git@github.com:LastElb/Biller.Controls.git
