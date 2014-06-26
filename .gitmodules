@@ -7,3 +7,6 @@
 [submodule "Biller.Controls"]
 	path = Biller.Controls
 	url = git@github.com:LastElb/Biller.Controls.git
+[submodule "Biller.Core"]
+	path = Biller.Core
+	url = git@github.com:LastElb/Biller.Core.git
