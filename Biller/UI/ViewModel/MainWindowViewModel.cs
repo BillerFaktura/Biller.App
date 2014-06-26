@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Runtime;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -141,6 +142,9 @@ namespace Biller.UI.ViewModel
 
         public async Task LoadData()
         {
+            ProfileOptimization.SetProfileRoot((Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), ""));
+            ProfileOptimization.StartProfile("DataLoading.Profile");
+
             string AssemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "") + "Data\\";
             logger.Info("Assembly location is: " + AssemblyLocation);
 

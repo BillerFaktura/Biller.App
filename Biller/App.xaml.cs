@@ -1,4 +1,6 @@
 ﻿using NLog;
+using System.Reflection;
+using System.Runtime;
 using System.Windows;
 
 namespace Biller
@@ -12,6 +14,8 @@ namespace Biller
 
         public App()
         {
+            ProfileOptimization.SetProfileRoot((Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), ""));
+            ProfileOptimization.StartProfile("Startup.Profile");
         }
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
