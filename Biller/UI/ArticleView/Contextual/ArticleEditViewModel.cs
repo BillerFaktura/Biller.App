@@ -1,11 +1,11 @@
-﻿using Biller.Data.Articles;
+﻿using Biller.Core.Articles;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace Biller.UI.ArticleView.Contextual
 {
-    public class ArticleEditViewModel : Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
+    public class ArticleEditViewModel : Core.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
         /// <summary>
         /// Constructor if you want to create a new article.
@@ -78,7 +78,7 @@ namespace Biller.UI.ArticleView.Contextual
             }
         }
 
-        public Data.Articles.Article Article
+        public Core.Articles.Article Article
         {
             get { return GetValue(() => Article); }
             set { SetValue(value); }
@@ -102,12 +102,12 @@ namespace Biller.UI.ArticleView.Contextual
 
         }
 
-        public ObservableCollection<Data.Utils.Unit> ArticleUnits
+        public ObservableCollection<Core.Utils.Unit> ArticleUnits
         {
             get { return ParentViewModel.ParentViewModel.SettingsTabViewModel.ArticleUnits; }
         }
 
-        public ObservableCollection<Data.Utils.TaxClass> TaxClasses
+        public ObservableCollection<Core.Utils.TaxClass> TaxClasses
         {
             get { return ParentViewModel.ParentViewModel.SettingsTabViewModel.TaxClasses; }
         }

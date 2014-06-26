@@ -60,12 +60,12 @@ namespace Biller.UI.CustomerView.Contextual.EditView
 
         private void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as CustomerEditViewModel).Customer.ExtraAddresses.Add(new Data.Utils.EAddress());
+            (DataContext as CustomerEditViewModel).Customer.ExtraAddresses.Add(new Core.Utils.EAddress());
         }
 
         private void Office2013Button_Click_1(object sender, RoutedEventArgs e)
         {
-            (DataContext as CustomerEditViewModel).Customer.ExtraAddresses.Remove((sender as Biller.Controls.Office2013Button).DataContext as Data.Utils.EAddress);
+            (DataContext as CustomerEditViewModel).Customer.ExtraAddresses.Remove((sender as Biller.Controls.Office2013Button).DataContext as Core.Utils.EAddress);
         }
     }
 }

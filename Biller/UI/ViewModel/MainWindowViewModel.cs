@@ -129,8 +129,8 @@ namespace Biller.UI.ViewModel
             SelectedContent = (sender as Biller.UI.Interface.IRibbonTabItem).ParentViewModel.TabContent;
         }
 
-        private Data.Interfaces.IDatabase database;
-        public Data.Interfaces.IDatabase Database
+        private Core.Interfaces.IDatabase database;
+        public Core.Interfaces.IDatabase Database
         {
             get
             {
@@ -149,7 +149,7 @@ namespace Biller.UI.ViewModel
             logger.Info("Assembly location is: " + AssemblyLocation);
 
             logger.Debug("Connecting database");
-            database = new Data.Database.XDatabase(AssemblyLocation);
+            database = new Core.Database.XDatabase(AssemblyLocation);
             if (await database.Connect() == true)
             {
                 //await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());

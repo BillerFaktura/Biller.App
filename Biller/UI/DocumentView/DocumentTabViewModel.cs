@@ -8,9 +8,9 @@ using System.Collections.Generic;
 
 namespace Biller.UI.DocumentView
 {
-    public class DocumentTabViewModel : Biller.Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
+    public class DocumentTabViewModel : Biller.Core.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
-        private Collection<Data.Interfaces.DocumentFactory> documentFactories;
+        private Collection<Core.Interfaces.DocumentFactory> documentFactories;
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -21,14 +21,14 @@ namespace Biller.UI.DocumentView
         {
             this.ParentViewModel = parentViewModel;
             ContextualTabGroup = new Fluent.RibbonContextualTabGroup() { Header = "Auftragsmappen", Background = Brushes.LimeGreen, BorderBrush = Brushes.LimeGreen, Visibility=System.Windows.Visibility.Visible};
-            DisplayedDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
+            DisplayedDocuments = new ObservableCollection<Core.Document.PreviewDocument>();
             
             DocumentRibbonTabItem = new DocumentRibbonTabItem(this);
             DocumentTabContent = new DocumentTabContent(this);
 
             parentViewModel.RibbonFactory.AddContextualGroup(ContextualTabGroup);
 
-            documentFactories = new Collection<Data.Interfaces.DocumentFactory>();
+            documentFactories = new Collection<Core.Interfaces.DocumentFactory>();
 
             registeredObservers = new ObservableCollection<Interface.IEditObserver>();
         }
@@ -47,19 +47,19 @@ namespace Biller.UI.DocumentView
 
         public DateTime IntervalEnd { get { return GetValue(() => IntervalEnd); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, value); } }
 
-        public ObservableCollection<Data.Document.PreviewDocument> AllDocuments { get { return GetValue(() => AllDocuments); } set { SetValue(value); } }
+        public ObservableCollection<Core.Document.PreviewDocument> AllDocuments { get { return GetValue(() => AllDocuments); } set { SetValue(value); } }
 
-        public ObservableCollection<Data.Document.PreviewDocument> DisplayedDocuments { get { return GetValue(() => DisplayedDocuments); } set { SetValue(value); } }
+        public ObservableCollection<Core.Document.PreviewDocument> DisplayedDocuments { get { return GetValue(() => DisplayedDocuments); } set { SetValue(value); } }
 
-        public IEnumerable<Data.Interfaces.IExport> AllExportClasses { get { return ParentViewModel.SettingsTabViewModel.RegisteredExportClasses; } }
+        public IEnumerable<Core.Interfaces.IExport> AllExportClasses { get { return ParentViewModel.SettingsTabViewModel.RegisteredExportClasses; } }
 
-        public Data.Document.PreviewDocument SelectedDocument
+        public Core.Document.PreviewDocument SelectedDocument
         {
             get { return GetValue(() => SelectedDocument); }
             set
             {
                 SetValue(value);
-                if (value is Data.Document.PreviewDocument)
+                if (value is Core.Document.PreviewDocument)
                 {
                     SetEditButtonEnabled(true);
                 }
@@ -172,7 +172,7 @@ namespace Biller.UI.DocumentView
                 else
                 {
                     var list = from factories in documentFactories where factories.DocumentType == SelectedDocument.DocumentType select factories;
-                    Data.Document.Document loadingDocument;
+                    Core.Document.Document loadingDocument;
                     if (list.Count() > 0)
                     {
                         try
@@ -233,7 +233,7 @@ namespace Biller.UI.DocumentView
             }
         }
 
-        public async Task ReceiveEditOrderCommand(object sender, Data.Document.PreviewDocument document)
+        public async Task ReceiveEditOrderCommand(object sender, Core.Document.PreviewDocument document)
         {
             if (document != null)
             {
@@ -246,7 +246,7 @@ namespace Biller.UI.DocumentView
                 else
                 {
                     var list = from factories in documentFactories where factories.DocumentType == document.DocumentType select factories;
-                    Data.Document.Document loadingDocument;
+                    Core.Document.Document loadingDocument;
                     if (list.Count() > 0)
                     {
                         try
@@ -304,7 +304,7 @@ namespace Biller.UI.DocumentView
         public async Task LoadData()
         {
             //await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
-            AllDocuments = new ObservableCollection<Data.Document.PreviewDocument>();
+            AllDocuments = new ObservableCollection<Core.Document.PreviewDocument>();
             IntervalStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
             IntervalEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, IntervalStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
             foreach (var item in await ParentViewModel.Database.DocumentsInInterval(new DateTime(DateTime.Now.Year, 1, 1), new DateTime(DateTime.Now.Year, 12, 31)))
@@ -315,7 +315,7 @@ namespace Biller.UI.DocumentView
         {
             var result = await ParentViewModel.Database.DocumentsInInterval(IntervalStart, IntervalEnd);
             DisplayedDocuments.Clear();
-            foreach (Data.Document.PreviewDocument item in result)
+            foreach (Core.Document.PreviewDocument item in result)
                 DisplayedDocuments.Add(item);
         }
 
@@ -328,9 +328,9 @@ namespace Biller.UI.DocumentView
             // Do nothing
         }
 
-        public async Task SaveOrUpdateDocument(Data.Document.Document source)
+        public async Task SaveOrUpdateDocument(Core.Document.Document source)
         {
-            dynamic tempPreview = new Data.Document.PreviewDocument(source.DocumentType);
+            dynamic tempPreview = new Core.Document.PreviewDocument(source.DocumentType);
             var factory = GetFactory(source.DocumentType);
             if (factory != null)
                 tempPreview = factory.GetPreviewDocument(source);
@@ -358,7 +358,7 @@ namespace Biller.UI.DocumentView
             }
         }
 
-        public void AddDocumentFactory(Data.Interfaces.DocumentFactory DocumentFactory)
+        public void AddDocumentFactory(Core.Interfaces.DocumentFactory DocumentFactory)
         {
             documentFactories.Add(DocumentFactory);
         }
@@ -368,7 +368,7 @@ namespace Biller.UI.DocumentView
         /// </summary>
         /// <param name="DocumentType"></param>
         /// <returns></returns>
-        public Data.Interfaces.DocumentFactory GetFactory(string DocumentType)
+        public Core.Interfaces.DocumentFactory GetFactory(string DocumentType)
         {
             var list = from factories in documentFactories where factories.DocumentType == DocumentType select factories;
             if (list.Count() > 0)

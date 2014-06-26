@@ -32,7 +32,7 @@ namespace Biller.UI.SettingsView.SettingsList.PaymentSettings
         /// <param name="e"></param>
         private void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as SettingsTabViewModel).SelectedPaymentMethode = new Data.Utils.PaymentMethode();
+            (DataContext as SettingsTabViewModel).SelectedPaymentMethode = new Core.Utils.PaymentMethode();
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Biller.UI.SettingsView.SettingsList.PaymentSettings
         {
             if ((sender as ListView).SelectedItem != null)
             {
-                var selected = (sender as ListView).SelectedItem as Data.Utils.PaymentMethode;
-                var temp = new Data.Utils.PaymentMethode() { Name = selected.Name, Text = selected.Text, Discount = selected.Discount};
+                var selected = (sender as ListView).SelectedItem as Core.Utils.PaymentMethode;
+                var temp = new Core.Utils.PaymentMethode() { Name = selected.Name, Text = selected.Text, Discount = selected.Discount};
                 (DataContext as SettingsTabViewModel).SelectedPaymentMethode = temp;
             }
         }

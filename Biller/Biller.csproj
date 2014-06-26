@@ -588,9 +588,9 @@
       <Project>{7f38e058-9c78-418f-8acf-1cdd3a196edd}</Project>
       <Name>Biller.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Biller.Data\Biller.Data.csproj">
+    <ProjectReference Include="..\Biller.Data\Biller.Core.csproj">
       <Project>{1a5b3d3a-01a8-4946-8f7b-1de9093b3022}</Project>
-      <Name>Biller.Data</Name>
+      <Name>Biller.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -38,12 +38,12 @@ namespace Biller.UI.DocumentView.Contextual.EditTabs.Articles
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var button = (sender as Button);
-            if (button.DataContext is Data.Articles.OrderedArticle)
+            if (button.DataContext is Core.Articles.OrderedArticle)
             {
                 try
                 {
                     dynamic document = ((DataContext as DocumentEditViewModel).Document);
-                    document.OrderedArticles.Remove(button.DataContext as Data.Articles.OrderedArticle);
+                    document.OrderedArticles.Remove(button.DataContext as Core.Articles.OrderedArticle);
                 }
                 catch(Exception ex)
                 {

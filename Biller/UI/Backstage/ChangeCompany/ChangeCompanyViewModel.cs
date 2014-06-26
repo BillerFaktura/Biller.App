@@ -1,4 +1,4 @@
-﻿using Biller.Data.Models;
+﻿using Biller.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Biller.UI.Backstage.ChangeCompany
 {
-    public class ChangeCompanyViewModel : Data.Utils.PropertyChangedHelper, Interface.IBackstageContentViewModel
+    public class ChangeCompanyViewModel : Core.Utils.PropertyChangedHelper, Interface.IBackstageContentViewModel
     {
         public ChangeCompanyViewModel(BackstageViewModel parent)
         {

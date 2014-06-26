@@ -9,7 +9,7 @@ namespace Biller.UI.ArticleView
     /// <summary>
     /// ViewModel for the Articleview. This class manages all behaviour regarding articles
     /// </summary>
-    public class ArticleTabViewModel : Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
+    public class ArticleTabViewModel : Core.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
         public ArticleTabViewModel(ViewModel.MainWindowViewModel parentViewModel)
         {
@@ -28,9 +28,9 @@ namespace Biller.UI.ArticleView
 
         public ArticleTabContent ArticleTabContent { get; private set; }
 
-        public ObservableCollection<Data.Articles.PreviewArticle> AllArticles { get { return GetValue(() => AllArticles); } set { SetValue(value); } }
+        public ObservableCollection<Core.Articles.PreviewArticle> AllArticles { get { return GetValue(() => AllArticles); } set { SetValue(value); } }
 
-        public ObservableCollection<Data.Articles.PreviewArticle> DisplayedArticles { get { return GetValue(() => DisplayedArticles); } set { SetValue(value); } }
+        public ObservableCollection<Core.Articles.PreviewArticle> DisplayedArticles { get { return GetValue(() => DisplayedArticles); } set { SetValue(value); } }
 
         public ObservableCollection<object> AllCategories { get { return GetValue(() => AllCategories); } set { SetValue(value); } }
 
@@ -151,7 +151,7 @@ namespace Biller.UI.ArticleView
         /// <returns></returns>
         public async Task LoadData()
         {
-            AllArticles = new ObservableCollection<Data.Articles.PreviewArticle>(await ParentViewModel.Database.AllArticles());
+            AllArticles = new ObservableCollection<Core.Articles.PreviewArticle>(await ParentViewModel.Database.AllArticles());
             DisplayedArticles = AllArticles;
         }
 
@@ -166,7 +166,7 @@ namespace Biller.UI.ArticleView
 
         private void applyFilter()
         {
-            DisplayedArticles = new ObservableCollection<Data.Articles.PreviewArticle>(AllArticles);
+            DisplayedArticles = new ObservableCollection<Core.Articles.PreviewArticle>(AllArticles);
         }
 
         /// <summary>
@@ -175,9 +175,9 @@ namespace Biller.UI.ArticleView
         /// </summary>
         /// <param name="source">The <see cref="Article"/> you want to save or update.</param>
         /// <returns></returns>
-        public async Task SaveOrUpdateArticle(Data.Articles.Article source)
+        public async Task SaveOrUpdateArticle(Core.Articles.Article source)
         {
-            dynamic tempPreview = Data.Articles.PreviewArticle.FromArticle(source);
+            dynamic tempPreview = Core.Articles.PreviewArticle.FromArticle(source);
 
             if (AllArticles.Contains(tempPreview))
             {
@@ -192,7 +192,7 @@ namespace Biller.UI.ArticleView
             bool result = await ParentViewModel.Database.SaveOrUpdateArticle(source);
         }
 
-        public Data.Articles.PreviewArticle SelectedArticle { get { return GetValue(() => SelectedArticle); } set { SetValue(value); } }
+        public Core.Articles.PreviewArticle SelectedArticle { get { return GetValue(() => SelectedArticle); } set { SetValue(value); } }
 
         /// <summary>
         /// Receives data. This methode does not process any data.

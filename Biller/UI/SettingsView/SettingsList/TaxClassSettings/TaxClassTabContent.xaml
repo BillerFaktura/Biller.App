@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
-             xmlns:converter="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+             xmlns:converter="clr-namespace:Biller.Core.Converters;assembly=Biller.Core"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="600">
     <UserControl.Resources>

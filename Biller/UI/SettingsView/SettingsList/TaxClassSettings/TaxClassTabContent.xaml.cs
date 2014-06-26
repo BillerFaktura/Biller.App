@@ -32,7 +32,7 @@ namespace Biller.UI.SettingsView.SettingsList.TaxClassSettings
         /// <param name="e"></param>
         private void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as SettingsTabViewModel).SelectedTaxClass = new Data.Utils.TaxClass();
+            (DataContext as SettingsTabViewModel).SelectedTaxClass = new Core.Utils.TaxClass();
         }
 
         /// <summary>

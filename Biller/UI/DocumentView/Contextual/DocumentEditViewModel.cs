@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Biller.UI.DocumentView.Contextual 
 {
-    public class DocumentEditViewModel : Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
+    public class DocumentEditViewModel : Core.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
         /// <summary>
         /// Use this constructor if you want to show the document creation introduction.
@@ -20,7 +20,7 @@ namespace Biller.UI.DocumentView.Contextual
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedDocuments = new Data.Models.DocumentFolderModel();
+            LinkedDocuments = new Core.Models.DocumentFolderModel();
             DocumentEditRibbonTabItem = new DocumentEditRibbonTabItem(this) { DataContext = this };
             DocumentEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
             DocumentFolderControl = new DocumentFolder(this) { DataContext = this };
@@ -35,11 +35,11 @@ namespace Biller.UI.DocumentView.Contextual
         /// <param name="parentViewModel">The parent ViewModel</param>
         /// <param name="document">The loaded document</param>
         /// <param name="editEnabled">Determines wheter you can change the <see cref="Document"/>s ID.</param>
-        public DocumentEditViewModel(DocumentView.DocumentTabViewModel parentViewModel, Data.Document.Document document, bool editEnabled)
+        public DocumentEditViewModel(DocumentView.DocumentTabViewModel parentViewModel, Core.Document.Document document, bool editEnabled)
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
             this.ParentViewModel = parentViewModel;
-            LinkedDocuments = new Data.Models.DocumentFolderModel();
+            LinkedDocuments = new Core.Models.DocumentFolderModel();
             DocumentEditRibbonTabItem = new DocumentEditRibbonTabItem(this) { DataContext = this };
             DocumentEditTabHolder = new DocumentEditTabHolder() { DataContext = this };
             DocumentFolderControl = new DocumentFolder(this) { DataContext = this };
@@ -60,7 +60,7 @@ namespace Biller.UI.DocumentView.Contextual
 
         public DocumentFolder DocumentFolderControl { get; private set; }
 
-        public Data.Models.DocumentFolderModel LinkedDocuments { get { return GetValue(() => LinkedDocuments); } private set { SetValue(value); } }
+        public Core.Models.DocumentFolderModel LinkedDocuments { get { return GetValue(() => LinkedDocuments); } private set { SetValue(value); } }
 
         public bool EditMode { get { return GetValue(() => EditMode); } private set { SetValue(value); } }
 
@@ -71,7 +71,7 @@ namespace Biller.UI.DocumentView.Contextual
             get { return DocumentEditRibbonTabItem; }
         }
 
-        public Data.Document.Document Document
+        public Core.Document.Document Document
         {
             get { return GetValue(() => Document); }
             set { SetValue(value); }
@@ -126,7 +126,7 @@ namespace Biller.UI.DocumentView.Contextual
             if (Document != null)
             {
                 // Loads the DocumentFolder containing the current Document.
-                var list = from Data.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(new Data.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
+                var list = from Core.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(new Core.Document.PreviewDocument(this.Document.DocumentType) { DocumentID = this.Document.DocumentID }) select folder;
                 if (list.Count() > 0)
                     LinkedDocuments = list.First();
             }
@@ -134,10 +134,10 @@ namespace Biller.UI.DocumentView.Contextual
 
         public void ReceiveData(object data)
         {
-            if (data is Data.Document.PreviewDocument)
+            if (data is Core.Document.PreviewDocument)
             {
                 //Load DocumentFolder from SettingsTabViewModel and replace the current one.
-                var list = from Data.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(data as Data.Document.PreviewDocument) select folder;
+                var list = from Core.Models.DocumentFolderModel folder in ParentViewModel.ParentViewModel.SettingsTabViewModel.DocumentFolder where folder.Documents.Contains(data as Core.Document.PreviewDocument) select folder;
                 if (list.Count() > 0)
                     LinkedDocuments = list.First();
             }
@@ -148,10 +148,10 @@ namespace Biller.UI.DocumentView.Contextual
             }
         }
 
-        public Data.Customers.Customer PreviewCustomer { get { return GetValue(() => PreviewCustomer); } set { SetValue(value); } }
+        public Core.Customers.Customer PreviewCustomer { get { return GetValue(() => PreviewCustomer); } set { SetValue(value); } }
 
-        public Data.Articles.Article PreviewArticle { get { return GetValue(() => PreviewArticle); } set { SetValue(value); } }
+        public Core.Articles.Article PreviewArticle { get { return GetValue(() => PreviewArticle); } set { SetValue(value); } }
 
-        public Data.Interfaces.IExport ExportClass { get { return GetValue(() => ExportClass); } set { SetValue(value); } }
+        public Core.Interfaces.IExport ExportClass { get { return GetValue(() => ExportClass); } set { SetValue(value); } }
     }
 }

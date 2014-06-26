@@ -32,7 +32,7 @@ namespace Biller.UI.SettingsView.SettingsList.UnitSettings
         /// <param name="e"></param>
         private void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as SettingsTabViewModel).SelectedUnit = new Data.Utils.Unit();
+            (DataContext as SettingsTabViewModel).SelectedUnit = new Core.Utils.Unit();
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Biller.UI.SettingsView.SettingsList.UnitSettings
         {
             if ((sender as ListView).SelectedItem != null)
             {
-                var selected = (sender as ListView).SelectedItem as Data.Utils.Unit;
-                var temp = new Data.Utils.Unit() { Name = selected.Name, DecimalDigits = selected.DecimalDigits, DecimalSeperator = selected.DecimalSeperator, ShortName = selected.ShortName, ThousandSeperator = selected.ThousandSeperator };
+                var selected = (sender as ListView).SelectedItem as Core.Utils.Unit;
+                var temp = new Core.Utils.Unit() { Name = selected.Name, DecimalDigits = selected.DecimalDigits, DecimalSeperator = selected.DecimalSeperator, ShortName = selected.ShortName, ThousandSeperator = selected.ThousandSeperator };
                 (DataContext as SettingsTabViewModel).SelectedUnit = temp;
             }
         }

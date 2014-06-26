@@ -29,15 +29,15 @@ namespace Biller.UI.SettingsView.SettingsList.ShipmentSettings
         {
             if ((sender as ListView).SelectedItem != null)
             {
-                var selected = (sender as ListView).SelectedItem as Data.Utils.Shipment;
-                var temp = new Data.Utils.Shipment() { Name = selected.Name, DefaultPrice = selected.DefaultPrice };
+                var selected = (sender as ListView).SelectedItem as Core.Utils.Shipment;
+                var temp = new Core.Utils.Shipment() { Name = selected.Name, DefaultPrice = selected.DefaultPrice };
                 (DataContext as SettingsTabViewModel).SelectedShipment = temp;
             }
         }
 
         private void Office2013Button_Click(object sender, RoutedEventArgs e)
         {
-            (DataContext as SettingsTabViewModel).SelectedShipment = new Data.Utils.Shipment();
+            (DataContext as SettingsTabViewModel).SelectedShipment = new Core.Utils.Shipment();
         }
 
         /// <summary>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
              xmlns:treeviewhelper="clr-namespace:Biller.UI.TreeView"
-             xmlns:converter="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+             xmlns:converter="clr-namespace:Biller.Core.Converters;assembly=Biller.Core"
              xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="600" Margin="6" MinWidth="600">

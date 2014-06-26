@@ -10,7 +10,7 @@ namespace Biller.UI.CustomerView
     /// <summary>
     /// ViewModel for the CutomerView. This class manages all behaviour regarding customers.
     /// </summary>
-    public class CustomerTabViewModel : Biller.Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
+    public class CustomerTabViewModel : Biller.Core.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
 
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -31,13 +31,13 @@ namespace Biller.UI.CustomerView
         private CustomerTabContent tabContent { get; set; }
         private CustomerTabTabItem tabItem { get; set; }
 
-        public ObservableCollection<Data.Customers.PreviewCustomer> AllCustomers { get { return GetValue(() => AllCustomers); } set { SetValue(value); } }
+        public ObservableCollection<Core.Customers.PreviewCustomer> AllCustomers { get { return GetValue(() => AllCustomers); } set { SetValue(value); } }
 
-        public ObservableCollection<Data.Customers.PreviewCustomer> DisplayedCustomers { get { return GetValue(() => DisplayedCustomers); } set { SetValue(value); } }
+        public ObservableCollection<Core.Customers.PreviewCustomer> DisplayedCustomers { get { return GetValue(() => DisplayedCustomers); } set { SetValue(value); } }
 
         public ObservableCollection<object> AllCategories { get { return GetValue(() => AllCategories); } set { SetValue(value); } }
 
-        public Data.Customers.PreviewCustomer SelectedCustomer { get { return GetValue(() => SelectedCustomer); } set { SetValue(value); } }
+        public Core.Customers.PreviewCustomer SelectedCustomer { get { return GetValue(() => SelectedCustomer); } set { SetValue(value); } }
 
         public object SelectedCategory { get; set; }
 
@@ -72,7 +72,7 @@ namespace Biller.UI.CustomerView
 
         public async Task LoadData()
         {
-            AllCustomers = new ObservableCollection<Data.Customers.PreviewCustomer>(await ParentViewModel.Database.AllCustomers());
+            AllCustomers = new ObservableCollection<Core.Customers.PreviewCustomer>(await ParentViewModel.Database.AllCustomers());
             DisplayedCustomers = AllCustomers;
         }
 
@@ -83,7 +83,7 @@ namespace Biller.UI.CustomerView
 
         private void applyFilter()
         {
-            DisplayedCustomers = new ObservableCollection<Data.Customers.PreviewCustomer>(AllCustomers);
+            DisplayedCustomers = new ObservableCollection<Core.Customers.PreviewCustomer>(AllCustomers);
         }
 
         public async Task ReceiveNewCustomerCommand()
@@ -133,9 +133,9 @@ namespace Biller.UI.CustomerView
             RibbonTabItem.IsSelected = true;
         }
 
-        public async Task SaveOrUpdateCustomer(Data.Customers.Customer source)
+        public async Task SaveOrUpdateCustomer(Core.Customers.Customer source)
         {
-            var tempPreview = Data.Customers.PreviewCustomer.FromCustomer(source);
+            var tempPreview = Core.Customers.PreviewCustomer.FromCustomer(source);
             if (AllCustomers.Contains(tempPreview))
             {
                 var index = AllCustomers.IndexOf(tempPreview);

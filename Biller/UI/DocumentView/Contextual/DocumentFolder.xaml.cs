@@ -38,7 +38,7 @@ namespace Biller.UI.DocumentView.Contextual
         {
             if (wasMouseDown)
             {
-                var doc = (sender as StackPanel).DataContext as Biller.Data.Document.PreviewDocument;
+                var doc = (sender as StackPanel).DataContext as Biller.Core.Document.PreviewDocument;
                 await ParentViewModel.ParentViewModel.ReceiveEditOrderCommand(ParentViewModel, doc);
                 wasMouseDown = false;
             }

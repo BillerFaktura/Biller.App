@@ -186,3 +186,4 @@ Assemblies/MigraDoc/MigraDoc.RtfRendering-WPF.xml
 Assemblies/MigraDoc/PdfSharp-WPF.xml
 Assemblies/MigraDoc/PdfSharp.Charting-WPF.xml
 Biller/TestWindow.xaml
+Biller/TestWindow.xaml.cs

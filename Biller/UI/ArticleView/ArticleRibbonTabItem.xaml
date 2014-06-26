@@ -4,7 +4,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
-                      xmlns:converters="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+                      xmlns:converters="clr-namespace:Biller.Core.Converters;assembly=Biller.Core"
                       Header="{DynamicResource articles}">
     <Fluent:RibbonTabItem.Resources>
         <ResourceDictionary>

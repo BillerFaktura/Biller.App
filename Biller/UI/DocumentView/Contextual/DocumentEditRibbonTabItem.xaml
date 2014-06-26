@@ -3,7 +3,7 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
-                      xmlns:converter="clr-namespace:Biller.Data.Converters;assembly=Biller.Data"
+                      xmlns:converter="clr-namespace:Biller.Core.Converters;assembly=Biller.Core"
                       Header="Übersicht" Group="{Binding ContextualTabGroup}">
     <Fluent:RibbonTabItem.Resources>
         <ResourceDictionary>

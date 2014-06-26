@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Biller.UI.Backstage
 {
-    public class BackstageViewModel : Data.Utils.PropertyChangedHelper, Interface.IViewModel
+    public class BackstageViewModel : Core.Utils.PropertyChangedHelper, Interface.IViewModel
     {
         public UI.ViewModel.MainWindowViewModel ParentViewModel { get; private set; }
 

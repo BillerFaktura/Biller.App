@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Biller.UI.SettingsView
 {
-    public class SettingsTabViewModel : Data.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
+    public class SettingsTabViewModel : Core.Utils.PropertyChangedHelper, Biller.UI.Interface.ITabContentViewModel
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -19,12 +19,12 @@ namespace Biller.UI.SettingsView
             logger.Debug("Is parent viewmodel null: " + (parentViewModel == null ? "true" : "false"));
 
             SettingsList = new ObservableCollection<TabItem>();
-            ArticleUnits = new ObservableCollection<Data.Utils.Unit>();
-            PaymentMethodes = new ObservableCollection<Data.Utils.PaymentMethode>();
-            DocumentFolder = new ObservableCollection<Data.Models.DocumentFolderModel>();
-            RegisteredExportClasses = new List<Data.Interfaces.IExport>();
-            PreferedExportClasses = new List<Data.Models.DocumentExportModel>();
-            KeyValueStore = new Data.Utils.KeyValueStore();
+            ArticleUnits = new ObservableCollection<Core.Utils.Unit>();
+            PaymentMethodes = new ObservableCollection<Core.Utils.PaymentMethode>();
+            DocumentFolder = new ObservableCollection<Core.Models.DocumentFolderModel>();
+            RegisteredExportClasses = new List<Core.Interfaces.IExport>();
+            PreferedExportClasses = new List<Core.Models.DocumentExportModel>();
+            KeyValueStore = new Core.Utils.KeyValueStore();
 
             logger.Debug("Creating new UnitTabItem");
             SettingsList.Add(new SettingsList.UnitSettings.UnitTabItem());
@@ -35,10 +35,10 @@ namespace Biller.UI.SettingsView
             RibbonTabItem = new SettingsTabRibbonTabItem(this) { DataContext = this };
             ParentViewModel = parentViewModel;
 
-            SelectedUnit = new Data.Utils.Unit();
-            SelectedPaymentMethode = new Data.Utils.PaymentMethode();
-            SelectedTaxClass = new Data.Utils.TaxClass();
-            SelectedShipment = new Data.Utils.Shipment();
+            SelectedUnit = new Core.Utils.Unit();
+            SelectedPaymentMethode = new Core.Utils.PaymentMethode();
+            SelectedTaxClass = new Core.Utils.TaxClass();
+            SelectedShipment = new Core.Utils.Shipment();
 
             logger.Info("Finished constructor of SettingsTabViewModel");
         }
@@ -47,10 +47,10 @@ namespace Biller.UI.SettingsView
         /// Loads all kind of data asynchronously.\n
         /// Registers following <see cref="IStorageableItem"/>s:
         /// <list type="bullet">
-        /// <item><see cref="Data.Utils.Shipment"/></item>
-        /// <item><see cref="Data.Models.DocumentFolderModel"/></item>
-        /// <item><see cref="Data.Models.CompanySettings"/></item>
-        /// <item><see cref="Data.Models.DocumentExportModel"/></item>
+        /// <item><see cref="Core.Utils.Shipment"/></item>
+        /// <item><see cref="Core.Models.DocumentFolderModel"/></item>
+        /// <item><see cref="Core.Models.CompanySettings"/></item>
+        /// <item><see cref="Core.Models.DocumentExportModel"/></item>
         /// </list>
         /// \n
         /// Loads following Lists / Collections:
@@ -66,32 +66,32 @@ namespace Biller.UI.SettingsView
         public async Task LoadData()
         {
             logger.Debug("Start loading data in SettingsTabViewModel");
-            await ParentViewModel.Database.RegisterStorageableItem(new Data.Utils.Shipment());
-            await ParentViewModel.Database.RegisterStorageableItem(new Data.Models.DocumentFolderModel());
-            await ParentViewModel.Database.RegisterStorageableItem(new Data.Models.CompanySettings());
-            await ParentViewModel.Database.RegisterStorageableItem(new Data.Models.DocumentExportModel());
+            await ParentViewModel.Database.RegisterStorageableItem(new Core.Utils.Shipment());
+            await ParentViewModel.Database.RegisterStorageableItem(new Core.Models.DocumentFolderModel());
+            await ParentViewModel.Database.RegisterStorageableItem(new Core.Models.CompanySettings());
+            await ParentViewModel.Database.RegisterStorageableItem(new Core.Models.DocumentExportModel());
 
-            ArticleUnits = new ObservableCollection<Data.Utils.Unit>(await ParentViewModel.Database.ArticleUnits());
-            PaymentMethodes = new ObservableCollection<Data.Utils.PaymentMethode>(await ParentViewModel.Database.PaymentMethodes());
-            TaxClasses = new ObservableCollection<Data.Utils.TaxClass>(await ParentViewModel.Database.TaxClasses());
+            ArticleUnits = new ObservableCollection<Core.Utils.Unit>(await ParentViewModel.Database.ArticleUnits());
+            PaymentMethodes = new ObservableCollection<Core.Utils.PaymentMethode>(await ParentViewModel.Database.PaymentMethodes());
+            TaxClasses = new ObservableCollection<Core.Utils.TaxClass>(await ParentViewModel.Database.TaxClasses());
 
-            var result = await ParentViewModel.Database.AllStorageableItems(new Data.Utils.Shipment());
-            Shipments = new ObservableCollection<Data.Utils.Shipment>();
-            foreach (Data.Utils.Shipment item in result)
+            var result = await ParentViewModel.Database.AllStorageableItems(new Core.Utils.Shipment());
+            Shipments = new ObservableCollection<Core.Utils.Shipment>();
+            foreach (Core.Utils.Shipment item in result)
                 Shipments.Add(item);
 
-            var resultFolder = await ParentViewModel.Database.AllStorageableItems(new Data.Models.DocumentFolderModel());
-            DocumentFolder = new ObservableCollection<Data.Models.DocumentFolderModel>();
-            foreach (Data.Models.DocumentFolderModel item in resultFolder)
+            var resultFolder = await ParentViewModel.Database.AllStorageableItems(new Core.Models.DocumentFolderModel());
+            DocumentFolder = new ObservableCollection<Core.Models.DocumentFolderModel>();
+            foreach (Core.Models.DocumentFolderModel item in resultFolder)
                 DocumentFolder.Add(item);
 
-            var resultExport = await ParentViewModel.Database.AllStorageableItems(new Data.Models.DocumentExportModel());
-            foreach (Data.Models.DocumentExportModel item in resultExport)
+            var resultExport = await ParentViewModel.Database.AllStorageableItems(new Core.Models.DocumentExportModel());
+            foreach (Core.Models.DocumentExportModel item in resultExport)
                 RegisterPreferedExportClass(item);
 
-            KeyValueStore.Add(new Data.Models.KeyValueModel("UseGermanSupplementaryTaxRegulation", true));
-            KeyValueStore.Add(new Data.Models.KeyValueModel("TaxSupplementaryWorkSeperate", true));
-            KeyValueStore.Add(new Data.Models.KeyValueModel("LocalizedOnSupplementaryWork", "auf Nebenleistung"));
+            KeyValueStore.Add(new Core.Models.KeyValueModel("UseGermanSupplementaryTaxRegulation", true));
+            KeyValueStore.Add(new Core.Models.KeyValueModel("TaxSupplementaryWorkSeperate", true));
+            KeyValueStore.Add(new Core.Models.KeyValueModel("LocalizedOnSupplementaryWork", "auf Nebenleistung"));
 
             logger.Debug("Finished loading data in SettingsTabViewModel");
         }
@@ -112,55 +112,55 @@ namespace Biller.UI.SettingsView
         public ObservableCollection<TabItem> SettingsList { get { return GetValue(() => SettingsList); } set { SetValue(value); } }
 
         /// <summary>
-        /// Holds a list of all saved <see cref="Data.Utils.Unit"/>.\n
+        /// Holds a list of all saved <see cref="Core.Utils.Unit"/>.\n
         /// Initial loading of the content happens in <see cref="LoadData"/>.
         /// </summary>
-        public ObservableCollection<Data.Utils.Unit> ArticleUnits { get { return GetValue(() => ArticleUnits); } set { SetValue(value); } }
+        public ObservableCollection<Core.Utils.Unit> ArticleUnits { get { return GetValue(() => ArticleUnits); } set { SetValue(value); } }
 
         /// <summary>
-        /// Holds a list of all saved <see cref="Data.Utils.PaymentMethode"/>.\n
+        /// Holds a list of all saved <see cref="Core.Utils.PaymentMethode"/>.\n
         /// Initial loading of the content happens in <see cref="LoadData"/>.
         /// </summary>
-        public ObservableCollection<Data.Utils.PaymentMethode> PaymentMethodes { get { return GetValue(() => PaymentMethodes); } set { SetValue(value); } }
+        public ObservableCollection<Core.Utils.PaymentMethode> PaymentMethodes { get { return GetValue(() => PaymentMethodes); } set { SetValue(value); } }
 
         /// <summary>
-        /// Holds a list of all saved <see cref="Data.Utils.TaxClass"/>.\n
+        /// Holds a list of all saved <see cref="Core.Utils.TaxClass"/>.\n
         /// Initial loading of the content happens in <see cref="LoadData"/>.
         /// </summary>
-        public ObservableCollection<Data.Utils.TaxClass> TaxClasses { get { return GetValue(() => TaxClasses); } set { SetValue(value); } }
+        public ObservableCollection<Core.Utils.TaxClass> TaxClasses { get { return GetValue(() => TaxClasses); } set { SetValue(value); } }
 
         /// <summary>
-        /// Holds a list of all saved <see cref="Data.Utils.Shipment"/>.\n
+        /// Holds a list of all saved <see cref="Core.Utils.Shipment"/>.\n
         /// Initial loading of the content happens in <see cref="LoadData"/>.
         /// </summary>
-        public ObservableCollection<Data.Utils.Shipment> Shipments { get { return GetValue(() => Shipments); } set { SetValue(value); } }
+        public ObservableCollection<Core.Utils.Shipment> Shipments { get { return GetValue(() => Shipments); } set { SetValue(value); } }
 
         /// <summary>
-        /// Holds a list of all saved <see cref="Data.Models.DocumentFolderModel"/>.\n
+        /// Holds a list of all saved <see cref="Core.Models.DocumentFolderModel"/>.\n
         /// Initial loading of the content happens in <see cref="LoadData"/>.
         /// </summary>
-        public ObservableCollection<Data.Models.DocumentFolderModel> DocumentFolder { get { return GetValue(() => DocumentFolder); } set { SetValue(value); } }
+        public ObservableCollection<Core.Models.DocumentFolderModel> DocumentFolder { get { return GetValue(() => DocumentFolder); } set { SetValue(value); } }
 
         /// <summary>
-        /// Holds a list of all registered <see cref="Data.Interfaces.IExport"/>.\n
+        /// Holds a list of all registered <see cref="Core.Interfaces.IExport"/>.\n
         /// Initial loading of the content happens in <see cref="LoadData"/>.
         /// </summary>
-        public List<Data.Interfaces.IExport> RegisteredExportClasses { get { return GetValue(() => RegisteredExportClasses); } set { SetValue(value); } }
+        public List<Core.Interfaces.IExport> RegisteredExportClasses { get { return GetValue(() => RegisteredExportClasses); } set { SetValue(value); } }
 
-        private List<Data.Models.DocumentExportModel> PreferedExportClasses { get { return GetValue(() => PreferedExportClasses); } set { SetValue(value); } }
+        private List<Core.Models.DocumentExportModel> PreferedExportClasses { get { return GetValue(() => PreferedExportClasses); } set { SetValue(value); } }
 
         /// <summary>
         /// The <see cref="KeyValueStore"/> is designed to hold multiple configuration values from any class. Values inside the <see cref="KeyValueStore"/> will not be saved and loaded with closing / starting the app!
         /// </summary>
-        public Data.Utils.KeyValueStore KeyValueStore { get { return GetValue(() => KeyValueStore); } set { SetValue(value); } }
+        public Core.Utils.KeyValueStore KeyValueStore { get { return GetValue(() => KeyValueStore); } set { SetValue(value); } }
 
-        public Data.Utils.Unit SelectedUnit { get { return GetValue(() => SelectedUnit); } set { SetValue(value); } }
+        public Core.Utils.Unit SelectedUnit { get { return GetValue(() => SelectedUnit); } set { SetValue(value); } }
 
-        public Data.Utils.PaymentMethode SelectedPaymentMethode { get { return GetValue(() => SelectedPaymentMethode); } set { SetValue(value); } }
+        public Core.Utils.PaymentMethode SelectedPaymentMethode { get { return GetValue(() => SelectedPaymentMethode); } set { SetValue(value); } }
 
-        public Data.Utils.TaxClass SelectedTaxClass { get { return GetValue(() => SelectedTaxClass); } set { SetValue(value); } }
+        public Core.Utils.TaxClass SelectedTaxClass { get { return GetValue(() => SelectedTaxClass); } set { SetValue(value); } }
 
-        public Data.Utils.Shipment SelectedShipment { get { return GetValue(() => SelectedShipment); } set { SetValue(value); } }
+        public Core.Utils.Shipment SelectedShipment { get { return GetValue(() => SelectedShipment); } set { SetValue(value); } }
 
         public ViewModel.MainWindowViewModel ParentViewModel { get { return GetValue(() => ParentViewModel); } set { SetValue(value); } }
 
@@ -168,7 +168,7 @@ namespace Biller.UI.SettingsView
         /// Saves a new object if it does not exist or updates an existing one.
         /// </summary>
         /// <param name="source"></param>
-        public void SaveOrUpdateArticleUnit(Data.Utils.Unit source)
+        public void SaveOrUpdateArticleUnit(Core.Utils.Unit source)
         {
             if (ArticleUnits.Contains(source))
             {
@@ -187,7 +187,7 @@ namespace Biller.UI.SettingsView
         /// Saves a new object if it does not exist or updates an existing one.
         /// </summary>
         /// <param name="source"></param>
-        public void SaveOrUpdatePaymentMethode(Data.Utils.PaymentMethode source)
+        public void SaveOrUpdatePaymentMethode(Core.Utils.PaymentMethode source)
         {
             if (PaymentMethodes.Contains(source))
             {
@@ -206,7 +206,7 @@ namespace Biller.UI.SettingsView
         /// Saves a new object if it does not exist or updates an existing one.
         /// </summary>
         /// <param name="source"></param>
-        public void SaveOrUpdateTaxClass(Data.Utils.TaxClass source)
+        public void SaveOrUpdateTaxClass(Core.Utils.TaxClass source)
         {
             if (TaxClasses.Contains(source))
             {
@@ -225,7 +225,7 @@ namespace Biller.UI.SettingsView
         /// Saves a new object if it does not exist or updates an existing one.
         /// </summary>
         /// <param name="source"></param>
-        public void SaveOrUpdateShipment(Data.Utils.Shipment source)
+        public void SaveOrUpdateShipment(Core.Utils.Shipment source)
         {
             if (Shipments.Contains(source))
             {
@@ -240,7 +240,7 @@ namespace Biller.UI.SettingsView
             ParentViewModel.Database.SaveOrUpdateStorageableItem(source);
         }
 
-        public void SaveOrUpdateDocumentFolder(Data.Models.DocumentFolderModel source)
+        public void SaveOrUpdateDocumentFolder(Core.Models.DocumentFolderModel source)
         {
             if (DocumentFolder.Contains(source))
             {
@@ -260,7 +260,7 @@ namespace Biller.UI.SettingsView
             
         }
 
-        public void RegisterPreferedExportClass(Data.Models.DocumentExportModel source)
+        public void RegisterPreferedExportClass(Core.Models.DocumentExportModel source)
         {
             var exportList = RegisteredExportClasses.Where(x => x.GuID == source.Export.GuID);
             if (exportList.Count() > 0)
@@ -289,7 +289,7 @@ namespace Biller.UI.SettingsView
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public Data.Interfaces.IExport GetPreferedExportClass(Data.Document.Document source)
+        public Core.Interfaces.IExport GetPreferedExportClass(Core.Document.Document source)
         {
             var preferedList = PreferedExportClasses.Where(x => x.Document.DocumentType == source.DocumentType);
             if (preferedList.Count() > 0)
@@ -301,7 +301,7 @@ namespace Biller.UI.SettingsView
             {
                 ParentViewModel.Notificationmanager.ShowNotification("Layout festgelegt", "Für " + source.LocalizedDocumentType + " wurde automatisch ein bevorzugtes Layout festgelegt.");
 
-                var preferedModel = new Data.Models.DocumentExportModel() { Export = exportList.First(), Document = source };
+                var preferedModel = new Core.Models.DocumentExportModel() { Export = exportList.First(), Document = source };
                 PreferedExportClasses.Add(preferedModel);
                 ParentViewModel.Database.SaveOrUpdateStorageableItem(preferedModel);
                 return preferedModel.Export;

@@ -1,4 +1,4 @@
-﻿using Biller.Data.Customers;
+﻿using Biller.Core.Customers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,12 +9,12 @@ using System.Windows.Controls;
 
 namespace Biller.UI.CustomerView.Contextual
 {
-    public class CustomerEditViewModel : Data.Utils.PropertyChangedHelper, UI.Interface.ITabContentViewModel
+    public class CustomerEditViewModel : Core.Utils.PropertyChangedHelper, UI.Interface.ITabContentViewModel
     {
         public CustomerEditViewModel(CustomerTabViewModel parentViewModel, int ID = -1)
         {
             ContextualTabGroup = parentViewModel.ContextualTabGroup;
-            Customer = new Data.Customers.Customer();
+            Customer = new Core.Customers.Customer();
             TabItem = new ContextualTabItem(this) { DataContext = this };
             tabContent = new ContextualTabContent() { DataContext = this };
             ParentViewModel = parentViewModel;
@@ -78,9 +78,9 @@ namespace Biller.UI.CustomerView.Contextual
             await ParentViewModel.SaveOrUpdateCustomer(Customer);
         }
 
-        public ObservableCollection<Data.Utils.PaymentMethode> PaymentMethodes { get { return ParentViewModel.ParentViewModel.SettingsTabViewModel.PaymentMethodes; } }
+        public ObservableCollection<Core.Utils.PaymentMethode> PaymentMethodes { get { return ParentViewModel.ParentViewModel.SettingsTabViewModel.PaymentMethodes; } }
 
-        public Data.Customers.Customer Customer { get { return GetValue(() => Customer); } set { SetValue(value); } }
+        public Core.Customers.Customer Customer { get { return GetValue(() => Customer); } set { SetValue(value); } }
 
         public void ReceiveData(object data)
         {

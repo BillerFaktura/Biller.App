@@ -27,7 +27,7 @@ namespace Biller.UI.Backstage.ChangeCompany
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Biller.Data.Models.CompanyInformation company = (sender as Button).DataContext as Biller.Data.Models.CompanyInformation;
+            Biller.Core.Models.CompanyInformation company = (sender as Button).DataContext as Biller.Core.Models.CompanyInformation;
             ChangeCompanyViewModel vm = this.DataContext as ChangeCompanyViewModel;
             await vm.ParentViewModel.ParentViewModel.Database.ChangeCompany(company);
             await vm.ParentViewModel.ParentViewModel.LoadData();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Biller.UI.Backstage.NewCompany
 {
-    public class EditCompanyViewModel : Data.Utils.PropertyChangedHelper, Interface.IBackstageContentViewModel
+    public class EditCompanyViewModel : Core.Utils.PropertyChangedHelper, Interface.IBackstageContentViewModel
     {
         /// <summary>
         /// Creates a new Viewmodel.
@@ -21,8 +21,8 @@ namespace Biller.UI.Backstage.NewCompany
             else
                 BackstageTabItem = new ContentTabItem() { DataContext = this };
             this.EditMode = EditMode;
-            CompanyInformation = new Data.Models.CompanyInformation();
-            CompanySettings = new Data.Models.CompanySettings();
+            CompanyInformation = new Core.Models.CompanyInformation();
+            CompanySettings = new Core.Models.CompanySettings();
         }
 
         public bool EditMode { get { return GetValue(() => EditMode); } private set { SetValue(value); } }
@@ -36,14 +36,14 @@ namespace Biller.UI.Backstage.NewCompany
             if (EditMode)
             {
                 CompanyInformation = ParentViewModel.ParentViewModel.Database.CurrentCompany;
-                CompanySettings = (Biller.Data.Models.CompanySettings)(await ParentViewModel.ParentViewModel.Database.AllStorageableItems(new Biller.Data.Models.CompanySettings())).FirstOrDefault();
+                CompanySettings = (Biller.Core.Models.CompanySettings)(await ParentViewModel.ParentViewModel.Database.AllStorageableItems(new Biller.Core.Models.CompanySettings())).FirstOrDefault();
                 if (CompanySettings == null)
-                    CompanySettings = new Biller.Data.Models.CompanySettings();
+                    CompanySettings = new Biller.Core.Models.CompanySettings();
             }
             else
             {
-                CompanyInformation = new Data.Models.CompanyInformation();
-                CompanySettings = new Data.Models.CompanySettings();
+                CompanyInformation = new Core.Models.CompanyInformation();
+                CompanySettings = new Core.Models.CompanySettings();
             }
         }
 
@@ -57,8 +57,8 @@ namespace Biller.UI.Backstage.NewCompany
             await LoadData();
         }
 
-        public Biller.Data.Models.CompanyInformation CompanyInformation { get { return GetValue(() => CompanyInformation); } private set { SetValue(value); } }
+        public Biller.Core.Models.CompanyInformation CompanyInformation { get { return GetValue(() => CompanyInformation); } private set { SetValue(value); } }
 
-        public Biller.Data.Models.CompanySettings CompanySettings { get { return GetValue(() => CompanySettings); } private set { SetValue(value); } }
+        public Biller.Core.Models.CompanySettings CompanySettings { get { return GetValue(() => CompanySettings); } private set { SetValue(value); } }
     }
 }

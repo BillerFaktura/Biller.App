@@ -8,14 +8,14 @@ namespace Biller
     public partial class MainWindow
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-        private Data.Performance.Stopwatch sw;
+        private Core.Performance.Stopwatch sw;
 
         public UI.ViewModel.MainWindowViewModel MainWindowViewModel { get; private set; }
 
         public MainWindow()
         {
             logger.Debug("Application started");
-            sw = new Data.Performance.Stopwatch("Application loaded after ");
+            sw = new Core.Performance.Stopwatch("Application loaded after ");
             sw.Start();
 
             InitializeComponent();
