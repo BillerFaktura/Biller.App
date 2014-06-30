@@ -164,7 +164,7 @@ namespace Biller.UI.ViewModel
                 AddTabContentViewModel(SettingsTabViewModel);
                 SelectedContent = DocumentTabViewModel.TabContent;
 
-                foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*.bdll"))
+                foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*@Biller.dll"))
                 {
                     var plugin = LoadAssembly(currentfile);
                     try
