@@ -75,7 +75,7 @@
     <sys:String x:Key="OwnCustomerInfo1">Wählen Sie diese Funktion, wenn der Besteller noch nicht in Ihrem Kundendatensatz vorhanden ist.</sys:String>
     <sys:String x:Key="OwnCustomerInfo2">Speichern Sie Kundendaten in der Kundendatenbank, um in Zukunft Arbeit zu sparen.</sys:String>
     <sys:String x:Key="Salutation">Anrede</sys:String>
-    <sys:String x:Key="FornameSurname">Vorname, Nachname</sys:String>
+    <sys:String x:Key="ForenameSurname">Vorname, Nachname</sys:String>
     <sys:String x:Key="StreetNo">Straße, Hausnr.</sys:String>
     <sys:String x:Key="ZipCity">PLZ, Stadt</sys:String>
     <sys:String x:Key="Country">Land</sys:String>

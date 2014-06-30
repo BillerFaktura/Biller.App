@@ -102,7 +102,7 @@
         <TextBlock Text="{StaticResource createNewCompany}" Style="{StaticResource HeaderStyle}" Foreground="Black" FontSize="48" FontFamily="Segoe UI Light"/>
         <controls:WatermarkTextBox Watermark="{StaticResource companyname}" Text="{Binding CompanyInformation.CompanyName}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,30,1,1" Visibility="{Binding Customer.IsCompany, Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-            <controls:WatermarkTextBox Watermark="{StaticResource forname}" Text="{Binding CompanySettings.MainAddress.Forname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" MinWidth="140" HorizontalAlignment="Left"/>
+            <controls:WatermarkTextBox Watermark="{StaticResource forename}" Text="{Binding CompanySettings.MainAddress.Forename}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" MinWidth="140" HorizontalAlignment="Left"/>
             <controls:WatermarkTextBox Watermark="{StaticResource surname}" Text="{Binding CompanySettings.MainAddress.Surname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" MinWidth="140" HorizontalAlignment="Left"/>
         </StackPanel>
         <controls:WatermarkTextBox Watermark="{StaticResource addition}" Text="{Binding CompanySettings.MainAddress.Addition}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,5,1,1" />

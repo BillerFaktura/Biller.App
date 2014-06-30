@@ -179,7 +179,7 @@
                         <controls:WatermarkTextBox Watermark="{StaticResource title}" Text="{Binding Document.DeliveryAddress.Title}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <controls:WatermarkTextBox Watermark="{StaticResource forname}" Text="{Binding Document.DeliveryAddress.Forname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                        <controls:WatermarkTextBox Watermark="{StaticResource forename}" Text="{Binding Document.DeliveryAddress.Forename}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                         <controls:WatermarkTextBox Watermark="{StaticResource surname}" Text="{Binding Document.DeliveryAddress.Surname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                     </StackPanel>
                     <controls:WatermarkTextBox Watermark="{StaticResource addition}" Text="{Binding Document.DeliveryAddress.Addition}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1,5,1,1" />

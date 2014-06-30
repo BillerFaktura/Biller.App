@@ -3,7 +3,7 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:String x:Key="companyname">Firmenname</sys:String>
-    <sys:String x:Key="forname">Vorname</sys:String>
+    <sys:String x:Key="forename">Vorname</sys:String>
     <sys:String x:Key="surname">Nachname</sys:String>
     <sys:String x:Key="addition">Adresszusatz</sys:String>
     <sys:String x:Key="street">Straße</sys:String>
