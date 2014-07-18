@@ -2,10 +2,12 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -33,6 +35,7 @@ namespace Biller.UI.ViewModel
             logger.Debug("Initializing RibbonFactory");
             RibbonFactory = new Ribbon.RibbonFactory(MainWindow.ribbon);
             Notificationmanager = new Notifications.Notificationmanager();
+            UpdateManager = new Core.Update.UpdateManager();
             TabContentViewModels = new ObservableCollection<UI.Interface.ITabContentViewModel>();
 
             logger.Debug("Initializing OrderTabViewModel");
@@ -80,6 +83,8 @@ namespace Biller.UI.ViewModel
         /// The current instance of <see cref="Biller.UI.Ribbon.RibbonFactory"/>.
         /// </summary>
         public Biller.UI.Ribbon.RibbonFactory RibbonFactory { get; private set; }
+
+        public Biller.Core.Update.UpdateManager UpdateManager { get; private set; }
 
         /// <summary>
         /// SelectedContent is the UIElement showing below the <see cref="MainWindow.ribbon"/>.\n
@@ -152,7 +157,6 @@ namespace Biller.UI.ViewModel
             database = new Core.Database.XDatabase(AssemblyLocation);
             if (await database.Connect() == true)
             {
-                //await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
                 logger.Info("Connecting to database was successfull");
 
                 logger.Debug("Adding Viewmodels to the collection");
@@ -184,6 +188,10 @@ namespace Biller.UI.ViewModel
                 await CustomerTabViewModel.LoadData();
                 await DocumentTabViewModel.LoadData();
                 await BackstageViewModel.LoadData();
+
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description="Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version=0, UpdateSource = "http://www.lastelb.com/update.json" });
+                UpdateManager.CheckForUpdatesCompleted += UpdateManager_CheckForUpdatesCompleted;
+                UpdateManager.CheckForUpdates();
             }
             else
             {
@@ -192,6 +200,10 @@ namespace Biller.UI.ViewModel
                 {
                     logger.Info("First Load of the Database");
                     RibbonFactory.OpenBackstage();
+                }
+                else
+                {
+                    // Show error
                 }
             }
         }
@@ -241,6 +253,32 @@ namespace Biller.UI.ViewModel
         public static MainWindowViewModel GetCurrentMainWindowViewModel()
         {
             return vm;
+        }
+
+        void UpdateManager_CheckForUpdatesCompleted(object sender, EventArgs e)
+        {
+            foreach(var app in UpdateManager.UpdateableApps)
+            {
+                var update = new Biller.Controls.Notification.UpdateNotification() { Title = "Update für " + app.Title, Message = "Es ist ein Update auf Version " + app.Version.ToString() + " verfügbar." };
+                Action<object> changelogAction = new Action<object>((object x) => 
+                {
+                    if (!String.IsNullOrEmpty(app.ChangelogURL))
+                        Process.Start(app.ChangelogURL);
+                });
+                Action<object> updateNowAction = new Action<object>((object x) =>
+                {
+                    UpdateManager.Update(app, update);
+                    update.ProgressBarVisibility = Visibility.Visible;
+                    update.TextVisibility = Visibility.Collapsed;
+                });
+                Action<object> updateLaterAction = new Action<object>((object x) => 
+                {
+                    
+                });
+                update.SetActions(changelogAction, updateNowAction, updateLaterAction);
+                _selectedContent.Dispatcher.BeginInvoke((Action)(() => Notificationmanager.ShowNotification(update)));
+                
+            }
         }
     }
 }

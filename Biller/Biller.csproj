@@ -36,7 +36,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -52,6 +52,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Biller.App</StartupObject>
@@ -106,7 +107,8 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fluent">
+    <Reference Include="Fluent, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack">
@@ -193,6 +195,7 @@
       <DependentUpon>ContentTabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Backstage\NewCompany\EditCompanyViewModel.cs" />
+    <Compile Include="UI\Console\ConsoleInterpreter.cs" />
     <Compile Include="UI\CustomerView\Contextual\CustomerEditViewModel.cs" />
     <Compile Include="UI\CustomerView\Contextual\ContextualTabContent.xaml.cs">
       <DependentUpon>ContextualTabContent.xaml</DependentUpon>
