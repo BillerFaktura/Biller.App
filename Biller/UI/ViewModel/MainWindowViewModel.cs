@@ -124,9 +124,7 @@ namespace Biller.UI.ViewModel
         private void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
-            {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
         }
 
         private void tabItemGotFocus(object sender, EventArgs e)
@@ -189,7 +187,7 @@ namespace Biller.UI.ViewModel
                 await DocumentTabViewModel.LoadData();
                 await BackstageViewModel.LoadData();
 
-                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description="Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version=0, UpdateSource = "http://www.lastelb.com/update.json" });
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.00725, UpdateSource = "http://www.lastelb.com/update.json" });
                 UpdateManager.CheckForUpdatesCompleted += UpdateManager_CheckForUpdatesCompleted;
                 UpdateManager.CheckForUpdates();
             }
@@ -242,6 +240,7 @@ namespace Biller.UI.ViewModel
         public void MainWindowCloseActions(System.EventArgs e)
         {
             Notificationmanager.Close();
+            Database.SaveOrUpdateSettings(SettingsTabViewModel.KeyValueStore);
         }
 
         private static MainWindowViewModel vm;

@@ -89,9 +89,7 @@ namespace Biller.UI.SettingsView
             foreach (Core.Models.DocumentExportModel item in resultExport)
                 RegisterPreferedExportClass(item);
 
-            KeyValueStore.Add(new Core.Models.KeyValueModel("UseGermanSupplementaryTaxRegulation", true));
-            KeyValueStore.Add(new Core.Models.KeyValueModel("TaxSupplementaryWorkSeperate", true));
-            KeyValueStore.Add(new Core.Models.KeyValueModel("LocalizedOnSupplementaryWork", "auf Nebenleistung"));
+            KeyValueStore = await ParentViewModel.Database.GetSettings();
 
             logger.Debug("Finished loading data in SettingsTabViewModel");
         }

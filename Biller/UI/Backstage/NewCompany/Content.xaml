@@ -119,7 +119,7 @@
         <controls:WatermarkTextBox Watermark="{StaticResource TaxID}" Text="{Binding CompanySettings.TaxID}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,15,1,1"/>
         <controls:WatermarkTextBox Watermark="{StaticResource SalesTaxID}" Text="{Binding CompanySettings.SalesTaxID}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" MinWidth="282" HorizontalAlignment="Left" Margin="1,5,1,1"/>
         
-        <CheckBox Content="{StaticResource vatFreeRule}" Margin="0,10,0,0"/>
+        <CheckBox Content="{StaticResource vatFreeRule}" Margin="0,10,0,0" Name="CheckBoxSmallBusiness"/>
         
         <controls:Office2013Button Content="{StaticResource next}" Margin="0,6,0,0" HorizontalAlignment="Left" Click="Office2013Button_Click"/>
     </StackPanel>
