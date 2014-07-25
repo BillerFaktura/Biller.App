@@ -200,6 +200,7 @@ namespace Biller.UI.DocumentView
                                 ErrorNotification.Title = "Fehler beim Laden";
                                 ErrorNotification.Message = "Für " + SelectedDocument.DocumentType + " existiert keine registrierte Exportfunktion.";
                                 ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+                                logger.ErrorException("", e);
                             }
                                                         
                             await documentEditViewModel.LoadData();
