@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Biller</RootNamespace>
     <AssemblyName>Biller</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -124,8 +124,9 @@
     <Reference Include="MigraDoc.RtfRendering-WPF">
       <HintPath>..\Assemblies\MigraDoc\MigraDoc.RtfRendering-WPF.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp-WPF, Version=1.32.2608.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -224,7 +225,7 @@
     <Compile Include="UI\Interface\ITabContentViewModel.cs" />
     <Compile Include="UI\Interface\IViewModel.cs" />
     <Compile Include="UI\Localization\LocalizationManager.cs" />
-    <Compile Include="UI\Notifications\Notificationmanager.cs" />
+    <Compile Include="UI\Notifications\NotificationManager.cs" />
     <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml.cs">
       <DependentUpon>Content.xaml</DependentUpon>
     </Compile>
@@ -302,6 +303,12 @@
       <DependentUpon>SettingsTabRibbonTabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\SettingsView\SettingsTabViewModel.cs" />
+    <Compile Include="UI\StartUp\DatabaseIntroduction.xaml.cs">
+      <DependentUpon>DatabaseIntroduction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StartUp\StartUpWindow.xaml.cs">
+      <DependentUpon>StartUpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\TreeView\TreeViewItemHelper.cs" />
     <Compile Include="UI\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UI\DocumentView\DocumentRibbonTabItem.xaml.cs">
@@ -514,6 +521,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\SettingsView\SettingsTabRibbonTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\StartUp\DatabaseIntroduction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\StartUp\StartUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

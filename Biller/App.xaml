@@ -6,7 +6,6 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Fluent;Component/Themes/Generic.xaml" />
-                <ResourceDictionary Source="/Fluent;Component/Themes/Office2010/Silver.xaml" />
                 <ResourceDictionary Source="/Biller.Controls;Component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
