@@ -8,6 +8,10 @@ namespace Biller.UI.Interface
 {
     public interface IEditObserver
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="articleEditViewModel"></param>
         void ReceiveArticleEditViewModel(Biller.UI.ArticleView.Contextual.ArticleEditViewModel articleEditViewModel);
 
         void ReceiveCustomerEditViewModel(Biller.UI.CustomerView.Contextual.CustomerEditViewModel customerEditViewModel);
