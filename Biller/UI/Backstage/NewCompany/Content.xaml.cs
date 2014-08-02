@@ -26,7 +26,7 @@ namespace Biller.UI.Backstage.NewCompany
         }
 
         /// <summary>
-        /// 
+        /// Saves the data
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -38,7 +38,6 @@ namespace Biller.UI.Backstage.NewCompany
             {
                 vm.BackstageTabItem.Focus(); //For MVVM //
                 vm.CompanySettings.MainAddress.CompanyName = vm.CompanyInformation.CompanyName;
-                vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore.Insert(0, new Core.Models.KeyValueModel("IsSmallBusiness", CheckBoxSmallBusiness.IsChecked));
                 await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(vm.CompanySettings);
             }
             else
@@ -54,7 +53,8 @@ namespace Biller.UI.Backstage.NewCompany
                 await vm.ParentViewModel.ParentViewModel.Database.ChangeCompany(vm.CompanyInformation);
                 await vm.ParentViewModel.ParentViewModel.LoadData();
                 await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(companySetting);
-                vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore.Add(new Core.Models.KeyValueModel("IsSmallBusiness", CheckBoxSmallBusiness.IsChecked));
+                //vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore.Add(new Core.Models.KeyValueModel("IsSmallBusiness", CheckBoxSmallBusiness.IsChecked));
+                //vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore.Add(new Core.Models.KeyValueModel("UseGermanSupplementaryTaxRegulation", CheckBoxSmallBusiness.IsChecked));
                 vm.ResetCompanyInformation();
             }
         }
