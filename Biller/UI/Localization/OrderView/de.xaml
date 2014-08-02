@@ -182,7 +182,8 @@
     <sys:String x:Key="CurrentDocumentType">Ausgewählte Dokumentart</sys:String>
 
     <sys:String x:Key="Date">Datum</sys:String>
-    <sys:String x:Key="SelectedDate">Ausgewähltes Datum</sys:String>
+    <sys:String x:Key="SelectedDate">Ausgewähltes Rechnungsdatum</sys:String>
+    <sys:String x:Key="SelectedDateOfDelivery">Ausgewähltes Leistungsdatum</sys:String>
     <sys:String x:Key="ChangeDate">Datum ändern</sys:String>
 
     <sys:String x:Key="PaymentTextHeader">Rabatte, Zahlung &amp; Texte</sys:String>

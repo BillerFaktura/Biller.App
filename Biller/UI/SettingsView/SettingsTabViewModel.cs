@@ -22,8 +22,10 @@ namespace Biller.UI.SettingsView
             ArticleUnits = new ObservableCollection<Core.Utils.Unit>();
             PaymentMethodes = new ObservableCollection<Core.Utils.PaymentMethode>();
             DocumentFolder = new ObservableCollection<Core.Models.DocumentFolderModel>();
-            RegisteredExportClasses = new List<Core.Interfaces.IExport>();
-            PreferedExportClasses = new List<Core.Models.DocumentExportModel>();
+            RegisteredExportClasses = new ObservableCollection<Core.Interfaces.IExport>();
+            PreferedExportClasses = new ObservableCollection<Core.Models.DocumentExportModel>();
+            RegisteredPlugins = new ObservableCollection<Interface.IPlugIn>();
+            RegisteredDatabases = new ObservableCollection<Core.Models.DatabaseUIModel>();
             KeyValueStore = new Core.Utils.KeyValueStore();
 
             logger.Debug("Creating new UnitTabItem");
@@ -143,14 +145,18 @@ namespace Biller.UI.SettingsView
         /// Holds a list of all registered <see cref="Core.Interfaces.IExport"/>.\n
         /// Initial loading of the content happens in <see cref="LoadData"/>.
         /// </summary>
-        public List<Core.Interfaces.IExport> RegisteredExportClasses { get { return GetValue(() => RegisteredExportClasses); } set { SetValue(value); } }
+        public ObservableCollection<Core.Interfaces.IExport> RegisteredExportClasses { get { return GetValue(() => RegisteredExportClasses); } set { SetValue(value); } }
 
-        private List<Core.Models.DocumentExportModel> PreferedExportClasses { get { return GetValue(() => PreferedExportClasses); } set { SetValue(value); } }
+        public ObservableCollection<Core.Models.DatabaseUIModel> RegisteredDatabases { get { return GetValue(() => RegisteredDatabases); } set { SetValue(value); } }
+
+        public ObservableCollection<Interface.IPlugIn> RegisteredPlugins { get { return GetValue(() => RegisteredPlugins); } set { SetValue(value); } }
+
+        private ObservableCollection<Core.Models.DocumentExportModel> PreferedExportClasses { get { return GetValue(() => PreferedExportClasses); } set { SetValue(value); } }
 
         /// <summary>
         /// The <see cref="KeyValueStore"/> is designed to hold multiple configuration values from any class. Values inside the <see cref="KeyValueStore"/> will not be saved and loaded with closing / starting the app!
         /// </summary>
-        public Core.Utils.KeyValueStore KeyValueStore { get { return GetValue(() => KeyValueStore); } set { SetValue(value); } }
+        public Biller.Core.Utils.KeyValueStore KeyValueStore { get { return GetValue(() => KeyValueStore); } set { SetValue(value); } }
 
         public Core.Utils.Unit SelectedUnit { get { return GetValue(() => SelectedUnit); } set { SetValue(value); } }
 
@@ -271,13 +277,13 @@ namespace Biller.UI.SettingsView
                 var LayoutList = RegisteredExportClasses.Where(x => x.AvailableDocumentTypes().Contains(source.Document.DocumentType));
                 if (LayoutList.Count() > 0)
                 {
-                    ParentViewModel.Notificationmanager.ShowNotification("Layout festgelegt", "Für " + source.Document.LocalizedDocumentType + " wurde automatisch ein bevorzugtes Layout festgelegt.");
+                    ParentViewModel.NotificationManager.ShowNotification("Layout festgelegt", "Für " + source.Document.LocalizedDocumentType + " wurde automatisch ein bevorzugtes Layout festgelegt.");
                     source.Export = LayoutList.First();
                     PreferedExportClasses.Add(source);
                 }
                 else
                 {
-                    ParentViewModel.Notificationmanager.ShowNotification("Kein Layout verfügbar", "Für " + source.Document.LocalizedDocumentType + " existiert kein Layout mehr. Dokumente können nicht mehr gedruckt und exportiert werden.");
+                    ParentViewModel.NotificationManager.ShowNotification("Kein Layout verfügbar", "Für " + source.Document.LocalizedDocumentType + " existiert kein Layout mehr. Dokumente können nicht mehr gedruckt und exportiert werden.");
                 }
             }
         }
@@ -297,7 +303,7 @@ namespace Biller.UI.SettingsView
             var exportList = RegisteredExportClasses.Where(x => x.AvailableDocumentTypes().Contains(source.DocumentType));
             if (exportList.Count() > 0)
             {
-                ParentViewModel.Notificationmanager.ShowNotification("Layout festgelegt", "Für " + source.LocalizedDocumentType + " wurde automatisch ein bevorzugtes Layout festgelegt.");
+                ParentViewModel.NotificationManager.ShowNotification("Layout festgelegt", "Für " + source.LocalizedDocumentType + " wurde automatisch ein bevorzugtes Layout festgelegt.");
 
                 var preferedModel = new Core.Models.DocumentExportModel() { Export = exportList.First(), Document = source };
                 PreferedExportClasses.Add(preferedModel);

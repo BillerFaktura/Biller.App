@@ -31,13 +31,9 @@ namespace Biller.UI.Ribbon
                 {
                     var list = (from item in Ribbon.Tabs orderby Ribbon.Tabs.IndexOf(item) where item.Group == Ribbon.ContextualGroups[indexgroup] select Ribbon.Tabs.IndexOf(item)).ToList();
                     if (list.Count == 0)
-                    {
                         indexgroup -= 1;
-                    }
                     else
-                    {
                         insertindex = list.Last() + 1;
-                    }
                 }
                 if (indexgroup == -1)
                     insertindex = GetIndexOfLastNormalTab();
@@ -82,9 +78,7 @@ namespace Biller.UI.Ribbon
             {
                 var tabcontrol = (backstage as Fluent.Backstage).Content;
                 if (tabcontrol is Fluent.BackstageTabControl)
-                {
                     (tabcontrol as Fluent.BackstageTabControl).Items.Add(BackstageTabItem);
-                }
             }
         }
 
