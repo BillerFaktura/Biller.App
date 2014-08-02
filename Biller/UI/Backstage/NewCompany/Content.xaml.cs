@@ -45,7 +45,6 @@ namespace Biller.UI.Backstage.NewCompany
                 vm.BackstageTabItem.Focus(); //For MVVM //
 
                 var companySetting = vm.CompanySettings;
-
                 vm.CompanyInformation.GenerateNewID();
                 vm.ParentViewModel.ParentViewModel.RibbonFactory.CloseBackstage();
                 vm.ParentViewModel.ParentViewModel.Database.AddCompany(vm.CompanyInformation);
@@ -53,9 +52,25 @@ namespace Biller.UI.Backstage.NewCompany
                 await vm.ParentViewModel.ParentViewModel.Database.ChangeCompany(vm.CompanyInformation);
                 await vm.ParentViewModel.ParentViewModel.LoadData();
                 await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(companySetting);
-                //vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore.Add(new Core.Models.KeyValueModel("IsSmallBusiness", CheckBoxSmallBusiness.IsChecked));
-                //vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore.Add(new Core.Models.KeyValueModel("UseGermanSupplementaryTaxRegulation", CheckBoxSmallBusiness.IsChecked));
+                vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore = CheckBoxSmallBusiness.DataContext as Core.Utils.KeyValueStore;
                 vm.ResetCompanyInformation();
+            }
+        }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (DataContext is EditCompanyViewModel)
+            {
+                EditCompanyViewModel vm = (DataContext as EditCompanyViewModel);
+                if (!vm.EditMode)
+                {
+                    var store = new Core.Utils.KeyValueStore();
+                    CheckBoxSmallBusiness.DataContext = store;
+                    CheckBoxUseGermanSupplementaryTaxRegulation.DataContext = store;
+
+                    CheckBoxSmallBusiness.SetBinding(CheckBox.IsCheckedProperty, "IsSmallBusiness");
+                    CheckBoxSmallBusiness.SetBinding(CheckBox.IsCheckedProperty, "UseGermanSupplementaryTaxRegulation");
+                }
             }
         }
     }

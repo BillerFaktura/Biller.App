@@ -6,7 +6,7 @@
              xmlns:converter="clr-namespace:Biller.Core.Converters;assembly=Biller.Core"
              xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600" Margin="20">
+             d:DesignHeight="600" d:DesignWidth="600" Margin="20" DataContextChanged="UserControl_DataContextChanged">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

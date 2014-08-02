@@ -164,9 +164,6 @@ namespace Biller.UI.ViewModel
                 }
             }
 
-            //SettingsTabViewModel.RegisteredDatabases.Add(new Core.Models.DatabaseUIModel(new Core.Database.XDatabase(), new Backstage.ChangeCompany.Content()));
-            //SettingsTabViewModel.RegisteredDatabases.Add(new Core.Models.DatabaseUIModel(new Core.Database.XDatabase(), new Backstage.ChangeCompany.Content()));
-
             var settings = new Biller.Core.Database.AppSettings();
             settings.Load();
             if (String.IsNullOrEmpty(settings.Database))
@@ -201,7 +198,7 @@ namespace Biller.UI.ViewModel
                 logger.Info("Connection to database established");
                 if (Database.IsFirstLoad)
                 {
-                    // Do company setup
+                    RibbonFactory.OpenBackstage();
                 }
 
                 TabContentViewModels.Clear();
@@ -224,7 +221,7 @@ namespace Biller.UI.ViewModel
             }
             else if (Database.IsFirstLoad)
             {
-                // Do company setup
+                RibbonFactory.OpenBackstage();
             }
             else
             {

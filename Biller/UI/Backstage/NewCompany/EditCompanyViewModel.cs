@@ -16,11 +16,11 @@ namespace Biller.UI.Backstage.NewCompany
         public EditCompanyViewModel(BackstageViewModel parent, bool EditMode)
         {
             ParentViewModel = parent;
+            this.EditMode = EditMode;
             if (EditMode)
                 BackstageTabItem = new EditContentTabItem() { DataContext = this };
             else
                 BackstageTabItem = new ContentTabItem() { DataContext = this };
-            this.EditMode = EditMode;
             CompanyInformation = new Core.Models.CompanyInformation();
             CompanySettings = new Core.Models.CompanySettings();
         }
