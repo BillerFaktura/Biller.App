@@ -130,7 +130,7 @@ namespace Biller.UI.DocumentView
                 ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
                 ErrorNotification.Title = "Fehler beim Laden";
                 ErrorNotification.Message = "Für " + DocumentType + " existiert kein registrierter Dienst.";
-                ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+                ParentViewModel.NotificationManager.ShowNotification(ErrorNotification);
             }
         }
 
@@ -199,7 +199,7 @@ namespace Biller.UI.DocumentView
                                 ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
                                 ErrorNotification.Title = "Fehler beim Laden";
                                 ErrorNotification.Message = "Für " + SelectedDocument.DocumentType + " existiert keine registrierte Exportfunktion.";
-                                ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+                                ParentViewModel.NotificationManager.ShowNotification(ErrorNotification);
                                 logger.ErrorException("", e);
                             }
                                                         
@@ -217,7 +217,7 @@ namespace Biller.UI.DocumentView
                             ErrorNotification.Title = "Fehler beim Laden";
                             dynamic document = SelectedDocument;
                             ErrorNotification.Message = "Das Dokument " + document.LocalizedDocumentType + " Nr. " + document.DocumentID + " konnte nicht geöffnet werden. Weitere Informationen im Log.";
-                            ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+                            ParentViewModel.NotificationManager.ShowNotification(ErrorNotification);
 
                             logger.ErrorException("Error loading document. Sender was " + sender.ToString(), e);
                         }
@@ -228,7 +228,7 @@ namespace Biller.UI.DocumentView
                         ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
                         ErrorNotification.Title = "Fehler beim Laden";
                         ErrorNotification.Message = "Für " + SelectedDocument.DocumentType + " existiert kein registrierter Dienst.";
-                        ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+                        ParentViewModel.NotificationManager.ShowNotification(ErrorNotification);
                     }
                 }
             }
@@ -282,7 +282,7 @@ namespace Biller.UI.DocumentView
                         ErrorNotification.ImageUrl = "..\\..\\Images\\appbar.app.remove.png";
                         ErrorNotification.Title = "Fehler beim Laden";
                         ErrorNotification.Message = "Für " + SelectedDocument.DocumentType + " existiert kein registrierter Dienst.";
-                        ParentViewModel.Notificationmanager.ShowNotification(ErrorNotification);
+                        ParentViewModel.NotificationManager.ShowNotification(ErrorNotification);
                     }
                 }
             }

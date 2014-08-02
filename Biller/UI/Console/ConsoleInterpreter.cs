@@ -73,7 +73,7 @@ namespace Biller.UI.Console
                     index += 1;
                     imageUri = commands[index];
                 }
-                vm.Notificationmanager.ShowNotification(new Biller.Controls.Notification.ErrorNotification() { Title = title, Message = text, ImageUrl = imageUri });
+                vm.NotificationManager.ShowNotification(new Biller.Controls.Notification.ErrorNotification() { Title = title, Message = text, ImageUrl = imageUri });
             }
             else
             {
