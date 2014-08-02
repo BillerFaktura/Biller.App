@@ -68,5 +68,13 @@ namespace Biller.UI.DocumentView.Contextual.EditTabs.Settings
             }
             catch { }
         }
+
+        private void ButtonShowCalendar2_Click(object sender, RoutedEventArgs e)
+        {
+            if (CalendarPopup2.IsOpen)
+                CalendarPopup2.IsOpen = false;
+            else
+                CalendarPopup2.IsOpen = true;
+        }
     }
 }
