@@ -139,67 +139,67 @@ namespace Biller.UI.ViewModel
 
         public Biller.UI.Notifications.NotificationManager NotificationManager { get; set; }
 
-        public async Task LoadData()
+        public async Task LoadData(bool CompanyChanged = false)
         {
-            var assemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "");
-
-            UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.00725, UpdateSource = "http://www.lastelb.com/update.json" });
-
-            logger.Info("Assembly location is: " + assemblyLocation);
-            ProfileOptimization.SetProfileRoot(assemblyLocation);
-            ProfileOptimization.StartProfile("DataLoading.Profile");
-
-            foreach (var currentfile in Directory.GetFiles(assemblyLocation, "*@Biller.dll"))
+            if (!CompanyChanged)
             {
-                var plugin = LoadAssembly(currentfile);
-                try
+                var assemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "");
+
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.00725, UpdateSource = "http://www.lastelb.com/update.json" });
+
+                logger.Info("Assembly location is: " + assemblyLocation);
+                ProfileOptimization.SetProfileRoot(assemblyLocation);
+                ProfileOptimization.StartProfile("DataLoading.Profile");
+
+                foreach (var currentfile in Directory.GetFiles(assemblyLocation, "*@Biller.dll"))
                 {
-                    plugin.Activate();
-                    SettingsTabViewModel.RegisteredPlugins.Add(plugin);
+                    var plugin = LoadAssembly(currentfile);
+                    try
+                    {
+                        plugin.Activate();
+                        SettingsTabViewModel.RegisteredPlugins.Add(plugin);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Fatal("Error integrating plugin " + plugin.Name, e);
+                        NotificationManager.ShowNotification("Fehler beim Laden von " + plugin.Name, "Das Plugin konnte nicht geladen werden. Eine genaue Fehlerbeschreibung wurde in die Logdatei geschrieben.");
+                    }
                 }
-                catch (Exception e)
+
+                var settings = new Biller.Core.Database.AppSettings();
+                settings.Load();
+                if (String.IsNullOrEmpty(settings.Database))
                 {
-                    logger.Fatal("Error integrating plugin " + plugin.Name, e);
-                    NotificationManager.ShowNotification("Fehler beim Laden von " + plugin.Name, "Das Plugin konnte nicht geladen werden. Eine genaue Fehlerbeschreibung wurde in die Logdatei geschrieben.");
+                    // We need to setup a database
+                    // Something with ShowDialog so we can resume from a later point
+                    var setup = new StartUp.StartUpWindow(this);
+                    window.Hide();
+                    setup.ShowDialog();
+                    settings.Load();
+                    window.Show();
+                }
+
+                logger.Debug("Connecting to database");
+                var databases = SettingsTabViewModel.RegisteredDatabases;
+                Database = databases.FirstOrDefault(x => x.Database.GuID == settings.Database).Database;
+                if (Database == null)
+                {
+                    logger.Error("We could not load the database. It was not registered. Starting a new database setup!");
+                    settings.Database = "";
+                    settings.DatabaseOptions = "";
+
+                    var setup = new StartUp.StartUpWindow(this);
+                    window.Hide();
+                    setup.ShowDialog();
+                    settings.Load();
+                    window.Show();
                 }
             }
-
-            var settings = new Biller.Core.Database.AppSettings();
-            settings.Load();
-            if (String.IsNullOrEmpty(settings.Database))
-            {
-                // We need to setup a database
-                // Something with ShowDialog so we can resume from a later point
-                var setup = new StartUp.StartUpWindow(this);
-                window.Hide();
-                setup.ShowDialog();
-                settings.Load();
-                window.Show();
-            }
-
-            logger.Debug("Connecting to database");
-            var databases = SettingsTabViewModel.RegisteredDatabases;
-            Database = databases.FirstOrDefault(x => x.Database.GuID == settings.Database).Database;
-            if (Database == null)
-            {
-                logger.Error("We could not load the database. It was not registered. Starting a new database setup!");
-                settings.Database = "";
-                settings.DatabaseOptions = "";
-
-                var setup = new StartUp.StartUpWindow(this);
-                window.Hide();
-                setup.ShowDialog();
-                settings.Load();
-                window.Show();
-            }
-
             if (await Database.Connect() == true)
             {
                 logger.Info("Connection to database established");
                 if (Database.IsFirstLoad)
-                {
                     RibbonFactory.OpenBackstage();
-                }
 
                 TabContentViewModels.Clear();
                 RibbonFactory.ClearRibbonTabItems();
@@ -220,9 +220,7 @@ namespace Biller.UI.ViewModel
                 await BackstageViewModel.LoadData();
             }
             else if (Database.IsFirstLoad)
-            {
                 RibbonFactory.OpenBackstage();
-            }
             else
             {
                 // Show an exception
@@ -230,75 +228,6 @@ namespace Biller.UI.ViewModel
 
             UpdateManager.CheckForUpdatesCompleted += UpdateManager_CheckForUpdatesCompleted;
             UpdateManager.CheckForUpdates();
-
-
-
-
-
-
-
-
-
-
-            //string AssemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "") + "Data\\";
-            //logger.Info("Assembly location is: " + AssemblyLocation);
-
-            //logger.Debug("Connecting database");
-            //database = new Core.Database.XDatabase(AssemblyLocation);
-            //if (await database.Connect() == true)
-            //{
-            //    logger.Info("Connecting to database was successfull");
-
-            //    logger.Debug("Adding Viewmodels to the collection");
-            //    TabContentViewModels.Clear();
-            //    RibbonFactory.ClearRibbonTabItems();
-            //    AddTabContentViewModel(DocumentTabViewModel);
-            //    AddTabContentViewModel(ArticleTabViewModel);
-            //    AddTabContentViewModel(CustomerTabViewModel);
-            //    AddTabContentViewModel(SettingsTabViewModel);
-            //    SelectedContent = DocumentTabViewModel.TabContent;
-
-            //    foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*@Biller.dll"))
-            //    {
-            //        var plugin = LoadAssembly(currentfile);
-            //        try
-            //        {
-            //            plugin.Activate();
-            //            SettingsTabViewModel.RegisteredPlugins.Add(plugin);
-            //        }catch (Exception e)
-            //        {
-            //            logger.Fatal("Error integrating plugin " + plugin.Name, e);
-            //            NotificationManager.ShowNotification("Fehler beim Laden von " + plugin.Name, "Das Plugin konnte nicht geladen werden. Eine genaue Fehlerbeschreibung wurde in die Logdatei geschrieben.");
-            //        }
-            //    }
-
-            //    foreach (var plugin in SettingsTabViewModel.RegisteredPlugins)
-            //        foreach (UI.Interface.IViewModel vm in plugin.ViewModels())
-            //            await vm.LoadData();
-
-            //    await SettingsTabViewModel.LoadData();
-            //    await ArticleTabViewModel.LoadData();
-            //    await CustomerTabViewModel.LoadData();
-            //    await DocumentTabViewModel.LoadData();
-            //    await BackstageViewModel.LoadData();
-
-            //    UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.00725, UpdateSource = "http://www.lastelb.com/update.json" });
-            //    UpdateManager.CheckForUpdatesCompleted += UpdateManager_CheckForUpdatesCompleted;
-            //    UpdateManager.CheckForUpdates();
-            //}
-            //else
-            //{
-            //    logger.Info("Connecting to database was not successfull");
-            //    if (database.IsFirstLoad)
-            //    {
-            //        logger.Info("First Load of the Database");
-            //        RibbonFactory.OpenBackstage();
-            //    }
-            //    else
-            //    {
-            //        // Show error
-            //    }
-            //}
         }
 
         private UI.Interface.IPlugIn LoadAssembly(string assemblyPath)

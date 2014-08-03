@@ -30,7 +30,7 @@ namespace Biller.UI.Backstage.ChangeCompany
             Biller.Core.Models.CompanyInformation company = (sender as Button).DataContext as Biller.Core.Models.CompanyInformation;
             ChangeCompanyViewModel vm = this.DataContext as ChangeCompanyViewModel;
             await vm.ParentViewModel.ParentViewModel.Database.ChangeCompany(company);
-            await vm.ParentViewModel.ParentViewModel.LoadData();
+            await vm.ParentViewModel.ParentViewModel.LoadData(true);
             vm.ParentViewModel.ParentViewModel.RibbonFactory.CloseBackstage();
         }
     }
