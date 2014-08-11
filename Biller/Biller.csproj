@@ -226,36 +226,6 @@
     <Compile Include="UI\Interface\IViewModel.cs" />
     <Compile Include="UI\Localization\LocalizationManager.cs" />
     <Compile Include="UI\Notifications\NotificationManager.cs" />
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Others\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Others\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Receipent\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Receipent\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Settings\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Settings\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UI\DocumentView\Contextual\DocumentEditTabHolder.xaml.cs">
       <DependentUpon>DocumentEditTabHolder.xaml</DependentUpon>
     </Compile>
@@ -419,46 +389,6 @@
     <Page Include="UI\Localization\SettingsView\de.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Articles\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Others\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Others\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Receipent\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Receipent\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Settings\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Settings\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\DocumentView\Contextual\DocumentEditTabHolder.xaml">
       <SubType>Designer</SubType>
