@@ -20,7 +20,8 @@ namespace Biller
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            logger.FatalException("Application crashed", e.Exception);
+            logger.Fatal("Application crashed", e.Exception);
+            
         }
 
         private void Application_LoadCompleted(object sender, System.Windows.Navigation.NavigationEventArgs e)

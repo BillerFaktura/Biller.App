@@ -32,7 +32,7 @@
 
     <sys:String x:Key="salutation">Anrede</sys:String>
     <sys:String x:Key="title">Titel</sys:String>
-    <sys:String x:Key="forname">Vorname</sys:String>
+    <sys:String x:Key="forename">Vorname</sys:String>
     <sys:String x:Key="surname">Nachname</sys:String>
     <sys:String x:Key="addition">Adresszusatz</sys:String>
     <sys:String x:Key="street">Straße</sys:String>

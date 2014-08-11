@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Biller</RootNamespace>
     <AssemblyName>Biller</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -36,7 +36,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -52,6 +52,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Biller.App</StartupObject>
@@ -106,7 +107,8 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Fluent">
+    <Reference Include="Fluent, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Assemblies\Fluent\NET 4.5\Release\Fluent.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack">
@@ -122,8 +124,9 @@
     <Reference Include="MigraDoc.RtfRendering-WPF">
       <HintPath>..\Assemblies\MigraDoc\MigraDoc.RtfRendering-WPF.dll</HintPath>
     </Reference>
-    <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp-WPF, Version=1.32.2608.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -193,6 +196,7 @@
       <DependentUpon>ContentTabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Backstage\NewCompany\EditCompanyViewModel.cs" />
+    <Compile Include="UI\Console\ConsoleInterpreter.cs" />
     <Compile Include="UI\CustomerView\Contextual\CustomerEditViewModel.cs" />
     <Compile Include="UI\CustomerView\Contextual\ContextualTabContent.xaml.cs">
       <DependentUpon>ContextualTabContent.xaml</DependentUpon>
@@ -221,37 +225,7 @@
     <Compile Include="UI\Interface\ITabContentViewModel.cs" />
     <Compile Include="UI\Interface\IViewModel.cs" />
     <Compile Include="UI\Localization\LocalizationManager.cs" />
-    <Compile Include="UI\Notifications\Notificationmanager.cs" />
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Articles\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Others\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Others\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Receipent\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Receipent\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Settings\Content.xaml.cs">
-      <DependentUpon>Content.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\DocumentView\Contextual\EditTabs\Settings\EditTab.xaml.cs">
-      <DependentUpon>EditTab.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UI\Notifications\NotificationManager.cs" />
     <Compile Include="UI\DocumentView\Contextual\DocumentEditTabHolder.xaml.cs">
       <DependentUpon>DocumentEditTabHolder.xaml</DependentUpon>
     </Compile>
@@ -299,6 +273,12 @@
       <DependentUpon>SettingsTabRibbonTabItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\SettingsView\SettingsTabViewModel.cs" />
+    <Compile Include="UI\StartUp\DatabaseIntroduction.xaml.cs">
+      <DependentUpon>DatabaseIntroduction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\StartUp\StartUpWindow.xaml.cs">
+      <DependentUpon>StartUpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\TreeView\TreeViewItemHelper.cs" />
     <Compile Include="UI\ViewModel\MainWindowViewModel.cs" />
     <Compile Include="UI\DocumentView\DocumentRibbonTabItem.xaml.cs">
@@ -410,46 +390,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Articles\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Articles\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Others\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Others\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\PrintPreview\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Receipent\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Receipent\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Settings\Content.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\DocumentView\Contextual\EditTabs\Settings\EditTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UI\DocumentView\Contextual\DocumentEditTabHolder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -511,6 +451,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\SettingsView\SettingsTabRibbonTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\StartUp\DatabaseIntroduction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\StartUp\StartUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -577,9 +525,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\DocumentView\Ribbon\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <SplashScreen Include="SplashScreen.png" />
   </ItemGroup>

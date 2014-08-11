@@ -1,5 +1,7 @@
 ﻿using NLog;
+using System;
 using System.Diagnostics;
+using System.Windows;
 namespace Biller
 {
     /// <summary>

@@ -46,5 +46,6 @@ using System.Windows;
 // Sie können alle Werte angeben oder die standardmäßigen Build- und Revisionsnummern
 // übernehmen, indem Sie "*" eingeben:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.0.0.1108")]
+[assembly: AssemblyFileVersion("2.0.0.1108")]
+[assembly: GuidAttribute("D06F042A-4695-4422-A5B7-829E64949EF3")]

@@ -10,3 +10,7 @@
 [submodule "Biller.Core"]
 	path = Biller.Core
 	url = git@github.com:LastElb/Biller.Core.git
+
+[submodule "XDatabase@Biller"]
+	path = XDatabase@Biller
+	url = git@github.com:LastElb/XDatabase-Biller.git

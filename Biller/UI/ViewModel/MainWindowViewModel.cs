@@ -2,12 +2,15 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Linq;
 
 namespace Biller.UI.ViewModel
 {
@@ -20,6 +23,7 @@ namespace Biller.UI.ViewModel
         private static Logger logger = LogManager.GetCurrentClassLogger();
         
         private System.Windows.UIElement _selectedContent;
+        private MainWindow window;
 
         /// <summary>
         /// Creates a new instance of <see cref="MainWindowViewModel"/>.\n
@@ -32,7 +36,8 @@ namespace Biller.UI.ViewModel
 
             logger.Debug("Initializing RibbonFactory");
             RibbonFactory = new Ribbon.RibbonFactory(MainWindow.ribbon);
-            Notificationmanager = new Notifications.Notificationmanager();
+            NotificationManager = new Notifications.NotificationManager();
+            UpdateManager = new Core.Update.UpdateManager();
             TabContentViewModels = new ObservableCollection<UI.Interface.ITabContentViewModel>();
 
             logger.Debug("Initializing OrderTabViewModel");
@@ -47,6 +52,7 @@ namespace Biller.UI.ViewModel
 
             logger.Debug("Finished constructor of MainWindowViewModel");
             vm = this;
+            window = MainWindow;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -80,6 +86,8 @@ namespace Biller.UI.ViewModel
         /// The current instance of <see cref="Biller.UI.Ribbon.RibbonFactory"/>.
         /// </summary>
         public Biller.UI.Ribbon.RibbonFactory RibbonFactory { get; private set; }
+
+        public Biller.Core.Update.UpdateManager UpdateManager { get; private set; }
 
         /// <summary>
         /// SelectedContent is the UIElement showing below the <see cref="MainWindow.ribbon"/>.\n
@@ -119,9 +127,7 @@ namespace Biller.UI.ViewModel
         private void NotifyPropertyChanged(String info)
         {
             if (PropertyChanged != null)
-            {
                 PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
         }
 
         private void tabItemGotFocus(object sender, EventArgs e)
@@ -129,33 +135,72 @@ namespace Biller.UI.ViewModel
             SelectedContent = (sender as Biller.UI.Interface.IRibbonTabItem).ParentViewModel.TabContent;
         }
 
-        private Core.Interfaces.IDatabase database;
-        public Core.Interfaces.IDatabase Database
+        public Core.Interfaces.IDatabase Database { get; private set; }
+
+        public Biller.UI.Notifications.NotificationManager NotificationManager { get; set; }
+
+        public async Task LoadData(bool CompanyChanged = false)
         {
-            get
+            if (!CompanyChanged)
             {
-                return database;
+                var assemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "");
+
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.001108, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
+
+                logger.Info("Assembly location is: " + assemblyLocation);
+                ProfileOptimization.SetProfileRoot(assemblyLocation);
+                ProfileOptimization.StartProfile("DataLoading.Profile");
+
+                foreach (var currentfile in Directory.GetFiles(assemblyLocation, "*@Biller.dll"))
+                {
+                    var plugin = LoadAssembly(currentfile);
+                    try
+                    {
+                        plugin.Activate();
+                        SettingsTabViewModel.RegisteredPlugins.Add(plugin);
+                    }
+                    catch (Exception e)
+                    {
+                        logger.Fatal("Error integrating plugin " + plugin.Name, e);
+                        NotificationManager.ShowNotification("Fehler beim Laden von " + plugin.Name, "Das Plugin konnte nicht geladen werden. Eine genaue Fehlerbeschreibung wurde in die Logdatei geschrieben.");
+                    }
+                }
+
+                var settings = new Biller.Core.Database.AppSettings();
+                settings.Load();
+                if (String.IsNullOrEmpty(settings.Database))
+                {
+                    // We need to setup a database
+                    // Something with ShowDialog so we can resume from a later point
+                    var setup = new StartUp.StartUpWindow(this);
+                    window.Hide();
+                    setup.ShowDialog();
+                    settings.Load();
+                    window.Show();
+                }
+
+                logger.Debug("Connecting to database");
+                var databases = SettingsTabViewModel.RegisteredDatabases;
+                Database = databases.FirstOrDefault(x => x.Database.GuID == settings.Database).Database;
+                if (Database == null)
+                {
+                    logger.Error("We could not load the database. It was not registered. Starting a new database setup!");
+                    settings.Database = "";
+                    settings.DatabaseOptions = "";
+
+                    var setup = new StartUp.StartUpWindow(this);
+                    window.Hide();
+                    setup.ShowDialog();
+                    settings.Load();
+                    window.Show();
+                }
             }
-        }
-
-        public Biller.UI.Notifications.Notificationmanager Notificationmanager { get; set; }
-
-        public async Task LoadData()
-        {
-            ProfileOptimization.SetProfileRoot((Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), ""));
-            ProfileOptimization.StartProfile("DataLoading.Profile");
-
-            string AssemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "") + "Data\\";
-            logger.Info("Assembly location is: " + AssemblyLocation);
-
-            logger.Debug("Connecting database");
-            database = new Core.Database.XDatabase(AssemblyLocation);
-            if (await database.Connect() == true)
+            if (await Database.Connect() == true)
             {
-                //await database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
-                logger.Info("Connecting to database was successfull");
+                logger.Info("Connection to database established");
+                if (Database.IsFirstLoad)
+                    RibbonFactory.OpenBackstage();
 
-                logger.Debug("Adding Viewmodels to the collection");
                 TabContentViewModels.Clear();
                 RibbonFactory.ClearRibbonTabItems();
                 AddTabContentViewModel(DocumentTabViewModel);
@@ -164,20 +209,9 @@ namespace Biller.UI.ViewModel
                 AddTabContentViewModel(SettingsTabViewModel);
                 SelectedContent = DocumentTabViewModel.TabContent;
 
-                foreach (var currentfile in Directory.GetFiles(AssemblyLocation.Replace("\\Data\\", "\\"), "*.bdll"))
-                {
-                    var plugin = LoadAssembly(currentfile);
-                    try
-                    {
-                        plugin.Activate();
-                        foreach (UI.Interface.IViewModel vm in plugin.ViewModels())
-                            await vm.LoadData();
-                    }catch (Exception e)
-                    {
-                        logger.FatalException("Error integrating plugin " + plugin.Name, e);
-                        Notificationmanager.ShowNotification("Fehler beim Laden von " + plugin.Name, "Das Plugin konnte nicht geladen werden. Eine genaue Fehlerbeschreibung wurde in die Logdatei geschrieben.");
-                    }
-                }
+                foreach (var plugin in SettingsTabViewModel.RegisteredPlugins)
+                    foreach (UI.Interface.IViewModel vm in plugin.ViewModels())
+                        await vm.LoadData();
 
                 await SettingsTabViewModel.LoadData();
                 await ArticleTabViewModel.LoadData();
@@ -185,15 +219,15 @@ namespace Biller.UI.ViewModel
                 await DocumentTabViewModel.LoadData();
                 await BackstageViewModel.LoadData();
             }
+            else if (Database.IsFirstLoad)
+                RibbonFactory.OpenBackstage();
             else
             {
-                logger.Info("Connecting to database was not successfull");
-                if (database.IsFirstLoad)
-                {
-                    logger.Info("First Load of the Database");
-                    RibbonFactory.OpenBackstage();
-                }
+                // Show an exception
             }
+
+            UpdateManager.CheckForUpdatesCompleted += UpdateManager_CheckForUpdatesCompleted;
+            UpdateManager.CheckForUpdates();
         }
 
         private UI.Interface.IPlugIn LoadAssembly(string assemblyPath)
@@ -229,7 +263,8 @@ namespace Biller.UI.ViewModel
 
         public void MainWindowCloseActions(System.EventArgs e)
         {
-            Notificationmanager.Close();
+            NotificationManager.Close();
+            Database.SaveOrUpdateSettings(SettingsTabViewModel.KeyValueStore);
         }
 
         private static MainWindowViewModel vm;
@@ -241,6 +276,32 @@ namespace Biller.UI.ViewModel
         public static MainWindowViewModel GetCurrentMainWindowViewModel()
         {
             return vm;
+        }
+
+        void UpdateManager_CheckForUpdatesCompleted(object sender, EventArgs e)
+        {
+            foreach(var app in UpdateManager.UpdateableApps)
+            {
+                var update = new Biller.Controls.Notification.UpdateNotification() { Title = "Update für " + app.Title, Message = "Es ist ein Update auf Version " + app.Version.ToString() + " verfügbar." };
+                Action<object> changelogAction = new Action<object>((object x) => 
+                {
+                    if (!String.IsNullOrEmpty(app.ChangelogURL))
+                        Process.Start(app.ChangelogURL);
+                });
+                Action<object> updateNowAction = new Action<object>((object x) =>
+                {
+                    UpdateManager.Update(app, update);
+                    update.ProgressBarVisibility = Visibility.Visible;
+                    update.TextVisibility = Visibility.Collapsed;
+                });
+                Action<object> updateLaterAction = new Action<object>((object x) => 
+                {
+                    
+                });
+                update.SetActions(changelogAction, updateNowAction, updateLaterAction);
+                _selectedContent.Dispatcher.BeginInvoke((Action)(() => NotificationManager.ShowNotification(update)));
+                
+            }
         }
     }
 }

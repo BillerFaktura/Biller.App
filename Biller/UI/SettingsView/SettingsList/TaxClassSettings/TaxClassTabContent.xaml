@@ -6,21 +6,12 @@
              xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
              xmlns:converter="clr-namespace:Biller.Core.Converters;assembly=Biller.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
+             d:DesignHeight="800" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
-            <Style x:Key="HeaderStyle" TargetType="{x:Type TextBlock}">
-                <Setter Property="FontSize" Value="20"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="TextWrapping" Value="Wrap"/>
-            </Style>
-            <Style x:Key="ContentStyle" TargetType="{x:Type TextBlock}">
-                <Setter Property="FontSize" Value="13"/>
-                <Setter Property="Margin" Value="0"/>
-                <Setter Property="TextWrapping" Value="Wrap"/>
-            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../../Localization/SettingsView/de.xaml"/>
+                <ResourceDictionary Source="/Biller.Controls;Component/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -68,13 +59,13 @@
             </ListView>
             <ScrollViewer VerticalScrollBarVisibility="Auto" Height="{Binding ElementName=h1, Path=ActualHeight}" Margin="0,12,0,0">
                 <StackPanel Name="ElementsPanel">
-                    <TextBlock Style="{StaticResource HeaderStyle}" Text="{StaticResource edittaxclass}"/>
+                    <TextBlock Style="{DynamicResource SectionHeaderStyle}" Text="{StaticResource edittaxclass}"/>
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="{StaticResource name}" Width="{Binding ElementName=gspan1, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{StaticResource name}" Width="{Binding ElementName=gspan1, Path=ActualWidth}" Style="{DynamicResource ContentStyle}" VerticalAlignment="Center"/>
                         <controls:WatermarkTextBox Text="{Binding SelectedTaxClass.Name}" Width="{Binding ElementName=gspan2, Path=ActualWidth}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                        <TextBlock Text="{StaticResource taxrate}" Width="{Binding ElementName=gspan1, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{StaticResource taxrate}" Width="{Binding ElementName=gspan1, Path=ActualWidth}" Style="{DynamicResource ContentStyle}" VerticalAlignment="Center"/>
                         <controls:WatermarkTextBox Text="{Binding SelectedTaxClass.TaxRate.PercentageString}" Width="{Binding ElementName=gspan2, Path=ActualWidth}" SelectTextBeforeSpace="True" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -97,6 +88,8 @@
                             </controls:Office2013Button.Vector>
                         </controls:Office2013Button>
                     </StackPanel>
+                    <TextBlock Style="{DynamicResource SectionHeaderStyle}" Text="Sonstige Steuereinstellungen" Margin="0,10,0,2.5"/>
+                    <CheckBox Content="Steuern für Nebenleistung getrennt aufschlüsseln" Margin="0,5,0,0" IsChecked="{Binding KeyValueStore.TaxSupplementaryWorkSeparate}"/>
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>

@@ -108,7 +108,7 @@
                     <local:WatermarkTextBox Watermark="{StaticResource title}" Text="{Binding Customer.MainAddress.Title}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <local:WatermarkTextBox Watermark="{StaticResource forname}" Text="{Binding Customer.MainAddress.Forname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                    <local:WatermarkTextBox Watermark="{StaticResource forename}" Text="{Binding Customer.MainAddress.Forename}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                     <local:WatermarkTextBox Watermark="{StaticResource surname}" Text="{Binding Customer.MainAddress.Surname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                 </StackPanel>
                 <local:WatermarkTextBox Watermark="{StaticResource addition}" Text="{Binding Customer.MainAddress.Addition}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1,5,1,1" />
@@ -148,7 +148,7 @@
                                     <local:WatermarkTextBox Watermark="{StaticResource title}" Text="{Binding Title}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                                    <local:WatermarkTextBox Watermark="{StaticResource forname}" Text="{Binding Forname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
+                                    <local:WatermarkTextBox Watermark="{StaticResource forename}" Text="{Binding Forename}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                                     <local:WatermarkTextBox Watermark="{StaticResource surname}" Text="{Binding Surname}" Width="{Binding ElementName=GridSpan3Margin,Path=ActualWidth}" HorizontalAlignment="Left"/>
                                 </StackPanel>
                                 <local:WatermarkTextBox Watermark="{StaticResource addition}" Text="{Binding Addition}" Width="{Binding ElementName=GridSpan6,Path=ActualWidth}" HorizontalAlignment="Left" Margin="1,5,1,1" />
