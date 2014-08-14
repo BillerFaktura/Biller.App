@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_order_types___biller_1_1_docket_
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,14 +118,14 @@ Inheritance diagram for OrderTypes_Biller.Docket.DocketFactory:</div>
  <div class="center">
   <img src="class_order_types___biller_1_1_docket_1_1_docket_factory.png" usemap="#OrderTypes_Biller.Docket.DocketFactory_map" alt=""/>
   <map id="OrderTypes_Biller.Docket.DocketFactory_map" name="OrderTypes_Biller.Docket.DocketFactory_map">
-<area href="interface_biller_1_1_data_1_1_interfaces_1_1_document_factory.html" alt="Biller.Data.Interfaces.DocumentFactory" shape="rect" coords="0,0,246,24"/>
+<area href="interface_biller_1_1_core_1_1_interfaces_1_1_document_factory.html" alt="Biller.Core.Interfaces.DocumentFactory" shape="rect" coords="0,0,246,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae23bb4cb2e32efc528c18b10f87ea5b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae23bb4cb2e32efc528c18b10f87ea5b1"></a>
-<a class="el" href="class_biller_1_1_data_1_1_document_1_1_document.html">Document</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewDocument</b> ()</td></tr>
+<a class="el" href="class_biller_1_1_core_1_1_document_1_1_document.html">Document</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewDocument</b> ()</td></tr>
 <tr class="separator:ae23bb4cb2e32efc528c18b10f87ea5b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed48f8f301af05790b23a2f2a5f0e8ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed48f8f301af05790b23a2f2a5f0e8ab"></a>
 List&lt; UIElement &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetEditContentTabs</b> ()</td></tr>
@@ -132,16 +133,19 @@ List&lt; UIElement &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Ge
 <tr class="memitem:a1a6872406f4b4f930eda9184b617bb87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a6872406f4b4f930eda9184b617bb87"></a>
 Fluent.Button&#160;</td><td class="memItemRight" valign="bottom"><b>GetCreationButton</b> ()</td></tr>
 <tr class="separator:a1a6872406f4b4f930eda9184b617bb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c00576273513d0ad93b546386c38792"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c00576273513d0ad93b546386c38792"></a>
-<a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_export.html">Biller.Data.Interfaces.IExport</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetNewExportClass</b> ()</td></tr>
-<tr class="separator:a1c00576273513d0ad93b546386c38792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54963c7b83907db9b250751b64db790a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54963c7b83907db9b250751b64db790a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReceiveData</b> (object source, <a class="el" href="class_biller_1_1_data_1_1_document_1_1_document.html">Document</a> target)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ReceiveData</b> (object source, <a class="el" href="class_biller_1_1_core_1_1_document_1_1_document.html">Document</a> target)</td></tr>
 <tr class="separator:a54963c7b83907db9b250751b64db790a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_document_factory.html">Biller.Data.Interfaces.DocumentFactory</a></td></tr>
-<tr class="memitem:a82427a5d90bbd9322f6f08b4ee169dee inherit pub_methods_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82427a5d90bbd9322f6f08b4ee169dee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>ReceiveData</b> (object source, <a class="el" href="class_biller_1_1_data_1_1_document_1_1_document.html">Document.Document</a> target)</td></tr>
-<tr class="separator:a82427a5d90bbd9322f6f08b4ee169dee inherit pub_methods_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab413f16b96e90172074ceeb9f54a5f29"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab413f16b96e90172074ceeb9f54a5f29"></a>
+<a class="el" href="class_biller_1_1_core_1_1_document_1_1_preview_document.html">Biller.Core.Document.PreviewDocument</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetPreviewDocument</b> (<a class="el" href="class_biller_1_1_core_1_1_document_1_1_document.html">Biller.Core.Document.Document</a> source)</td></tr>
+<tr class="separator:ab413f16b96e90172074ceeb9f54a5f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_document_factory.html">Biller.Core.Interfaces.DocumentFactory</a></td></tr>
+<tr class="memitem:a3738de5f64619a72b3fd35949099a622 inherit pub_methods_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3738de5f64619a72b3fd35949099a622"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>ReceiveData</b> (object source, <a class="el" href="class_biller_1_1_core_1_1_document_1_1_document.html">Document.Document</a> target)</td></tr>
+<tr class="separator:a3738de5f64619a72b3fd35949099a622 inherit pub_methods_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaddf5afdfaf50d51888b9f9b873bd66 inherit pub_methods_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeaddf5afdfaf50d51888b9f9b873bd66"></a>
+<a class="el" href="class_biller_1_1_core_1_1_document_1_1_preview_document.html">Biller.Core.Document.PreviewDocument</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetPreviewDocument</b> (<a class="el" href="class_biller_1_1_core_1_1_document_1_1_document.html">Document.Document</a> source)</td></tr>
+<tr class="separator:aeaddf5afdfaf50d51888b9f9b873bd66 inherit pub_methods_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -151,16 +155,16 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentType</b><co
 <tr class="memitem:a32f48d0cf99e8d2d252adfdabb24e5b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32f48d0cf99e8d2d252adfdabb24e5b7"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizedDocumentType</b><code> [get]</code></td></tr>
 <tr class="separator:a32f48d0cf99e8d2d252adfdabb24e5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header properties_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_document_factory.html">Biller.Data.Interfaces.DocumentFactory</a></td></tr>
-<tr class="memitem:afbb493d1330710943ce139fec21854c3 inherit properties_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbb493d1330710943ce139fec21854c3"></a>
+<tr class="inherit_header properties_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_document_factory.html">Biller.Core.Interfaces.DocumentFactory</a></td></tr>
+<tr class="memitem:a80600734645b9dcdb89be398700ded8b inherit properties_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80600734645b9dcdb89be398700ded8b"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentType</b><code> [get]</code></td></tr>
-<tr class="separator:afbb493d1330710943ce139fec21854c3 inherit properties_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a444c099e190764ad712840f623d20985 inherit properties_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a444c099e190764ad712840f623d20985"></a>
+<tr class="separator:a80600734645b9dcdb89be398700ded8b inherit properties_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab813d734fd1e6b8adffc8a21879d5f2f inherit properties_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab813d734fd1e6b8adffc8a21879d5f2f"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizedDocumentType</b><code> [get]</code></td></tr>
-<tr class="separator:a444c099e190764ad712840f623d20985 inherit properties_interface_biller_1_1_data_1_1_interfaces_1_1_document_factory"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab813d734fd1e6b8adffc8a21879d5f2f inherit properties_interface_biller_1_1_core_1_1_interfaces_1_1_document_factory"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>OrderTypes@Biller/Docket/DocketFactory.cs</li>
+<li>OrderTypes-Biller/Docket/DocketFactory.cs</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -168,7 +172,7 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>LocalizedDocumentTy
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_order_types___biller.html">OrderTypes_Biller</a></li><li class="navelem"><a class="el" href="namespace_order_types___biller_1_1_docket.html">Docket</a></li><li class="navelem"><a class="el" href="class_order_types___biller_1_1_docket_1_1_docket_factory.html">DocketFactory</a></li>
-    <li class="footer">Generated on Fri Mar 28 2014 15:52:35 for Biller by
+    <li class="footer">Generated on Thu Aug 14 2014 14:29:05 for Biller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

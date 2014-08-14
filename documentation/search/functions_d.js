@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['taxclasses',['TaxClasses',['../class_biller_1_1_data_1_1_database_1_1_j_s_o_n_database.html#aa36aef35c77fab62f04ba29b338e6746',1,'Biller.Data.Database.JSONDatabase.TaxClasses()'],['../class_biller_1_1_data_1_1_database_1_1_x_database.html#ad030e53c449698115efa101ad6a02315',1,'Biller.Data.Database.XDatabase.TaxClasses()'],['../interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html#a4cff8ee63603e93e20607fe7f8f704fe',1,'Biller.Data.Interfaces.IDatabase.TaxClasses()']]],
-  ['tostring',['ToString',['../class_biller_1_1_data_1_1_articles_1_1_article.html#a20fb999f6f81c9669154c2bc8e44998e',1,'Biller.Data.Articles.Article.ToString()'],['../class_biller_1_1_data_1_1_utils_1_1_unit.html#ae6b7926b07a8295664b069423fdfb50a',1,'Biller.Data.Utils.Unit.ToString()']]]
+  ['taxclasses',['TaxClasses',['../interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#a938b8a253866f7817bcbdab2e37983d0',1,'Biller.Core.Interfaces.IDatabase.TaxClasses()'],['../class_biller_1_1_core_1_1_database_1_1_x_database.html#a1fe742da31fb43d887b6ec671e275a29',1,'Biller.Core.Database.XDatabase.TaxClasses()']]],
+  ['tostring',['ToString',['../class_biller_1_1_core_1_1_articles_1_1_article.html#a1cffc7b5d69e93ff2473356d77867480',1,'Biller.Core.Articles.Article.ToString()'],['../class_biller_1_1_core_1_1_utils_1_1_unit.html#a7e583beed27e249b0d5f2757f21b9b59',1,'Biller.Core.Utils.Unit.ToString()']]]
 ];

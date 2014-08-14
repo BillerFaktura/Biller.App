@@ -1,4 +1,0 @@
-var namespace_biller_1_1_data_1_1_orders_1_1_calculations =
-[
-    [ "EUInternationalCalculation", "class_biller_1_1_data_1_1_orders_1_1_calculations_1_1_e_u_international_calculation.html", "class_biller_1_1_data_1_1_orders_1_1_calculations_1_1_e_u_international_calculation" ]
-];

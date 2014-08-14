@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_biller_1_1_u_i_1_1_view_model_1_
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -105,6 +106,7 @@ $(document).ready(function(){initNavTree('class_biller_1_1_u_i_1_1_view_model_1_
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="#events">Events</a> &#124;
 <a href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model-members.html">List of all members</a>  </div>
@@ -136,18 +138,28 @@ This initalization also creates all basic TabContentViewModels as well as the Ri
 The Interface.ITabContentViewModel.RibbonTabItem will be added to the <a class="el" href="namespace_biller_1_1_u_i_1_1_ribbon.html">Ribbon</a>.<br/>
 Be sure to set the RibbonTabItem's RibbonTabItem.TabContent as this methode adds an event handler when the TabItem gets selected  <a href="#ac949491631685256d85a2bab79463442">More...</a><br/></td></tr>
 <tr class="separator:ac949491631685256d85a2bab79463442"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cfecaec0361902b573c87ae866147ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5cfecaec0361902b573c87ae866147ea"></a>
-async Task&#160;</td><td class="memItemRight" valign="bottom"><b>LoadData</b> ()</td></tr>
-<tr class="separator:a5cfecaec0361902b573c87ae866147ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0991340315359d40af68592b6845a9d8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0991340315359d40af68592b6845a9d8"></a>
+async Task&#160;</td><td class="memItemRight" valign="bottom"><b>LoadData</b> (bool CompanyChanged=false)</td></tr>
+<tr class="separator:a0991340315359d40af68592b6845a9d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e5eb982a624e3665d7e9faeb89a6f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a76e5eb982a624e3665d7e9faeb89a6f6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>MainWindowCloseActions</b> (System.EventArgs e)</td></tr>
+<tr class="separator:a76e5eb982a624e3665d7e9faeb89a6f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a97b26dd40c0cf48ac222fdea8b42c829"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html">MainWindowViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#a97b26dd40c0cf48ac222fdea8b42c829">GetCurrentMainWindowViewModel</a> ()</td></tr>
+<tr class="memdesc:a97b26dd40c0cf48ac222fdea8b42c829"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current instance of the <a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html" title="The MainWindowViewModel is the central control station for modifing the MainWindow. Handling plugin-windows is also a part of the this class. ">MainWindowViewModel</a>.<br/>
+For use in modules that don't have access to a viewmodel.  <a href="#a97b26dd40c0cf48ac222fdea8b42c829">More...</a><br/></td></tr>
+<tr class="separator:a97b26dd40c0cf48ac222fdea8b42c829"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a7d3328814fb210ffe015c8505b00070a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html">Biller.UI.ArticleView.ArticleTabViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#a7d3328814fb210ffe015c8505b00070a">ArticleTabViewModel</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a7d3328814fb210ffe015c8505b00070a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current instance of Biller.UI.DocumentView.ArticleTabViewModel.  <a href="#a7d3328814fb210ffe015c8505b00070a">More...</a><br/></td></tr>
 <tr class="separator:a7d3328814fb210ffe015c8505b00070a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f9b1b0ea52c2269c039ae80301db74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html">Biller.UI.DocumentView.DocumentTabViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#a12f9b1b0ea52c2269c039ae80301db74">OrderTabViewModel</a><code> [get, set]</code></td></tr>
-<tr class="memdesc:a12f9b1b0ea52c2269c039ae80301db74"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current instance of <a class="el" href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html">Biller.UI.DocumentView.DocumentTabViewModel</a>.  <a href="#a12f9b1b0ea52c2269c039ae80301db74">More...</a><br/></td></tr>
-<tr class="separator:a12f9b1b0ea52c2269c039ae80301db74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e04acc7e3e1a2734e9125c8e1912ddc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html">Biller.UI.DocumentView.DocumentTabViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#a3e04acc7e3e1a2734e9125c8e1912ddc">DocumentTabViewModel</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a3e04acc7e3e1a2734e9125c8e1912ddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current instance of <a class="el" href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html">Biller.UI.DocumentView.DocumentTabViewModel</a>.  <a href="#a3e04acc7e3e1a2734e9125c8e1912ddc">More...</a><br/></td></tr>
+<tr class="separator:a3e04acc7e3e1a2734e9125c8e1912ddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec4d6807292120221f00963a337fb0d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_biller_1_1_u_i_1_1_customer_view_1_1_customer_tab_view_model.html">Biller.UI.CustomerView.CustomerTabViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#aec4d6807292120221f00963a337fb0d4">CustomerTabViewModel</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:aec4d6807292120221f00963a337fb0d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current instance of Biller.UI.DocumentView.CustomerTabViewModel.  <a href="#aec4d6807292120221f00963a337fb0d4">More...</a><br/></td></tr>
 <tr class="separator:aec4d6807292120221f00963a337fb0d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,16 +171,19 @@ Properties</h2></td></tr>
 <tr class="memitem:a61d87f56480c73073b644d58b9f79d04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_biller_1_1_u_i_1_1_ribbon_1_1_ribbon_factory.html">Biller.UI.Ribbon.RibbonFactory</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#a61d87f56480c73073b644d58b9f79d04">RibbonFactory</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a61d87f56480c73073b644d58b9f79d04"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current instance of <a class="el" href="class_biller_1_1_u_i_1_1_ribbon_1_1_ribbon_factory.html">Biller.UI.Ribbon.RibbonFactory</a>.  <a href="#a61d87f56480c73073b644d58b9f79d04">More...</a><br/></td></tr>
 <tr class="separator:a61d87f56480c73073b644d58b9f79d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37d7cb61730af617edd1c4df7538a47c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37d7cb61730af617edd1c4df7538a47c"></a>
+<a class="el" href="class_biller_1_1_core_1_1_update_1_1_update_manager.html">Biller.Core.Update.UpdateManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateManager</b><code> [get, set]</code></td></tr>
+<tr class="separator:a37d7cb61730af617edd1c4df7538a47c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adcba82c2dd7af8249017743225df3ca7"><td class="memItemLeft" align="right" valign="top">System.Windows.UIElement&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#adcba82c2dd7af8249017743225df3ca7">SelectedContent</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:adcba82c2dd7af8249017743225df3ca7"><td class="mdescLeft">&#160;</td><td class="mdescRight">SelectedContent is the UIElement showing below the MainWindow.ribbon.<br/>
 Usually it is depended on the selected RibbonTabItem.  <a href="#adcba82c2dd7af8249017743225df3ca7">More...</a><br/></td></tr>
 <tr class="separator:adcba82c2dd7af8249017743225df3ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a892a6c99b64712e5fdb03c71ec1ac7b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a892a6c99b64712e5fdb03c71ec1ac7b1"></a>
-<a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html">Data.Interfaces.IDatabase</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Database</b><code> [get]</code></td></tr>
-<tr class="separator:a892a6c99b64712e5fdb03c71ec1ac7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa45cc8367b8823fe616355e3eabd3a1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa45cc8367b8823fe616355e3eabd3a1"></a>
-<a class="el" href="class_biller_1_1_u_i_1_1_notifications_1_1_notificationmanager.html">Biller.UI.Notifications.Notificationmanager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Notificationmanager</b><code> [get, set]</code></td></tr>
-<tr class="separator:aaa45cc8367b8823fe616355e3eabd3a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a2c12d26484a2528afdee5a13269f5e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a2c12d26484a2528afdee5a13269f5e"></a>
+<a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html">Core.Interfaces.IDatabase</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Database</b><code> [get, set]</code></td></tr>
+<tr class="separator:a2a2c12d26484a2528afdee5a13269f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fb14b25d80f9e1063d67ace0a5a2f3d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fb14b25d80f9e1063d67ace0a5a2f3d"></a>
+<a class="el" href="class_biller_1_1_u_i_1_1_notifications_1_1_notification_manager.html">Biller.UI.Notifications.NotificationManager</a>&#160;</td><td class="memItemRight" valign="bottom"><b>NotificationManager</b><code> [get, set]</code></td></tr>
+<tr class="separator:a7fb14b25d80f9e1063d67ace0a5a2f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
 Events</h2></td></tr>
@@ -229,6 +244,33 @@ Be sure to set the RibbonTabItem's RibbonTabItem.TabContent as this methode adds
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="a97b26dd40c0cf48ac222fdea8b42c829"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html">MainWindowViewModel</a> Biller.UI.ViewModel.MainWindowViewModel.GetCurrentMainWindowViewModel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the current instance of the <a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html" title="The MainWindowViewModel is the central control station for modifing the MainWindow. Handling plugin-windows is also a part of the this class. ">MainWindowViewModel</a>.<br/>
+For use in modules that don't have access to a viewmodel. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html" title="The MainWindowViewModel is the central control station for modifing the MainWindow. Handling plugin-windows is also a part of the this class. ">MainWindowViewModel</a></dd></dl>
 
 </div>
 </div>
@@ -299,7 +341,7 @@ Be sure to set the RibbonTabItem's RibbonTabItem.TabContent as this methode adds
 
 </div>
 </div>
-<a class="anchor" id="a12f9b1b0ea52c2269c039ae80301db74"></a>
+<a class="anchor" id="a3e04acc7e3e1a2734e9125c8e1912ddc"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -307,7 +349,7 @@ Be sure to set the RibbonTabItem's RibbonTabItem.TabContent as this methode adds
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html">Biller.UI.DocumentView.DocumentTabViewModel</a> Biller.UI.ViewModel.MainWindowViewModel.OrderTabViewModel</td>
+          <td class="memname"><a class="el" href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html">Biller.UI.DocumentView.DocumentTabViewModel</a> Biller.UI.ViewModel.MainWindowViewModel.DocumentTabViewModel</td>
         </tr>
       </table>
   </td>
@@ -397,7 +439,7 @@ Usually it is depended on the selected RibbonTabItem. </p>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_biller.html">Biller</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i_1_1_view_model.html">ViewModel</a></li><li class="navelem"><a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html">MainWindowViewModel</a></li>
-    <li class="footer">Generated on Fri Mar 28 2014 15:52:35 for Biller by
+    <li class="footer">Generated on Thu Aug 14 2014 14:29:03 for Biller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

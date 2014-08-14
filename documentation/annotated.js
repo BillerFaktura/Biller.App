@@ -1,6 +1,9 @@
 var annotated =
 [
     [ "Biller", "namespace_biller.html", "namespace_biller" ],
+    [ "Import_Biller", "namespace_import___biller.html", "namespace_import___biller" ],
     [ "OrderTypes_Biller", "namespace_order_types___biller.html", "namespace_order_types___biller" ],
-    [ "XamlGeneratedNamespace", "namespace_xaml_generated_namespace.html", "namespace_xaml_generated_namespace" ]
+    [ "UpdateGenerator", "namespace_update_generator.html", "namespace_update_generator" ],
+    [ "XamlGeneratedNamespace", "namespace_xaml_generated_namespace.html", "namespace_xaml_generated_namespace" ],
+    [ "XDatabase_Biller", "namespace_x_database___biller.html", "namespace_x_database___biller" ]
 ];

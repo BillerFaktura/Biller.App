@@ -6,8 +6,8 @@ var class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_m
     [ "ReceiveCloseCommand", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a23f27cb37eed42cd1be94bafaddf4d31", null ],
     [ "ReceiveData", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#aaf24e7b9072a770a1decee07f7a27260", null ],
     [ "ReceiveSaveCommand", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a43dbeedb6c2f29b0e67aca681468d293", null ],
-    [ "Article", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a598a7cb598e87ddfef7b6eec403c2356", null ],
-    [ "ArticleUnits", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a10a184d2cc2fe32e26d4c40cb8ad1733", null ],
+    [ "Article", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a324f48c99ae320e41dbeb93f4ef98219", null ],
+    [ "ArticleUnits", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a19b7df65bcbedfc23b7afec3f55556dd", null ],
     [ "Content", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a8be0a4c1b402570265bf79c972c00cf7", null ],
     [ "ContextualTabGroup", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#af3b3ffaf9fd2e99d45c215cd0aa4b3eb", null ],
     [ "EditContentTabs", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#aab35c9b566bab5848b0b6a20f0a797a7", null ],
@@ -18,5 +18,5 @@ var class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_m
     [ "TabItem", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a9f327063fd32a4d0a1b478c3de50cc25", null ],
     [ "TabItemDescription", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#aeb5d7cb1528e5020d1f0d4dd4c982979", null ],
     [ "TabItemName", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a8f86d6831d601d73ef33304d133d4227", null ],
-    [ "TaxClasses", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a64a7748eb82aa5575f4daf7f3bdc811a", null ]
+    [ "TaxClasses", "class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html#a7035d8d1f87b47505a312785fced649f", null ]
 ];

@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('interface_biller_1_1_u_i_1_1_interface
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -118,15 +119,17 @@ Inheritance diagram for Biller.UI.Interface.IViewModel:</div>
   <map id="Biller.UI.Interface.IViewModel_map" name="Biller.UI.Interface.IViewModel_map">
 <area href="class_biller_1_1_u_i_1_1_backstage_1_1_backstage_view_model.html" alt="Biller.UI.Backstage.BackstageViewModel" shape="rect" coords="0,56,383,80"/>
 <area href="interface_biller_1_1_u_i_1_1_interface_1_1_i_backstage_content_view_model.html" alt="Biller.UI.Interface.IBackstageContentViewModel" shape="rect" coords="393,56,776,80"/>
-<area href="interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model.html" alt="Biller.UI.Interface.ITabContentViewModel" shape="rect" coords="786,56,1169,80"/>
-<area href="class_biller_1_1_u_i_1_1_backstage_1_1_new_company_1_1_new_company_view_model.html" alt="Biller.UI.Backstage.NewCompany.NewCompanyViewModel" shape="rect" coords="393,112,776,136"/>
-<area href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html" title="ViewModel for the Articleview. This class manages all behaviour regarding articles ..." alt="Biller.UI.ArticleView.ArticleTabViewModel" shape="rect" coords="1179,112,1562,136"/>
-<area href="class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html" alt="Biller.UI.ArticleView.Contextual.ArticleEditViewModel" shape="rect" coords="1179,168,1562,192"/>
-<area href="class_biller_1_1_u_i_1_1_customer_view_1_1_contextual_1_1_customer_contextual_view_model.html" alt="Biller.UI.CustomerView.Contextual.CustomerContextualViewModel" shape="rect" coords="1179,224,1562,248"/>
-<area href="class_biller_1_1_u_i_1_1_customer_view_1_1_customer_tab_view_model.html" title="ViewModel for the CutomerView. This class manages all behaviour regarding customers. " alt="Biller.UI.CustomerView.CustomerTabViewModel" shape="rect" coords="1179,280,1562,304"/>
-<area href="class_biller_1_1_u_i_1_1_document_view_1_1_contextual_1_1_document_edit_view_model.html" alt="Biller.UI.DocumentView.Contextual.DocumentEditViewModel" shape="rect" coords="1179,336,1562,360"/>
-<area href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html" alt="Biller.UI.DocumentView.DocumentTabViewModel" shape="rect" coords="1179,392,1562,416"/>
-<area href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html" alt="Biller.UI.SettingsView.SettingsTabViewModel" shape="rect" coords="1179,448,1562,472"/>
+<area href="interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model.html" alt="Biller.UI.Interface.ITabContentViewModel" shape="rect" coords="1179,56,1562,80"/>
+<area href="class_order_types___biller_1_1_export_1_1_settings_1_1_view_model.html" alt="OrderTypes_Biller.Export.Settings.ViewModel" shape="rect" coords="1572,56,1955,80"/>
+<area href="class_biller_1_1_u_i_1_1_backstage_1_1_change_company_1_1_change_company_view_model.html" alt="Biller.UI.Backstage.ChangeCompany.ChangeCompanyViewModel" shape="rect" coords="786,112,1169,136"/>
+<area href="class_biller_1_1_u_i_1_1_backstage_1_1_new_company_1_1_edit_company_view_model.html" alt="Biller.UI.Backstage.NewCompany.EditCompanyViewModel" shape="rect" coords="786,168,1169,192"/>
+<area href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html" title="ViewModel for the Articleview. This class manages all behaviour regarding articles ..." alt="Biller.UI.ArticleView.ArticleTabViewModel" shape="rect" coords="1572,112,1955,136"/>
+<area href="class_biller_1_1_u_i_1_1_article_view_1_1_contextual_1_1_article_edit_view_model.html" alt="Biller.UI.ArticleView.Contextual.ArticleEditViewModel" shape="rect" coords="1572,168,1955,192"/>
+<area href="class_biller_1_1_u_i_1_1_customer_view_1_1_contextual_1_1_customer_edit_view_model.html" alt="Biller.UI.CustomerView.Contextual.CustomerEditViewModel" shape="rect" coords="1572,224,1955,248"/>
+<area href="class_biller_1_1_u_i_1_1_customer_view_1_1_customer_tab_view_model.html" title="ViewModel for the CutomerView. This class manages all behaviour regarding customers. " alt="Biller.UI.CustomerView.CustomerTabViewModel" shape="rect" coords="1572,280,1955,304"/>
+<area href="class_biller_1_1_u_i_1_1_document_view_1_1_contextual_1_1_document_edit_view_model.html" alt="Biller.UI.DocumentView.Contextual.DocumentEditViewModel" shape="rect" coords="1572,336,1955,360"/>
+<area href="class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_view_model.html" alt="Biller.UI.DocumentView.DocumentTabViewModel" shape="rect" coords="1572,392,1955,416"/>
+<area href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html" alt="Biller.UI.SettingsView.SettingsTabViewModel" shape="rect" coords="1572,448,1955,472"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -148,7 +151,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ReceiveData</b> (obje
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_biller.html">Biller</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i_1_1_interface.html">Interface</a></li><li class="navelem"><a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_view_model.html">IViewModel</a></li>
-    <li class="footer">Generated on Fri Mar 28 2014 15:52:34 for Biller by
+    <li class="footer">Generated on Thu Aug 14 2014 14:29:02 for Biller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

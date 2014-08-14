@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('interface_biller_1_1_u_i_1_1_interface
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,14 +118,17 @@ Inheritance diagram for Biller.UI.Interface.IPlugIn:</div>
  <div class="center">
   <img src="interface_biller_1_1_u_i_1_1_interface_1_1_i_plug_in.png" usemap="#Biller.UI.Interface.IPlugIn_map" alt=""/>
   <map id="Biller.UI.Interface.IPlugIn_map" name="Biller.UI.Interface.IPlugIn_map">
-<area href="class_order_types___biller_1_1_entry_point.html" alt="OrderTypes_Biller.EntryPoint" shape="rect" coords="0,56,178,80"/>
+<area href="class_import___biller_1_1_entry_point.html" alt="Import_Biller.EntryPoint" shape="rect" coords="0,56,178,80"/>
+<area href="class_order_types___biller_1_1_entry_point.html" alt="OrderTypes_Biller.EntryPoint" shape="rect" coords="188,56,366,80"/>
+<area href="class_x_database___biller_1_1_entry_point.html" alt="XDatabase_Biller.EntryPoint" shape="rect" coords="376,56,554,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6deae21c6f45396b59a301f8da4022be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6deae21c6f45396b59a301f8da4022be"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Activate</b> ()</td></tr>
+<tr class="memitem:a6deae21c6f45396b59a301f8da4022be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_plug_in.html#a6deae21c6f45396b59a301f8da4022be">Activate</a> ()</td></tr>
+<tr class="memdesc:a6deae21c6f45396b59a301f8da4022be"><td class="mdescLeft">&#160;</td><td class="mdescRight">During the activation process you add your own handlers, classes, databases, controls etc. to the main app.<br/>
+You cannot load any data from a database (or add own data models) as it is not initialized yet.  <a href="#a6deae21c6f45396b59a301f8da4022be">More...</a><br/></td></tr>
 <tr class="separator:a6deae21c6f45396b59a301f8da4022be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdf76ad4861269c278cac5657e55aa8c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdf76ad4861269c278cac5657e55aa8c"></a>
 List&lt; <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_view_model.html">IViewModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ViewModels</b> ()</td></tr>
@@ -142,6 +146,27 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>Description</b><cod
 double&#160;</td><td class="memItemRight" valign="bottom"><b>Version</b><code> [get]</code></td></tr>
 <tr class="separator:af1b33fee81b403646e0863ef82eb16f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6deae21c6f45396b59a301f8da4022be"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Biller.UI.Interface.IPlugIn.Activate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>During the activation process you add your own handlers, classes, databases, controls etc. to the main app.<br/>
+You cannot load any data from a database (or add own data models) as it is not initialized yet. </p>
+
+<p>Implemented in <a class="el" href="class_order_types___biller_1_1_entry_point.html#a367c70d0c35f13b4f23c2d8308d2a586">OrderTypes_Biller.EntryPoint</a>, <a class="el" href="class_x_database___biller_1_1_entry_point.html#a866e2448a9c10bf6604094b56a6e56df">XDatabase_Biller.EntryPoint</a>, and <a class="el" href="class_import___biller_1_1_entry_point.html#adbe66e1c05eeeba697e68de6463d48ef">Import_Biller.EntryPoint</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
 <li>Biller/UI/Interface/IPlugIn.cs</li>
 </ul>
@@ -151,7 +176,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>Version</b><code> [
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_biller.html">Biller</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i_1_1_interface.html">Interface</a></li><li class="navelem"><a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_plug_in.html">IPlugIn</a></li>
-    <li class="footer">Generated on Fri Mar 28 2014 15:52:33 for Biller by
+    <li class="footer">Generated on Thu Aug 14 2014 14:29:02 for Biller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

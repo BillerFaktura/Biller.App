@@ -1,6 +1,7 @@
 var NAVTREE =
 [
   [ "Biller", "index.html", [
+    [ "OrderTypes@Biller", "md__order_types-_biller__r_e_a_d_m_e.html", null ],
     [ "Packages", null, [
       [ "Packages", "namespaces.html", "namespaces" ]
     ] ],
@@ -20,10 +21,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"class_biller_1_1_data_1_1_document_1_1_preview_document.html#a3dbaaff3ce3b8452be2b8b6775bf3ee7",
-"class_biller_1_1_data_1_1_utils_1_1_tax_class.html#aafdc5e61a16046fdf6c90ab8baf8d3b2",
-"class_biller_1_1_u_i_1_1_ribbon_1_1_ribbon_factory.html#a393829389682ebc6a9cd833a05632bc6",
-"namespace_biller.html"
+"class_biller_1_1_core_1_1_document_1_1_document.html#ae98dc43de090c0510c070e963db797f4",
+"class_biller_1_1_core_1_1_utils_1_1_percentage.html#ad33bead2a3f601c80a2317fe534be05e",
+"class_biller_1_1_u_i_1_1_document_view_1_1_document_tab_content.html#aa7f555e1b17f3a9333dee0f1643bdc21",
+"class_order_types___biller_1_1_entry_point.html#a936098bcc05c3982a891611d8aedf8dc",
+"index.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

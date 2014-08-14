@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -91,6 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_g.html#index_g"><span>g</span></a></li>
       <li><a href="functions_h.html#index_h"><span>h</span></a></li>
       <li><a href="functions_i.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_k.html#index_k"><span>k</span></a></li>
       <li><a href="functions_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_m.html#index_m"><span>m</span></a></li>
       <li><a href="functions_n.html#index_n"><span>n</span></a></li>
@@ -124,7 +126,7 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -138,44 +140,46 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>SalesTaxID
-: <a class="el" href="class_biller_1_1_data_1_1_models_1_1_company_settings.html#a01e2d9c7eed0972c3b8af7ad6251de2b">Biller.Data.Models.CompanySettings</a>
+: <a class="el" href="class_biller_1_1_core_1_1_models_1_1_company_settings.html#a6b6a5623256d9750ba461290cbcb549b">Biller.Core.Models.CompanySettings</a>
+</li>
+<li>SaveDocument()
+: <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_export.html#a8110e69fd12b50fd0077f9c1804bf636">Biller.Core.Interfaces.IExport</a>
+, <a class="el" href="class_biller_1_1_core_1_1_models_1_1_dummy_export.html#a92e2ea896c116f9bd07136e0d61cfb69">Biller.Core.Models.DummyExport</a>
 </li>
 <li>SaveOrUpdateArticle()
-: <a class="el" href="class_biller_1_1_data_1_1_database_1_1_j_s_o_n_database.html#a14e4edc2e14b24d6aead4602fcfd505f">Biller.Data.Database.JSONDatabase</a>
-, <a class="el" href="class_biller_1_1_data_1_1_database_1_1_x_database.html#ae905694cbc771691268395436461505c">Biller.Data.Database.XDatabase</a>
-, <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html#a0dbd39f69f61941ca2a57255ccc1b5e3">Biller.Data.Interfaces.IDatabase</a>
-, <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a8dad0bbed01811fdee80af45c5db23a8">Biller.UI.ArticleView.ArticleTabViewModel</a>
+: <a class="el" href="class_biller_1_1_core_1_1_database_1_1_x_database.html#a7ef38d80d0f470ea0efd67e113ab7dd4">Biller.Core.Database.XDatabase</a>
+, <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#a607d714f35282c1d59a3250a4388b072">Biller.Core.Interfaces.IDatabase</a>
+, <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a499198021cb8f5d18dd580a7b37af41e">Biller.UI.ArticleView.ArticleTabViewModel</a>
 </li>
 <li>SaveOrUpdateArticleUnit()
-: <a class="el" href="class_biller_1_1_data_1_1_database_1_1_j_s_o_n_database.html#a52fa9d46f3b481467885f0c24f6bb172">Biller.Data.Database.JSONDatabase</a>
-, <a class="el" href="class_biller_1_1_data_1_1_database_1_1_x_database.html#aa53e27db07c894f053996c231f967e9c">Biller.Data.Database.XDatabase</a>
-, <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html#a284fdfa8f6911a6c5186450f4a52bf93">Biller.Data.Interfaces.IDatabase</a>
-, <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a8d14a743cadc8cc2039c5cb7e04182b1">Biller.UI.SettingsView.SettingsTabViewModel</a>
+: <a class="el" href="class_biller_1_1_core_1_1_database_1_1_x_database.html#ab99df2393bf5fd156aff2de0ab96f82b">Biller.Core.Database.XDatabase</a>
+, <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#a22b489616110ad0c067c5a054f3ad50e">Biller.Core.Interfaces.IDatabase</a>
+, <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a6838adfd6065cbb504c9decaa04a107a">Biller.UI.SettingsView.SettingsTabViewModel</a>
 </li>
 <li>SaveOrUpdateCustomer()
-: <a class="el" href="class_biller_1_1_data_1_1_database_1_1_j_s_o_n_database.html#a3809c370ef23fb19101980c487f77a2e">Biller.Data.Database.JSONDatabase</a>
-, <a class="el" href="class_biller_1_1_data_1_1_database_1_1_x_database.html#abc956b79164b7f5dd1a10e11c3d72885">Biller.Data.Database.XDatabase</a>
-, <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html#a8dcea51779150df9bfafb52493d07c4a">Biller.Data.Interfaces.IDatabase</a>
+: <a class="el" href="class_biller_1_1_core_1_1_database_1_1_x_database.html#abe96f2bc5e6f60fda3de1ff4f2f4f9d7">Biller.Core.Database.XDatabase</a>
+, <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#af4e24fe80acb6773260acab893db84f9">Biller.Core.Interfaces.IDatabase</a>
 </li>
 <li>SaveOrUpdateDocument()
-: <a class="el" href="class_biller_1_1_data_1_1_database_1_1_j_s_o_n_database.html#ae7f800b4c1566e74b779445cac6da0b0">Biller.Data.Database.JSONDatabase</a>
-, <a class="el" href="class_biller_1_1_data_1_1_database_1_1_x_database.html#a0f51a2bed2d6eec28f4925723387f1b7">Biller.Data.Database.XDatabase</a>
-, <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html#a264e6b0edcbebe79d7af67d368101935">Biller.Data.Interfaces.IDatabase</a>
+: <a class="el" href="class_biller_1_1_core_1_1_database_1_1_x_database.html#a0624f50806a9cdb5d33a9380736495b9">Biller.Core.Database.XDatabase</a>
+, <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#ab68493869ba96ce77aa27294df0c7eee">Biller.Core.Interfaces.IDatabase</a>
 </li>
 <li>SaveOrUpdatePaymentMethode()
-: <a class="el" href="class_biller_1_1_data_1_1_database_1_1_j_s_o_n_database.html#ab77148f71bf7f1c2c9460c2e4d4c4e94">Biller.Data.Database.JSONDatabase</a>
-, <a class="el" href="class_biller_1_1_data_1_1_database_1_1_x_database.html#a76806a53ebb6cdadbc92a597aff54557">Biller.Data.Database.XDatabase</a>
-, <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html#aee00826ee49d15d6c675730b2a6330f4">Biller.Data.Interfaces.IDatabase</a>
-, <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a0a4db9a32ff94ed5df85f33224a5346d">Biller.UI.SettingsView.SettingsTabViewModel</a>
+: <a class="el" href="class_biller_1_1_core_1_1_database_1_1_x_database.html#aabc5cc274e3d7a8538efa15c922f0e62">Biller.Core.Database.XDatabase</a>
+, <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#a92b6befbd3ac405cf56285fd6fe6363e">Biller.Core.Interfaces.IDatabase</a>
+, <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ac148d0065620c7415d37a917ec5edaaa">Biller.UI.SettingsView.SettingsTabViewModel</a>
+</li>
+<li>SaveOrUpdateSettings()
+: <a class="el" href="class_biller_1_1_core_1_1_database_1_1_x_database.html#a17af1c9b6b2d2ad5ea3b8a9fc300cb65">Biller.Core.Database.XDatabase</a>
+, <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#a5a8c4acaeef9ee03f2739c3f6c09512c">Biller.Core.Interfaces.IDatabase</a>
 </li>
 <li>SaveOrUpdateShipment()
-: <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a6851438c7b0c3a0dc42d800d4be821cb">Biller.UI.SettingsView.SettingsTabViewModel</a>
+: <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ad889233de0e787e569593d732dd090b6">Biller.UI.SettingsView.SettingsTabViewModel</a>
 </li>
 <li>SaveOrUpdateTaxClass()
-: <a class="el" href="class_biller_1_1_data_1_1_database_1_1_j_s_o_n_database.html#ab5296e1ef44da2c15773fe8d218b6e0f">Biller.Data.Database.JSONDatabase</a>
-, <a class="el" href="class_biller_1_1_data_1_1_database_1_1_x_database.html#a1f015d53d06efe9bc58eecaf4d00593d">Biller.Data.Database.XDatabase</a>
-, <a class="el" href="interface_biller_1_1_data_1_1_interfaces_1_1_i_database.html#a02c8ee63d9b8ec3536a25ef3fb1b63cd">Biller.Data.Interfaces.IDatabase</a>
-, <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a586cb5b6e1eb4aff0a97a3ae453ea9c3">Biller.UI.SettingsView.SettingsTabViewModel</a>
+: <a class="el" href="class_biller_1_1_core_1_1_database_1_1_x_database.html#a7bc43a49e3c16caa3bc9ec9fa0f6f9e1">Biller.Core.Database.XDatabase</a>
+, <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_database.html#ab2abd393c6620c7b7229ac37891b86d0">Biller.Core.Interfaces.IDatabase</a>
+, <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a4ddd3e959a4fdc19081419f98ac6155d">Biller.UI.SettingsView.SettingsTabViewModel</a>
 </li>
 <li>ScrollingSpline
 : <a class="el" href="class_biller_1_1_controls_1_1_animated_scroll_viewer.html#a84a4d81d3db0b9f672a9b4daa3f377ab">Biller.Controls.AnimatedScrollViewer</a>
@@ -189,17 +193,27 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <li>SetPropertyValue()
 : <a class="el" href="class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#ade0f04c0f7b18dd5b170e071d5534d38">XamlGeneratedNamespace.GeneratedInternalTypeHelper</a>
 </li>
+<li>SettingsList
+: <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a2af1627874afdf957161c8c83497ba8f">Biller.UI.SettingsView.SettingsTabViewModel</a>
+</li>
 <li>SettingsTabViewModel
 : <a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html#afce40f9fed0e214d604b76aa492d4045">Biller.UI.ViewModel.MainWindowViewModel</a>
 </li>
 <li>SetValue&lt; T &gt;()
-: <a class="el" href="class_biller_1_1_data_1_1_articles_1_1_preview_article.html#af83421577d654605919b99253a3b8606">Biller.Data.Articles.PreviewArticle</a>
-, <a class="el" href="class_biller_1_1_data_1_1_customers_1_1_preview_customer.html#a87b156a303e9a2d93612704a06bce4e8">Biller.Data.Customers.PreviewCustomer</a>
-, <a class="el" href="class_biller_1_1_data_1_1_document_1_1_preview_document.html#a6026a663e78c3f0c84937f56d42ab7fb">Biller.Data.Document.PreviewDocument</a>
-, <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html#ad714ddee09bc4668a812c8f2542c7b96">Biller.Data.Utils.PropertyChangedHelper</a>
+: <a class="el" href="class_biller_1_1_core_1_1_articles_1_1_preview_article.html#aa06d6d73f4ec6a8462ca61ea8642d05e">Biller.Core.Articles.PreviewArticle</a>
+, <a class="el" href="class_biller_1_1_core_1_1_customers_1_1_preview_customer.html#a8c69f68d3433619c3acb8c0c90df7f13">Biller.Core.Customers.PreviewCustomer</a>
+, <a class="el" href="class_biller_1_1_core_1_1_document_1_1_preview_document.html#a246a7d801dc3599b4e40847e043b7424">Biller.Core.Document.PreviewDocument</a>
+, <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_key_value_store.html#ab66a811f8b797b0bb313f0803e55fda8">Biller.Core.Utils.KeyValueStore</a>
+, <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html#a64ccd6daf3ff2b00ff83f517f80d46a1">Biller.Core.Utils.PropertyChangedHelper</a>
+</li>
+<li>Shipments
+: <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a177cdb020c7fc65799f5300c8ecad40e">Biller.UI.SettingsView.SettingsTabViewModel</a>
 </li>
 <li>ShortName
-: <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_unit.html#afbfa4eff6922a6ac1aefb8b463f4b45a">Biller.Data.Utils.Unit</a>
+: <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html#af2110fe012f54daad71ac14e7b23f5dc">Biller.Core.Utils.Unit</a>
+</li>
+<li>ShowNotification()
+: <a class="el" href="class_biller_1_1_u_i_1_1_notifications_1_1_notification_manager.html#a460fd5bb4da513da39380f9923b04f02">Biller.UI.Notifications.NotificationManager</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -207,7 +221,7 @@ $(document).ready(function(){initNavTree('functions_s.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Mar 28 2014 15:52:37 for Biller by
+    <li class="footer">Generated on Thu Aug 14 2014 14:29:10 for Biller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

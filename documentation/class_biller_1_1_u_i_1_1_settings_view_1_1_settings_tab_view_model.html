@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_biller_1_1_u_i_1_1_settings_view
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -117,7 +118,7 @@ Inheritance diagram for Biller.UI.SettingsView.SettingsTabViewModel:</div>
  <div class="center">
   <img src="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.png" usemap="#Biller.UI.SettingsView.SettingsTabViewModel_map" alt=""/>
   <map id="Biller.UI.SettingsView.SettingsTabViewModel_map" name="Biller.UI.SettingsView.SettingsTabViewModel_map">
-<area href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html" alt="Biller.Data.Utils.PropertyChangedHelper" shape="rect" coords="0,56,264,80"/>
+<area href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html" alt="Biller.Core.Utils.PropertyChangedHelper" shape="rect" coords="0,56,264,80"/>
 <area href="interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model.html" alt="Biller.UI.Interface.ITabContentViewModel" shape="rect" coords="274,56,538,80"/>
 <area href="interface_biller_1_1_u_i_1_1_interface_1_1_i_view_model.html" alt="Biller.UI.Interface.IViewModel" shape="rect" coords="274,0,538,24"/>
 </map>
@@ -128,81 +129,134 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0157687a34db8a46cd0f62e136b9896e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0157687a34db8a46cd0f62e136b9896e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>SettingsTabViewModel</b> (<a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html">ViewModel.MainWindowViewModel</a> parentViewModel)</td></tr>
 <tr class="separator:a0157687a34db8a46cd0f62e136b9896e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd6dcf7c0e2c3d97151abdd32b52a5a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd6dcf7c0e2c3d97151abdd32b52a5a0"></a>
-async Task&#160;</td><td class="memItemRight" valign="bottom"><b>LoadData</b> ()</td></tr>
+<tr class="memitem:afd6dcf7c0e2c3d97151abdd32b52a5a0"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0">LoadData</a> ()</td></tr>
+<tr class="memdesc:afd6dcf7c0e2c3d97151abdd32b52a5a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads all kind of data asynchronously.<br/>
+Registers following IStorageableItems: </p>
+<ul>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_folder_model.html">Core.Models.DocumentFolderModel</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_models_1_1_company_settings.html">Core.Models.CompanySettings</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_export_model.html">Core.Models.DocumentExportModel</a> </li>
+</ul>
+<p><br/>
+Loads following Lists / Collections: </p>
+<ul>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a49507141cd57fff78f609e5ad208c7f5" title="Holds a list of all saved Core.Utils.Unit. Initial loading of the content happens in LoadData...">ArticleUnits</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ab6643c0ba09baaf5898f42c9a35b6c9e" title="Holds a list of all saved Core.Utils.PaymentMethode. Initial loading of the content happens in LoadDa...">PaymentMethodes</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a343a19971cc25c91c1a13c860d80c81a" title="Holds a list of all saved Core.Utils.TaxClass. Initial loading of the content happens in LoadData...">TaxClasses</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a177cdb020c7fc65799f5300c8ecad40e" title="Holds a list of all saved Core.Utils.Shipment. Initial loading of the content happens in LoadData...">Shipments</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a21a23874226d9d6c027060da8d4be2f1" title="Holds a list of all saved Core.Models.DocumentFolderModel. Initial loading of the content happens in ...">DocumentFolder</a> </li>
+</ul>
+ <a href="#afd6dcf7c0e2c3d97151abdd32b52a5a0">More...</a><br/></td></tr>
 <tr class="separator:afd6dcf7c0e2c3d97151abdd32b52a5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d14a743cadc8cc2039c5cb7e04182b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a8d14a743cadc8cc2039c5cb7e04182b1">SaveOrUpdateArticleUnit</a> (<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_unit.html">Data.Utils.Unit</a> source)</td></tr>
-<tr class="memdesc:a8d14a743cadc8cc2039c5cb7e04182b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#a8d14a743cadc8cc2039c5cb7e04182b1">More...</a><br/></td></tr>
-<tr class="separator:a8d14a743cadc8cc2039c5cb7e04182b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a4db9a32ff94ed5df85f33224a5346d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a0a4db9a32ff94ed5df85f33224a5346d">SaveOrUpdatePaymentMethode</a> (<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_payment_methode.html">Data.Utils.PaymentMethode</a> source)</td></tr>
-<tr class="memdesc:a0a4db9a32ff94ed5df85f33224a5346d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#a0a4db9a32ff94ed5df85f33224a5346d">More...</a><br/></td></tr>
-<tr class="separator:a0a4db9a32ff94ed5df85f33224a5346d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a586cb5b6e1eb4aff0a97a3ae453ea9c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a586cb5b6e1eb4aff0a97a3ae453ea9c3">SaveOrUpdateTaxClass</a> (<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_tax_class.html">Data.Utils.TaxClass</a> source)</td></tr>
-<tr class="memdesc:a586cb5b6e1eb4aff0a97a3ae453ea9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#a586cb5b6e1eb4aff0a97a3ae453ea9c3">More...</a><br/></td></tr>
-<tr class="separator:a586cb5b6e1eb4aff0a97a3ae453ea9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6851438c7b0c3a0dc42d800d4be821cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a6851438c7b0c3a0dc42d800d4be821cb">SaveOrUpdateShipment</a> (<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_shipment.html">Data.Utils.Shipment</a> source)</td></tr>
-<tr class="memdesc:a6851438c7b0c3a0dc42d800d4be821cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#a6851438c7b0c3a0dc42d800d4be821cb">More...</a><br/></td></tr>
-<tr class="separator:a6851438c7b0c3a0dc42d800d4be821cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad087decb9efca7244fd98d307572b77f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad087decb9efca7244fd98d307572b77f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SaveOrUpdateDocumentFolder</b> (<a class="el" href="class_biller_1_1_data_1_1_models_1_1_document_folder_model.html">Data.Models.DocumentFolderModel</a> source)</td></tr>
-<tr class="separator:ad087decb9efca7244fd98d307572b77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6838adfd6065cbb504c9decaa04a107a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a6838adfd6065cbb504c9decaa04a107a">SaveOrUpdateArticleUnit</a> (<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html">Core.Utils.Unit</a> source)</td></tr>
+<tr class="memdesc:a6838adfd6065cbb504c9decaa04a107a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#a6838adfd6065cbb504c9decaa04a107a">More...</a><br/></td></tr>
+<tr class="separator:a6838adfd6065cbb504c9decaa04a107a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac148d0065620c7415d37a917ec5edaaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ac148d0065620c7415d37a917ec5edaaa">SaveOrUpdatePaymentMethode</a> (<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_payment_methode.html">Core.Utils.PaymentMethode</a> source)</td></tr>
+<tr class="memdesc:ac148d0065620c7415d37a917ec5edaaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#ac148d0065620c7415d37a917ec5edaaa">More...</a><br/></td></tr>
+<tr class="separator:ac148d0065620c7415d37a917ec5edaaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ddd3e959a4fdc19081419f98ac6155d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a4ddd3e959a4fdc19081419f98ac6155d">SaveOrUpdateTaxClass</a> (<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_tax_class.html">Core.Utils.TaxClass</a> source)</td></tr>
+<tr class="memdesc:a4ddd3e959a4fdc19081419f98ac6155d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#a4ddd3e959a4fdc19081419f98ac6155d">More...</a><br/></td></tr>
+<tr class="separator:a4ddd3e959a4fdc19081419f98ac6155d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad889233de0e787e569593d732dd090b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ad889233de0e787e569593d732dd090b6">SaveOrUpdateShipment</a> (<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a> source)</td></tr>
+<tr class="memdesc:ad889233de0e787e569593d732dd090b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves a new object if it does not exist or updates an existing one.  <a href="#ad889233de0e787e569593d732dd090b6">More...</a><br/></td></tr>
+<tr class="separator:ad889233de0e787e569593d732dd090b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb447f8b407e048c3331a0e05bf1210d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb447f8b407e048c3331a0e05bf1210d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SaveOrUpdateDocumentFolder</b> (<a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_folder_model.html">Core.Models.DocumentFolderModel</a> source)</td></tr>
+<tr class="separator:afb447f8b407e048c3331a0e05bf1210d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d04d50e498947d31d593a1494940219"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d04d50e498947d31d593a1494940219"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ReceiveData</b> (object data)</td></tr>
 <tr class="separator:a9d04d50e498947d31d593a1494940219"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html">Biller.Data.Utils.PropertyChangedHelper</a></td></tr>
-<tr class="memitem:aba882c51a8cd2afa44e131ee872cd3d2 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html#aba882c51a8cd2afa44e131ee872cd3d2">GetValue&lt; T &gt;</a> (Expression&lt; Func&lt; T &gt;&gt; property)</td></tr>
-<tr class="memdesc:aba882c51a8cd2afa44e131ee872cd3d2 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the property  <a href="#aba882c51a8cd2afa44e131ee872cd3d2">More...</a><br/></td></tr>
-<tr class="separator:aba882c51a8cd2afa44e131ee872cd3d2 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad714ddee09bc4668a812c8f2542c7b96 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html#ad714ddee09bc4668a812c8f2542c7b96">SetValue&lt; T &gt;</a> (T value, [CallerMemberName] string name=&quot;&quot;)</td></tr>
-<tr class="memdesc:ad714ddee09bc4668a812c8f2542c7b96 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the value of an object in a dictionary and automatically raises a PropertyChangedEvent if the value differs.  <a href="#ad714ddee09bc4668a812c8f2542c7b96">More...</a><br/></td></tr>
-<tr class="separator:ad714ddee09bc4668a812c8f2542c7b96 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5885dd9ba7c7bbb82b250187ba901ae inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5885dd9ba7c7bbb82b250187ba901ae"></a>
+<tr class="memitem:a35e0526644054ab55e9e5756b67fa7f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35e0526644054ab55e9e5756b67fa7f7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterPreferedExportClass</b> (<a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_export_model.html">Core.Models.DocumentExportModel</a> source)</td></tr>
+<tr class="separator:a35e0526644054ab55e9e5756b67fa7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8219931459eff2f69175c0d1d503015"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_export.html">Core.Interfaces.IExport</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ad8219931459eff2f69175c0d1d503015">GetPreferedExportClass</a> (<a class="el" href="class_biller_1_1_core_1_1_document_1_1_document.html">Core.Document.Document</a> source)</td></tr>
+<tr class="memdesc:ad8219931459eff2f69175c0d1d503015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns null if there is no IExport inherited class available that also supports the given Document.DocumentType.  <a href="#ad8219931459eff2f69175c0d1d503015">More...</a><br/></td></tr>
+<tr class="separator:ad8219931459eff2f69175c0d1d503015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html">Biller.Core.Utils.PropertyChangedHelper</a></td></tr>
+<tr class="memitem:a015522b3a077a7db8dcc7d535d9856b8 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html#a015522b3a077a7db8dcc7d535d9856b8">GetValue&lt; T &gt;</a> (Expression&lt; Func&lt; T &gt;&gt; property)</td></tr>
+<tr class="memdesc:a015522b3a077a7db8dcc7d535d9856b8 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the property  <a href="#a015522b3a077a7db8dcc7d535d9856b8">More...</a><br/></td></tr>
+<tr class="separator:a015522b3a077a7db8dcc7d535d9856b8 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64ccd6daf3ff2b00ff83f517f80d46a1 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html#a64ccd6daf3ff2b00ff83f517f80d46a1">SetValue&lt; T &gt;</a> (T value, [CallerMemberName] string name=&quot;&quot;)</td></tr>
+<tr class="memdesc:a64ccd6daf3ff2b00ff83f517f80d46a1 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the value of an object in a dictionary and automatically raises a PropertyChangedEvent if the value differs.  <a href="#a64ccd6daf3ff2b00ff83f517f80d46a1">More...</a><br/></td></tr>
+<tr class="separator:a64ccd6daf3ff2b00ff83f517f80d46a1 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6004a151f654a04a3015f96e7749357 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6004a151f654a04a3015f96e7749357"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>RaiseUpdateManually</b> ([CallerMemberName] string name=&quot;&quot;)</td></tr>
-<tr class="separator:af5885dd9ba7c7bbb82b250187ba901ae inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab6004a151f654a04a3015f96e7749357 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a17b97a1066cb26af6b314c24316bb0c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17b97a1066cb26af6b314c24316bb0c2"></a>
-Fluent.RibbonTabItem&#160;</td><td class="memItemRight" valign="bottom"><b>RibbonTabItem</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a17b97a1066cb26af6b314c24316bb0c2"><td class="memItemLeft" align="right" valign="top">Fluent.RibbonTabItem&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a17b97a1066cb26af6b314c24316bb0c2">RibbonTabItem</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a17b97a1066cb26af6b314c24316bb0c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Fluent.RibbonTabItem that is shown to the user as "Settings" tab.  <a href="#a17b97a1066cb26af6b314c24316bb0c2">More...</a><br/></td></tr>
 <tr class="separator:a17b97a1066cb26af6b314c24316bb0c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae493897f083f126581705995e16ed7b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae493897f083f126581705995e16ed7b7"></a>
-System.Windows.UIElement&#160;</td><td class="memItemRight" valign="bottom"><b>TabContent</b><code> [get, set]</code></td></tr>
+<tr class="memitem:ae493897f083f126581705995e16ed7b7"><td class="memItemLeft" align="right" valign="top">System.Windows.UIElement&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ae493897f083f126581705995e16ed7b7">TabContent</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae493897f083f126581705995e16ed7b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The content shown to the user. Used for data binding.  <a href="#ae493897f083f126581705995e16ed7b7">More...</a><br/></td></tr>
 <tr class="separator:ae493897f083f126581705995e16ed7b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2af1627874afdf957161c8c83497ba8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2af1627874afdf957161c8c83497ba8f"></a>
-ObservableCollection&lt; TabItem &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>SettingsList</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a2af1627874afdf957161c8c83497ba8f"><td class="memItemLeft" align="right" valign="top">ObservableCollection&lt; TabItem &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a2af1627874afdf957161c8c83497ba8f">SettingsList</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2af1627874afdf957161c8c83497ba8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a list of all registered SettingsTabs as TabItem.  <a href="#a2af1627874afdf957161c8c83497ba8f">More...</a><br/></td></tr>
 <tr class="separator:a2af1627874afdf957161c8c83497ba8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab4b31591f7834cb0ab99577411654e95"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4b31591f7834cb0ab99577411654e95"></a>
+<tr class="memitem:a49507141cd57fff78f609e5ad208c7f5"><td class="memItemLeft" align="right" valign="top">ObservableCollection<br class="typebreak"/>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html">Core.Utils.Unit</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a49507141cd57fff78f609e5ad208c7f5">ArticleUnits</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a49507141cd57fff78f609e5ad208c7f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html" title="Represents a sales unit. The identifier of an object is Name. ">Core.Utils.Unit</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>.  <a href="#a49507141cd57fff78f609e5ad208c7f5">More...</a><br/></td></tr>
+<tr class="separator:a49507141cd57fff78f609e5ad208c7f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6643c0ba09baaf5898f42c9a35b6c9e"><td class="memItemLeft" align="right" valign="top">ObservableCollection<br class="typebreak"/>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_payment_methode.html">Core.Utils.PaymentMethode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ab6643c0ba09baaf5898f42c9a35b6c9e">PaymentMethodes</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab6643c0ba09baaf5898f42c9a35b6c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_payment_methode.html">Core.Utils.PaymentMethode</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>.  <a href="#ab6643c0ba09baaf5898f42c9a35b6c9e">More...</a><br/></td></tr>
+<tr class="separator:ab6643c0ba09baaf5898f42c9a35b6c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a343a19971cc25c91c1a13c860d80c81a"><td class="memItemLeft" align="right" valign="top">ObservableCollection<br class="typebreak"/>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_tax_class.html">Core.Utils.TaxClass</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a343a19971cc25c91c1a13c860d80c81a">TaxClasses</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a343a19971cc25c91c1a13c860d80c81a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_tax_class.html">Core.Utils.TaxClass</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>.  <a href="#a343a19971cc25c91c1a13c860d80c81a">More...</a><br/></td></tr>
+<tr class="separator:a343a19971cc25c91c1a13c860d80c81a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177cdb020c7fc65799f5300c8ecad40e"><td class="memItemLeft" align="right" valign="top">ObservableCollection<br class="typebreak"/>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a177cdb020c7fc65799f5300c8ecad40e">Shipments</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a177cdb020c7fc65799f5300c8ecad40e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>.  <a href="#a177cdb020c7fc65799f5300c8ecad40e">More...</a><br/></td></tr>
+<tr class="separator:a177cdb020c7fc65799f5300c8ecad40e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a23874226d9d6c027060da8d4be2f1"><td class="memItemLeft" align="right" valign="top">ObservableCollection<br class="typebreak"/>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_folder_model.html">Core.Models.DocumentFolderModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a21a23874226d9d6c027060da8d4be2f1">DocumentFolder</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a21a23874226d9d6c027060da8d4be2f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_folder_model.html">Core.Models.DocumentFolderModel</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>.  <a href="#a21a23874226d9d6c027060da8d4be2f1">More...</a><br/></td></tr>
+<tr class="separator:a21a23874226d9d6c027060da8d4be2f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae03027a853a8feec01e6c1f582d58ac6"><td class="memItemLeft" align="right" valign="top">ObservableCollection<br class="typebreak"/>
+&lt; <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_export.html">Core.Interfaces.IExport</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ae03027a853a8feec01e6c1f582d58ac6">RegisteredExportClasses</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ae03027a853a8feec01e6c1f582d58ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Holds a list of all registered <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_export.html" title="Interface to create implementations of an document exporting and printing class. ">Core.Interfaces.IExport</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>.  <a href="#ae03027a853a8feec01e6c1f582d58ac6">More...</a><br/></td></tr>
+<tr class="separator:ae03027a853a8feec01e6c1f582d58ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1cdf97d23a30981908330a42a41af1e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1cdf97d23a30981908330a42a41af1e"></a>
 ObservableCollection<br class="typebreak"/>
-&lt; <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_unit.html">Data.Utils.Unit</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>ArticleUnits</b><code> [get, set]</code></td></tr>
-<tr class="separator:ab4b31591f7834cb0ab99577411654e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0220681c9f89de34ad88e8ab2c80744e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0220681c9f89de34ad88e8ab2c80744e"></a>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_models_1_1_database_u_i_model.html">Core.Models.DatabaseUIModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>RegisteredDatabases</b><code> [get, set]</code></td></tr>
+<tr class="separator:ad1cdf97d23a30981908330a42a41af1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429fd0e8a34f8c85c21f1a865c522eab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a429fd0e8a34f8c85c21f1a865c522eab"></a>
 ObservableCollection<br class="typebreak"/>
-&lt; <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_payment_methode.html">Data.Utils.PaymentMethode</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>PaymentMethodes</b><code> [get, set]</code></td></tr>
-<tr class="separator:a0220681c9f89de34ad88e8ab2c80744e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c6008c530c8fbc75436ff28ad681507"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c6008c530c8fbc75436ff28ad681507"></a>
-ObservableCollection<br class="typebreak"/>
-&lt; <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_tax_class.html">Data.Utils.TaxClass</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>TaxClasses</b><code> [get, set]</code></td></tr>
-<tr class="separator:a9c6008c530c8fbc75436ff28ad681507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0262c61e2abddb3df7bcfe795fc71bc9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0262c61e2abddb3df7bcfe795fc71bc9"></a>
-ObservableCollection<br class="typebreak"/>
-&lt; <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_shipment.html">Data.Utils.Shipment</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Shipments</b><code> [get, set]</code></td></tr>
-<tr class="separator:a0262c61e2abddb3df7bcfe795fc71bc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94f23dbf6d8f6844a31faeaeadf47521"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94f23dbf6d8f6844a31faeaeadf47521"></a>
-ObservableCollection<br class="typebreak"/>
-&lt; <a class="el" href="class_biller_1_1_data_1_1_models_1_1_document_folder_model.html">Data.Models.DocumentFolderModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DocumentFolder</b><code> [get, set]</code></td></tr>
-<tr class="separator:a94f23dbf6d8f6844a31faeaeadf47521"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56a146e91668d0c291589a2e22430bae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a56a146e91668d0c291589a2e22430bae"></a>
-<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_unit.html">Data.Utils.Unit</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedUnit</b><code> [get, set]</code></td></tr>
-<tr class="separator:a56a146e91668d0c291589a2e22430bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a3848a78139c00cb06e66b10b77e366"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a3848a78139c00cb06e66b10b77e366"></a>
-<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_payment_methode.html">Data.Utils.PaymentMethode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedPaymentMethode</b><code> [get, set]</code></td></tr>
-<tr class="separator:a3a3848a78139c00cb06e66b10b77e366"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0fd41a750030a5bcd8ea6cd0d00b779"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae0fd41a750030a5bcd8ea6cd0d00b779"></a>
-<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_tax_class.html">Data.Utils.TaxClass</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedTaxClass</b><code> [get, set]</code></td></tr>
-<tr class="separator:ae0fd41a750030a5bcd8ea6cd0d00b779"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb5858546312b70cda82b0f7699593ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb5858546312b70cda82b0f7699593ed"></a>
-<a class="el" href="class_biller_1_1_data_1_1_utils_1_1_shipment.html">Data.Utils.Shipment</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedShipment</b><code> [get, set]</code></td></tr>
-<tr class="separator:abb5858546312b70cda82b0f7699593ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+&lt; <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_plug_in.html">Interface.IPlugIn</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>RegisteredPlugins</b><code> [get, set]</code></td></tr>
+<tr class="separator:a429fd0e8a34f8c85c21f1a865c522eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a144bbf52d7ccc012e475a08edf5da3d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_key_value_store.html">Biller.Core.Utils.KeyValueStore</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a144bbf52d7ccc012e475a08edf5da3d5">KeyValueStore</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a144bbf52d7ccc012e475a08edf5da3d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a144bbf52d7ccc012e475a08edf5da3d5" title="The KeyValueStore is designed to hold multiple configuration values from any class. Values inside the KeyValueStore will not be saved and loaded with closing / starting the app! ">KeyValueStore</a> is designed to hold multiple configuration values from any class. Values inside the <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a144bbf52d7ccc012e475a08edf5da3d5" title="The KeyValueStore is designed to hold multiple configuration values from any class. Values inside the KeyValueStore will not be saved and loaded with closing / starting the app! ">KeyValueStore</a> will not be saved and loaded with closing / starting the app!  <a href="#a144bbf52d7ccc012e475a08edf5da3d5">More...</a><br/></td></tr>
+<tr class="separator:a144bbf52d7ccc012e475a08edf5da3d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e8d2a247d531781adddf01b91de3ff8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0e8d2a247d531781adddf01b91de3ff8"></a>
+<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html">Core.Utils.Unit</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedUnit</b><code> [get, set]</code></td></tr>
+<tr class="separator:a0e8d2a247d531781adddf01b91de3ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab69e34ed3a331d5bba6b907cd110fe35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab69e34ed3a331d5bba6b907cd110fe35"></a>
+<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_payment_methode.html">Core.Utils.PaymentMethode</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedPaymentMethode</b><code> [get, set]</code></td></tr>
+<tr class="separator:ab69e34ed3a331d5bba6b907cd110fe35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3290a98034244aef8e25541a5afd558a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3290a98034244aef8e25541a5afd558a"></a>
+<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_tax_class.html">Core.Utils.TaxClass</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedTaxClass</b><code> [get, set]</code></td></tr>
+<tr class="separator:a3290a98034244aef8e25541a5afd558a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e8b52fecac13cd3a879abbfab94e56b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e8b52fecac13cd3a879abbfab94e56b"></a>
+<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedShipment</b><code> [get, set]</code></td></tr>
+<tr class="separator:a5e8b52fecac13cd3a879abbfab94e56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93eea4e7070524dd46179c115037f540"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93eea4e7070524dd46179c115037f540"></a>
 <a class="el" href="class_biller_1_1_u_i_1_1_view_model_1_1_main_window_view_model.html">ViewModel.MainWindowViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ParentViewModel</b><code> [get, set]</code></td></tr>
 <tr class="separator:a93eea4e7070524dd46179c115037f540"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,20 +270,91 @@ UIElement&#160;</td><td class="memItemRight" valign="bottom"><b>TabContent</b><c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html">Biller.Data.Utils.PropertyChangedHelper</a></td></tr>
-<tr class="memitem:a8e3a64ee232707063767835bca993187 inherit events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e3a64ee232707063767835bca993187"></a>
+<tr class="inherit_header events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html">Biller.Core.Utils.PropertyChangedHelper</a></td></tr>
+<tr class="memitem:a816154e50371bc3423db7f4fcaddc948 inherit events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a816154e50371bc3423db7f4fcaddc948"></a>
 PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><b>PropertyChanged</b> = delegate { }</td></tr>
-<tr class="separator:a8e3a64ee232707063767835bca993187 inherit events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a816154e50371bc3423db7f4fcaddc948 inherit events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a8d14a743cadc8cc2039c5cb7e04182b1"></a>
+<a class="anchor" id="ad8219931459eff2f69175c0d1d503015"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_export.html">Core.Interfaces.IExport</a> Biller.UI.SettingsView.SettingsTabViewModel.GetPreferedExportClass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_biller_1_1_core_1_1_document_1_1_document.html">Core.Document.Document</a>&#160;</td>
+          <td class="paramname"><em>source</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns null if there is no IExport inherited class available that also supports the given Document.DocumentType. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afd6dcf7c0e2c3d97151abdd32b52a5a0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">async Task Biller.UI.SettingsView.SettingsTabViewModel.LoadData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads all kind of data asynchronously.<br/>
+Registers following IStorageableItems: </p>
+<ul>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_folder_model.html">Core.Models.DocumentFolderModel</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_models_1_1_company_settings.html">Core.Models.CompanySettings</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_export_model.html">Core.Models.DocumentExportModel</a> </li>
+</ul>
+<p><br/>
+Loads following Lists / Collections: </p>
+<ul>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a49507141cd57fff78f609e5ad208c7f5" title="Holds a list of all saved Core.Utils.Unit. Initial loading of the content happens in LoadData...">ArticleUnits</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#ab6643c0ba09baaf5898f42c9a35b6c9e" title="Holds a list of all saved Core.Utils.PaymentMethode. Initial loading of the content happens in LoadDa...">PaymentMethodes</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a343a19971cc25c91c1a13c860d80c81a" title="Holds a list of all saved Core.Utils.TaxClass. Initial loading of the content happens in LoadData...">TaxClasses</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a177cdb020c7fc65799f5300c8ecad40e" title="Holds a list of all saved Core.Utils.Shipment. Initial loading of the content happens in LoadData...">Shipments</a> </li>
+<li>
+<a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a21a23874226d9d6c027060da8d4be2f1" title="Holds a list of all saved Core.Models.DocumentFolderModel. Initial loading of the content happens in ...">DocumentFolder</a> </li>
+</ul>
+</p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implements <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_view_model.html">Biller.UI.Interface.IViewModel</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6838adfd6065cbb504c9decaa04a107a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Biller.UI.SettingsView.SettingsTabViewModel.SaveOrUpdateArticleUnit </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_unit.html">Data.Utils.Unit</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html">Core.Utils.Unit</a>&#160;</td>
           <td class="paramname"><em>source</em></td><td>)</td>
           <td></td>
         </tr>
@@ -246,14 +371,14 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
 
 </div>
 </div>
-<a class="anchor" id="a0a4db9a32ff94ed5df85f33224a5346d"></a>
+<a class="anchor" id="ac148d0065620c7415d37a917ec5edaaa"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Biller.UI.SettingsView.SettingsTabViewModel.SaveOrUpdatePaymentMethode </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_payment_methode.html">Data.Utils.PaymentMethode</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_payment_methode.html">Core.Utils.PaymentMethode</a>&#160;</td>
           <td class="paramname"><em>source</em></td><td>)</td>
           <td></td>
         </tr>
@@ -270,14 +395,14 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
 
 </div>
 </div>
-<a class="anchor" id="a6851438c7b0c3a0dc42d800d4be821cb"></a>
+<a class="anchor" id="ad889233de0e787e569593d732dd090b6"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Biller.UI.SettingsView.SettingsTabViewModel.SaveOrUpdateShipment </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_shipment.html">Data.Utils.Shipment</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a>&#160;</td>
           <td class="paramname"><em>source</em></td><td>)</td>
           <td></td>
         </tr>
@@ -294,14 +419,14 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
 
 </div>
 </div>
-<a class="anchor" id="a586cb5b6e1eb4aff0a97a3ae453ea9c3"></a>
+<a class="anchor" id="a4ddd3e959a4fdc19081419f98ac6155d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Biller.UI.SettingsView.SettingsTabViewModel.SaveOrUpdateTaxClass </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_tax_class.html">Data.Utils.TaxClass</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_tax_class.html">Core.Utils.TaxClass</a>&#160;</td>
           <td class="paramname"><em>source</em></td><td>)</td>
           <td></td>
         </tr>
@@ -315,6 +440,233 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="a49507141cd57fff78f609e5ad208c7f5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html">Core.Utils.Unit</a>&gt; Biller.UI.SettingsView.SettingsTabViewModel.ArticleUnits</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_unit.html" title="Represents a sales unit. The identifier of an object is Name. ">Core.Utils.Unit</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a21a23874226d9d6c027060da8d4be2f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_folder_model.html">Core.Models.DocumentFolderModel</a>&gt; Biller.UI.SettingsView.SettingsTabViewModel.DocumentFolder</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_models_1_1_document_folder_model.html">Core.Models.DocumentFolderModel</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a144bbf52d7ccc012e475a08edf5da3d5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_key_value_store.html">Biller.Core.Utils.KeyValueStore</a> Biller.UI.SettingsView.SettingsTabViewModel.KeyValueStore</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a144bbf52d7ccc012e475a08edf5da3d5" title="The KeyValueStore is designed to hold multiple configuration values from any class. Values inside the KeyValueStore will not be saved and loaded with closing / starting the app! ">KeyValueStore</a> is designed to hold multiple configuration values from any class. Values inside the <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#a144bbf52d7ccc012e475a08edf5da3d5" title="The KeyValueStore is designed to hold multiple configuration values from any class. Values inside the KeyValueStore will not be saved and loaded with closing / starting the app! ">KeyValueStore</a> will not be saved and loaded with closing / starting the app! </p>
+
+</div>
+</div>
+<a class="anchor" id="ab6643c0ba09baaf5898f42c9a35b6c9e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_payment_methode.html">Core.Utils.PaymentMethode</a>&gt; Biller.UI.SettingsView.SettingsTabViewModel.PaymentMethodes</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_payment_methode.html">Core.Utils.PaymentMethode</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae03027a853a8feec01e6c1f582d58ac6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_export.html">Core.Interfaces.IExport</a>&gt; Biller.UI.SettingsView.SettingsTabViewModel.RegisteredExportClasses</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holds a list of all registered <a class="el" href="interface_biller_1_1_core_1_1_interfaces_1_1_i_export.html" title="Interface to create implementations of an document exporting and printing class. ">Core.Interfaces.IExport</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a17b97a1066cb26af6b314c24316bb0c2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Fluent.RibbonTabItem Biller.UI.SettingsView.SettingsTabViewModel.RibbonTabItem</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The Fluent.RibbonTabItem that is shown to the user as "Settings" tab. </p>
+
+</div>
+</div>
+<a class="anchor" id="a2af1627874afdf957161c8c83497ba8f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;TabItem&gt; Biller.UI.SettingsView.SettingsTabViewModel.SettingsList</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holds a list of all registered SettingsTabs as TabItem. </p>
+
+</div>
+</div>
+<a class="anchor" id="a177cdb020c7fc65799f5300c8ecad40e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a>&gt; Biller.UI.SettingsView.SettingsTabViewModel.Shipments</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_shipment.html">Core.Utils.Shipment</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae493897f083f126581705995e16ed7b7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">System.Windows.UIElement Biller.UI.SettingsView.SettingsTabViewModel.TabContent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The content shown to the user. Used for data binding. </p>
+
+</div>
+</div>
+<a class="anchor" id="a343a19971cc25c91c1a13c860d80c81a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ObservableCollection&lt;<a class="el" href="class_biller_1_1_core_1_1_utils_1_1_tax_class.html">Core.Utils.TaxClass</a>&gt; Biller.UI.SettingsView.SettingsTabViewModel.TaxClasses</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Holds a list of all saved <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_tax_class.html">Core.Utils.TaxClass</a>.<br/>
+Initial loading of the content happens in <a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html#afd6dcf7c0e2c3d97151abdd32b52a5a0" title="Loads all kind of data asynchronously. Registers following IStorageableItems: Core.Utils.Shipment Core.Models.DocumentFolderModel Core.Models.CompanySettings Core.Models.DocumentExportModel  Loads following Lists / Collections: ArticleUnits PaymentMethodes TaxClasses Shipments DocumentFolder ">LoadData</a>. </p>
 
 </div>
 </div>
@@ -327,7 +679,7 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_biller.html">Biller</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i_1_1_settings_view.html">SettingsView</a></li><li class="navelem"><a class="el" href="class_biller_1_1_u_i_1_1_settings_view_1_1_settings_tab_view_model.html">SettingsTabViewModel</a></li>
-    <li class="footer">Generated on Fri Mar 28 2014 15:52:34 for Biller by
+    <li class="footer">Generated on Thu Aug 14 2014 14:29:03 for Biller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

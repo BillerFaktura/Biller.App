@@ -45,6 +45,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="namespaces.html"><span>Packages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li>
@@ -93,7 +94,7 @@ $(document).ready(function(){initNavTree('class_biller_1_1_u_i_1_1_article_view_
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -120,7 +121,7 @@ Inheritance diagram for Biller.UI.ArticleView.ArticleTabViewModel:</div>
  <div class="center">
   <img src="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.png" usemap="#Biller.UI.ArticleView.ArticleTabViewModel_map" alt=""/>
   <map id="Biller.UI.ArticleView.ArticleTabViewModel_map" name="Biller.UI.ArticleView.ArticleTabViewModel_map">
-<area href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html" alt="Biller.Data.Utils.PropertyChangedHelper" shape="rect" coords="0,56,250,80"/>
+<area href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html" alt="Biller.Core.Utils.PropertyChangedHelper" shape="rect" coords="0,56,250,80"/>
 <area href="interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model.html" alt="Biller.UI.Interface.ITabContentViewModel" shape="rect" coords="260,56,510,80"/>
 <area href="interface_biller_1_1_u_i_1_1_interface_1_1_i_view_model.html" alt="Biller.UI.Interface.IViewModel" shape="rect" coords="260,0,510,24"/>
 </map>
@@ -133,10 +134,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aedde7c79a70ea0f5687c5855e0fa4cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d49f4a49a7da55421cefe1ccb977936"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a7d49f4a49a7da55421cefe1ccb977936">ReceiveNewArticleCommand</a> (object sender)</td></tr>
 <tr class="memdesc:a7d49f4a49a7da55421cefe1ccb977936"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaitable function that shows all controls to create a new Article.<br/>
-Generates a new ArticleEditViewModel, tries to get the next ArticleID and calls AddTabContentViewModel to add the viewmodel to the window.  <a href="#a7d49f4a49a7da55421cefe1ccb977936">More...</a><br/></td></tr>
+Generates a new ArticleEditViewModel, tries to get the next ArticleID and calls AddTabContentViewModel to add the viewmodel to the window.<br/>
+Calls <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_edit_observer.html#a7a743c8a7f240d27edd2fe8621cff998">Interface.IEditObserver.ReceiveArticleEditViewModel</a> for each registered IEditObserver in this instance.  <a href="#a7d49f4a49a7da55421cefe1ccb977936">More...</a><br/></td></tr>
 <tr class="separator:a7d49f4a49a7da55421cefe1ccb977936"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9aa1e6182248593da89480ad5ea0f857"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a9aa1e6182248593da89480ad5ea0f857">ReceiveEditArticleCommand</a> (object sender)</td></tr>
-<tr class="memdesc:a9aa1e6182248593da89480ad5ea0f857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaitable function that either shows all controls to modify an existing Article or loads the selected Article and uses <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a3fcbde055634db0921c7c383e292e5aa" title="Receives data. This methode does not process any data. ">ReceiveData</a> of the viewmodel referenced <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#ac8029df326108db8c3fd3e35975a56fe" title="Call this methode if you want to choose an Article of the whole database. The UI changes to the defau...">ReceiveRequestArticleCommand</a>.  <a href="#a9aa1e6182248593da89480ad5ea0f857">More...</a><br/></td></tr>
+<tr class="memdesc:a9aa1e6182248593da89480ad5ea0f857"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaitable function that either shows all controls to modify an existing Article or loads the selected Article and uses <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a3fcbde055634db0921c7c383e292e5aa" title="Receives data. This methode does not process any data. ">ReceiveData</a> of the viewmodel referenced <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#ac8029df326108db8c3fd3e35975a56fe" title="Call this methode if you want to choose an Article of the whole database. The UI changes to the defau...">ReceiveRequestArticleCommand</a>.<br/>
+Calls <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_edit_observer.html#a7a743c8a7f240d27edd2fe8621cff998">Interface.IEditObserver.ReceiveArticleEditViewModel</a> for each registered IEditObserver in this instance when ViewModelRequestingArticle is null.  <a href="#a9aa1e6182248593da89480ad5ea0f857">More...</a><br/></td></tr>
 <tr class="separator:a9aa1e6182248593da89480ad5ea0f857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4732158286025d90b5d6d08e76f5c4f"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#af4732158286025d90b5d6d08e76f5c4f">Equals</a> (object obj)</td></tr>
 <tr class="memdesc:af4732158286025d90b5d6d08e76f5c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decides wheter to objects are equal or not  <a href="#af4732158286025d90b5d6d08e76f5c4f">More...</a><br/></td></tr>
@@ -153,23 +156,26 @@ Generates a new ArticleEditViewModel, tries to get the next ArticleID and calls 
 <tr class="memitem:a06e5a7f6014e4550c3bd7470853dc5c5"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a06e5a7f6014e4550c3bd7470853dc5c5">ApplyFilter</a> ()</td></tr>
 <tr class="memdesc:a06e5a7f6014e4550c3bd7470853dc5c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awaitable function to apply a filter on all articles  <a href="#a06e5a7f6014e4550c3bd7470853dc5c5">More...</a><br/></td></tr>
 <tr class="separator:a06e5a7f6014e4550c3bd7470853dc5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8dad0bbed01811fdee80af45c5db23a8"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a8dad0bbed01811fdee80af45c5db23a8">SaveOrUpdateArticle</a> (<a class="el" href="class_biller_1_1_data_1_1_articles_1_1_article.html">Data.Articles.Article</a> source)</td></tr>
-<tr class="memdesc:a8dad0bbed01811fdee80af45c5db23a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves or update an Article to the current IDatabase and the <a class="el" href="namespace_biller_1_1_u_i.html">UI</a>.<br/>
-Awaitable  <a href="#a8dad0bbed01811fdee80af45c5db23a8">More...</a><br/></td></tr>
-<tr class="separator:a8dad0bbed01811fdee80af45c5db23a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a499198021cb8f5d18dd580a7b37af41e"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a499198021cb8f5d18dd580a7b37af41e">SaveOrUpdateArticle</a> (<a class="el" href="class_biller_1_1_core_1_1_articles_1_1_article.html">Core.Articles.Article</a> source)</td></tr>
+<tr class="memdesc:a499198021cb8f5d18dd580a7b37af41e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves or update an Article to the current IDatabase and the <a class="el" href="namespace_biller_1_1_u_i.html">UI</a>.<br/>
+Awaitable  <a href="#a499198021cb8f5d18dd580a7b37af41e">More...</a><br/></td></tr>
+<tr class="separator:a499198021cb8f5d18dd580a7b37af41e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fcbde055634db0921c7c383e292e5aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a3fcbde055634db0921c7c383e292e5aa">ReceiveData</a> (object data)</td></tr>
 <tr class="memdesc:a3fcbde055634db0921c7c383e292e5aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receives data. This methode does not process any data.  <a href="#a3fcbde055634db0921c7c383e292e5aa">More...</a><br/></td></tr>
 <tr class="separator:a3fcbde055634db0921c7c383e292e5aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html">Biller.Data.Utils.PropertyChangedHelper</a></td></tr>
-<tr class="memitem:aba882c51a8cd2afa44e131ee872cd3d2 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html#aba882c51a8cd2afa44e131ee872cd3d2">GetValue&lt; T &gt;</a> (Expression&lt; Func&lt; T &gt;&gt; property)</td></tr>
-<tr class="memdesc:aba882c51a8cd2afa44e131ee872cd3d2 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the property  <a href="#aba882c51a8cd2afa44e131ee872cd3d2">More...</a><br/></td></tr>
-<tr class="separator:aba882c51a8cd2afa44e131ee872cd3d2 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad714ddee09bc4668a812c8f2542c7b96 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html#ad714ddee09bc4668a812c8f2542c7b96">SetValue&lt; T &gt;</a> (T value, [CallerMemberName] string name=&quot;&quot;)</td></tr>
-<tr class="memdesc:ad714ddee09bc4668a812c8f2542c7b96 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the value of an object in a dictionary and automatically raises a PropertyChangedEvent if the value differs.  <a href="#ad714ddee09bc4668a812c8f2542c7b96">More...</a><br/></td></tr>
-<tr class="separator:ad714ddee09bc4668a812c8f2542c7b96 inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5885dd9ba7c7bbb82b250187ba901ae inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5885dd9ba7c7bbb82b250187ba901ae"></a>
+<tr class="memitem:a4f07416fc0741f0f9cf616e7ef12598e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4f07416fc0741f0f9cf616e7ef12598e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>RegisterObserver</b> (<a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_edit_observer.html">Interface.IEditObserver</a> observer)</td></tr>
+<tr class="separator:a4f07416fc0741f0f9cf616e7ef12598e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html">Biller.Core.Utils.PropertyChangedHelper</a></td></tr>
+<tr class="memitem:a015522b3a077a7db8dcc7d535d9856b8 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html#a015522b3a077a7db8dcc7d535d9856b8">GetValue&lt; T &gt;</a> (Expression&lt; Func&lt; T &gt;&gt; property)</td></tr>
+<tr class="memdesc:a015522b3a077a7db8dcc7d535d9856b8 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the value of the property  <a href="#a015522b3a077a7db8dcc7d535d9856b8">More...</a><br/></td></tr>
+<tr class="separator:a015522b3a077a7db8dcc7d535d9856b8 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64ccd6daf3ff2b00ff83f517f80d46a1 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html#a64ccd6daf3ff2b00ff83f517f80d46a1">SetValue&lt; T &gt;</a> (T value, [CallerMemberName] string name=&quot;&quot;)</td></tr>
+<tr class="memdesc:a64ccd6daf3ff2b00ff83f517f80d46a1 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the value of an object in a dictionary and automatically raises a PropertyChangedEvent if the value differs.  <a href="#a64ccd6daf3ff2b00ff83f517f80d46a1">More...</a><br/></td></tr>
+<tr class="separator:a64ccd6daf3ff2b00ff83f517f80d46a1 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6004a151f654a04a3015f96e7749357 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6004a151f654a04a3015f96e7749357"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>RaiseUpdateManually</b> ([CallerMemberName] string name=&quot;&quot;)</td></tr>
-<tr class="separator:af5885dd9ba7c7bbb82b250187ba901ae inherit pub_methods_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ab6004a151f654a04a3015f96e7749357 inherit pub_methods_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -179,14 +185,14 @@ Properties</h2></td></tr>
 <tr class="memitem:aa39438c2fc05b88df58eb7279a65d752"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa39438c2fc05b88df58eb7279a65d752"></a>
 <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_content.html">ArticleTabContent</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ArticleTabContent</b><code> [get, set]</code></td></tr>
 <tr class="separator:aa39438c2fc05b88df58eb7279a65d752"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3d37f4e0bc80cd758a79f0e7b59fa4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3d37f4e0bc80cd758a79f0e7b59fa4f"></a>
+<tr class="memitem:a71ea2f3e3aeb5aac7d0007cd5fa423c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71ea2f3e3aeb5aac7d0007cd5fa423c0"></a>
 ObservableCollection<br class="typebreak"/>
-&lt; <a class="el" href="class_biller_1_1_data_1_1_articles_1_1_preview_article.html">Data.Articles.PreviewArticle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>AllArticles</b><code> [get, set]</code></td></tr>
-<tr class="separator:af3d37f4e0bc80cd758a79f0e7b59fa4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74661bf857025b1cd586d858e1237ee5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74661bf857025b1cd586d858e1237ee5"></a>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_articles_1_1_preview_article.html">Core.Articles.PreviewArticle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>AllArticles</b><code> [get, set]</code></td></tr>
+<tr class="separator:a71ea2f3e3aeb5aac7d0007cd5fa423c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa695ee9ffd8ad2b43d4a146b8e870be8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa695ee9ffd8ad2b43d4a146b8e870be8"></a>
 ObservableCollection<br class="typebreak"/>
-&lt; <a class="el" href="class_biller_1_1_data_1_1_articles_1_1_preview_article.html">Data.Articles.PreviewArticle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayedArticles</b><code> [get, set]</code></td></tr>
-<tr class="separator:a74661bf857025b1cd586d858e1237ee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+&lt; <a class="el" href="class_biller_1_1_core_1_1_articles_1_1_preview_article.html">Core.Articles.PreviewArticle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>DisplayedArticles</b><code> [get, set]</code></td></tr>
+<tr class="separator:aa695ee9ffd8ad2b43d4a146b8e870be8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a701b7c508c73b30586a22413c5197cb6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a701b7c508c73b30586a22413c5197cb6"></a>
 ObservableCollection&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>AllCategories</b><code> [get, set]</code></td></tr>
 <tr class="separator:a701b7c508c73b30586a22413c5197cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -208,9 +214,9 @@ Fluent.RibbonTabItem&#160;</td><td class="memItemRight" valign="bottom"><b>Ribbo
 <tr class="memitem:a5e1fbb4177a650f7cf05094dad6baab7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e1fbb4177a650f7cf05094dad6baab7"></a>
 System.Windows.UIElement&#160;</td><td class="memItemRight" valign="bottom"><b>TabContent</b><code> [get]</code></td></tr>
 <tr class="separator:a5e1fbb4177a650f7cf05094dad6baab7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a789afdf5f5d1e0d8b15a6f09f0fa964d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a789afdf5f5d1e0d8b15a6f09f0fa964d"></a>
-<a class="el" href="class_biller_1_1_data_1_1_articles_1_1_preview_article.html">Data.Articles.PreviewArticle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedArticle</b><code> [get, set]</code></td></tr>
-<tr class="separator:a789afdf5f5d1e0d8b15a6f09f0fa964d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fcc372f194488d19d10d85dd1c4532f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8fcc372f194488d19d10d85dd1c4532f"></a>
+<a class="el" href="class_biller_1_1_core_1_1_articles_1_1_preview_article.html">Core.Articles.PreviewArticle</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SelectedArticle</b><code> [get, set]</code></td></tr>
+<tr class="separator:a8fcc372f194488d19d10d85dd1c4532f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model.html">Biller.UI.Interface.ITabContentViewModel</a></td></tr>
 <tr class="memitem:a3fff2c1b82a13b715ccb78c02a1cfaeb inherit properties_interface_biller_1_1_u_i_1_1_interface_1_1_i_tab_content_view_model"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3fff2c1b82a13b715ccb78c02a1cfaeb"></a>
 Fluent.RibbonTabItem&#160;</td><td class="memItemRight" valign="bottom"><b>RibbonTabItem</b><code> [get]</code></td></tr>
@@ -221,10 +227,10 @@ UIElement&#160;</td><td class="memItemRight" valign="bottom"><b>TabContent</b><c
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="class_biller_1_1_data_1_1_utils_1_1_property_changed_helper.html">Biller.Data.Utils.PropertyChangedHelper</a></td></tr>
-<tr class="memitem:a8e3a64ee232707063767835bca993187 inherit events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e3a64ee232707063767835bca993187"></a>
+<tr class="inherit_header events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td colspan="2" onclick="javascript:toggleInherit('events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper')"><img src="closed.png" alt="-"/>&#160;Events inherited from <a class="el" href="class_biller_1_1_core_1_1_utils_1_1_property_changed_helper.html">Biller.Core.Utils.PropertyChangedHelper</a></td></tr>
+<tr class="memitem:a816154e50371bc3423db7f4fcaddc948 inherit events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a816154e50371bc3423db7f4fcaddc948"></a>
 PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><b>PropertyChanged</b> = delegate { }</td></tr>
-<tr class="separator:a8e3a64ee232707063767835bca993187 inherit events_class_biller_1_1_data_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a816154e50371bc3423db7f4fcaddc948 inherit events_class_biller_1_1_core_1_1_utils_1_1_property_changed_helper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="namespace_biller_1_1_u_i_1_1_view_model.html">ViewModel</a> for the Articleview. This class manages all behaviour regarding articles </p>
@@ -356,7 +362,8 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
       </table>
 </div><div class="memdoc">
 
-<p>Awaitable function that either shows all controls to modify an existing Article or loads the selected Article and uses <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a3fcbde055634db0921c7c383e292e5aa" title="Receives data. This methode does not process any data. ">ReceiveData</a> of the viewmodel referenced <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#ac8029df326108db8c3fd3e35975a56fe" title="Call this methode if you want to choose an Article of the whole database. The UI changes to the defau...">ReceiveRequestArticleCommand</a>. </p>
+<p>Awaitable function that either shows all controls to modify an existing Article or loads the selected Article and uses <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#a3fcbde055634db0921c7c383e292e5aa" title="Receives data. This methode does not process any data. ">ReceiveData</a> of the viewmodel referenced <a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html#ac8029df326108db8c3fd3e35975a56fe" title="Call this methode if you want to choose an Article of the whole database. The UI changes to the defau...">ReceiveRequestArticleCommand</a>.<br/>
+Calls <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_edit_observer.html#a7a743c8a7f240d27edd2fe8621cff998">Interface.IEditObserver.ReceiveArticleEditViewModel</a> for each registered IEditObserver in this instance when ViewModelRequestingArticle is null. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sender</td><td></td></tr>
@@ -382,7 +389,8 @@ PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><
 </div><div class="memdoc">
 
 <p>Awaitable function that shows all controls to create a new Article.<br/>
-Generates a new ArticleEditViewModel, tries to get the next ArticleID and calls AddTabContentViewModel to add the viewmodel to the window. </p>
+Generates a new ArticleEditViewModel, tries to get the next ArticleID and calls AddTabContentViewModel to add the viewmodel to the window.<br/>
+Calls <a class="el" href="interface_biller_1_1_u_i_1_1_interface_1_1_i_edit_observer.html#a7a743c8a7f240d27edd2fe8621cff998">Interface.IEditObserver.ReceiveArticleEditViewModel</a> for each registered IEditObserver in this instance. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sender</td><td></td></tr>
@@ -417,14 +425,14 @@ Generates a new ArticleEditViewModel, tries to get the next ArticleID and calls 
 
 </div>
 </div>
-<a class="anchor" id="a8dad0bbed01811fdee80af45c5db23a8"></a>
+<a class="anchor" id="a499198021cb8f5d18dd580a7b37af41e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">async Task Biller.UI.ArticleView.ArticleTabViewModel.SaveOrUpdateArticle </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_biller_1_1_data_1_1_articles_1_1_article.html">Data.Articles.Article</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_biller_1_1_core_1_1_articles_1_1_article.html">Core.Articles.Article</a>&#160;</td>
           <td class="paramname"><em>source</em></td><td>)</td>
           <td></td>
         </tr>
@@ -475,7 +483,7 @@ Awaitable </p>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_biller.html">Biller</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i.html">UI</a></li><li class="navelem"><a class="el" href="namespace_biller_1_1_u_i_1_1_article_view.html">ArticleView</a></li><li class="navelem"><a class="el" href="class_biller_1_1_u_i_1_1_article_view_1_1_article_tab_view_model.html">ArticleTabViewModel</a></li>
-    <li class="footer">Generated on Fri Mar 28 2014 15:52:31 for Biller by
+    <li class="footer">Generated on Thu Aug 14 2014 14:29:00 for Biller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
