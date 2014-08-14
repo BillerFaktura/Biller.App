@@ -34,6 +34,14 @@
                                           IsRibbonAligned="True" />
                         </Fluent:Button.ToolTip>
                     </Fluent:Button>
+                    <Fluent:Button Fluent:RibbonAttachedProperties.RibbonSizeDefinition="Small" Margin="0,0,5,0" Click="Button_Click_1" Icon="./Images/appbar.book.perspective.help.png" LargeIcon="./Images/appbar.book.perspective.help.png">
+                        <Fluent:Button.ToolTip>
+                            <Fluent:ScreenTip Title="Hilfe"
+                                              Text="Öffnet die Hilfe im Internet"
+                                              Width="190"
+                                              IsRibbonAligned="True" />
+                        </Fluent:Button.ToolTip>
+                    </Fluent:Button>
                     <!--<TextBox Width="150"/>-->
                 </Fluent:Ribbon.ToolBarItems>
             </Fluent:Ribbon>

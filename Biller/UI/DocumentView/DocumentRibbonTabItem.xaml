@@ -19,23 +19,26 @@
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
-    <!--<Fluent:RibbonGroupBox Header="">
-        <Fluent:Button Name="buttonAuftragLoeschen" Header="{StaticResource deleteorder}" Icon="Images\auftragdelete.png" LargeIcon="Images\auftragdelete.png" IsEnabled="False">
-            <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="{StaticResource deleteorder}" HelpLabelVisibility="Collapsed" Width="450" Image="Images\auftragdelete.png" Text="{StaticResource deleteordertooltip}" DisableReason="{StaticResource deleteordertooltipdisable}" />
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
-    </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="{StaticResource export}">
-        <Fluent:SplitButton Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" ItemsSource="{Binding AllExportClasses}"  IsEnabled="False" Click="buttonOrderPDF_Click">
+        <Fluent:SplitButton Name="buttonOrderPDF" Header="{StaticResource orderaspdf}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png" ItemsSource="{Binding AllExportClasses}" IsEnabled="False" Click="buttonOrderPDF_Click" >
             <Fluent:SplitButton.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderaspdf}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderaspdftooltip}" DisableReason="{StaticResource orderaspdftooltipdisable}" />
             </Fluent:SplitButton.ToolTip>
+            <Fluent:SplitButton.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" MouseDown="OrderPDFSelection_MouseDown"/>
+                </DataTemplate>
+            </Fluent:SplitButton.ItemTemplate>
         </Fluent:SplitButton>
-        <Fluent:SplitButton Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png" IsEnabled="False" Click="buttonPrintOrder_Click">
+        <Fluent:SplitButton Name="buttonPrintOrder" Header="{StaticResource orderprint}" Icon="..\..\Images\appbar.printer.text.png" LargeIcon="..\..\Images\appbar.printer.text.png" ItemsSource="{Binding AllExportClasses}" IsEnabled="False" Click="buttonPrintOrder_Click">
             <Fluent:SplitButton.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource orderprint}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource orderprinttooltip}" DisableReason="{StaticResource orderprinttooltipdisable}" />
             </Fluent:SplitButton.ToolTip>
+            <Fluent:SplitButton.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" MouseDown="OrderPrintSelection_MouseDown"/>
+                </DataTemplate>
+            </Fluent:SplitButton.ItemTemplate>
         </Fluent:SplitButton>
     </Fluent:RibbonGroupBox>
     <Fluent:RibbonGroupBox Header="Betrachtungszeitraum">

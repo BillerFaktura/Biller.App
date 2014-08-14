@@ -43,5 +43,10 @@ namespace Biller
             MainWindowViewModel.MainWindowCloseActions(e);
             base.OnClosed(e);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/LastElb/BillerV2/wiki/Erste-Schritte");
+        }
     }
 }

@@ -145,7 +145,7 @@ namespace Biller.UI.ViewModel
             {
                 var assemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "");
 
-                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.000813, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.000814, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
 
                 logger.Info("Assembly location is: " + assemblyLocation);
                 ProfileOptimization.SetProfileRoot(assemblyLocation);
@@ -177,6 +177,7 @@ namespace Biller.UI.ViewModel
                     setup.ShowDialog();
                     settings.Load();
                     window.Show();
+                    NotificationManager.ShowNotification("Hilfe & Erste Schritte", "Klicken Sie auf den Hilfebutton oben rechts, um sich über die ersten Schritte in Biller zu informieren");
                 }
 
                 logger.Debug("Connecting to database");
@@ -207,6 +208,8 @@ namespace Biller.UI.ViewModel
                 AddTabContentViewModel(ArticleTabViewModel);
                 AddTabContentViewModel(CustomerTabViewModel);
                 AddTabContentViewModel(SettingsTabViewModel);
+
+                DocumentTabViewModel.RibbonTabItem.IsSelected = true;
                 SelectedContent = DocumentTabViewModel.TabContent;
 
                 foreach (var plugin in SettingsTabViewModel.RegisteredPlugins)

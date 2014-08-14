@@ -1,5 +1,6 @@
 ﻿using Fluent;
 using System.Linq;
+using System.Windows.Controls;
 
 namespace Biller.UI.DocumentView
 {
@@ -46,11 +47,7 @@ namespace Biller.UI.DocumentView
                 saveFileDialog.FileName = loadingDocument.LocalizedDocumentType + " " + loadingDocument.ID;
                 
                 if (saveFileDialog.ShowDialog() == true)
-                {
                     _ParentViewModel.ParentViewModel.SettingsTabViewModel.GetPreferedExportClass(loadingDocument).SaveDocument(loadingDocument, saveFileDialog.FileName);
-                    //factory.GetNewExportClass().SaveDocument(loadingDocument, saveFileDialog.FileName);
-                }
-                    
             }
         }
 
@@ -75,6 +72,48 @@ namespace Biller.UI.DocumentView
         private void buttonOrderFastPick_Click(object sender, System.Windows.RoutedEventArgs e)
         {
 
+        }
+
+        private async void OrderPDFSelection_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var factory = _ParentViewModel.GetFactory(_ParentViewModel.SelectedDocument.DocumentType);
+            if (factory != null)
+            {
+                var loadingDocument = factory.GetNewDocument();
+                loadingDocument.DocumentID = _ParentViewModel.SelectedDocument.DocumentID;
+                loadingDocument = await _ParentViewModel.ParentViewModel.Database.GetDocument(loadingDocument);
+
+                var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+                saveFileDialog.Filter = "PDF Dokument|*.pdf";
+                saveFileDialog.FileName = loadingDocument.LocalizedDocumentType + " " + loadingDocument.ID;
+                
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    var export = ((sender as TextBlock).DataContext as Biller.Core.Interfaces.IExport);
+                    export.SaveDocument(loadingDocument, saveFileDialog.FileName);
+                }
+            }
+        }
+
+        private async void OrderPrintSelection_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var factory = _ParentViewModel.GetFactory(_ParentViewModel.SelectedDocument.DocumentType);
+            if (factory != null)
+            {
+                var loadingDocument = factory.GetNewDocument();
+                loadingDocument.DocumentID = _ParentViewModel.SelectedDocument.DocumentID;
+                loadingDocument = await _ParentViewModel.ParentViewModel.Database.GetDocument(loadingDocument);
+
+                var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+                saveFileDialog.Filter = "PDF Dokument|*.pdf";
+                saveFileDialog.FileName = loadingDocument.LocalizedDocumentType + " " + loadingDocument.ID;
+
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    var export = ((sender as TextBlock).DataContext as Biller.Core.Interfaces.IExport);
+                    export.PrintDocument(loadingDocument);
+                }
+            }
         }
     }
 }
