@@ -304,7 +304,6 @@ namespace Biller.UI.DocumentView
 
         public async Task LoadData()
         {
-            //await ParentViewModel.Database.AddAdditionalPreviewDocumentParser(new Data.Orders.DocumentParsers.InvoiceParser());
             AllDocuments = new ObservableCollection<Core.Document.PreviewDocument>();
             IntervalStart = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
             IntervalEnd = new DateTime(DateTime.Now.Year, DateTime.Now.Month, IntervalStart.AddMonths(1).AddDays(-1).Day, 23, 59, 59);
@@ -359,9 +358,15 @@ namespace Biller.UI.DocumentView
             }
         }
 
+        /// <summary>
+        /// Add a new <see cref="DocumentFactory"/> to the central collection. Factories already registered can not be added again.\n
+        /// You should register your <see cref="DocumentFactory"/> inside your <see cref="IPlugIn.LoadData()"/>
+        /// </summary>
+        /// <param name="DocumentFactory">The new document factory</param>
         public void AddDocumentFactory(Core.Interfaces.DocumentFactory DocumentFactory)
         {
-            documentFactories.Add(DocumentFactory);
+            if (!documentFactories.Contains(DocumentFactory))
+                documentFactories.Add(DocumentFactory);
         }
 
         /// <summary>
