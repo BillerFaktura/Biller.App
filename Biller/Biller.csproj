@@ -508,6 +508,7 @@
     <Resource Include="Images\appbar.app.remove.png" />
     <Resource Include="Images\icon.png" />
     <Resource Include="icon.ico" />
+    <Resource Include="Images\appbar.book.perspective.help.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

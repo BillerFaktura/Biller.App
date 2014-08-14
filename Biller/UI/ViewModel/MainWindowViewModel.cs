@@ -193,6 +193,8 @@ namespace Biller.UI.ViewModel
                     setup.ShowDialog();
                     settings.Load();
                     window.Show();
+
+                    NotificationManager.ShowNotification("Hilfe & Erste Schritte", "Klicken Sie auf den Hilfebutton unterhalb oben rechts, um sich über die ersten Schritte in Biller zu informieren");
                 }
             }
             if (await Database.Connect() == true)
@@ -207,6 +209,8 @@ namespace Biller.UI.ViewModel
                 AddTabContentViewModel(ArticleTabViewModel);
                 AddTabContentViewModel(CustomerTabViewModel);
                 AddTabContentViewModel(SettingsTabViewModel);
+
+                DocumentTabViewModel.RibbonTabItem.IsSelected = true;
                 SelectedContent = DocumentTabViewModel.TabContent;
 
                 foreach (var plugin in SettingsTabViewModel.RegisteredPlugins)
