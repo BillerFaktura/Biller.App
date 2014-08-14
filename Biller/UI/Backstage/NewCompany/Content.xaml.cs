@@ -73,6 +73,7 @@ namespace Biller.UI.Backstage.NewCompany
 
                     store.IsSmallBusiness = false;
                     store.UseGermanSupplementaryTaxRegulation = false;
+                    store.TaxSupplementaryWorkSeparate = false;
                 }
             }
         }
