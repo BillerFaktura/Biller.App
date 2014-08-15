@@ -42,6 +42,7 @@ namespace Biller.UI.Backstage.NewCompany
             }
             else
             {
+                //vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateSettings(vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore);
                 vm.BackstageTabItem.Focus(); //For MVVM //
 
                 var companySetting = vm.CompanySettings;

@@ -92,8 +92,13 @@ namespace Biller.UI.SettingsView
                 RegisterPreferedExportClass(item);
 
             KeyValueStore = await ParentViewModel.Database.GetSettings();
-
+            KeyValueStore.PropertyChanged += KeyValueStore_PropertyChanged;
             logger.Debug("Finished loading data in SettingsTabViewModel");
+        }
+
+        void KeyValueStore_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            ParentViewModel.Database.SaveOrUpdateSettings(KeyValueStore);
         }
 
         /// <summary>
