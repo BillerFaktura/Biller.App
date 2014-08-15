@@ -22,5 +22,10 @@
     <sys:String x:Key="taxclasses">Steuerklassen</sys:String>
     <sys:String x:Key="taxclassesdescription">Mehrwertsteuer / Umsatzsteuerbefreiung</sys:String>
     <sys:String x:Key="edittaxclass">Steuerklasse bearbeiten</sys:String>
-    
+    <sys:String x:Key="vatFreeRule">Diese Firma ist aufgrund einer Kleinunternehmerregelung von der Abfuhr der Umsatzsteuer befreit.</sys:String>
+    <sys:String x:Key="UseGermanSupplementaryTaxRegulation">Deutsche Steuerregelung für Nebenleistungen anwenden.</sys:String>
+    <sys:String x:Key="TaxClassForSupplementaryWork">Steuerklasse für Nebenleistungen</sys:String>
+    <sys:String x:Key="TaxForSupplementaryWork">Steuern auf Nebenleistungen</sys:String>
+    <sys:String x:Key="OtherTaxSettings">Sonstige Steuereinstellungen</sys:String>
+    <sys:String x:Key="TaxSupplementaryWorkSeparate">Steuern für Nebenleistung getrennt aufschlüsseln</sys:String>
 </ResourceDictionary>
