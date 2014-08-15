@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,6 +50,20 @@ namespace Biller.UI.SettingsView.SettingsList.ShipmentSettings
         {
             (DataContext as SettingsTabViewModel).TabContent.Focus(); //For MVVM //
             (DataContext as SettingsTabViewModel).SaveOrUpdateShipment((DataContext as SettingsTabViewModel).SelectedShipment);
+        }
+
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if (DataContext is SettingsTabViewModel)
+            {
+                dynamic store = (DataContext as SettingsTabViewModel).KeyValueStore;
+                if (store.ShipmentTaxClass != null)
+                {
+                    JObject content = store.ShipmentTaxClass;
+                    var item = content.ToObject<Core.Utils.TaxClass>();
+                    store.ShipmentTaxClass = item;
+                }
+            }
         }
     }
 }

@@ -267,7 +267,8 @@ namespace Biller.UI.ViewModel
         public void MainWindowCloseActions(System.EventArgs e)
         {
             NotificationManager.Close();
-            Database.SaveOrUpdateSettings(SettingsTabViewModel.KeyValueStore);
+            if (SettingsTabViewModel.KeyValueStore != null)
+                Database.SaveOrUpdateSettings(SettingsTabViewModel.KeyValueStore);
         }
 
         private static MainWindowViewModel vm;

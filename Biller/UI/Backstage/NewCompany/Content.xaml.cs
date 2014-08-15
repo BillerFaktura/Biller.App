@@ -51,9 +51,9 @@ namespace Biller.UI.Backstage.NewCompany
                 vm.ParentViewModel.ParentViewModel.Database.AddCompany(vm.CompanyInformation);
                 vm.CompanySettings.MainAddress.CompanyName = vm.CompanyInformation.CompanyName;
                 await vm.ParentViewModel.ParentViewModel.Database.ChangeCompany(vm.CompanyInformation);
+                vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore = CheckBoxSmallBusiness.DataContext as Core.Utils.KeyValueStore;
                 await vm.ParentViewModel.ParentViewModel.LoadData(true);
                 await vm.ParentViewModel.ParentViewModel.Database.SaveOrUpdateStorageableItem(companySetting);
-                vm.ParentViewModel.ParentViewModel.SettingsTabViewModel.KeyValueStore = CheckBoxSmallBusiness.DataContext as Core.Utils.KeyValueStore;
                 vm.ResetCompanyInformation();
             }
         }
@@ -65,12 +65,10 @@ namespace Biller.UI.Backstage.NewCompany
                 EditCompanyViewModel vm = (DataContext as EditCompanyViewModel);
                 if (!vm.EditMode)
                 {
+                    CheckBoxSmallBusiness.SetBinding(CheckBox.IsCheckedProperty, "IsSmallBusiness");
+
                     dynamic store = new Core.Utils.KeyValueStore();
                     CheckBoxSmallBusiness.DataContext = store;
-                    CheckBoxUseGermanSupplementaryTaxRegulation.DataContext = store;
-
-                    CheckBoxSmallBusiness.SetBinding(CheckBox.IsCheckedProperty, "IsSmallBusiness");
-                    CheckBoxSmallBusiness.SetBinding(CheckBox.IsCheckedProperty, "UseGermanSupplementaryTaxRegulation");
 
                     store.IsSmallBusiness = false;
                     store.UseGermanSupplementaryTaxRegulation = false;

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="400" Margin="6">
+             d:DesignHeight="600" d:DesignWidth="400" Margin="6" DataContextChanged="UserControl_DataContextChanged">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style x:Key="HeaderStyle" TargetType="{x:Type TextBlock}">
@@ -70,39 +70,43 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <controls:AnimatedScrollViewer VerticalScrollBarVisibility="Auto" Height="{Binding ElementName=h1, Path=ActualHeight}" Margin="0,12,0,0" Grid.Row="1">
-            <StackPanel>
-                <TextBlock Style="{StaticResource HeaderStyle}" Text="Versandart bearbeiten"/>
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="{StaticResource name}" Width="{Binding ElementName=GridSpan3, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
-                    <controls:WatermarkTextBox Text="{Binding SelectedShipment.Name}" Width="{Binding ElementName=GridSpan5, Path=ActualWidth}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <TextBlock Text="Preis" Width="{Binding ElementName=GridSpan3, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
-                    <controls:WatermarkTextBox Text="{Binding SelectedShipment.DefaultPrice.AmountString}" Width="{Binding ElementName=GridSpan5, Path=ActualWidth}" SelectTextBeforeSpace="True" />
-                </StackPanel>
-                
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                    <controls:Office2013Button Content="{StaticResource resetfields}" Height="92" Width="100" Margin="2" Click="Office2013Button_Click">
-                        <controls:Office2013Button.Vector>
-                            <Viewbox Width="40" Height="40">
-                                <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
-                                    <Path Width="70.3703" Height="76" Canvas.Left="3" Stretch="Fill" Fill="#FF000000" Data="F1 M 19,45.9167L 25.6082,45.9167C 28.6524,49.3179 33.0762,51.4583 38,51.4583C 42.9238,51.4583 47.3476,49.3179 50.3918,45.9167L 58.5833,45.9167L 58.5833,57L 19,57L 19,45.9167 Z M 56.2083,48.2917L 53.4374,48.2917L 53.4374,53.0417L 56.2083,53.0417L 56.2083,48.2917 Z M 39.5833,33.25L 30.0833,23.75L 39.5833,14.25L 39.5833,20.6703C 46.7082,21.4579 52.25,27.4985 52.25,34.8333C 52.25,42.7034 45.8701,49.0833 38,49.0833C 30.1299,49.0833 23.75,42.7034 23.75,34.8333C 23.75,32.0174 24.5668,29.3923 25.9763,27.1819L 30.6522,30.1575C 29.7908,31.5083 29.2917,33.1125 29.2917,34.8333C 29.2917,39.6428 33.1905,43.5417 38,43.5417C 42.8095,43.5417 46.7083,39.6428 46.7083,34.8333C 46.7083,30.5646 43.6368,27.0132 39.5833,26.2686L 39.5833,33.25 Z "/>
-                                </Canvas>
-                            </Viewbox>
-                        </controls:Office2013Button.Vector>
-                    </controls:Office2013Button>
-                    <controls:Office2013Button Content="{StaticResource savechanges}" Height="92" Width="100" Margin="2" Click="Office2013Button_Click_1">
-                        <controls:Office2013Button.Vector>
-                            <Viewbox Width="40" Height="40">
-                                <Canvas Width="34.833" Height="34.833" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
-                                    <Path Width="34.8333" Height="34.8333" Stretch="Fill" Fill="#FF000000" Data="F1 M 20.5833,20.5833L 55.4167,20.5833L 55.4167,55.4167L 45.9167,55.4167L 45.9167,44.3333L 30.0833,44.3333L 30.0833,55.4167L 20.5833,55.4167L 20.5833,20.5833 Z M 33.25,55.4167L 33.25,50.6667L 39.5833,50.6667L 39.5833,55.4167L 33.25,55.4167 Z M 26.9167,23.75L 26.9167,33.25L 49.0833,33.25L 49.0833,23.75L 26.9167,23.75 Z "/>
-                                </Canvas>
-                            </Viewbox>
-                        </controls:Office2013Button.Vector>
-                    </controls:Office2013Button>
-                </StackPanel>
+        <StackPanel Margin="0,12,0,0" Grid.Row="1">
+            <TextBlock Style="{DynamicResource SectionHeaderStyle}" Text="Versandart bearbeiten"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="{StaticResource name}" Width="{Binding ElementName=GridSpan3, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
+                <controls:WatermarkTextBox Text="{Binding SelectedShipment.Name}" Width="{Binding ElementName=GridSpan5, Path=ActualWidth}"/>
             </StackPanel>
-        </controls:AnimatedScrollViewer>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="Preis" Width="{Binding ElementName=GridSpan3, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
+                <controls:WatermarkTextBox Text="{Binding SelectedShipment.DefaultPrice.AmountString}" Width="{Binding ElementName=GridSpan5, Path=ActualWidth}" SelectTextBeforeSpace="True" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <controls:Office2013Button Content="{StaticResource resetfields}" Height="92" Width="100" Margin="2" Click="Office2013Button_Click">
+                    <controls:Office2013Button.Vector>
+                        <Viewbox Width="40" Height="40">
+                            <Canvas Width="76" Height="76" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                <Path Width="70.3703" Height="76" Canvas.Left="3" Stretch="Fill" Fill="#FF000000" Data="F1 M 19,45.9167L 25.6082,45.9167C 28.6524,49.3179 33.0762,51.4583 38,51.4583C 42.9238,51.4583 47.3476,49.3179 50.3918,45.9167L 58.5833,45.9167L 58.5833,57L 19,57L 19,45.9167 Z M 56.2083,48.2917L 53.4374,48.2917L 53.4374,53.0417L 56.2083,53.0417L 56.2083,48.2917 Z M 39.5833,33.25L 30.0833,23.75L 39.5833,14.25L 39.5833,20.6703C 46.7082,21.4579 52.25,27.4985 52.25,34.8333C 52.25,42.7034 45.8701,49.0833 38,49.0833C 30.1299,49.0833 23.75,42.7034 23.75,34.8333C 23.75,32.0174 24.5668,29.3923 25.9763,27.1819L 30.6522,30.1575C 29.7908,31.5083 29.2917,33.1125 29.2917,34.8333C 29.2917,39.6428 33.1905,43.5417 38,43.5417C 42.8095,43.5417 46.7083,39.6428 46.7083,34.8333C 46.7083,30.5646 43.6368,27.0132 39.5833,26.2686L 39.5833,33.25 Z "/>
+                            </Canvas>
+                        </Viewbox>
+                    </controls:Office2013Button.Vector>
+                </controls:Office2013Button>
+                <controls:Office2013Button Content="{StaticResource savechanges}" Height="92" Width="100" Margin="2" Click="Office2013Button_Click_1">
+                    <controls:Office2013Button.Vector>
+                        <Viewbox Width="40" Height="40">
+                            <Canvas Width="34.833" Height="34.833" Clip="F1 M 0,0L 76,0L 76,76L 0,76L 0,0">
+                                <Path Width="34.8333" Height="34.8333" Stretch="Fill" Fill="#FF000000" Data="F1 M 20.5833,20.5833L 55.4167,20.5833L 55.4167,55.4167L 45.9167,55.4167L 45.9167,44.3333L 30.0833,44.3333L 30.0833,55.4167L 20.5833,55.4167L 20.5833,20.5833 Z M 33.25,55.4167L 33.25,50.6667L 39.5833,50.6667L 39.5833,55.4167L 33.25,55.4167 Z M 26.9167,23.75L 26.9167,33.25L 49.0833,33.25L 49.0833,23.75L 26.9167,23.75 Z "/>
+                            </Canvas>
+                        </Viewbox>
+                    </controls:Office2013Button.Vector>
+                </controls:Office2013Button>
+            </StackPanel>
+
+            <TextBlock Style="{DynamicResource SectionHeaderStyle}" Text="Versandart bearbeiten" Margin="0,20,0,2.5"/>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock Text="Steuerklasse für Nebenleistungen" Width="{Binding ElementName=GridSpan3, Path=ActualWidth}" Style="{StaticResource ContentStyle}" VerticalAlignment="Center"/>
+                <ComboBox Width="{Binding ElementName=GridSpan5, Path=ActualWidth}" HorizontalAlignment="Left" ItemsSource="{Binding TaxClasses}" SelectedItem="{Binding KeyValueStore.ShipmentTaxClass}" DisplayMemberPath="Name"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
