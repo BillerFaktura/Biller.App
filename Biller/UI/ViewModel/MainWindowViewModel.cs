@@ -145,7 +145,7 @@ namespace Biller.UI.ViewModel
             {
                 var assemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "");
 
-                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.000814, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.000817, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
 
                 logger.Info("Assembly location is: " + assemblyLocation);
                 ProfileOptimization.SetProfileRoot(assemblyLocation);
@@ -154,6 +154,8 @@ namespace Biller.UI.ViewModel
                 foreach (var currentfile in Directory.GetFiles(assemblyLocation, "*@Biller.dll"))
                 {
                     var plugin = LoadAssembly(currentfile);
+                    if (plugin == null)
+                        continue;
                     try
                     {
                         plugin.Activate();
@@ -236,7 +238,18 @@ namespace Biller.UI.ViewModel
         private UI.Interface.IPlugIn LoadAssembly(string assemblyPath)
         {
             string assembly = Path.GetFullPath(assemblyPath);
-            Assembly ptrAssembly = Assembly.LoadFile(assembly);
+            Assembly ptrAssembly;
+            try
+            {
+                ptrAssembly = Assembly.LoadFile(assembly);
+            }
+            catch (Exception e)
+            {
+                logger.Error(e);
+                NotificationManager.ShowNotification("Fehler beim Laden einer Erweiterung", "Ein Plugin konnte nicht geladen werden, weil die aktuellen Sicherheitseinstellungen das verhindern.");
+                return null;
+            }   
+
             foreach (Type item in ptrAssembly.GetTypes())
             {
                 if (!item.IsClass) continue;
@@ -261,7 +274,7 @@ namespace Biller.UI.ViewModel
                     { }
                 }
             }
-            throw new Exception("Invalid DLL, Interface not found!");
+            return null;
         }
 
         public void MainWindowCloseActions(System.EventArgs e)
