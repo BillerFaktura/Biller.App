@@ -145,7 +145,7 @@ namespace Biller.UI.ViewModel
             {
                 var assemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "");
 
-                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.000814, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.000817, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
 
                 logger.Info("Assembly location is: " + assemblyLocation);
                 ProfileOptimization.SetProfileRoot(assemblyLocation);
