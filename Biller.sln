@@ -30,6 +30,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateGenerator", "UpdateGe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XDatabase@Biller", "XDatabase@Biller\XDatabase@Biller.csproj", "{A28EA7A2-906F-4C5B-A71B-C6B17B284279}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E32C8E2E-2E74-4493-8F1F-0D2EB0E7214B}"
+	ProjectSection(SolutionItems) = preProject
+		update.json = update.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
