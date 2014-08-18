@@ -33,7 +33,7 @@
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>-->
-    <Fluent:RibbonGroupBox Header="" IsEnabled="False">
+    <!--<Fluent:RibbonGroupBox Header="" IsEnabled="False">
         <Fluent:Button Name="buttonNewCategory" Header="{StaticResource createcategory}" Icon="..\..\Images\appbar.list.create.png" LargeIcon="..\..\Images\appbar.list.create.png">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource createcategory}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource createcategorytooltip}" />
@@ -44,7 +44,7 @@
                 <Fluent:ScreenTip Title="{StaticResource editcategory}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource editcategorytooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-    </Fluent:RibbonGroupBox>
+    </Fluent:RibbonGroupBox>-->
     <Fluent:RibbonGroupBox Header="{StaticResource export}" IsEnabled="False">
         <Fluent:Button Name="buttonPDFArticlelist" Header="{StaticResource pdfArticlelist}" Icon="..\..\Images\appbar.page.pdf.png" LargeIcon="..\..\Images\appbar.page.pdf.png">
             <Fluent:Button.ToolTip>
@@ -57,11 +57,11 @@
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
-    <Fluent:RibbonGroupBox Header="" IsEnabled="False">
+    <!--<Fluent:RibbonGroupBox Header="" IsEnabled="False">
         <Fluent:Button Name="buttonArticleStats" Header="{StaticResource statsArticle}" Icon="..\..\Images\appbar.page.powerpoint.png" LargeIcon="..\..\Images\appbar.page.powerpoint.png">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource statsArticletooltipHeader}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource statsArticletooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-    </Fluent:RibbonGroupBox>
+    </Fluent:RibbonGroupBox>-->
 </Fluent:RibbonTabItem>
