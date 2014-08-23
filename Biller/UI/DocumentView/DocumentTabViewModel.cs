@@ -47,6 +47,7 @@ namespace Biller.UI.DocumentView
 
         public DateTime IntervalEnd { get { return GetValue(() => IntervalEnd); } set { SetValue(value); ShowDocumentsInInterval(IntervalStart, value); } }
 
+        [Obsolete]
         public ObservableCollection<Core.Document.PreviewDocument> AllDocuments { get { return GetValue(() => AllDocuments); } set { SetValue(value); } }
 
         public ObservableCollection<Core.Document.PreviewDocument> DisplayedDocuments { get { return GetValue(() => DisplayedDocuments); } set { SetValue(value); } }

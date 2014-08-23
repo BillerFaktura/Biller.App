@@ -66,10 +66,7 @@ namespace Biller.UI.DocumentView.Contextual
 
         public ObservableCollection<UIElement> EditContentTabs { get; private set; }
 
-        public Fluent.RibbonTabItem RibbonTabItem
-        {
-            get { return DocumentEditRibbonTabItem; }
-        }
+        public Fluent.RibbonTabItem RibbonTabItem { get { return DocumentEditRibbonTabItem; } }
 
         public Core.Document.Document Document
         {
@@ -116,6 +113,9 @@ namespace Biller.UI.DocumentView.Contextual
             if (Document != null)
                 await ParentViewModel.ParentViewModel.Database.UpdateTemporaryUsedDocumentID(Document.DocumentID, "", Document.DocumentType);
             await ParentViewModel.ReceiveCloseEditControl(this);
+            var handler = DocumentClosed;
+            if (handler != null)
+                handler(this, null);
         }
 
         public async Task LoadData()
@@ -148,10 +148,27 @@ namespace Biller.UI.DocumentView.Contextual
             }
         }
 
+        public async Task SaveDocument()
+        {
+            EventHandler handler = BeforeDocumentSaved;
+            if (handler != null)
+                handler(this, null);
+
+            await ParentViewModel.SaveOrUpdateDocument(Document);
+            
+            handler = DocumentSaved;
+            if (handler != null)
+                handler(this, null);
+        }
+
         public Core.Customers.Customer PreviewCustomer { get { return GetValue(() => PreviewCustomer); } set { SetValue(value); } }
 
         public Core.Articles.Article PreviewArticle { get { return GetValue(() => PreviewArticle); } set { SetValue(value); } }
 
         public Core.Interfaces.IExport ExportClass { get { return GetValue(() => ExportClass); } set { SetValue(value); } }
+
+        public event EventHandler BeforeDocumentSaved;
+        public event EventHandler DocumentSaved;
+        public event EventHandler DocumentClosed;
     }
 }
