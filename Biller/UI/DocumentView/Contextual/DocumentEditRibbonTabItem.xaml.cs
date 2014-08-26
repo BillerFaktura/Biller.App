@@ -56,7 +56,7 @@ namespace Biller.UI.DocumentView.Contextual
         private async void buttonQuickSaveOrder_Click(object sender, RoutedEventArgs e)
         {
             _ViewModel.DocumentEditRibbonTabItem.Focus(); // MVVM
-            await _ViewModel.ParentViewModel.SaveOrUpdateDocument(_ViewModel.Document);
+            await _ViewModel.SaveDocument();
             CheckLinkedDocuments();
             _ViewModel.ParentViewModel.ParentViewModel.SettingsTabViewModel.SaveOrUpdateDocumentFolder(_ViewModel.LinkedDocuments);
         }
@@ -92,7 +92,7 @@ namespace Biller.UI.DocumentView.Contextual
         private async void buttonOrderSave_Click(object sender, RoutedEventArgs e)
         {
             _ViewModel.DocumentEditRibbonTabItem.Focus(); // MVVM
-            await _ViewModel.ParentViewModel.SaveOrUpdateDocument(_ViewModel.Document);
+            await _ViewModel.SaveDocument();
             CheckLinkedDocuments();
             _ViewModel.ParentViewModel.ParentViewModel.SettingsTabViewModel.SaveOrUpdateDocumentFolder(_ViewModel.LinkedDocuments);
             await _ViewModel.ReceiveCloseCommand();

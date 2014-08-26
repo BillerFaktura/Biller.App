@@ -40,11 +40,11 @@
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
-    <Fluent:RibbonGroupBox Header="">
+    <!--<Fluent:RibbonGroupBox Header="">
         <Fluent:Button Name="buttonCustomerStatistics" Header="{StaticResource customerstatistics}" Icon="..\..\Images\appbar.page.powerpoint.png" LargeIcon="..\..\Images\appbar.page.powerpoint.png" IsEnabled="False">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource customerstatistics}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource customerStatisticTooltip}" DisableReason="{StaticResource functionNotAvailableTooltip}"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-    </Fluent:RibbonGroupBox>
+    </Fluent:RibbonGroupBox>-->
 </Fluent:RibbonTabItem>

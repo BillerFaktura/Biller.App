@@ -145,7 +145,7 @@ namespace Biller.UI.ViewModel
             {
                 var assemblyLocation = (Assembly.GetExecutingAssembly().Location).Replace(System.IO.Path.GetFileName(Assembly.GetExecutingAssembly().Location), "");
 
-                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.000817, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
+                UpdateManager.Register(new Core.Models.AppModel() { Title = "Biller", Description = "Hauptprogramm", GuID = ((GuidAttribute)Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value.ToLower(), Version = 2.0020140826, UpdateSource = "https://raw.githubusercontent.com/LastElb/BillerV2/master/update.json" });
 
                 logger.Info("Assembly location is: " + assemblyLocation);
                 ProfileOptimization.SetProfileRoot(assemblyLocation);
@@ -299,7 +299,7 @@ namespace Biller.UI.ViewModel
         {
             foreach(var app in UpdateManager.UpdateableApps)
             {
-                var update = new Biller.Controls.Notification.UpdateNotification() { Title = "Update für " + app.Title, Message = "Es ist ein Update auf Version " + app.Version.ToString() + " verfügbar." };
+                var update = new Biller.Controls.Notification.UpdateNotification() { Title = "Update für " + app.Title, Message = "Es ist ein Update auf Version " + app.Version.ToString().Replace(",", ".") + " verfügbar." };
                 Action<object> changelogAction = new Action<object>((object x) => 
                 {
                     if (!String.IsNullOrEmpty(app.ChangelogURL))
