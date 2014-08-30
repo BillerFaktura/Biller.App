@@ -237,7 +237,10 @@ namespace Biller.UI.ViewModel
 
         private UI.Interface.IPlugIn LoadAssembly(string assemblyPath)
         {
+            logger.Debug("Loading assembly " + assemblyPath);
             string assembly = Path.GetFullPath(assemblyPath);
+            object sync = new Object();
+            UI.Interface.IPlugIn plugin = null;
             Assembly ptrAssembly;
             try
             {
@@ -248,12 +251,13 @@ namespace Biller.UI.ViewModel
                 logger.Error(e);
                 NotificationManager.ShowNotification("Fehler beim Laden einer Erweiterung", "Ein Plugin konnte nicht geladen werden, weil die aktuellen Sicherheitseinstellungen das verhindern.");
                 return null;
-            }   
+            }
 
-            foreach (Type item in ptrAssembly.GetTypes())
+            Parallel.ForEach(ptrAssembly.GetTypes(), item =>
             {
-                if (!item.IsClass) continue;
-                foreach (var interfaceitem in item.GetInterfaces())
+                if (!item.IsClass) return;
+                var probablyPlugin = item.GetInterface("Biller.UI.Interface.IPlugIn");
+                if (probablyPlugin != null)
                 {
                     try
                     {
@@ -266,15 +270,17 @@ namespace Biller.UI.ViewModel
                         CultureInfo culture = null;
                         object[] activationAttributes = null;
 
-                        object instance = ptrAssembly.CreateInstance(item.FullName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes);
-                        UI.Interface.IPlugIn plugin = (UI.Interface.IPlugIn)instance;
-                        return plugin;
+                        lock (sync)
+                        {
+                            object instance = ptrAssembly.CreateInstance(item.FullName, ignoreCase, bindingAttr, binder, args, culture, activationAttributes);
+                            plugin = (UI.Interface.IPlugIn)instance;
+                        }
                     }
                     catch (Exception e)
                     { }
                 }
-            }
-            return null;
+            });
+            return plugin;
         }
 
         public void MainWindowCloseActions(System.EventArgs e)

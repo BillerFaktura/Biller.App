@@ -48,5 +48,13 @@ namespace Biller
         {
             Process.Start("https://github.com/LastElb/BillerV2/wiki/Erste-Schritte");
         }
+
+        private void MetroWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == System.Windows.WindowState.Maximized)
+                contentPresenter.Margin = new Thickness(0);
+            else
+                contentPresenter.Margin = new Thickness(1);
+        }
     }
 }

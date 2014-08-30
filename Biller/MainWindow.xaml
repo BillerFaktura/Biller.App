@@ -4,7 +4,7 @@
                      xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
                      Title="Biller" Height="600" Width="1100" FontFamily="Open Sans" FontSize="12" WindowState="Maximized" Loaded="RibbonWindow_Loaded"
                      RibbonThemeColor="#FF5195B7"
-                     Style="{DynamicResource MetroWindowStyle}">
+                     Style="{DynamicResource MetroWindowStyle}" StateChanged="MetroWindow_StateChanged">
     <Fluent:MetroWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -45,7 +45,7 @@
                     <!--<TextBox Width="150"/>-->
                 </Fluent:Ribbon.ToolBarItems>
             </Fluent:Ribbon>
-            <ContentPresenter Content="{Binding SelectedContent}"/>
+            <ContentPresenter Content="{Binding SelectedContent}" Margin="0" Name="contentPresenter"/>
         </DockPanel>
     </Grid>       
 </Fluent:MetroWindow>
