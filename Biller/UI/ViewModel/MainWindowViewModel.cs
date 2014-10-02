@@ -323,7 +323,6 @@ namespace Biller.UI.ViewModel
                 });
                 update.SetActions(changelogAction, updateNowAction, updateLaterAction);
                 _selectedContent.Dispatcher.BeginInvoke((Action)(() => NotificationManager.ShowNotification(update)));
-                
             }
         }
     }
