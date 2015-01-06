@@ -9,7 +9,7 @@
     <TabItem.Header>
         <Grid MaxWidth="240">
             <StackPanel Width="48" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Image Width="48" Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="..\..\..\..\Images\appbar.edit.box.png"/>
+                <Image Width="48" Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="..\..\..\..\Images\ic_mode_edit.png"/>
             </StackPanel>
             <Grid Margin="68,0,0,0">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,5" ClipToBounds="False">

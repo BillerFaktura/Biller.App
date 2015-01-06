@@ -19,6 +19,7 @@
     <sys:String x:Key="save">Speichern</sys:String>
     <sys:String x:Key="saveandexit">Speichern und Schließen</sys:String>
     <sys:String x:Key="abort">Abbrechen</sys:String>
+    <sys:String x:Key="close">Schließen</sys:String>
 
     <sys:String x:Key="editcustomerdata">Kundendaten bearbeiten</sys:String>
     <sys:String x:Key="identification">Identifikation</sys:String>
@@ -62,4 +63,6 @@
     <sys:String x:Key="customerListPrintTooltip">Mit dieser Funktion können Sie eine Kundenliste drucken.</sys:String>
     <sys:String x:Key="customerStatisticTooltip">Mit dieser Funktion können Sie Kundenstatistiken visualisieren und als PDF speichern.</sys:String>
     <sys:String x:Key="functionNotAvailableTooltip">Diese Funktion ist noch nicht verfügbar.</sys:String>
+    
+    <sys:String x:Key="editCustomerDataDescription">Erstellen und verwalten Sie Kundensätze</sys:String>
 </ResourceDictionary>

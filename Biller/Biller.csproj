@@ -519,6 +519,14 @@
     <Resource Include="Images\icon.png" />
     <Resource Include="icon.ico" />
     <Resource Include="Images\appbar.book.perspective.help.png" />
+    <Resource Include="Images\ic_add_shopping_cart.png" />
+    <Resource Include="Images\ic_mode_edit.png" />
+    <Resource Include="Images\ic_close.png" />
+    <Resource Include="Images\ic_loop.png" />
+    <Resource Include="Images\ic_credit_card.png" />
+    <Resource Include="Images\ic_dashboard.png" />
+    <Resource Include="Images\ic_format_align_left.png" />
+    <Resource Include="Images\ic_attach_money.png" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

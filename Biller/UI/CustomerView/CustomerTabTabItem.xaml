@@ -15,7 +15,7 @@
                 <Fluent:ScreenTip Title="{StaticResource createnewcustomer}" HelpLabelVisibility="Collapsed" Width="450"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonnEditCustomer" Header="{StaticResource editcustomer}" Icon="Images\kundeedit.png" LargeIcon="Images\kundeedit.png" IsEnabled="False" Click="buttonnEditCustomer_Click">
+        <Fluent:Button Name="buttonnEditCustomer" Header="{StaticResource editcustomer}" Icon="..\..\Images\ic_mode_edit.png" LargeIcon="..\..\Images\ic_mode_edit.png" IsEnabled="False" Click="buttonnEditCustomer_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource editcustomer}" HelpLabelVisibility="Collapsed" Width="450" />
             </Fluent:Button.ToolTip>

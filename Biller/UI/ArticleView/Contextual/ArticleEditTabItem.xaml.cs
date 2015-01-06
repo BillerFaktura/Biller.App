@@ -68,13 +68,13 @@ namespace Biller.UI.ArticleView.Contextual
         {
             string missingproperties = "";
             bool result = true;
-            if (string.IsNullOrEmpty(_ParentViewModel.Article.ArticleUnit.Name))
+            if (_ParentViewModel.Article.ArticleUnit == null || string.IsNullOrEmpty(_ParentViewModel.Article.ArticleUnit.Name))
             {
                 result = false;
                 missingproperties += FindResource("saleunit").ToString() + "\n";
             }
 
-            if (string.IsNullOrEmpty(_ParentViewModel.Article.TaxClass.Name))
+            if (_ParentViewModel.Article.TaxClass == null || string.IsNullOrEmpty(_ParentViewModel.Article.TaxClass.Name))
             {
                 result = false;
                 missingproperties += FindResource("taxclass").ToString() + "\n";

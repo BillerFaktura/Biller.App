@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </Fluent:RibbonTabItem.Resources>
     <Fluent:RibbonGroupBox Visibility="{Binding EditMode, Converter={StaticResource booleanVisibilityConverter}}">
-        <Fluent:Button Name="buttonCreateFromTemplate" Header="{StaticResource articlefromtemplate}" Icon="Images\artikelvorlage.png" LargeIcon="Images\artikelvorlage.png" Click="buttonCreateFromTemplate_Click">
+        <Fluent:Button Name="buttonCreateFromTemplate" Header="{StaticResource articlefromtemplate}" Icon="..\..\..\Images\ic_loop.png" LargeIcon="..\..\..\Images\ic_loop.png" Click="buttonCreateFromTemplate_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource articlefromtemplate}" Width="450" HelpLabelVisibility="Collapsed" />
             </Fluent:Button.ToolTip>
@@ -33,14 +33,7 @@
                 <Fluent:ScreenTip Title="{StaticResource save}" HelpLabelVisibility="Collapsed" Width="450"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonArticleSaveAndExit" Header="{StaticResource saveandexit}" Icon="Images\saveback.png" LargeIcon="Images\saveback.png" Click="buttonArticleSaveAndExit_Click">
-            <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="{StaticResource saveandexit}" HelpLabelVisibility="Collapsed" Width="450"/>
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
-    </Fluent:RibbonGroupBox>
-    <Fluent:RibbonGroupBox>
-        <Fluent:Button Name="buttonCloseArticle" Header="{StaticResource abort}" Icon="..\..\..\Images\appbar.cancel.png" LargeIcon="..\..\..\Images\appbar.cancel.png" Click="buttonCloseArticle_Click">
+        <Fluent:Button Name="buttonCloseArticle" Header="{StaticResource close}" Icon="..\..\..\Images\ic_close.png" LargeIcon="..\..\..\Images\ic_close.png" Click="buttonCloseArticle_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource abort}" Width="450" HelpLabelVisibility="Collapsed"/>
             </Fluent:Button.ToolTip>

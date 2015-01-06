@@ -15,12 +15,12 @@
         </ResourceDictionary>
     </Fluent:RibbonTabItem.Resources>
     <Fluent:RibbonGroupBox Header="">
-        <Fluent:Button Name="buttonNewArticle" Header="{StaticResource createarticle}" Icon="Images\artikeladd.png" LargeIcon="Images\artikeladd.png" Click="buttonNewArticle_Click">
+        <Fluent:Button Name="buttonNewArticle" Header="{StaticResource createarticle}" Icon="..\..\Images\ic_add_shopping_cart.png" LargeIcon="..\..\Images\ic_add_shopping_cart.png" Click="buttonNewArticle_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource createarticle}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource createarticletooltip}" />
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonEditArticle" Header="{StaticResource editarticle}" Icon="Images\artikeledit.png" LargeIcon="Images\artikeledit.png" IsEnabled="{Binding SelectedArticle, Converter={StaticResource objecttobooleanconverter}, FallbackValue=False}" Click="buttonEditArticle_Click">
+        <Fluent:Button Name="buttonEditArticle" Header="{StaticResource editarticle}" Icon="..\..\Images\ic_mode_edit.png" LargeIcon="..\..\Images\ic_mode_edit.png" IsEnabled="{Binding SelectedArticle, Converter={StaticResource objecttobooleanconverter}, FallbackValue=False}" Click="buttonEditArticle_Click">
             <Fluent:Button.ToolTip>
                 <Fluent:ScreenTip Title="{StaticResource editarticle}" HelpLabelVisibility="Collapsed" Width="450" Text="{StaticResource editarticletooltip}" DisableReason="{StaticResource editarticletooltipdisable}" />
             </Fluent:Button.ToolTip>

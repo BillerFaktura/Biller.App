@@ -7,15 +7,22 @@
              xmlns:local="clr-namespace:Biller.UI.CustomerView.Contextual.EditView"
              xmlns:controls="clr-namespace:Biller.Controls;assembly=Biller.Controls"
              d:DesignHeight="300" d:DesignWidth="300" Style="{DynamicResource InnerBackstageTabCotrolItem}">
+    <TabItem.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../../Localization/CustomerView/de.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </TabItem.Resources>
     <TabItem.Header>
         <Grid MaxWidth="240">
             <StackPanel Width="48" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-                <Image Width="48" Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <Image Width="48" Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="..\..\..\..\Images\ic_mode_edit.png"/>
             </StackPanel>
             <Grid Margin="68,0,0,0">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="0,0,0,5" ClipToBounds="False">
-                    <TextBlock Text="Kundendaten bearbeiten" />
-                    <TextBlock Text="Erstellen und verwalten Sie Kundensätze" Foreground="DimGray" TextWrapping="Wrap" />
+                    <TextBlock Text="{StaticResource editcustomerdata}" />
+                    <TextBlock Text="{StaticResource editCustomerDataDescription}" Foreground="DimGray" TextWrapping="Wrap" />
                 </StackPanel>
             </Grid>
         </Grid>

@@ -21,16 +21,9 @@
                 <Fluent:ScreenTip Title="{StaticResource save}" HelpLabelVisibility="Collapsed" Width="450"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
-        <Fluent:Button Name="buttonSaveAndExit" Header="{StaticResource saveandexit}" Icon="Images\saveback.png" LargeIcon="Images\saveback.png" Click="buttonSaveAndExit_Click">
+        <Fluent:Button Name="buttonAbort" Header="{StaticResource close}" Icon="..\..\..\Images\ic_close.png" LargeIcon="..\..\..\Images\ic_close.png" Click="buttonAbort_Click">
             <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="{StaticResource saveandexit}" HelpLabelVisibility="Collapsed" Width="450"/>
-            </Fluent:Button.ToolTip>
-        </Fluent:Button>
-    </Fluent:RibbonGroupBox>
-    <Fluent:RibbonGroupBox>
-        <Fluent:Button Name="buttonAbort" Header="{StaticResource abort}" Icon="..\..\..\Images\appbar.cancel.png" LargeIcon="..\..\..\Images\appbar.cancel.png" Click="buttonAbort_Click">
-            <Fluent:Button.ToolTip>
-                <Fluent:ScreenTip Title="{StaticResource abort}" Width="450" HelpLabelVisibility="Collapsed"/>
+                <Fluent:ScreenTip Title="{StaticResource close}" Width="450" HelpLabelVisibility="Collapsed"/>
             </Fluent:Button.ToolTip>
         </Fluent:Button>
     </Fluent:RibbonGroupBox>
